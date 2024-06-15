@@ -7,13 +7,13 @@
 
 ## Getting Started
 
-See the built page here: [LeetCode Solutions](https://walkccc.me/LeetCode/).
+See the built page here: [LeetCode Solutions](https://cvalingam.me/LeetCode/).
 
 
 ## License
 
 Licensed under the MIT License, Copyright © 2019-2024
-[P.-Y. Chen](https://github.com/walkccc).
+[Sivalingam Ramasamy](https://github.com/cvalingam).
 
 <div align="center">
   <sub>Assembled with ❤️ in Chennai, India.</sub>
