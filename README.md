@@ -7,7 +7,7 @@
 
 ## Getting Started
 
-See the built page here: [LeetCode Solutions](https://cvalingam.me/LeetCode/).
+See the built page here: [LeetCode Solutions](https://cvalingam.github.io/LeetCode/).
 
 
 ## License
