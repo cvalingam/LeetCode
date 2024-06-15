@@ -12,7 +12,7 @@ See the built page here: [LeetCode Solutions](https://cvalingam.github.io/LeetCo
 
 ## License
 
-Licensed under the MIT License, Copyright © 2019-2024
+Licensed under the MIT License, Copyright ©2024
 [Sivalingam Ramasamy](https://github.com/cvalingam).
 
 <div align="center">
