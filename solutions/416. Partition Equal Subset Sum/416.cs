@@ -4,6 +4,7 @@ public class Solution
     {
         int n = nums.Length;
         int totalSum = 0;
+
         for (int i = 0; i < nums.Length; i++)
             totalSum += nums[i];
 
@@ -13,9 +14,10 @@ public class Solution
             return tabulation(n, totalSum / 2, nums);
     }
 
-    private static bool tabulation(int n, int k, int[] arr)
+    private bool tabulation(int n, int k, int[] arr)
     {
         bool[][] dp = new bool[n + 1][];
+
         for (int i = 0; i <= n; i++)
             dp[i] = new bool[k + 1];
 
