@@ -1,5 +1,6 @@
 import java.util.*;
 
+
 class Solution {
     public int minTimeToReach(int[][] moveTime) {
         return dijkstra(moveTime, new Pair<>(0, 0),
@@ -18,7 +19,7 @@ class Solution {
                 Comparator.comparingInt(Pair::getKey)) {
             {
                 offer(new Pair<>(dist[0][0], src));
-            } // (d, u)
+            } // (d, (ux, uy))
         };
 
         while (!minHeap.isEmpty()) {
@@ -35,7 +36,7 @@ class Solution {
                 final int y = j + dir[1];
                 if (x < 0 || x == m || y < 0 || y == n)
                     continue;
-                final int newDist = Math.max(moveTime[x][y], d) + 1;
+                final int newDist = Math.max(moveTime[x][y], d) + ((i + j) % 2 + 1);
                 if (newDist < dist[x][y]) {
                     dist[x][y] = newDist;
                     minHeap.offer(new Pair<>(newDist, new Pair<>(x, y)));
