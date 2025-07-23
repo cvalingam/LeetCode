@@ -9,8 +9,8 @@ public class Solution
     {
         int points = 0;
         var st1 = new Stack<char>();
-        var st2 = new Stack<char>();
 
+        // First pass: remove sub1 patterns
         foreach (char c in s)
         {
             if (st1.Count > 0 && st1.Peek() == sub1[0] && c == sub1[1])
@@ -22,7 +22,16 @@ public class Solution
                 st1.Push(c);
         }
 
-        foreach (char c in st1)
+        // Convert stack to string to preserve correct order
+        var remaining = new char[st1.Count];
+        for (int i = remaining.Length - 1; i >= 0; i--)
+        {
+            remaining[i] = st1.Pop();
+        }
+
+        // Second pass: remove sub2 patterns from remaining characters
+        var st2 = new Stack<char>();
+        foreach (char c in remaining)
         {
             if (st2.Count > 0 && st2.Peek() == sub2[0] && c == sub2[1])
             {
