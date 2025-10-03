@@ -63,9 +63,8 @@ class Solution
                     minHeap.Enqueue(new WaterCell(newRow, newColumn, currentHeight), currentHeight); // Fill water in grid[newRow][newColumn].
                 }
                 else
-                {
                     minHeap.Enqueue(new WaterCell(newRow, newColumn, heightMap[newRow][newColumn]), heightMap[newRow][newColumn]);
-                }
+
                 visited[newRow][newColumn] = true;
             }
         }
