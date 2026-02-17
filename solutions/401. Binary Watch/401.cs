@@ -28,3 +28,29 @@ public class Solution
         }
     }
 }
+
+public class Solution1
+{
+    public IList<string> ReadBinaryWatch(int turnedOn)
+    {
+        var ans = new List<string>();
+
+        for (int h = 0; h < 12; ++h)
+            for (int m = 0; m < 60; ++m)
+                if (CountBits(h) + CountBits(m) == turnedOn)
+                    ans.Add(h + (m < 10 ? ":0" : ":") + m);
+
+        return ans;
+    }
+
+    private int CountBits(int n)
+    {
+        int count = 0;
+        while (n > 0)
+        {
+            count += n & 1;
+            n >>= 1;
+        }
+        return count;
+    }
+}
