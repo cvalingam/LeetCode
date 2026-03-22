@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'About the LeetCode C# Solutions website — clean, readable C# code for .NET interview prep.',
+  description: 'About DSA Solutions — clean C# LeetCode and Java GFG solutions for interview prep.',
 }
 
 export default function AboutPage() {
@@ -19,13 +19,19 @@ export default function AboutPage() {
         for .NET developers.
       </p>
 
+      <h2 className="text-xl font-semibold mt-8 mb-3">Why Java for GFG?</h2>
+      <p className="text-slate-600">
+        GeeksforGeeks Problem of the Day is one of the most popular daily coding challenges in India.
+        Solutions here are in Java — the most widely expected language for GFG submissions — updated daily.
+      </p>
+
       <h2 className="text-xl font-semibold mt-8 mb-3">What you will find here</h2>
       <ul className="list-disc pl-5 text-slate-600 space-y-1">
-        <li>Clean, readable C# code with consistent naming conventions</li>
-        <li>800+ solutions covering Easy, Medium, and Hard difficulty levels</li>
+        <li>800+ clean C# LeetCode solutions covering Easy, Medium, and Hard difficulty</li>
+        <li>500+ Java GeeksforGeeks POTD solutions, updated daily</li>
         <li>Full coverage of arrays, trees, graphs, dynamic programming, and more</li>
         <li>Fast search and difficulty filtering to find any problem instantly</li>
-        <li>Syntax-highlighted code with zero JavaScript overhead on page load</li>
+        <li>Syntax-highlighted code with one-click copy on every page</li>
       </ul>
 
       <h2 className="text-xl font-semibold mt-8 mb-3">About the author</h2>

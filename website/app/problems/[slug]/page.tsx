@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         headline: `${title} — LeetCode C# Solution`,
         description: desc,
         author: { '@type': 'Person', name: 'Sivalingam Ramasamy', url: 'https://github.com/cvalingam' },
-        url: `https://leetcode.com/problems/${lcSlug}/`,
+    url: `https://leetcode.com/problems/${lcSlug}/`,
       }),
     },
   }

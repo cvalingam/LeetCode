@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getAllGfgProblems, getGfgProblemBySlug, getAdjacentGfgProblems } from '@/lib/gfg-problems'
+import { toLeetCodeSlug, SITE_URL } from '@/lib/constants'
 import CodeBlockWithHeader from '@/components/CodeBlockWithHeader'
 import AdUnit from '@/components/AdUnit'
 
@@ -38,6 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         headline: `${title} — GFG Java Solution`,
         description: desc,
         author: { '@type': 'Person', name: 'Sivalingam Ramasamy', url: 'https://github.com/cvalingam' },
+        url: `${SITE_URL}/gfg/${problem.slug}`,
       }),
     },
   }
@@ -48,7 +50,7 @@ export default async function GfgProblemPage({ params }: Props) {
   if (!problem) notFound()
 
   const { prev, next } = getAdjacentGfgProblems(params.slug)
-  const gfgSlug = problem.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+  const gfgSlug = toLeetCodeSlug(problem.title)
 
   return (
     <article className="max-w-3xl mx-auto py-8">

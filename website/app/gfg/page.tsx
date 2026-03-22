@@ -3,8 +3,6 @@ import { Suspense } from 'react'
 import { getAllGfgProblemsMeta } from '@/lib/gfg-problems'
 import GfgProblemList from '@/components/GfgProblemList'
 
-// Force static rendering at build time — gfg-solutions/ is only present during
-// the Vercel build (cloned by vercel.json buildCommand), not at runtime.
 export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
@@ -13,10 +11,20 @@ export const metadata: Metadata = {
     'Clean Java solutions to GeeksforGeeks Problem of the Day — daily POTD solutions by Sivalingam Ramasamy.',
 }
 
+function LoadingFallback() {
+  return (
+    <div className="animate-pulse space-y-3 mt-8">
+      {Array.from({ length: 10 }).map((_, i) => (
+        <div key={i} className="h-10 bg-gray-100 rounded-lg" />
+      ))}
+    </div>
+  )
+}
+
 export default function GfgPage() {
   const problems = getAllGfgProblemsMeta()
   return (
-    <Suspense>
+    <Suspense fallback={<LoadingFallback />}>
       <GfgProblemList problems={problems} />
     </Suspense>
   )

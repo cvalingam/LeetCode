@@ -25,9 +25,12 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     siteName: 'DSA Solutions',
+    url: SITE_URL,
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'DSA Solutions' }],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
+    images: ['/opengraph-image'],
   },
   robots: {
     index: true,

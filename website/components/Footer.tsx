@@ -1,6 +1,11 @@
 import Link from 'next/link'
+import { getAllProblemsMeta } from '@/lib/problems'
+import { getAllGfgProblemsMeta } from '@/lib/gfg-problems'
 
 export default function Footer() {
+  const lcCount  = getAllProblemsMeta().length
+  const gfgCount = getAllGfgProblemsMeta().length
+  const total    = lcCount + gfgCount
   return (
     <footer className="bg-white border-t border-gray-100 mt-auto">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
@@ -16,7 +21,7 @@ export default function Footer() {
               <span className="font-extrabold text-gray-900 text-sm">DSA Solutions</span>
             </div>
             <p className="text-xs text-gray-500 leading-relaxed max-w-[220px]">
-              Clean C# &amp; Java solutions to 1300+ coding problems. Built for developers cracking the interview.
+              Clean C# &amp; Java solutions to {total}+ coding problems. Built for developers cracking the interview.
             </p>
           </div>
 
