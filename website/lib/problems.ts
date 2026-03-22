@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import { getDifficulty } from './difficulty'
+import { getTagsForProblem, type Tag } from './tags'
 
 // solutions/ lives one level above the website/ folder
 const SOLUTIONS_DIR = path.join(process.cwd(), '..', 'solutions')
@@ -12,6 +13,7 @@ export interface Problem {
   title: string
   slug: string        // e.g. "100-same-tree"
   difficulty: Difficulty
+  tags: Tag[]
   code: string
 }
 
@@ -20,6 +22,7 @@ export interface ProblemMeta {
   title: string
   slug: string
   difficulty: Difficulty
+  tags: Tag[]
 }
 
 export function toSlug(number: number, title: string): string {
@@ -73,6 +76,7 @@ export function getAllProblems(): Problem[] {
       title,
       slug: toSlug(number, title),
       difficulty: getDifficulty(number),
+      tags: getTagsForProblem(number),
       code,
     })
   }
@@ -82,8 +86,8 @@ export function getAllProblems(): Problem[] {
 }
 
 export function getAllProblemsMeta(): ProblemMeta[] {
-  return getAllProblems().map(({ number, title, slug, difficulty }) => ({
-    number, title, slug, difficulty,
+  return getAllProblems().map(({ number, title, slug, difficulty, tags }) => ({
+    number, title, slug, difficulty, tags,
   }))
 }
 

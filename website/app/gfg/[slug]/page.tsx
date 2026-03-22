@@ -5,6 +5,7 @@ import { getAllGfgProblems, getGfgProblemBySlug, getAdjacentGfgProblems } from '
 import { toLeetCodeSlug, SITE_URL } from '@/lib/constants'
 import CodeBlockWithHeader from '@/components/CodeBlockWithHeader'
 import AdUnit from '@/components/AdUnit'
+import HelpfulWidget from '@/components/HelpfulWidget'
 
 interface Props {
   params: { slug: string }
@@ -116,7 +117,10 @@ export default async function GfgProblemPage({ params }: Props) {
         />
       </section>
 
-      <AdUnit slot="YOUR_AD_SLOT" style="rectangle" className="mb-8" />
+      <AdUnit slot="YOUR_AD_SLOT" style="rectangle" className="mb-6" />
+
+      {/* Helpful widget */}
+      <HelpfulWidget />
 
       <nav className="flex justify-between items-center border-t border-gray-100 pt-6 gap-3 flex-wrap" aria-label="Problem navigation">
         {prev ? (

@@ -3,9 +3,11 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getAllProblems, getProblemBySlug, getAdjacentProblems } from '@/lib/problems'
 import { toLeetCodeSlug, SITE_URL } from '@/lib/constants'
+import { TAG_LABELS } from '@/lib/tags'
 import CodeBlockWithHeader from '@/components/CodeBlockWithHeader'
 import DifficultyBadge from '@/components/DifficultyBadge'
 import AdUnit from '@/components/AdUnit'
+import HelpfulWidget from '@/components/HelpfulWidget'
 
 interface Props {
   params: { slug: string }
@@ -97,7 +99,7 @@ export default async function ProblemPage({ params }: Props) {
       </h1>
 
       {/* Meta row */}
-      <div className="flex items-center gap-3 mb-8 flex-wrap">
+      <div className="flex items-center gap-3 mb-5 flex-wrap">
         <DifficultyBadge difficulty={problem.difficulty} />
         <span className="w-px h-4 bg-gray-200" />
         <a
@@ -113,6 +115,21 @@ export default async function ProblemPage({ params }: Props) {
         </a>
       </div>
 
+      {/* Tags */}
+      {problem.tags.length > 0 && (
+        <div className="flex flex-wrap gap-1.5 mb-8">
+          {problem.tags.map(tag => (
+            <a
+              key={tag}
+              href={`/topics/${tag}`}
+              className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-indigo-700 bg-indigo-50 hover:bg-indigo-100 hover:text-indigo-900 transition-colors border border-indigo-100"
+            >
+              {TAG_LABELS[tag] ?? tag}
+            </a>
+          ))}
+        </div>
+      )}
+
       {/* Code */}
       <section className="mb-8">
         <CodeBlockWithHeader
@@ -123,7 +140,10 @@ export default async function ProblemPage({ params }: Props) {
       </section>
 
       {/* Ad: rectangle */}
-      <AdUnit slot="YOUR_AD_SLOT" style="rectangle" className="mb-8" />
+      <AdUnit slot="YOUR_AD_SLOT" style="rectangle" className="mb-6" />
+
+      {/* Helpful widget */}
+      <HelpfulWidget />
 
       {/* Prev / Next navigation */}
       <nav className="flex justify-between items-center border-t border-gray-100 pt-6 gap-3 flex-wrap" aria-label="Problem navigation">
