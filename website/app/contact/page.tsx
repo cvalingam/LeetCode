@@ -4,6 +4,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Contact',
   description: 'Contact Sivalingam Ramasamy — LeetCode C# Solutions.',
+  alternates: { canonical: '/contact' },
 }
 
 export default function ContactPage() {

@@ -7,25 +7,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const problems = getAllProblemsMeta()
 
   const staticPages: MetadataRoute.Sitemap = [
-    { url: `${SITE_URL}/`,               lastModified: new Date(), changeFrequency: 'weekly',  priority: 1.0 },
-    { url: `${SITE_URL}/about`,          lastModified: new Date(), changeFrequency: 'monthly', priority: 0.3 },
-    { url: `${SITE_URL}/privacy-policy`, lastModified: new Date(), changeFrequency: 'yearly',  priority: 0.2 },
-    { url: `${SITE_URL}/contact`,        lastModified: new Date(), changeFrequency: 'yearly',  priority: 0.2 },
+    { url: `${SITE_URL}/`,               lastModified: new Date('2025-01-01'), changeFrequency: 'weekly',  priority: 1.0 },
+    { url: `${SITE_URL}/about`,          lastModified: new Date('2025-01-01'), changeFrequency: 'monthly', priority: 0.3 },
+    { url: `${SITE_URL}/privacy-policy`, lastModified: new Date('2025-01-01'), changeFrequency: 'yearly',  priority: 0.2 },
+    { url: `${SITE_URL}/contact`,        lastModified: new Date('2025-01-01'), changeFrequency: 'yearly',  priority: 0.2 },
   ]
 
   const problemPages: MetadataRoute.Sitemap = problems.map(p => ({
     url: `${SITE_URL}/problems/${p.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
+    lastModified: new Date('2024-01-01'),
+    changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
   const gfgProblems = getAllGfgProblemsMeta()
   const gfgPages: MetadataRoute.Sitemap = [
-    { url: `${SITE_URL}/gfg`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${SITE_URL}/gfg`, lastModified: new Date('2025-01-01'), changeFrequency: 'weekly', priority: 0.9 },
     ...gfgProblems.map(p => ({
       url: `${SITE_URL}/gfg/${p.slug}`,
-      lastModified: new Date(),
+      lastModified: new Date('2025-06-01'),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),

@@ -9,6 +9,14 @@ export const metadata: Metadata = {
   title: 'GeeksforGeeks Java Solutions',
   description:
     'Clean Java solutions to GeeksforGeeks Problem of the Day — daily POTD solutions by Sivalingam Ramasamy.',
+  keywords: ['GeeksforGeeks', 'GFG', 'Java', 'POTD', 'Problem of the Day', 'interview prep'],
+  alternates: { canonical: '/gfg' },
+  openGraph: {
+    title: 'GeeksforGeeks Java Solutions — GFG POTD',
+    description: 'Clean Java solutions to GeeksforGeeks Problem of the Day.',
+    url: '/gfg',
+    type: 'website',
+  },
 }
 
 function LoadingFallback() {

@@ -2,15 +2,17 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'About',
+  title: 'About DSA Solutions',
   description: 'About DSA Solutions — clean C# LeetCode and Java GFG solutions for interview prep.',
+  alternates: { canonical: '/about' },
+  keywords: ['LeetCode', 'GeeksforGeeks', 'C#', 'Java', 'DSA', 'interview prep'],
 }
 
 export default function AboutPage() {
   return (
     <div className="max-w-2xl mx-auto py-10 prose prose-slate">
       <h1 className="text-3xl font-bold mb-2">About</h1>
-      <p className="text-slate-500 mb-8">This site provides clean, well-structured C# solutions to LeetCode problems.</p>
+      <p className="text-slate-500 mb-8">This site provides clean, well-structured C# solutions to LeetCode problems and Java solutions to GeeksforGeeks POTD.</p>
 
       <h2 className="text-xl font-semibold mt-8 mb-3">Why C#?</h2>
       <p className="text-slate-600">

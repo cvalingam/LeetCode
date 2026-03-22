@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getAllProblems, getProblemBySlug, getAdjacentProblems } from '@/lib/problems'
-import { toLeetCodeSlug } from '@/lib/constants'
+import { toLeetCodeSlug, SITE_URL } from '@/lib/constants'
 import CodeBlockWithHeader from '@/components/CodeBlockWithHeader'
 import DifficultyBadge from '@/components/DifficultyBadge'
 import AdUnit from '@/components/AdUnit'
@@ -25,7 +25,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title  = `${problem.number}. ${problem.title}`
   const desc   = `LeetCode ${problem.number} ${problem.title} — clean C# solution. ${problem.difficulty} difficulty.`
-  const lcSlug = toLeetCodeSlug(problem.title)
 
   return {
     title,
@@ -37,17 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${title} — LeetCode C# Solution`,
       description: desc,
       type: 'article',
-    },
-    other: {
-      // JSON-LD structured data for Google
-      'application/ld+json': JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'TechArticle',
-        headline: `${title} — LeetCode C# Solution`,
-        description: desc,
-        author: { '@type': 'Person', name: 'Sivalingam Ramasamy', url: 'https://github.com/cvalingam' },
-    url: `https://leetcode.com/problems/${lcSlug}/`,
-      }),
+      url: `/problems/${problem.slug}`,
     },
   }
 }
@@ -61,6 +50,34 @@ export default async function ProblemPage({ params }: Props) {
 
   return (
     <article className="max-w-3xl mx-auto py-8">
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@graph': [
+              {
+                '@type': 'TechArticle',
+                headline: `${problem.number}. ${problem.title} — LeetCode C# Solution`,
+                description: `LeetCode ${problem.number} ${problem.title} — clean C# solution. ${problem.difficulty} difficulty.`,
+                author: { '@type': 'Person', name: 'Sivalingam Ramasamy', url: 'https://github.com/cvalingam' },
+                url: `${SITE_URL}/problems/${problem.slug}`,
+                datePublished: '2024-01-01',
+                dateModified: '2024-01-01',
+                image: `${SITE_URL}/opengraph-image`,
+              },
+              {
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                  { '@type': 'ListItem', position: 1, name: 'LeetCode Solutions', item: SITE_URL },
+                  { '@type': 'ListItem', position: 2, name: `${problem.number}. ${problem.title}`, item: `${SITE_URL}/problems/${problem.slug}` },
+                ],
+              },
+            ],
+          }),
+        }}
+      />
 
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1.5 text-xs text-gray-400 mb-6" aria-label="Breadcrumb">

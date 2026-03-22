@@ -31,16 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${title} — GFG Java Solution`,
       description: desc,
       type: 'article',
-    },
-    other: {
-      'application/ld+json': JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'TechArticle',
-        headline: `${title} — GFG Java Solution`,
-        description: desc,
-        author: { '@type': 'Person', name: 'Sivalingam Ramasamy', url: 'https://github.com/cvalingam' },
-        url: `${SITE_URL}/gfg/${problem.slug}`,
-      }),
+      url: `/gfg/${problem.slug}`,
     },
   }
 }
@@ -54,6 +45,34 @@ export default async function GfgProblemPage({ params }: Props) {
 
   return (
     <article className="max-w-3xl mx-auto py-8">
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@graph': [
+              {
+                '@type': 'TechArticle',
+                headline: `${problem.title} — GFG Java Solution`,
+                description: `GeeksforGeeks: ${problem.title} — clean Java solution. GFG Problem of the Day.`,
+                author: { '@type': 'Person', name: 'Sivalingam Ramasamy', url: 'https://github.com/cvalingam' },
+                url: `${SITE_URL}/gfg/${problem.slug}`,
+                datePublished: '2025-01-01',
+                dateModified: '2025-01-01',
+                image: `${SITE_URL}/opengraph-image`,
+              },
+              {
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                  { '@type': 'ListItem', position: 1, name: 'GFG Solutions', item: `${SITE_URL}/gfg` },
+                  { '@type': 'ListItem', position: 2, name: problem.title, item: `${SITE_URL}/gfg/${problem.slug}` },
+                ],
+              },
+            ],
+          }),
+        }}
+      />
 
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1.5 text-xs text-gray-400 mb-6" aria-label="Breadcrumb">
