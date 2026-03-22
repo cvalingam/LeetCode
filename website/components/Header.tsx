@@ -20,7 +20,7 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-14 bg-white border-b border-slate-200 flex items-center gap-4 px-4 sm:px-6">
       <Link href="/" className="font-extrabold text-slate-900 tracking-tight shrink-0">
-        LeetCode <span className="text-blue-600">C#</span>
+        DSA <span className="text-blue-600">Solutions</span>
       </Link>
 
       <div className="relative max-w-xs w-full">
@@ -39,10 +39,11 @@ export default function Header() {
       </div>
 
       <nav className="ml-auto flex items-center gap-5 text-sm text-slate-500">
-        <Link href="/" className="hover:text-blue-600 transition-colors">Problems</Link>
+        <Link href="/" className="hover:text-blue-600 transition-colors">LeetCode</Link>
+        <Link href="/gfg" className="hover:text-green-600 transition-colors hidden sm:block">GFG</Link>
         <Link href="/about" className="hover:text-blue-600 transition-colors hidden sm:block">About</Link>
         <a
-          href="https://github.com/cvalingam/LeetCode"
+          href="https://github.com/cvalingam/DSA-Solutions"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-blue-600 transition-colors"

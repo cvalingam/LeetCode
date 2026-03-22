@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getAllProblemsMeta } from '@/lib/problems'
+import { getAllGfgProblemsMeta } from '@/lib/gfg-problems'
 import { SITE_URL } from '@/lib/constants'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -19,5 +20,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...staticPages, ...problemPages]
+  const gfgProblems = getAllGfgProblemsMeta()
+  const gfgPages: MetadataRoute.Sitemap = [
+    { url: `${SITE_URL}/gfg`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    ...gfgProblems.map(p => ({
+      url: `${SITE_URL}/gfg/${p.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+  ]
+
+  return [...staticPages, ...problemPages, ...gfgPages]
 }

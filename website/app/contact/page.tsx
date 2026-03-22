@@ -16,7 +16,7 @@ export default function ContactPage() {
       <p className="text-slate-600 mb-6">
         The fastest way to report a bug or suggest a fix is to open a{' '}
         <a
-          href="https://github.com/cvalingam/LeetCode/issues"
+          href="https://github.com/cvalingam/DSA-Solutions/issues"
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-600 hover:underline"

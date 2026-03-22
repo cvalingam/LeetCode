@@ -39,7 +39,7 @@ export default function AboutPage() {
       <p className="text-slate-600">
         All solutions are open-source under the MIT License and available on{' '}
         <a
-          href="https://github.com/cvalingam/LeetCode"
+          href="https://github.com/cvalingam/DSA-Solutions"
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-600 hover:underline"

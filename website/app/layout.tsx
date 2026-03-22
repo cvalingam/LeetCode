@@ -7,17 +7,17 @@ import { SITE_URL } from '@/lib/constants'
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'LeetCode C# Solutions',
-    template: '%s | LeetCode C# Solutions',
+    default: 'DSA Solutions — LeetCode C# & GFG Java',
+    template: '%s | DSA Solutions',
   },
   description:
-    'Clean, readable C# solutions to 800+ LeetCode problems. Built for .NET developers preparing for coding interviews.',
-  keywords: ['LeetCode', 'C#', 'csharp', '.NET', 'solutions', 'interview prep', 'algorithms', 'data structures'],
+    'Clean, readable C# and Java solutions to 800+ LeetCode and 500+ GeeksforGeeks problems. Built for developers preparing for coding interviews.',
+  keywords: ['LeetCode', 'GeeksforGeeks', 'GFG', 'C#', 'csharp', 'Java', '.NET', 'solutions', 'interview prep', 'algorithms', 'data structures'],
   authors: [{ name: 'Sivalingam Ramasamy', url: 'https://github.com/cvalingam' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'LeetCode C# Solutions',
+    siteName: 'DSA Solutions',
   },
   twitter: {
     card: 'summary',

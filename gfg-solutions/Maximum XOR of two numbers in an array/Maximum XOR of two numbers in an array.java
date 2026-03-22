@@ -1,0 +1,45 @@
+class Solution {
+    public int maxXor(int[] arr) {
+        TrieNode root = new TrieNode();
+        int maxResult = 0;
+
+        for (int num : arr)
+            insert(root, num);
+
+        for (int num : arr)
+            maxResult = Math.max(maxResult, findMaxXor(root, num));
+
+        return maxResult;
+    }
+
+    private void insert(TrieNode root, int num) {
+        TrieNode node = root;
+        for (int i = 31; i >= 0; i--) {
+            int bit = (num >> i) & 1;
+            if (node.children[bit] == null)
+                node.children[bit] = new TrieNode();
+
+            node = node.children[bit];
+        }
+    }
+
+    private int findMaxXor(TrieNode root, int num) {
+        TrieNode node = root;
+        int maxXor = 0;
+        for (int i = 31; i >= 0; i--) {
+            int bit = (num >> i) & 1;
+            int oppositeBit = bit ^ 1;
+            if (node.children[oppositeBit] != null) {
+                maxXor |= (1 << i);
+                node = node.children[oppositeBit];
+            } else
+                node = node.children[bit];
+
+        }
+        return maxXor;
+    }
+}
+
+class TrieNode {
+    TrieNode[] children = new TrieNode[2];
+}

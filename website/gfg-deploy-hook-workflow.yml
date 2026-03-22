@@ -1,0 +1,26 @@
+# Place this file in your GeeksforGeeks repo at:
+# .github/workflows/trigger-vercel.yml
+#
+# Every push to main calls your Vercel Deploy Hook, which
+# rebuilds the LeetCode website with the latest GFG solutions.
+#
+# Setup:
+#   1. In Vercel: Project → Settings → Git → Deploy Hooks
+#      → Create a hook named "GFG Push", select branch "main"
+#      → Copy the hook URL
+#   2. In this (GeeksforGeeks) repo: Settings → Secrets → Actions
+#      → New repository secret → Name: VERCEL_DEPLOY_HOOK_URL
+#      → Value: the hook URL you copied
+
+name: Trigger Vercel Rebuild
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Vercel Deploy Hook
+        run: curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"

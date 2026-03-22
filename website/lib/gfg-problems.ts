@@ -1,0 +1,81 @@
+import fs from 'fs'
+import path from 'path'
+
+// gfg-solutions/ lives one level above the website/ folder
+const GFG_DIR = process.env.GFG_SOLUTIONS_DIR
+  ? path.resolve(process.env.GFG_SOLUTIONS_DIR)
+  : path.join(process.cwd(), '..', 'gfg-solutions')
+
+export interface GfgProblem {
+  title: string
+  slug: string  // e.g. "two-sum-pair-with-given-sum"
+  code: string
+}
+
+export interface GfgProblemMeta {
+  title: string
+  slug: string
+}
+
+function toSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim()
+}
+
+let _problems: GfgProblem[] | null = null
+
+export function getAllGfgProblems(): GfgProblem[] {
+  if (_problems) return _problems
+
+  if (!fs.existsSync(GFG_DIR)) {
+    console.warn(`[gfg-problems] solutions directory not found: ${GFG_DIR}`)
+    return []
+  }
+
+  const folders = fs.readdirSync(GFG_DIR, { withFileTypes: true })
+    .filter(d => d.isDirectory())
+    .map(d => d.name)
+    .sort((a, b) => a.localeCompare(b))
+
+  const result: GfgProblem[] = []
+
+  for (const folder of folders) {
+    const folderPath = path.join(GFG_DIR, folder)
+    const javaFile = fs.readdirSync(folderPath).find(f => f.endsWith('.java'))
+    if (!javaFile) continue
+
+    const code = fs.readFileSync(path.join(folderPath, javaFile), 'utf-8')
+    result.push({
+      title: folder,
+      slug: toSlug(folder),
+      code,
+    })
+  }
+
+  _problems = result
+  return result
+}
+
+export function getAllGfgProblemsMeta(): GfgProblemMeta[] {
+  return getAllGfgProblems().map(({ title, slug }) => ({ title, slug }))
+}
+
+export function getGfgProblemBySlug(slug: string): GfgProblem | undefined {
+  return getAllGfgProblems().find(p => p.slug === slug)
+}
+
+export function getAdjacentGfgProblems(slug: string): {
+  prev: GfgProblemMeta | null
+  next: GfgProblemMeta | null
+} {
+  const all = getAllGfgProblems()
+  const idx = all.findIndex(p => p.slug === slug)
+  return {
+    prev: idx > 0 ? all[idx - 1] : null,
+    next: idx < all.length - 1 ? all[idx + 1] : null,
+  }
+}
