@@ -69,9 +69,7 @@ export default function ContactPage() {
       </form>
 
       <p className="mt-4 text-xs text-slate-400">
-        Configure a free{' '}
-        <a href="https://formspree.io" target="_blank" rel="noopener noreferrer" className="underline">Formspree</a>
-        {' '}endpoint to receive contact form submissions.
+        We typically respond within 24–48 hours.
       </p>
 
       <div className="mt-10">
