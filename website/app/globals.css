@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --easy:   #16a34a;
+  --medium: #d97706;
+  --hard:   #dc2626;
+}
+
+/* Shiki code block overrides */
+.shiki {
+  @apply rounded-lg overflow-auto max-h-[600px] p-4 text-sm leading-relaxed;
+}
+.shiki code {
+  font-family: 'Fira Code', 'Cascadia Code', Consolas, monospace;
+}

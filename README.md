@@ -8,7 +8,7 @@
 
 ## License
 
-Licensed under the MIT License, Copyright ©2024
+Licensed under the MIT License, Copyright ©2026
 [Sivalingam Ramasamy](https://github.com/cvalingam).
 
 <div align="center">
