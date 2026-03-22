@@ -13,7 +13,7 @@ export default function PrivacyPolicyPage() {
       <p className="text-slate-400 text-sm mb-8"><em>Last updated: March 2026</em></p>
 
       <p className="text-slate-600 mb-6">
-        This Privacy Policy describes how the LeetCode C# Solutions website collects, uses, and
+        This Privacy Policy describes how DSA Solutions (dsasolved.com) collects, uses, and
         shares information when you visit.
       </p>
 
@@ -36,10 +36,16 @@ export default function PrivacyPolicyPage() {
         </p>
       </Section>
 
-      <Section title="Analytics">
+      <Section title="Analytics (Microsoft Clarity)">
         <p>
-          We may use Google Analytics to understand how visitors interact with the site. This
-          information is aggregated and does not personally identify you.
+          This site uses{' '}
+          <a href="https://clarity.microsoft.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Microsoft Clarity</a>
+          {' '}to understand how visitors interact with the site. Clarity may collect session
+          recordings, heatmaps, click maps, and aggregated usage data. This data does not
+          personally identify you. You can learn more in{' '}
+          <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+            Microsoft&apos;s Privacy Statement
+          </a>.
         </p>
       </Section>
 

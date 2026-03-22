@@ -2,27 +2,34 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 export default function Header() {
   const router  = useRouter()
   const pathname = usePathname()
   const [query, setQuery] = useState('')
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false)
+  const mobileInputRef = useRef<HTMLInputElement>(null)
 
   function handleSearch(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === 'Enter' && query.trim()) {
       const base = pathname.startsWith('/gfg') ? '/gfg' : '/'
       router.push(`${base}?q=${encodeURIComponent(query.trim())}`)
     }
-    if (e.key === 'Escape') setQuery('')
+    if (e.key === 'Escape') { setQuery(''); setMobileSearchOpen(false) }
+  }
+
+  function openMobileSearch() {
+    setMobileSearchOpen(true)
+    setTimeout(() => mobileInputRef.current?.focus(), 50)
   }
 
   const isLc  = pathname === '/' || pathname.startsWith('/problems')
   const isGfg = pathname.startsWith('/gfg')
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-14 bg-white/80 backdrop-blur-md border-b border-gray-200/60 shadow-sm">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 h-full flex items-center gap-3">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/60 shadow-sm">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center gap-3">
 
         {/* Logo */}
         <Link
@@ -38,7 +45,7 @@ export default function Header() {
           <span className="sm:hidden text-indigo-600">DSA</span>
         </Link>
 
-        {/* Search */}
+        {/* Desktop Search */}
         <div className="relative flex-1 max-w-xs hidden sm:block">
           <svg
             className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none"
@@ -53,10 +60,22 @@ export default function Header() {
             onKeyDown={handleSearch}
             placeholder="Search problems…"
             autoComplete="off"
+            aria-label="Search problems"
             className="w-full pl-8 pr-9 py-1.5 text-sm border border-gray-200 rounded-lg bg-gray-50/80 focus:outline-none focus:border-indigo-400 focus:bg-white focus:ring-2 focus:ring-indigo-100 transition-all"
           />
           <kbd className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-[10px] text-gray-300 font-mono">↵</kbd>
         </div>
+
+        {/* Mobile search icon */}
+        <button
+          onClick={openMobileSearch}
+          aria-label="Search"
+          className="sm:hidden ml-auto p-2 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-all"
+        >
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+          </svg>
+        </button>
 
         {/* Nav */}
         <nav className="ml-auto flex items-center gap-0.5 text-sm">
@@ -76,6 +95,36 @@ export default function Header() {
         </nav>
 
       </div>
+
+      {/* Mobile search bar (expands below header) */}
+      {mobileSearchOpen && (
+        <div className="sm:hidden px-4 pb-3 bg-white/95 backdrop-blur-md border-b border-gray-200/60">
+          <div className="relative">
+            <svg
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+            </svg>
+            <input
+              ref={mobileInputRef}
+              type="text"
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+              onKeyDown={handleSearch}
+              placeholder="Search problems…"
+              autoComplete="off"
+              aria-label="Search problems"
+              className="w-full pl-8 pr-9 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:border-indigo-400 focus:bg-white focus:ring-2 focus:ring-indigo-100 transition-all"
+            />
+            <button
+              onClick={() => { setMobileSearchOpen(false); setQuery('') }}
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs"
+              aria-label="Close search"
+            >✕</button>
+          </div>
+        </div>
+      )}
     </header>
   )
 }
