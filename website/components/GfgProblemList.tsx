@@ -1,18 +1,21 @@
 'use client'
 
 import Link from 'next/link'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import type { GfgProblemMeta } from '@/lib/gfg-problems'
 import AdUnit from './AdUnit'
 
 export default function GfgProblemList({
   problems,
-  initialQuery = '',
 }: {
   problems: GfgProblemMeta[]
-  initialQuery?: string
 }) {
+  const searchParams = useSearchParams()
+  const initialQuery = searchParams.get('q') ?? ''
   const [search, setSearch] = useState(initialQuery)
+
+  useEffect(() => { setSearch(initialQuery) }, [initialQuery])
 
   const filtered = useMemo(() => {
     const term = search.trim().toLowerCase()

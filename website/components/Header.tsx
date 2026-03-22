@@ -11,7 +11,8 @@ export default function Header() {
 
   function handleSearch(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === 'Enter' && query.trim()) {
-      router.push(`/?q=${encodeURIComponent(query.trim())}`)
+      const base = pathname.startsWith('/gfg') ? '/gfg' : '/'
+      router.push(`${base}?q=${encodeURIComponent(query.trim())}`)
     }
     if (e.key === 'Escape') setQuery('')
   }

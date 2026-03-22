@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { getAllGfgProblemsMeta } from '@/lib/gfg-problems'
 import GfgProblemList from '@/components/GfgProblemList'
 
@@ -12,12 +13,11 @@ export const metadata: Metadata = {
     'Clean Java solutions to GeeksforGeeks Problem of the Day — daily POTD solutions by Sivalingam Ramasamy.',
 }
 
-export default function GfgPage({
-  searchParams,
-}: {
-  searchParams: { q?: string }
-}) {
+export default function GfgPage() {
   const problems = getAllGfgProblemsMeta()
-  const initialQuery = searchParams.q ?? ''
-  return <GfgProblemList problems={problems} initialQuery={initialQuery} />
+  return (
+    <Suspense>
+      <GfgProblemList problems={problems} />
+    </Suspense>
+  )
 }

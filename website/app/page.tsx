@@ -1,13 +1,12 @@
 import { getAllProblemsMeta } from '@/lib/problems'
 import ProblemList from '@/components/ProblemList'
+import { Suspense } from 'react'
 
-export default function HomePage({
-  searchParams,
-}: {
-  searchParams: { q?: string }
-}) {
+export default function HomePage() {
   const problems = getAllProblemsMeta()
-  const initialQuery = searchParams.q ?? ''
-
-  return <ProblemList problems={problems} initialQuery={initialQuery} />
+  return (
+    <Suspense>
+      <ProblemList problems={problems} />
+    </Suspense>
+  )
 }

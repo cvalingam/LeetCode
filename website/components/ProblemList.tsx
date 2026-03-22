@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import type { ProblemMeta, Difficulty } from '@/lib/problems'
 import DifficultyBadge from './DifficultyBadge'
 import AdUnit from './AdUnit'
@@ -20,13 +21,15 @@ const filterActive: Record<Filter, string> = {
 
 export default function ProblemList({
   problems,
-  initialQuery = '',
 }: {
   problems: ProblemMeta[]
-  initialQuery?: string
 }) {
+  const searchParams = useSearchParams()
+  const initialQuery = searchParams.get('q') ?? ''
   const [search, setSearch] = useState(initialQuery)
   const [filter, setFilter] = useState<Filter>('All')
+
+  useEffect(() => { setSearch(initialQuery) }, [initialQuery])
 
   const { easy, medium, hard } = useMemo(() => ({
     easy:   problems.filter(p => p.difficulty === 'Easy').length,
