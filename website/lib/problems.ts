@@ -14,6 +14,7 @@ export interface Problem {
   slug: string        // e.g. "100-same-tree"
   difficulty: Difficulty
   tags: Tag[]
+  primaryExt: string  // extension of the primary code file, e.g. 'cs', 'java', 'sql'
   code: string
   extraCodes?: Record<string, string>  // extension → code, e.g. { java: '...', sql: '...' }
 }
@@ -67,17 +68,26 @@ export function getAllProblems(): Problem[] {
     const title = m[2].trim()
     const folderPath = path.join(SOLUTIONS_DIR, folder)
 
-    const csFile = fs.readdirSync(folderPath).find(f => f.endsWith('.cs'))
-    if (!csFile) continue
+    // Priority order for primary language when no .cs file exists
+    const ALL_EXTS = ['cs', 'java', 'sql', 'ts', 'go', 'cpp', 'py', 'sh']
+    const filesInFolder = fs.readdirSync(folderPath)
 
-    const code = fs.readFileSync(path.join(folderPath, csFile), 'utf-8')
+    // Find primary file (prefer .cs, fall back to first available by priority)
+    let primaryExt = ''
+    let primaryFile = ''
+    for (const ext of ALL_EXTS) {
+      const match = filesInFolder.find(f => f.endsWith(`.${ext}`))
+      if (match) { primaryExt = ext; primaryFile = match; break }
+    }
+    if (!primaryFile) continue
 
-    // Read any other language files in the same folder
-    const EXTRA_EXTS = ['java', 'sql', 'ts', 'go', 'cpp', 'py', 'sh']
+    const code = fs.readFileSync(path.join(folderPath, primaryFile), 'utf-8')
+
+    // Read remaining language files as extra
     const extraCodes: Record<string, string> = {}
-    for (const file of fs.readdirSync(folderPath)) {
+    for (const file of filesInFolder) {
       const ext = path.extname(file).slice(1)
-      if (EXTRA_EXTS.includes(ext)) {
+      if (ALL_EXTS.includes(ext) && ext !== primaryExt) {
         extraCodes[ext] = fs.readFileSync(path.join(folderPath, file), 'utf-8')
       }
     }
@@ -88,6 +98,7 @@ export function getAllProblems(): Problem[] {
       slug: toSlug(number, title),
       difficulty: getDifficulty(number),
       tags: getTagsForProblem(number),
+      primaryExt,
       code,
       ...(Object.keys(extraCodes).length > 0 ? { extraCodes } : {}),
     })

@@ -11,6 +11,7 @@ import AdUnit from '@/components/AdUnit'
 import HelpfulWidget from '@/components/HelpfulWidget'
 
 const EXT_TO_SHIKI: Record<string, SupportedLang> = {
+  cs:   'csharp',
   java: 'java',
   sql:  'sql',
   ts:   'typescript',
@@ -32,12 +33,19 @@ export async function generateStaticParams() {
 // No dynamic pages at runtime — 404 for unknown slugs
 export const dynamicParams = false
 
+const EXT_TO_LABEL: Record<string, string> = {
+  cs: 'C#', java: 'Java', sql: 'MySQL', ts: 'TypeScript',
+  go: 'Go', cpp: 'C++', py: 'Python', sh: 'Shell',
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const problem = getProblemBySlug(params.slug)
   if (!problem) return {}
 
+  const primaryLabel = EXT_TO_LABEL[problem.primaryExt] ?? problem.primaryExt.toUpperCase()
+  const allLabels = [primaryLabel, ...Object.keys(problem.extraCodes ?? {}).map(e => EXT_TO_LABEL[e] ?? e)].join(', ')
   const title  = `${problem.number}. ${problem.title}`
-  const desc   = `LeetCode ${problem.number} ${problem.title} — clean C# solution. ${problem.difficulty} difficulty.`
+  const desc   = `LeetCode ${problem.number} ${problem.title} — clean ${allLabels} solution. ${problem.difficulty} difficulty.`
 
   return {
     title,
@@ -46,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `/problems/${problem.slug}`,
     },
     openGraph: {
-      title: `${title} — LeetCode C# Solution`,
+      title: `${title} — LeetCode ${primaryLabel} Solution`,
       description: desc,
       type: 'article',
       url: `/problems/${problem.slug}`,
@@ -60,6 +68,8 @@ export default async function ProblemPage({ params }: Props) {
 
   const { prev, next } = getAdjacentProblems(params.slug)
   const lcSlug = toLeetCodeSlug(problem.title)
+  const primaryLabel = EXT_TO_LABEL[problem.primaryExt] ?? problem.primaryExt.toUpperCase()
+  const allLabels = [primaryLabel, ...Object.keys(problem.extraCodes ?? {}).map(e => EXT_TO_LABEL[e] ?? e)].join(', ')
 
   return (
     <article className="max-w-3xl mx-auto py-8">
@@ -72,8 +82,8 @@ export default async function ProblemPage({ params }: Props) {
             '@graph': [
               {
                 '@type': 'TechArticle',
-                headline: `${problem.number}. ${problem.title} — LeetCode C# Solution`,
-                description: `LeetCode ${problem.number} ${problem.title} — clean C# solution. ${problem.difficulty} difficulty.`,
+                headline: `${problem.number}. ${problem.title} — LeetCode ${EXT_TO_LABEL[problem.primaryExt] ?? problem.primaryExt.toUpperCase()} Solution`,
+                description: `LeetCode ${problem.number} ${problem.title} — clean ${allLabels} solution. ${problem.difficulty} difficulty.`,
                 author: { '@type': 'Person', name: 'Sivalingam Ramasamy', url: 'https://github.com/cvalingam' },
                 url: `${SITE_URL}/problems/${problem.slug}`,
                 datePublished: '2024-01-01',
@@ -144,11 +154,11 @@ export default async function ProblemPage({ params }: Props) {
       {/* Code */}
       <section className="mb-8">
         {problem.extraCodes && Object.keys(problem.extraCodes).length > 0 ? (
-          <LanguageTabs extensions={['cs', ...Object.keys(problem.extraCodes)]}>
+          <LanguageTabs extensions={[problem.primaryExt, ...Object.keys(problem.extraCodes)]}>
             <CodeBlockWithHeader
               code={problem.code}
-              lang="csharp"
-              filename={`${problem.number}.cs`}
+              lang={EXT_TO_SHIKI[problem.primaryExt] ?? 'csharp'}
+              filename={`${problem.number}.${problem.primaryExt}`}
             />
             {Object.entries(problem.extraCodes).map(([ext, code]) => (
               <CodeBlockWithHeader
@@ -162,8 +172,8 @@ export default async function ProblemPage({ params }: Props) {
         ) : (
           <CodeBlockWithHeader
             code={problem.code}
-            lang="csharp"
-            filename={`${problem.number}.cs`}
+            lang={EXT_TO_SHIKI[problem.primaryExt] ?? 'csharp'}
+            filename={`${problem.number}.${problem.primaryExt}`}
           />
         )}
       </section>
