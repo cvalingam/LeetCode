@@ -2,16 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --easy:   #16a34a;
-  --medium: #d97706;
-  --hard:   #dc2626;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  ::selection {
+    background-color: #e0e7ff;
+    color: #3730a3;
+  }
 }
 
-/* Shiki code block overrides */
+/* Shiki code block — no rounding (CodeBlockWithHeader handles it) */
 .shiki {
-  @apply rounded-lg overflow-auto max-h-[600px] p-4 text-sm leading-relaxed;
+  @apply overflow-auto max-h-[600px] p-5 text-sm leading-relaxed;
+  border-radius: 0;
 }
 .shiki code {
-  font-family: 'Fira Code', 'Cascadia Code', Consolas, monospace;
+  font-family: 'Fira Code', 'Cascadia Code', 'Geist Mono', Consolas, monospace;
+  counter-reset: line;
 }

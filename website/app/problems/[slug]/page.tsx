@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getAllProblems, getProblemBySlug, getAdjacentProblems } from '@/lib/problems'
 import { toLeetCodeSlug } from '@/lib/constants'
-import CodeBlock from '@/components/CodeBlock'
+import CodeBlockWithHeader from '@/components/CodeBlockWithHeader'
 import DifficultyBadge from '@/components/DifficultyBadge'
 import AdUnit from '@/components/AdUnit'
 
@@ -61,44 +61,64 @@ export default async function ProblemPage({ params }: Props) {
 
   return (
     <article className="max-w-3xl mx-auto py-8">
+
+      {/* Breadcrumb */}
+      <nav className="flex items-center gap-1.5 text-xs text-gray-400 mb-6" aria-label="Breadcrumb">
+        <Link href="/" className="hover:text-indigo-600 transition-colors">LeetCode</Link>
+        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+        <span className="text-gray-600 font-medium truncate">{problem.number}. {problem.title}</span>
+      </nav>
+
       {/* Ad: leaderboard */}
       <AdUnit slot="YOUR_AD_SLOT" style="leaderboard" className="mb-8" />
 
       {/* Title */}
-      <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
+      <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 mb-3">
         {problem.number}. {problem.title}
       </h1>
 
       {/* Meta row */}
-      <div className="flex items-center gap-4 mb-8 flex-wrap">
+      <div className="flex items-center gap-3 mb-8 flex-wrap">
         <DifficultyBadge difficulty={problem.difficulty} />
+        <span className="w-px h-4 bg-gray-200" />
         <a
           href={`https://leetcode.com/problems/${lcSlug}/`}
           target="_blank"
           rel="nofollow noopener noreferrer"
-          className="text-blue-600 hover:underline text-sm"
+          className="inline-flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 transition-colors"
         >
-          View on LeetCode ↗
+          View on LeetCode
+          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
         </a>
       </div>
 
       {/* Code */}
       <section className="mb-8">
-        <h2 className="text-lg font-semibold mb-3">C# Solution</h2>
-        <CodeBlock code={problem.code} />
+        <CodeBlockWithHeader
+          code={problem.code}
+          lang="csharp"
+          filename={`${problem.number}.cs`}
+        />
       </section>
 
       {/* Ad: rectangle */}
       <AdUnit slot="YOUR_AD_SLOT" style="rectangle" className="mb-8" />
 
       {/* Prev / Next navigation */}
-      <nav className="flex justify-between items-center border-t border-slate-200 pt-6 gap-3 flex-wrap">
+      <nav className="flex justify-between items-center border-t border-gray-100 pt-6 gap-3 flex-wrap" aria-label="Problem navigation">
         {prev ? (
           <Link
             href={`/problems/${prev.slug}`}
-            className="flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-lg text-sm text-slate-700 hover:border-blue-400 hover:text-blue-600 transition-colors max-w-[46%] truncate"
+            className="group flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 hover:border-indigo-300 hover:bg-indigo-50/50 hover:text-indigo-700 transition-all shadow-sm max-w-[46%]"
           >
-            ← {prev.number}. {prev.title}
+            <svg className="w-4 h-4 shrink-0 text-gray-400 group-hover:text-indigo-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            <span className="truncate">{prev.number}. {prev.title}</span>
           </Link>
         ) : (
           <span />
@@ -106,17 +126,20 @@ export default async function ProblemPage({ params }: Props) {
 
         <Link
           href="/"
-          className="px-4 py-2 border border-slate-200 rounded-lg text-sm text-slate-500 hover:border-blue-400 hover:text-blue-600 transition-colors"
+          className="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-500 hover:border-indigo-300 hover:text-indigo-600 transition-all shadow-sm hidden sm:block"
         >
-          ☰ All Problems
+          All Problems
         </Link>
 
         {next ? (
           <Link
             href={`/problems/${next.slug}`}
-            className="flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-lg text-sm text-slate-700 hover:border-blue-400 hover:text-blue-600 transition-colors max-w-[46%] truncate"
+            className="group flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 hover:border-indigo-300 hover:bg-indigo-50/50 hover:text-indigo-700 transition-all shadow-sm max-w-[46%]"
           >
-            {next.number}. {next.title} →
+            <span className="truncate">{next.number}. {next.title}</span>
+            <svg className="w-4 h-4 shrink-0 text-gray-400 group-hover:text-indigo-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
           </Link>
         ) : (
           <span />

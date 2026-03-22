@@ -20,7 +20,7 @@ export default async function CodeBlock({ code, lang = 'csharp' }: { code: strin
 
   return (
     <div
-      className="rounded-lg overflow-hidden text-sm leading-relaxed"
+      className="overflow-hidden text-sm leading-relaxed"
       dangerouslySetInnerHTML={{ __html: html }}
     />
   )

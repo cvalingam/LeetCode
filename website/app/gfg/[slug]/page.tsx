@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getAllGfgProblems, getGfgProblemBySlug, getAdjacentGfgProblems } from '@/lib/gfg-problems'
-import CodeBlock from '@/components/CodeBlock'
+import CodeBlockWithHeader from '@/components/CodeBlockWithHeader'
 import AdUnit from '@/components/AdUnit'
 
 interface Props {
@@ -48,44 +48,65 @@ export default async function GfgProblemPage({ params }: Props) {
   if (!problem) notFound()
 
   const { prev, next } = getAdjacentGfgProblems(params.slug)
-  const gfgSearchSlug = problem.title.replace(/\s+/g, '+')
+  const gfgSlug = problem.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
 
   return (
     <article className="max-w-3xl mx-auto py-8">
+
+      {/* Breadcrumb */}
+      <nav className="flex items-center gap-1.5 text-xs text-gray-400 mb-6" aria-label="Breadcrumb">
+        <Link href="/gfg" className="hover:text-emerald-600 transition-colors">GFG</Link>
+        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+        <span className="text-gray-600 font-medium truncate">{problem.title}</span>
+      </nav>
+
       <AdUnit slot="YOUR_AD_SLOT" style="leaderboard" className="mb-8" />
 
-      <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
+      <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 mb-3">
         {problem.title}
       </h1>
 
-      <div className="flex items-center gap-4 mb-8 flex-wrap">
-        <span className="inline-block px-2.5 py-0.5 rounded text-xs font-bold bg-green-100 text-green-700">
+      <div className="flex items-center gap-3 mb-8 flex-wrap">
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium text-orange-700 bg-orange-50">
+          <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
           Java
         </span>
+        <span className="w-px h-4 bg-gray-200" />
         <a
-          href={`https://www.geeksforgeeks.org/problems/${problem.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}/1`}
+          href={`https://www.geeksforgeeks.org/problems/${gfgSlug}/1`}
           target="_blank"
           rel="nofollow noopener noreferrer"
-          className="text-green-600 hover:underline text-sm"
+          className="inline-flex items-center gap-1 text-sm text-emerald-600 hover:text-emerald-800 transition-colors"
         >
-          View on GFG ↗
+          View on GFG
+          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
         </a>
       </div>
 
       <section className="mb-8">
-        <h2 className="text-lg font-semibold mb-3">Java Solution</h2>
-        <CodeBlock code={problem.code} lang="java" />
+        <CodeBlockWithHeader
+          code={problem.code}
+          lang="java"
+          filename={`${problem.title}.java`}
+        />
       </section>
 
       <AdUnit slot="YOUR_AD_SLOT" style="rectangle" className="mb-8" />
 
-      <nav className="flex justify-between items-center border-t border-slate-200 pt-6 gap-3 flex-wrap">
+      <nav className="flex justify-between items-center border-t border-gray-100 pt-6 gap-3 flex-wrap" aria-label="Problem navigation">
         {prev ? (
           <Link
             href={`/gfg/${prev.slug}`}
-            className="flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-lg text-sm text-slate-700 hover:border-green-400 hover:text-green-600 transition-colors max-w-[46%] truncate"
+            className="group flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 hover:border-emerald-300 hover:bg-emerald-50/50 hover:text-emerald-700 transition-all shadow-sm max-w-[46%]"
           >
-            ← {prev.title}
+            <svg className="w-4 h-4 shrink-0 text-gray-400 group-hover:text-emerald-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            <span className="truncate">{prev.title}</span>
           </Link>
         ) : (
           <span />
@@ -93,17 +114,20 @@ export default async function GfgProblemPage({ params }: Props) {
 
         <Link
           href="/gfg"
-          className="px-4 py-2 border border-slate-200 rounded-lg text-sm text-slate-500 hover:border-green-400 hover:text-green-600 transition-colors"
+          className="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-500 hover:border-emerald-300 hover:text-emerald-600 transition-all shadow-sm hidden sm:block"
         >
-          ☰ All GFG Problems
+          All GFG Problems
         </Link>
 
         {next ? (
           <Link
             href={`/gfg/${next.slug}`}
-            className="flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-lg text-sm text-slate-700 hover:border-green-400 hover:text-green-600 transition-colors max-w-[46%] truncate"
+            className="group flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 hover:border-emerald-300 hover:bg-emerald-50/50 hover:text-emerald-700 transition-all shadow-sm max-w-[46%]"
           >
-            {next.title} →
+            <span className="truncate">{next.title}</span>
+            <svg className="w-4 h-4 shrink-0 text-gray-400 group-hover:text-emerald-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
           </Link>
         ) : (
           <span />

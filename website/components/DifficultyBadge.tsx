@@ -1,15 +1,17 @@
 import type { Difficulty } from '@/lib/problems'
 
-const styles: Record<Difficulty, string> = {
-  Easy:    'bg-green-100 text-green-700',
-  Medium:  'bg-yellow-100 text-yellow-700',
-  Hard:    'bg-red-100   text-red-700',
-  Unknown: 'bg-slate-100 text-slate-500',
+const config: Record<Difficulty, { dot: string; text: string; bg: string }> = {
+  Easy:    { dot: 'bg-emerald-500', text: 'text-emerald-700', bg: 'bg-emerald-50' },
+  Medium:  { dot: 'bg-amber-500',   text: 'text-amber-700',   bg: 'bg-amber-50'   },
+  Hard:    { dot: 'bg-red-500',     text: 'text-red-700',     bg: 'bg-red-50'     },
+  Unknown: { dot: 'bg-gray-400',    text: 'text-gray-500',    bg: 'bg-gray-50'    },
 }
 
 export default function DifficultyBadge({ difficulty }: { difficulty: Difficulty }) {
+  const c = config[difficulty]
   return (
-    <span className={`inline-block px-2.5 py-0.5 rounded text-xs font-bold ${styles[difficulty]}`}>
+    <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium ${c.text} ${c.bg}`}>
+      <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${c.dot}`} />
       {difficulty}
     </span>
   )
