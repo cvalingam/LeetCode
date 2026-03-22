@@ -27,9 +27,8 @@ export default function ContactPage() {
 
       <h2 className="text-lg font-semibold mb-4">Send a message</h2>
 
-      {/* Replace action URL with your Formspree endpoint */}
       <form
-        action="https://formspree.io/f/YOUR_FORM_ID"
+        action="https://formspree.io/f/xnjgkaaa"
         method="POST"
         className="flex flex-col gap-4 max-w-md"
       >
