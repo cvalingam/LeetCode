@@ -1,16 +1,28 @@
-import CodeBlock from './CodeBlock'
+import CodeBlock, { type SupportedLang } from './CodeBlock'
 import CopyButton from './CopyButton'
 
-type Lang = 'csharp' | 'java'
+export type { SupportedLang }
 
-const langLabel: Record<Lang, string> = {
-  csharp: 'C#',
-  java:   'Java',
+const langLabel: Record<SupportedLang, string> = {
+  csharp:     'C#',
+  java:       'Java',
+  typescript: 'TypeScript',
+  sql:        'MySQL',
+  go:         'Go',
+  cpp:        'C++',
+  python:     'Python',
+  bash:       'Shell',
 }
 
-const langColors: Record<Lang, string> = {
-  csharp: 'bg-indigo-500/20 text-indigo-300',
-  java:   'bg-orange-500/20  text-orange-300',
+const langColors: Record<SupportedLang, string> = {
+  csharp:     'bg-indigo-500/20 text-indigo-300',
+  java:       'bg-orange-500/20 text-orange-300',
+  typescript: 'bg-blue-500/20 text-blue-300',
+  sql:        'bg-yellow-500/20 text-yellow-300',
+  go:         'bg-cyan-500/20 text-cyan-300',
+  cpp:        'bg-purple-500/20 text-purple-300',
+  python:     'bg-green-500/20 text-green-300',
+  bash:       'bg-gray-500/20 text-gray-300',
 }
 
 export default function CodeBlockWithHeader({
@@ -19,7 +31,7 @@ export default function CodeBlockWithHeader({
   filename,
 }: {
   code: string
-  lang?: Lang
+  lang?: SupportedLang
   filename?: string
 }) {
   return (

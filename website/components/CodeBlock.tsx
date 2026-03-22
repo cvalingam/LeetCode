@@ -1,6 +1,6 @@
 import { createHighlighter } from 'shiki'
 
-type Lang = 'csharp' | 'java'
+export type SupportedLang = 'csharp' | 'java' | 'typescript' | 'sql' | 'go' | 'cpp' | 'python' | 'bash'
 
 let highlighter: Awaited<ReturnType<typeof createHighlighter>> | null = null
 
@@ -8,13 +8,13 @@ async function getHighlighter() {
   if (!highlighter) {
     highlighter = await createHighlighter({
       themes: ['github-dark'],
-      langs: ['csharp', 'java'],
+      langs: ['csharp', 'java', 'typescript', 'sql', 'go', 'cpp', 'python', 'bash'],
     })
   }
   return highlighter
 }
 
-export default async function CodeBlock({ code, lang = 'csharp' }: { code: string; lang?: Lang }) {
+export default async function CodeBlock({ code, lang = 'csharp' }: { code: string; lang?: SupportedLang }) {
   const hl = await getHighlighter()
   const html = hl.codeToHtml(code, { lang, theme: 'github-dark' })
 

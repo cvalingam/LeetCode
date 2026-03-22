@@ -15,6 +15,7 @@ export interface Problem {
   difficulty: Difficulty
   tags: Tag[]
   code: string
+  extraCodes?: Record<string, string>  // extension → code, e.g. { java: '...', sql: '...' }
 }
 
 export interface ProblemMeta {
@@ -71,6 +72,16 @@ export function getAllProblems(): Problem[] {
 
     const code = fs.readFileSync(path.join(folderPath, csFile), 'utf-8')
 
+    // Read any other language files in the same folder
+    const EXTRA_EXTS = ['java', 'sql', 'ts', 'go', 'cpp', 'py', 'sh']
+    const extraCodes: Record<string, string> = {}
+    for (const file of fs.readdirSync(folderPath)) {
+      const ext = path.extname(file).slice(1)
+      if (EXTRA_EXTS.includes(ext)) {
+        extraCodes[ext] = fs.readFileSync(path.join(folderPath, file), 'utf-8')
+      }
+    }
+
     result.push({
       number,
       title,
@@ -78,6 +89,7 @@ export function getAllProblems(): Problem[] {
       difficulty: getDifficulty(number),
       tags: getTagsForProblem(number),
       code,
+      ...(Object.keys(extraCodes).length > 0 ? { extraCodes } : {}),
     })
   }
 

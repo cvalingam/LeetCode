@@ -9,7 +9,7 @@
 
 <br/><br/>
 
-![LeetCode](https://img.shields.io/badge/LeetCode-802%2B%20C%23%20solutions-323232?style=flat-square&logo=leetcode)
+![LeetCode C#](https://img.shields.io/badge/LeetCode-802%2B%20solutions-323232?style=flat-square&logo=leetcode)
 ![GFG](https://img.shields.io/badge/GeeksforGeeks-530%2B%20Java%20solutions-2F8D46?style=flat-square&logo=geeksforgeeks)
 ![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
 

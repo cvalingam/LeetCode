@@ -4,10 +4,21 @@ import Link from 'next/link'
 import { getAllProblems, getProblemBySlug, getAdjacentProblems } from '@/lib/problems'
 import { toLeetCodeSlug, SITE_URL } from '@/lib/constants'
 import { TAG_LABELS } from '@/lib/tags'
-import CodeBlockWithHeader from '@/components/CodeBlockWithHeader'
+import CodeBlockWithHeader, { type SupportedLang } from '@/components/CodeBlockWithHeader'
+import LanguageTabs from '@/components/LanguageTabs'
 import DifficultyBadge from '@/components/DifficultyBadge'
 import AdUnit from '@/components/AdUnit'
 import HelpfulWidget from '@/components/HelpfulWidget'
+
+const EXT_TO_SHIKI: Record<string, SupportedLang> = {
+  java: 'java',
+  sql:  'sql',
+  ts:   'typescript',
+  go:   'go',
+  cpp:  'cpp',
+  py:   'python',
+  sh:   'bash',
+}
 
 interface Props {
   params: { slug: string }
@@ -132,11 +143,29 @@ export default async function ProblemPage({ params }: Props) {
 
       {/* Code */}
       <section className="mb-8">
-        <CodeBlockWithHeader
-          code={problem.code}
-          lang="csharp"
-          filename={`${problem.number}.cs`}
-        />
+        {problem.extraCodes && Object.keys(problem.extraCodes).length > 0 ? (
+          <LanguageTabs extensions={['cs', ...Object.keys(problem.extraCodes)]}>
+            <CodeBlockWithHeader
+              code={problem.code}
+              lang="csharp"
+              filename={`${problem.number}.cs`}
+            />
+            {Object.entries(problem.extraCodes).map(([ext, code]) => (
+              <CodeBlockWithHeader
+                key={ext}
+                code={code}
+                lang={EXT_TO_SHIKI[ext] ?? 'csharp'}
+                filename={`${problem.number}.${ext}`}
+              />
+            ))}
+          </LanguageTabs>
+        ) : (
+          <CodeBlockWithHeader
+            code={problem.code}
+            lang="csharp"
+            filename={`${problem.number}.cs`}
+          />
+        )}
       </section>
 
       {/* Ad: rectangle */}
