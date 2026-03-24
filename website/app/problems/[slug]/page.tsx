@@ -115,14 +115,14 @@ export default async function ProblemPage({ params }: Props) {
       <AdUnit slot="YOUR_AD_SLOT" style="leaderboard" className="mb-8" />
 
       {/* Title */}
-      <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 mb-3">
+      <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-3">
         {problem.number}. {problem.title}
       </h1>
 
       {/* Meta row */}
       <div className="flex items-center gap-3 mb-5 flex-wrap">
         <DifficultyBadge difficulty={problem.difficulty} />
-        <span className="w-px h-4 bg-gray-200" />
+        <span className="w-px h-4 bg-gray-200 dark:bg-gray-700" />
         <a
           href={`https://leetcode.com/problems/${lcSlug}/`}
           target="_blank"
@@ -143,11 +143,30 @@ export default async function ProblemPage({ params }: Props) {
             <a
               key={tag}
               href={`/topics/${tag}`}
-              className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-indigo-700 bg-indigo-50 hover:bg-indigo-100 hover:text-indigo-900 transition-colors border border-indigo-100"
+              className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium text-indigo-700 bg-indigo-50 hover:bg-indigo-100 hover:text-indigo-900 transition-colors border border-indigo-100 dark:bg-indigo-950 dark:text-indigo-300 dark:border-indigo-800 dark:hover:bg-indigo-900"
             >
               {TAG_LABELS[tag] ?? tag}
             </a>
           ))}
+        </div>
+      )}
+
+      {/* Complexity */}
+      {problem.complexity && (
+        <div className="flex flex-wrap gap-3 mb-8">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-50 border border-emerald-100 dark:bg-emerald-950/50 dark:border-emerald-900">
+            <svg className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
+              <circle cx="12" cy="12" r="10" />
+            </svg>
+            <span className="text-xs font-medium text-emerald-700 dark:text-emerald-300">Time: <span className="font-mono">{problem.complexity.time}</span></span>
+          </div>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-violet-50 border border-violet-100 dark:bg-violet-950/50 dark:border-violet-900">
+            <svg className="w-3.5 h-3.5 text-violet-600 dark:text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 12h10M4 17h6" />
+            </svg>
+            <span className="text-xs font-medium text-violet-700 dark:text-violet-300">Space: <span className="font-mono">{problem.complexity.space}</span></span>
+          </div>
         </div>
       )}
 
@@ -185,11 +204,11 @@ export default async function ProblemPage({ params }: Props) {
       <HelpfulWidget />
 
       {/* Prev / Next navigation */}
-      <nav className="flex justify-between items-center border-t border-gray-100 pt-6 gap-3 flex-wrap" aria-label="Problem navigation">
+      <nav className="flex justify-between items-center border-t border-gray-100 dark:border-gray-800 pt-6 gap-3 flex-wrap" aria-label="Problem navigation">
         {prev ? (
           <Link
             href={`/problems/${prev.slug}`}
-            className="group flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 hover:border-indigo-300 hover:bg-indigo-50/50 hover:text-indigo-700 transition-all shadow-sm max-w-[46%]"
+            className="group flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-sm text-gray-700 dark:text-gray-300 hover:border-indigo-300 dark:hover:border-indigo-600 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/30 hover:text-indigo-700 dark:hover:text-indigo-400 transition-all shadow-sm max-w-[46%]"
           >
             <svg className="w-4 h-4 shrink-0 text-gray-400 group-hover:text-indigo-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -202,7 +221,7 @@ export default async function ProblemPage({ params }: Props) {
 
         <Link
           href="/"
-          className="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-500 hover:border-indigo-300 hover:text-indigo-600 transition-all shadow-sm hidden sm:block"
+          className="px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-sm text-gray-500 dark:text-gray-400 hover:border-indigo-300 dark:hover:border-indigo-600 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all shadow-sm hidden sm:block"
         >
           All Problems
         </Link>
@@ -210,7 +229,7 @@ export default async function ProblemPage({ params }: Props) {
         {next ? (
           <Link
             href={`/problems/${next.slug}`}
-            className="group flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 hover:border-indigo-300 hover:bg-indigo-50/50 hover:text-indigo-700 transition-all shadow-sm max-w-[46%]"
+            className="group flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-sm text-gray-700 dark:text-gray-300 hover:border-indigo-300 dark:hover:border-indigo-600 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/30 hover:text-indigo-700 dark:hover:text-indigo-400 transition-all shadow-sm max-w-[46%]"
           >
             <span className="truncate">{next.number}. {next.title}</span>
             <svg className="w-4 h-4 shrink-0 text-gray-400 group-hover:text-indigo-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

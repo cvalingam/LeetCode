@@ -33,10 +33,10 @@ export default function TopicsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 mb-2">
+      <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-2">
         Topics
       </h1>
-      <p className="text-gray-500 mb-8 text-sm">
+      <p className="text-gray-500 dark:text-gray-400 mb-8 text-sm">
         {tags.length} topics across {tags.reduce((s, t) => s + t.count, 0)} tagged problems
       </p>
 
@@ -45,12 +45,12 @@ export default function TopicsPage() {
           <Link
             key={tag}
             href={`/topics/${tag}`}
-            className="flex items-center justify-between px-4 py-3 bg-white border border-gray-200 rounded-xl hover:border-indigo-300 hover:bg-indigo-50/40 hover:shadow-sm transition-all group"
+            className="flex items-center justify-between px-4 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-indigo-300 dark:hover:border-indigo-600 hover:bg-indigo-50/40 dark:hover:bg-indigo-950/30 hover:shadow-sm transition-all group"
           >
-            <span className="text-sm font-medium text-gray-800 group-hover:text-indigo-700 transition-colors">
+            <span className="text-sm font-medium text-gray-800 dark:text-gray-200 group-hover:text-indigo-700 dark:group-hover:text-indigo-400 transition-colors">
               {label}
             </span>
-            <span className="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full ml-2 shrink-0">
+            <span className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-full ml-2 shrink-0">
               {count}
             </span>
           </Link>

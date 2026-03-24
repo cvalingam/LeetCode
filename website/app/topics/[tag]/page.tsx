@@ -85,23 +85,23 @@ export default function TopicPage({ params }: Props) {
         <span className="text-gray-600 font-medium">{label}</span>
       </nav>
 
-      <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 mb-1">
+      <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-1">
         {label}
       </h1>
-      <p className="text-gray-500 text-sm mb-7">{problems.length} problems</p>
+      <p className="text-gray-500 dark:text-gray-400 text-sm mb-7">{problems.length} problems</p>
 
-      <ul className="divide-y divide-gray-100">
+      <ul className="divide-y divide-gray-100 dark:divide-gray-800">
         {problems.map(p => (
           <li key={p.slug}>
             <Link
               href={`/problems/${p.slug}`}
-              className="flex items-center justify-between py-3 gap-3 group hover:bg-gray-50/60 px-1 rounded-lg transition-colors"
+              className="flex items-center justify-between py-3 gap-3 group hover:bg-gray-50/60 dark:hover:bg-gray-800/40 px-1 rounded-lg transition-colors"
             >
               <span className="flex items-center gap-3 min-w-0">
-                <span className="w-10 text-right shrink-0 text-xs text-gray-400 font-mono tabular-nums">
+                <span className="w-10 text-right shrink-0 text-xs text-gray-400 dark:text-gray-500 font-mono tabular-nums">
                   {p.number}.
                 </span>
-                <span className="text-sm font-medium text-gray-800 group-hover:text-indigo-700 transition-colors truncate">
+                <span className="text-sm font-medium text-gray-800 dark:text-gray-200 group-hover:text-indigo-700 dark:group-hover:text-indigo-400 transition-colors truncate">
                   {p.title}
                 </span>
               </span>

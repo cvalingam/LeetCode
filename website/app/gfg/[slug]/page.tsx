@@ -86,16 +86,16 @@ export default async function GfgProblemPage({ params }: Props) {
 
       <AdUnit slot="YOUR_AD_SLOT" style="leaderboard" className="mb-8" />
 
-      <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 mb-3">
+      <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-3">
         {problem.title}
       </h1>
 
       <div className="flex items-center gap-3 mb-8 flex-wrap">
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium text-orange-700 bg-orange-50">
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium text-orange-700 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/60">
           <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
           Java
         </span>
-        <span className="w-px h-4 bg-gray-200" />
+        <span className="w-px h-4 bg-gray-200 dark:bg-gray-700" />
         <a
           href={`https://www.geeksforgeeks.org/problems/${gfgSlug}/1`}
           target="_blank"
@@ -122,11 +122,11 @@ export default async function GfgProblemPage({ params }: Props) {
       {/* Helpful widget */}
       <HelpfulWidget />
 
-      <nav className="flex justify-between items-center border-t border-gray-100 pt-6 gap-3 flex-wrap" aria-label="Problem navigation">
+      <nav className="flex justify-between items-center border-t border-gray-100 dark:border-gray-800 pt-6 gap-3 flex-wrap" aria-label="Problem navigation">
         {prev ? (
           <Link
             href={`/gfg/${prev.slug}`}
-            className="group flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 hover:border-emerald-300 hover:bg-emerald-50/50 hover:text-emerald-700 transition-all shadow-sm max-w-[46%]"
+            className="group flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-sm text-gray-700 dark:text-gray-300 hover:border-emerald-300 dark:hover:border-emerald-600 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 hover:text-emerald-700 dark:hover:text-emerald-400 transition-all shadow-sm max-w-[46%]"
           >
             <svg className="w-4 h-4 shrink-0 text-gray-400 group-hover:text-emerald-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -139,7 +139,7 @@ export default async function GfgProblemPage({ params }: Props) {
 
         <Link
           href="/gfg"
-          className="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-500 hover:border-emerald-300 hover:text-emerald-600 transition-all shadow-sm hidden sm:block"
+          className="px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-sm text-gray-500 dark:text-gray-400 hover:border-emerald-300 dark:hover:border-emerald-600 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all shadow-sm hidden sm:block"
         >
           All GFG Problems
         </Link>
@@ -147,7 +147,7 @@ export default async function GfgProblemPage({ params }: Props) {
         {next ? (
           <Link
             href={`/gfg/${next.slug}`}
-            className="group flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 hover:border-emerald-300 hover:bg-emerald-50/50 hover:text-emerald-700 transition-all shadow-sm max-w-[46%]"
+            className="group flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-sm text-gray-700 dark:text-gray-300 hover:border-emerald-300 dark:hover:border-emerald-600 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/30 hover:text-emerald-700 dark:hover:text-emerald-400 transition-all shadow-sm max-w-[46%]"
           >
             <span className="truncate">{next.title}</span>
             <svg className="w-4 h-4 shrink-0 text-gray-400 group-hover:text-emerald-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

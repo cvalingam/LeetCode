@@ -7,7 +7,7 @@ export default function Footer() {
   const gfgCount = getAllGfgProblemsMeta().length
   const total    = lcCount + gfgCount
   return (
-    <footer className="bg-white border-t border-gray-100 mt-auto">
+    <footer className="bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 mt-auto">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
@@ -18,35 +18,35 @@ export default function Footer() {
               <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 text-white text-[11px] flex items-center justify-center font-black shadow-sm">
                 D
               </span>
-              <span className="font-extrabold text-gray-900 text-sm">DSA Solutions</span>
+              <span className="font-extrabold text-gray-900 dark:text-gray-100 text-sm">DSA Solutions</span>
             </div>
-            <p className="text-xs text-gray-500 leading-relaxed max-w-[220px]">
+            <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed max-w-[220px]">
               Clean C# &amp; Java solutions to {total}+ coding problems. Built for developers cracking the interview.
             </p>
           </div>
 
           {/* LeetCode */}
           <div>
-            <h3 className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-3">LeetCode C#</h3>
+            <h3 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">LeetCode C#</h3>
             <ul className="space-y-2">
-              <li><Link href="/"       className="text-sm text-gray-500 hover:text-indigo-600 transition-colors">All Problems</Link></li>
-              <li><Link href="/about"  className="text-sm text-gray-500 hover:text-indigo-600 transition-colors">About</Link></li>
-              <li><Link href="/contact" className="text-sm text-gray-500 hover:text-indigo-600 transition-colors">Contact</Link></li>
+              <li><Link href="/"       className="text-sm text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">All Problems</Link></li>
+              <li><Link href="/about"  className="text-sm text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">About</Link></li>
+              <li><Link href="/contact" className="text-sm text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contact</Link></li>
             </ul>
           </div>
 
           {/* Resources */}
           <div>
-            <h3 className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-3">Resources</h3>
+            <h3 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Resources</h3>
             <ul className="space-y-2">
-              <li><Link href="/gfg" className="text-sm text-gray-500 hover:text-emerald-600 transition-colors">GFG Java Solutions</Link></li>
-              <li><Link href="/privacy-policy" className="text-sm text-gray-500 hover:text-indigo-600 transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/gfg" className="text-sm text-gray-500 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">GFG Java Solutions</Link></li>
+              <li><Link href="/privacy-policy" className="text-sm text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Privacy Policy</Link></li>
               <li>
                 <a
                   href="https://github.com/cvalingam/DSA-Solutions"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-gray-500 hover:text-indigo-600 transition-colors inline-flex items-center gap-1"
+                  className="text-sm text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors inline-flex items-center gap-1"
                 >
                   GitHub
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -59,7 +59,7 @@ export default function Footer() {
 
         </div>
 
-        <div className="border-t border-gray-100 pt-6 text-xs text-gray-400 text-center">
+        <div className="border-t border-gray-100 dark:border-gray-800 pt-6 text-xs text-gray-400 dark:text-gray-500 text-center">
           &copy; {new Date().getFullYear()} Sivalingam Ramasamy &middot; DSA Solutions
         </div>
 

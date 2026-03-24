@@ -1,10 +1,10 @@
 import type { Difficulty } from '@/lib/problems'
 
 const config: Record<Difficulty, { dot: string; text: string; bg: string }> = {
-  Easy:    { dot: 'bg-emerald-500', text: 'text-emerald-700', bg: 'bg-emerald-50' },
-  Medium:  { dot: 'bg-amber-500',   text: 'text-amber-700',   bg: 'bg-amber-50'   },
-  Hard:    { dot: 'bg-red-500',     text: 'text-red-700',     bg: 'bg-red-50'     },
-  Unknown: { dot: 'bg-gray-400',    text: 'text-gray-500',    bg: 'bg-gray-50'    },
+  Easy:    { dot: 'bg-emerald-500', text: 'text-emerald-700 dark:text-emerald-400', bg: 'bg-emerald-50 dark:bg-emerald-950/60' },
+  Medium:  { dot: 'bg-amber-500',   text: 'text-amber-700 dark:text-amber-400',   bg: 'bg-amber-50 dark:bg-amber-950/60'   },
+  Hard:    { dot: 'bg-red-500',     text: 'text-red-700 dark:text-red-400',     bg: 'bg-red-50 dark:bg-red-950/60'     },
+  Unknown: { dot: 'bg-gray-400',    text: 'text-gray-500 dark:text-gray-400',    bg: 'bg-gray-50 dark:bg-gray-800'    },
 }
 
 export default function DifficultyBadge({ difficulty }: { difficulty: Difficulty }) {

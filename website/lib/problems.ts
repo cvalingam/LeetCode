@@ -17,6 +17,7 @@ export interface Problem {
   primaryExt: string  // extension of the primary code file, e.g. 'cs', 'java', 'sql'
   code: string
   extraCodes?: Record<string, string>  // extension → code, e.g. { java: '...', sql: '...' }
+  complexity?: { time: string; space: string }  // parsed from "// Time: O(n) Space: O(n)" comment
 }
 
 export interface ProblemMeta {
@@ -83,6 +84,12 @@ export function getAllProblems(): Problem[] {
 
     const code = fs.readFileSync(path.join(folderPath, primaryFile), 'utf-8')
 
+    // Parse complexity from comment: "// Time: O(...) Space: O(...)"
+    const complexityMatch = code.match(/\/\/\s*Time:\s*(O\([^)]+\))\s+Space:\s*(O\([^)]+\))/i)
+    const complexity = complexityMatch
+      ? { time: complexityMatch[1], space: complexityMatch[2] }
+      : undefined
+
     // Read remaining language files as extra
     const extraCodes: Record<string, string> = {}
     for (const file of filesInFolder) {
@@ -100,6 +107,7 @@ export function getAllProblems(): Problem[] {
       tags: getTagsForProblem(number),
       primaryExt,
       code,
+      ...(complexity ? { complexity } : {}),
       ...(Object.keys(extraCodes).length > 0 ? { extraCodes } : {}),
     })
   }

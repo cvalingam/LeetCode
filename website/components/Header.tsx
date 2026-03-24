@@ -3,10 +3,12 @@
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
+import { useTheme } from './ThemeProvider'
 
 export default function Header() {
   const router  = useRouter()
   const pathname = usePathname()
+  const { theme, toggle } = useTheme()
   const [query, setQuery] = useState('')
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false)
   const mobileInputRef = useRef<HTMLInputElement>(null)
@@ -28,13 +30,13 @@ export default function Header() {
   const isGfg = pathname.startsWith('/gfg')
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/60 shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200/60 dark:border-gray-700/60 shadow-sm">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center gap-3">
 
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2 font-extrabold text-gray-900 tracking-tight shrink-0 hover:opacity-75 transition-opacity"
+          className="flex items-center gap-2 font-extrabold text-gray-900 dark:text-gray-100 tracking-tight shrink-0 hover:opacity-75 transition-opacity"
         >
           <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 text-white text-[11px] flex items-center justify-center font-black shadow-sm">
             D
@@ -61,7 +63,7 @@ export default function Header() {
             placeholder="Search problems…"
             autoComplete="off"
             aria-label="Search problems"
-            className="w-full pl-8 pr-9 py-1.5 text-sm border border-gray-200 rounded-lg bg-gray-50/80 focus:outline-none focus:border-indigo-400 focus:bg-white focus:ring-2 focus:ring-indigo-100 transition-all"
+            className="w-full pl-8 pr-9 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50/80 dark:bg-gray-800/80 dark:text-gray-100 dark:placeholder-gray-500 focus:outline-none focus:border-indigo-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900 transition-all"
           />
           <kbd className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-[10px] text-gray-300 font-mono">↵</kbd>
         </div>
@@ -89,17 +91,33 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub repository"
-            className="ml-1 p-2 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-all"
+            className="ml-1 p-2 rounded-lg text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
           >
             <GitHubIcon />
           </a>
+          {/* Dark mode toggle */}
+          <button
+            onClick={toggle}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            className="p-2 rounded-lg text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+          >
+            {theme === 'dark' ? (
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            ) : (
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            )}
+          </button>
         </nav>
 
       </div>
 
       {/* Mobile search bar (expands below header) */}
       {mobileSearchOpen && (
-        <div className="sm:hidden px-4 pb-3 bg-white/95 backdrop-blur-md border-b border-gray-200/60">
+        <div className="sm:hidden px-4 pb-3 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200/60 dark:border-gray-700/60">
           <div className="relative">
             <svg
               className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none"
@@ -116,7 +134,7 @@ export default function Header() {
               placeholder="Search problems…"
               autoComplete="off"
               aria-label="Search problems"
-              className="w-full pl-8 pr-9 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:border-indigo-400 focus:bg-white focus:ring-2 focus:ring-indigo-100 transition-all"
+              className="w-full pl-8 pr-9 py-2 text-sm border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500 focus:outline-none focus:border-indigo-400 focus:bg-white dark:focus:bg-gray-800 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900 transition-all"
             />
             <button
               onClick={() => { setMobileSearchOpen(false); setQuery('') }}

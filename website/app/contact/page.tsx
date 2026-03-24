@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="max-w-2xl mx-auto py-10">
-      <h1 className="text-3xl font-bold mb-2">Contact</h1>
-      <p className="text-slate-500 mb-8">Have a question or spotted an issue with a solution? Reach out below.</p>
+      <h1 className="text-3xl font-bold mb-2 dark:text-gray-100">Contact</h1>
+      <p className="text-slate-500 dark:text-slate-400 mb-8">Have a question or spotted an issue with a solution? Reach out below.</p>
 
-      <h2 className="text-lg font-semibold mb-2">GitHub Issues (preferred)</h2>
-      <p className="text-slate-600 mb-6">
+      <h2 className="text-lg font-semibold mb-2 dark:text-gray-200">GitHub Issues (preferred)</h2>
+      <p className="text-slate-600 dark:text-slate-300 mb-6">
         The fastest way to report a bug or suggest a fix is to open a{' '}
         <a
           href="https://github.com/cvalingam/DSA-Solutions/issues"
@@ -26,7 +26,7 @@ export default function ContactPage() {
         </a>.
       </p>
 
-      <h2 className="text-lg font-semibold mb-4">Send a message</h2>
+      <h2 className="text-lg font-semibold mb-4 dark:text-gray-200">Send a message</h2>
 
       <form
         action="https://formspree.io/f/xnjgkaaa"
@@ -38,28 +38,28 @@ export default function ContactPage() {
           name="name"
           placeholder="Your name"
           required
-          className="px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 transition-colors"
+          className="px-3 py-2 border border-slate-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors"
         />
         <input
           type="email"
           name="email"
           placeholder="Your email address"
           required
-          className="px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 transition-colors"
+          className="px-3 py-2 border border-slate-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors"
         />
         <input
           type="text"
           name="subject"
           placeholder="Subject"
           required
-          className="px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 transition-colors"
+          className="px-3 py-2 border border-slate-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors"
         />
         <textarea
           name="message"
           placeholder="Your message…"
           rows={5}
           required
-          className="px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 transition-colors resize-y"
+          className="px-3 py-2 border border-slate-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors resize-y"
         />
         <button
           type="submit"
@@ -69,7 +69,7 @@ export default function ContactPage() {
         </button>
       </form>
 
-      <p className="mt-4 text-xs text-slate-400">
+      <p className="mt-4 text-xs text-slate-400 dark:text-slate-500">
         We typically respond within 24–48 hours.
       </p>
 

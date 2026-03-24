@@ -91,7 +91,7 @@ export default function ProblemList({
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search by number or title…"
-            className="w-full pl-8 pr-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all shadow-sm"
+            className="w-full pl-8 pr-3 py-2 text-sm border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900 transition-all shadow-sm"
           />
         </div>
         <div className="flex gap-1.5 flex-wrap">
@@ -102,7 +102,7 @@ export default function ProblemList({
               className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
                 filter === f
                   ? filterActive[f]
-                  : 'border-gray-200 text-gray-500 bg-white hover:border-gray-300 hover:bg-gray-50'
+                  : 'border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
               }`}
             >
               {f}
@@ -111,34 +111,34 @@ export default function ProblemList({
         </div>
       </div>
 
-      <p className="text-xs text-gray-400 mb-3 tabular-nums">
+      <p className="text-xs text-gray-400 dark:text-gray-500 mb-3 tabular-nums">
         {filtered.length} problem{filtered.length !== 1 ? 's' : ''}
       </p>
 
       {/* Problem table */}
       {filtered.length === 0 ? (
-        <div className="text-center py-20 text-gray-400">
+        <div className="text-center py-20 text-gray-400 dark:text-gray-500">
           <div className="text-4xl mb-3">🔍</div>
           <p>No problems match your search.</p>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-xl border border-gray-200 shadow-sm bg-white">
+        <div className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm bg-white dark:bg-gray-900">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-gray-100 bg-gray-50/80">
-                <th className="px-4 py-3 text-left text-[11px] font-semibold text-gray-400 uppercase tracking-wider w-14">#</th>
-                <th className="px-4 py-3 text-left text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Title</th>
-                <th className="px-4 py-3 text-left text-[11px] font-semibold text-gray-400 uppercase tracking-wider w-28">Difficulty</th>
+              <tr className="border-b border-gray-100 dark:border-gray-800 bg-gray-50/80 dark:bg-gray-800/80">
+                <th className="px-4 py-3 text-left text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider w-14">#</th>
+                <th className="px-4 py-3 text-left text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Title</th>
+                <th className="px-4 py-3 text-left text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider w-28">Difficulty</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50">
+            <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
               {filtered.map(p => (
-                <tr key={p.slug} className="hover:bg-indigo-50/30 transition-colors group">
-                  <td className="px-4 py-3 text-gray-400 tabular-nums font-mono text-xs">{p.number}</td>
+                <tr key={p.slug} className="hover:bg-indigo-50/30 dark:hover:bg-indigo-950/20 transition-colors group">
+                  <td className="px-4 py-3 text-gray-400 dark:text-gray-500 tabular-nums font-mono text-xs">{p.number}</td>
                   <td className="px-4 py-3">
                     <Link
                       href={`/problems/${p.slug}`}
-                      className="font-medium text-gray-800 group-hover:text-indigo-600 transition-colors"
+                      className="font-medium text-gray-800 dark:text-gray-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors"
                     >
                       {p.title}
                     </Link>

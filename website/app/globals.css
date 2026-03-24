@@ -11,6 +11,10 @@
     background-color: #e0e7ff;
     color: #3730a3;
   }
+  .dark ::selection {
+    background-color: #312e81;
+    color: #e0e7ff;
+  }
 }
 
 /* Shiki code block — no rounding (CodeBlockWithHeader handles it) */
