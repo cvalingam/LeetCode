@@ -1,3 +1,6 @@
+// Approach: Record last occurrence of each character; scan left to right extending the partition boundary, emit a partition when the index reaches the boundary.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public IList<int> PartitionLabels(string s)

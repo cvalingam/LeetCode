@@ -1,3 +1,6 @@
+// Approach: Sort workers by wage-to-quality ratio; slide a max-heap window of size k on quality; track the minimum total cost.
+// Time: O(n log n) Space: O(k)
+
 public class Solution
 {
     public double MincostToHireWorkers(int[] quality, int[] wage, int k)

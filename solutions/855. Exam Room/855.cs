@@ -1,3 +1,6 @@
+// Approach: Doubly linked list of occupied seats; on Seat() find the maximum-gap midpoint, on Leave() splice out the node and merge gaps.
+// Time: O(n) per operation Space: O(n)
+
 public class Node
 {
     public Node prev;

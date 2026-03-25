@@ -1,3 +1,6 @@
+// Approach: Encode digit frequencies as a single integer; compare n's encoding against the encodings of all 30 powers of 2.
+// Time: O(log n) Space: O(log n)
+
 public class Solution
 {
     public bool ReorderedPowerOf2(int n)

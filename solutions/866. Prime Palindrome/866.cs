@@ -1,3 +1,6 @@
+// Approach: Enumerate odd-length palindromes by mirroring the first half (even-length palindromes divisible by 11 are non-prime except 11); check primality.
+// Time: O(√n · log n) Space: O(1)
+
 public class Solution
 {
     public int PrimePalindrome(int n)

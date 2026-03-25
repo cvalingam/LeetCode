@@ -1,3 +1,6 @@
+// Approach: Memoized DP; from each target distance either accelerate past then reverse back, or stop short and reverse.
+// Time: O(t log t) Space: O(t log t)
+
 public class Solution
 {
     public int Racecar(int target)

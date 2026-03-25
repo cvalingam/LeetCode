@@ -1,3 +1,6 @@
+// Approach: Count total length, divide into k parts; first (length % k) parts get one extra node.
+// Time: O(n) Space: O(1)
+
 public class ListNode
 {
     public int val;

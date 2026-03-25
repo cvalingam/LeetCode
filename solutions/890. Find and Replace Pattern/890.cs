@@ -1,3 +1,6 @@
+// Approach: Check isomorphism via bidirectional character mapping; both word→pattern and pattern→word mappings must be consistent.
+// Time: O(n · m) Space: O(n · m)
+
 public class Solution
 {
     public IList<string> FindAndReplacePattern(string[] words, string pattern)

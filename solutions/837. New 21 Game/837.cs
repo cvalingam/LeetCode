@@ -1,3 +1,6 @@
+// Approach: Sliding window DP; dp[i] = windowSum / maxPts where the window tracks the sum of the previous maxPts probabilities.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
 

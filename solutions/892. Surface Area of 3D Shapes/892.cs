@@ -1,3 +1,6 @@
+// Approach: Per cell contribute 4·h+2 faces; subtract 2·min(h, neighbor) for each shared wall with adjacent cells.
+// Time: O(n²) Space: O(1)
+
 public class Solution
 {
     public int SurfaceArea(int[][] grid)

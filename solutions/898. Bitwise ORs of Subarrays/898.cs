@@ -1,3 +1,6 @@
+// Approach: Maintain a rolling set of OR values of all subarrays ending at the current index; add all values to the global distinct set.
+// Time: O(n log max) Space: O(n log max)
+
 using System.Collections.Generic;
 
 public class Solution

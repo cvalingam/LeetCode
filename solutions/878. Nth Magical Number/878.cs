@@ -1,3 +1,6 @@
+// Approach: Binary search on the answer; count magical numbers ≤ m via inclusion-exclusion using LCM(a, b).
+// Time: O(log(n · min(a,b))) Space: O(1)
+
 public class Solution
 {
     public int NthMagicalNumber(int n, int a, int b)

@@ -1,3 +1,6 @@
+// Approach: Union-Find; sort all cells by elevation, process in order connecting each cell to already-processed neighbors; stop when top-left and bottom-right are connected.
+// Time: O(n² log n) Space: O(n²)
+
 public class Solution
 {
     // Parent array for Union-Find data structure

@@ -1,3 +1,6 @@
+// Approach: Count each reported answer value; for each distinct answer a, group size = a+1, and we need ceil(count / (a+1)) full groups.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int NumRabbits(int[] answers)

@@ -1,3 +1,6 @@
+// Approach: Post-order DFS returning (lca, depth); when both subtree depths are equal the current node is the LCA of the deepest leaves.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public TreeNode SubtreeWithAllDeepest(TreeNode root)

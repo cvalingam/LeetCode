@@ -1,3 +1,6 @@
+// Approach: Precompute row max and column max; each cell can be increased to min(rowMax[i], colMax[j]) without changing the skyline.
+// Time: O(n²) Space: O(n)
+
 public class Solution
 {
     public int MaxIncreaseKeepingSkyline(int[][] grid)

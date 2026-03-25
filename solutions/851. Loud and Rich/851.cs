@@ -1,3 +1,6 @@
+// Approach: Build a richer-than graph; DFS with memoization propagates the quietest person reachable from each node.
+// Time: O(V+E) Space: O(V)
+
 public class Solution
 {
     public int[] LoudAndRich(int[][] richer, int[] quiet)

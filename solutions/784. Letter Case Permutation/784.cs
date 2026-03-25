@@ -1,3 +1,6 @@
+// Approach: DFS backtracking; at each letter position branch into both lowercase and uppercase variants.
+// Time: O(2^n) Space: O(2^n)
+
 public class Solution
 {
     public IList<string> LetterCasePermutation(string s)

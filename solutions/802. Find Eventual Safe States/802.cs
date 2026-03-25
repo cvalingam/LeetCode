@@ -1,3 +1,6 @@
+// Approach: DFS with 3-state coloring (init/visiting/visited); a node is safe if DFS completes without entering a cycle.
+// Time: O(V+E) Space: O(V)
+
 enum State { kInit, kVisiting, kVisited }
 
 public class Solution

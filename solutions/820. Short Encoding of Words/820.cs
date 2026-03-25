@@ -1,3 +1,6 @@
+// Approach: Insert reversed words into a Trie; each leaf node (unique suffix) contributes word length + 1 to the encoded string.
+// Time: O(Σ len) Space: O(Σ len)
+
 public class Solution
 {
     public int MinimumLengthEncoding(string[] words)

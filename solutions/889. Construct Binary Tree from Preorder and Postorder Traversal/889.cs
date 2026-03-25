@@ -1,3 +1,6 @@
+// Approach: Recursive divide-and-conquer; preorder[preStart+1] is the left subtree root; find it in postorder to determine left/right split sizes.
+// Time: O(n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

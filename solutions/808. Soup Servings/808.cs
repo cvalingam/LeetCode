@@ -1,3 +1,6 @@
+// Approach: Scale n by 1/25; memoized DFS on (a, b) servings; probability converges to 1.0 for large n so return early.
+// Time: O(n²) Space: O(n²)
+
 public class Solution
 {
     // Cache for storing results of subproblems

@@ -1,3 +1,6 @@
+// Approach: Two-pass force propagation; L→R assigns positive force for 'R', R→L assigns negative force for 'L'; final state determined by net force sign.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string PushDominoes(string dominoes)

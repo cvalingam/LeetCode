@@ -1,3 +1,6 @@
+// Approach: Bitmask memoized DFS; precompute allowed top-character bitmasks for each base pair from the allowed strings.
+// Time: O(n · 7^n) Space: O(n · 7^n)
+
 public class Solution
 {
     // Stores allowed transitions: transitions[a][b] is a bitmask representing possible top blocks

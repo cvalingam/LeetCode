@@ -1,3 +1,6 @@
+// Approach: DP with recurrence dp[i] = 2·dp[i-1] + dp[i-3]; base cases dp[1]=1, dp[2]=2, dp[3]=5.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int NumTilings(int n)

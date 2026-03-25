@@ -1,3 +1,6 @@
+// Approach: BFS on board states encoded as strings; find the blank '0', swap it with each valid neighbor, and expand until target reached.
+// Time: O((m·n)!) Space: O((m·n)!)
+
 public class Solution
 {
     public int SlidingPuzzle(int[][] board)

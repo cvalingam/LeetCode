@@ -1,3 +1,6 @@
+// Approach: Sort jobs by difficulty, workers by skill; use a pointer to track the max profit achievable at each skill level.
+// Time: O(n log n) Space: O(n)
+
 public class Solution {
     public int MaxProfitAssignment(int[] difficulty, int[] profit, int[] worker) {
         int ans = 0;

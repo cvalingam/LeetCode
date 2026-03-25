@@ -1,3 +1,6 @@
+// Approach: BFS from "0000"; each state has 8 neighbors (4 wheels × 2 directions); skip dead-end states.
+// Time: O(10^4) Space: O(10^4)
+
 public class Solution
 {
     public int OpenLock(string[] deadends, string target)

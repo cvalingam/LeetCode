@@ -1,3 +1,6 @@
+// Approach: A rotation of s equals goal iff goal is a substring of the doubled string s+s.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public bool RotateString(string s, string goal)

@@ -1,3 +1,6 @@
+// Approach: Brute-force all O(n³) triples of points; compute the area of each triangle using the Shoelace formula.
+// Time: O(n³) Space: O(1)
+
 public class Solution
 {
     public double LargestTriangleArea(int[][] points)

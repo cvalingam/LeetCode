@@ -1,3 +1,6 @@
+// Approach: Two-pass L→R then R→L; each position stores distance to the nearest target character; final answer takes the minimum.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int[] ShortestToChar(string s, char c)

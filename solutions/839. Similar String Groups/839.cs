@@ -1,3 +1,6 @@
+// Approach: DFS to find connected components; two strings are similar if they are equal or differ in exactly 2 positions.
+// Time: O(n² · m) Space: O(n)
+
 public class Solution
 {
     public int NumSimilarGroups(string[] strs)

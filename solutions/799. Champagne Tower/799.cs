@@ -1,3 +1,6 @@
+// Approach: DP cascade row by row; any glass exceeding 1 splits the overflow equally to the two glasses below.
+// Time: O(query_glass²) Space: O(query_glass²)
+
 public class Solution
 {
     public double ChampagneTower(int poured, int query_row, int query_glass)

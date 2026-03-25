@@ -1,3 +1,6 @@
+// Approach: Two DFS passes; first computes subtree sizes and sum of distances from root, second reroots to derive answers for all nodes.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int[] SumOfDistancesInTree(int n, int[][] edges)

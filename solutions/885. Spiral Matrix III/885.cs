@@ -1,3 +1,6 @@
+// Approach: Simulate spiral walk; increment step size every 2 turns; collect only cells within grid bounds.
+// Time: O(r · c) Space: O(r · c)
+
 public class Solution
 {
     public int[][] SpiralMatrixIII(int rows, int cols, int rStart, int cStart)

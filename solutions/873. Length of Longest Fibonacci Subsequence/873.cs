@@ -1,3 +1,6 @@
+// Approach: DP on index pairs; dp[j][k] = length of longest Fibonacci subsequence ending at arr[j] and arr[k]; use a value-to-index map.
+// Time: O(n²) Space: O(n²)
+
 public class Solution
 {
     public int LenLongestFibSubseq(int[] arr)

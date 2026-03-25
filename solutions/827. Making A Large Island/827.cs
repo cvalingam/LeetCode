@@ -1,3 +1,6 @@
+// Approach: DFS to paint and record the size of each island with a unique ID; for each 0-cell sum the sizes of distinct neighboring islands.
+// Time: O(n²) Space: O(n²)
+
 public class Solution
 {
     public int LargestIsland(int[][] grid)

@@ -1,3 +1,6 @@
+// Approach: Prefix sums with a monotone deque; pop the front while the prefix difference meets the threshold, keep the back increasing.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int ShortestSubarray(int[] nums, int k)

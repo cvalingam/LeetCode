@@ -1,3 +1,6 @@
+// Approach: Brute-force 1 to n; a number is valid if every digit is rotatable (not 3/4/7) and at least one digit actually changes (2,5,6,9).
+// Time: O(n log n) Space: O(1)
+
 public class Solution
 {
     public int RotatedDigits(int n)

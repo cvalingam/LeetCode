@@ -1,3 +1,6 @@
+// Approach: Greedily track $5 and $10 bill counts; for $20 change prefer using $10+$5 before falling back to three $5s.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public bool LemonadeChange(int[] bills)

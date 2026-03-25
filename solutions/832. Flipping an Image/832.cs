@@ -1,3 +1,6 @@
+// Approach: For each row, XOR both ends with 1 while swapping them inward; handles middle element in-place.
+// Time: O(n²) Space: O(1)
+
 public class Solution
 {
     public int[][] FlipAndInvertImage(int[][] image)

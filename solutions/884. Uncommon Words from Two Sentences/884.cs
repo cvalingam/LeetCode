@@ -1,3 +1,6 @@
+// Approach: Count word frequencies across both sentences combined; return words that appear exactly once.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string[] UncommonFromSentences(string s1, string s2)

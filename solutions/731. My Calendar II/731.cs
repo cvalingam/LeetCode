@@ -1,3 +1,6 @@
+// Approach: Sweep line with a difference map (+1 at start, -1 at end); reject booking if running prefix sum would exceed 2.
+// Time: O(n²) Space: O(n)
+
 public class MyCalendarTwo
 {
     private SortedDictionary<int, int> timeline = new SortedDictionary<int, int>();

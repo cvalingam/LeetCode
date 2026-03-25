@@ -1,3 +1,6 @@
+// Approach: Simulate robot movement; store obstacles in a HashSet; track direction index modulo 4 and update max squared Euclidean distance.
+// Time: O(n + k) Space: O(k)
+
 public class Solution
 {
     public int RobotSim(int[] commands, int[][] obstacles)

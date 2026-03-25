@@ -1,3 +1,6 @@
+// Approach: Single pass tracking nesting depth; each "()" contributes 1 << depth to the final score.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int ScoreOfParentheses(string s)
