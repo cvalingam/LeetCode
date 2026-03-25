@@ -1,3 +1,6 @@
+// Approach: Bitmask DP tracking (position, active-char-mask, canChange) to maximize partitions.
+// Time: O(n * 2^26) Space: O(n * 2^26)
+
 public class Solution
 {
     // Memoization dictionary: key is Tuple<int, int, int> representing (position, bitmask, canChange)

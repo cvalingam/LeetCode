@@ -1,3 +1,6 @@
+// Approach: XOR each element if gain > 0; must XOR even count; adjust for minimum loss if odd.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public long MaximumValueSum(int[] nums, int k, int[][] edges)

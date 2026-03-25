@@ -1,3 +1,6 @@
+// Approach: Alice wins when petals is odd; count valid (odd, any) and (any, even) petal combinations.
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public long FlowerGame(int petals, int players)

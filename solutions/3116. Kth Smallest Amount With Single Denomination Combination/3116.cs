@@ -1,3 +1,6 @@
+// Approach: Binary search on value; count valid amounts ≤ mid using LCM inclusion-exclusion over coin subsets.
+// Time: O(2^n * n * log answer) Space: O(2^n)
+
 public class Solution
 {
     public long FindKthSmallest(int[] coins, int k)

@@ -1,3 +1,6 @@
+// Approach: Union-Find; AND all edge weights in each component; answer query with component AND.
+// Time: O((n + E) α(n)) Space: O(n)
+
 public class Solution
 {
     public int[] MinimumCost(int n, int[][] edges, int[][] query)

@@ -1,3 +1,6 @@
+// Approach: Sort sides; check triangle validity then classify equilateral/isosceles/scalene.
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public string TriangleType(int[] nums)

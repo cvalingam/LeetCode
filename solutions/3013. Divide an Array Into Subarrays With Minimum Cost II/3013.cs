@@ -1,3 +1,6 @@
+// Approach: Sliding window with sorted set of size k-1 to find min elements starting subarrays.
+// Time: O(n log k) Space: O(k)
+
 public class Solution
 {
     public long MinimumCost(int[] nums, int k, int dist)

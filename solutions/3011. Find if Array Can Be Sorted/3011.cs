@@ -1,3 +1,6 @@
+// Approach: Group consecutive elements with same popcount; each group boundary must be non-decreasing.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public bool CanSortArray(int[] nums)

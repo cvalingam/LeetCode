@@ -1,3 +1,6 @@
+// Approach: Sliding window with bit-count array; expand right and shrink left when OR ≥ k.
+// Time: O(n log max) Space: O(log max)
+
 public class Solution
 {
     public int MinimumSubarrayLength(int[] nums, int k)

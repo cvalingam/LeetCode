@@ -1,3 +1,6 @@
+// Approach: Sort; for each upper-left point count valid lower-right points using sweep.
+// Time: O(n²) Space: O(1)
+
 public class Solution
 {
     public int NumberOfPairs(int[][] points)

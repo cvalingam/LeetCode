@@ -1,3 +1,6 @@
+// Approach: 2D prefix sum from top-left; count cells where prefix sum ≤ k.
+// Time: O(mn) Space: O(mn)
+
 public class Solution
 {
     public int CountSubmatrices(int[][] grid, int k)

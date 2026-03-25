@@ -1,3 +1,6 @@
+// Approach: Count frequencies; find max frequency; sum counts of all elements at max frequency.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MaxFrequencyElements(int[] nums)

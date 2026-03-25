@@ -1,3 +1,6 @@
+// Approach: Check if rook or bishop can reach queen in 1 move without the other piece blocking.
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public int MinMovesToCaptureTheQueen(int a, int b, int c, int d, int e, int f)

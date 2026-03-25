@@ -1,3 +1,6 @@
+// Approach: Floyd-Warshall on 26 chars to find min cost transitions; sum min costs per source-target pair.
+// Time: O(26³ + n) Space: O(26²)
+
 public class Solution
 {
     public long MinimumCost(string source, string target, char[] original, char[] changed, int[] cost)

@@ -1,3 +1,6 @@
+// Approach: First subarray always starts at index 0; take 2 smallest values from remaining.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinimumCost(int[] nums)

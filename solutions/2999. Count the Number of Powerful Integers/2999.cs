@@ -1,3 +1,6 @@
+// Approach: Digit DP counting integers ≤ N with required suffix s and each digit ≤ limit.
+// Time: O(d * (limit+1)) Space: O(d)
+
 public class Solution
 {
     public long NumberOfPowerfulInt(long start, long finish, int limit, string s)

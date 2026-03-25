@@ -1,3 +1,6 @@
+// Approach: Find rectangle with max diagonal; among ties pick the one with max area.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int AreaOfMaxDiagonal(int[][] dimensions)

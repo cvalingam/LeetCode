@@ -1,3 +1,6 @@
+// Approach: Store all string prefixes of arr2 numbers in a HashSet; for each arr1 number find max prefix length.
+// Time: O((n + m) * d) Space: O(m * d)
+
 public class Solution
 {
     public int LongestCommonPrefix(int[] arr1, int[] arr2)

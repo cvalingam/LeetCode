@@ -1,3 +1,6 @@
+// Approach: Brute force all pairs; check if words[i] is both prefix and suffix of words[j].
+// Time: O(n² * L) Space: O(1)
+
 public class Solution
 {
     public int CountPrefixSuffixPairs(string[] words)

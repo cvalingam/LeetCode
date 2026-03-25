@@ -1,3 +1,6 @@
+// Approach: For each pair of rectangles find overlapping square side = min(x-overlap, y-overlap).
+// Time: O(n²) Space: O(1)
+
 public class Solution
 {
     public long LargestSquareArea(int[][] bottomLeft, int[][] topRight)

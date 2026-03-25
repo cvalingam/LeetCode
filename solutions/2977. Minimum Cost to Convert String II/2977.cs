@@ -1,3 +1,6 @@
+// Approach: Trie of transition strings; DP with shortest path on distinct strings via Floyd-Warshall.
+// Time: O(n * L + k³) Space: O(k² + n)
+
 public class Solution
 {
     public long MinimumCost(string source, string target, string[] original, string[] changed, int[] cost)

@@ -1,3 +1,6 @@
+// Approach: Frequency sort; assign highest-freq chars to fewest-press keys (8 chars per press tier).
+// Time: O(n + 26 log 26) Space: O(26)
+
 public class Solution
 {
     public int MinimumPushes(string word)

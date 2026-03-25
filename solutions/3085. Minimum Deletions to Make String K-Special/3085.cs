@@ -1,3 +1,6 @@
+// Approach: Frequency sort; try each freq as the min threshold; count deletions to bring others in range.
+// Time: O(n + 26 log 26) Space: O(26)
+
 public class Solution
 {
     // List to store the frequencies of characters in the input word

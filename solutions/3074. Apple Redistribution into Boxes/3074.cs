@@ -1,3 +1,6 @@
+// Approach: Binary search on box capacity; validate smallest boxes can hold all grouped apples.
+// Time: O(n log C) Space: O(1)
+
 public class Solution
 {
     public int MinimumBoxes(int[] apple, int[] capacity)

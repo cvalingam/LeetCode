@@ -1,3 +1,6 @@
+// Approach: For each character try all run lengths; binary search or scan for length occurring ≥ 3 times.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MaximumLength(string s)

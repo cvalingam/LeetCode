@@ -1,3 +1,6 @@
+// Approach: Min-heap; repeatedly pop two smallest, combine as 2*min+max, push back until all ≥ k.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int MinOperations(int[] nums, int k)

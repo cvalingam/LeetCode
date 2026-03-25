@@ -1,3 +1,6 @@
+// Approach: Track current run lengths for both increasing and decreasing; update max.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int LongestMonotonicSubarray(int[] nums)

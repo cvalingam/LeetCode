@@ -1,3 +1,6 @@
+// Approach: Sort; for each upper-left point brute-force check all valid lower-right points.
+// Time: O(n²) Space: O(1)
+
 public class Solution
 {
     public int NumberOfPairs(int[][] points)
