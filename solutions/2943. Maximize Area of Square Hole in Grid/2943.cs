@@ -1,3 +1,6 @@
+// Approach: Find max consecutive gap in horizontal and vertical fence lines; answer = min(h, v)^2.
+// Time: O(n + m) Space: O(1)
+
 public class Solution
 {
     public int MaximizeSquareHoleArea(int n, int m, int[] hBars, int[] vBars)

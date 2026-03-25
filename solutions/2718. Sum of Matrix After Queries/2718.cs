@@ -1,3 +1,6 @@
+// Approach: Process queries in reverse; track unset rows/cols; each set operation adds (unset count) * value.
+// Time: O(q) Space: O(n)
+
 public class Solution
 {
     public long MatrixSumQueries(int n, int[][] queries)

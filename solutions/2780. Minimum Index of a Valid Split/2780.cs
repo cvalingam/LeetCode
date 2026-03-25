@@ -1,3 +1,6 @@
+// Approach: Find dominant element via Boyer-Moore vote; scan for first valid split point.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinimumIndex(IList<int> nums)

@@ -1,3 +1,5 @@
+// Approach: Inclusion-exclusion over excess counts; C(n+2,2) minus overcounting violating limit.
+// Time: O(1) Space: O(1)
 public class Solution
 {
     public long DistributeCandies(int candies, int limit)

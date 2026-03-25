@@ -1,3 +1,6 @@
+// Approach: For each i check if i² digits can be partitioned to sum to i via backtracking.
+// Time: O(n * 2^d) Space: O(d)
+
 public class Solution
 {
     public int PunishmentNumber(int n)

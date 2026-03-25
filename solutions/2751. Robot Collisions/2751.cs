@@ -1,3 +1,6 @@
+// Approach: Sort by position; stack for rightward robots; left robots pop and battle rightward stack.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public IList<int> SurvivedRobotsHealths(int[] positions, int[] healths, string directions)

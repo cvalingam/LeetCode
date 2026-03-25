@@ -1,3 +1,6 @@
+// Approach: Sum all 1..n; subtract 2 * sum of multiples of m; result = total - 2*mSum.
+// Time: O(n/m) Space: O(1)
+
 public class Solution
 {
     public int DifferenceOfSums(int n, int m)

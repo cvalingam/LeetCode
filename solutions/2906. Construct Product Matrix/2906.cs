@@ -1,3 +1,6 @@
+// Approach: Prefix and suffix product arrays modulo p; answer[i] = prefix[i-1] * suffix[i+1].
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int[][] ConstructProductMatrix(int[][] grid)

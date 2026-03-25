@@ -1,3 +1,6 @@
+// Approach: Sort with original indices; group by proximity (diff ≤ limit); assign sorted values to slots.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int[] LexicographicallySmallestArray(int[] nums, int limit)

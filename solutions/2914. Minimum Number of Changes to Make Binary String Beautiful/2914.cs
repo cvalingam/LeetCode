@@ -1,3 +1,6 @@
+// Approach: Scan even-indexed pairs; each mismatched pair costs 1 change.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinChanges(string s)

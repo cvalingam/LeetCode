@@ -1,3 +1,6 @@
+// Approach: DP knapsack; for each perfect x-th power add ways to partition remaining sum.
+// Time: O(n * n^(1/x)) Space: O(n)
+
 public class Solution
 {
     public int NumberOfWays(int n, int x)

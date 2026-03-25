@@ -1,3 +1,6 @@
+// Approach: For even-digit numbers check if digit sum of first half equals second half.
+// Time: O(n * d) Space: O(1)
+
 public class Solution
 {
     public int CountSymmetricIntegers(int low, int high)

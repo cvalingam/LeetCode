@@ -1,6 +1,4 @@
-public class Solution
-{
-    public int SumCounts(int[] nums)
+// Approach: Maintain contribution of each element using last-seen positions; add/remove delta squared changes.\n// Time: O(n log n) Space: O(n)\n\npublic class Solution\n{\n    public int SumCounts(int[] nums)
     {
         const int kMod = 1_000_000_007;
         int n = nums.Length;

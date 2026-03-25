@@ -1,3 +1,6 @@
+// Approach: Count required swaps by tracking black balls encountered before each white position.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public long MinimumSteps(string s)

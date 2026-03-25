@@ -1,3 +1,6 @@
+// Approach: Stack simulation; pop 'A' when 'B' arrives, pop 'C' when 'D' arrives.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MinLength(string s)

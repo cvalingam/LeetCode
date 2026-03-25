@@ -1,3 +1,6 @@
+// Approach: DFS tree; return subtree sum; if divisible by k, increment count and return 0.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MaxKDivisibleComponents(int n, int[][] edges, int[] values, int k)

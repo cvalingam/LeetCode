@@ -1,3 +1,5 @@
+// Approach: Collect gaps between horizontal and vertical fences; find largest common gap in both sets.
+// Time: O(h² + v²) Space: O(h + v)
 public class Solution
 {
     public int MaximizeSquareArea(int m, int n, int[] hFences, int[] vFences)

@@ -1,3 +1,6 @@
+// Approach: Monotonic stack to find prime score ranges; greedy top-prime elements with modular exponentiation.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int MaximumScore(IList<int> nums, int k)

@@ -1,3 +1,6 @@
+// Approach: Traverse list; insert new node with GCD(a, b) between each consecutive pair.
+// Time: O(n log max) Space: O(1)
+
 public class ListNode
 {
     public int val;

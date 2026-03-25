@@ -1,3 +1,6 @@
+// Approach: Precompute prefix min left and suffix min right; scan middle finding valid mountain triplets.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MinimumSum(int[] nums)

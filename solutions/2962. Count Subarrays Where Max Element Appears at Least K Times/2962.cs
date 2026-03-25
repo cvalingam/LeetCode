@@ -1,3 +1,6 @@
+// Approach: Sliding window; track positions of max element; shrink left so count stays ≥ k.
+// Time: O(n) Space: O(k)
+
 public class Solution
 {
     public long CountSubarrays(int[] nums, int k)

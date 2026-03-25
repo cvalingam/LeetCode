@@ -1,3 +1,6 @@
+// Approach: Try k operations; need k <= popcount(num1 - k*num2) and k >= popcount.
+// Time: O(log n) Space: O(1)
+
 public class Solution
 {
     public int MakeTheIntegerZero(int num1, int num2)

@@ -1,3 +1,6 @@
+// Approach: Greedy; always pick element if its group differs from the last selected group.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public IList<string> GetLongestSubsequence(string[] words, int[] groups)

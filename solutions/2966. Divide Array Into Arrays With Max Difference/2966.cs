@@ -1,3 +1,6 @@
+// Approach: Sort; every consecutive group of 3 must have max - min <= k.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     /**

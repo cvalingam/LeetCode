@@ -1,3 +1,6 @@
+// Approach: Collect and sort vowels; reinsert at vowel positions preserving consonants in-place.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public string SortVowels(string s)

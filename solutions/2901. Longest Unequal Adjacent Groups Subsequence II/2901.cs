@@ -1,3 +1,6 @@
+// Approach: DP; dp[i] = longest subsequence ending at i where each pair differs in exactly 1 bit or char.
+// Time: O(n² * L) Space: O(n)
+
 public class Solution
 {
     public IList<string> GetWordsInLongestSubsequence(string[] words, int[] groups)

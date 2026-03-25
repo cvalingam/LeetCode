@@ -1,3 +1,6 @@
+// Approach: Find node with in-degree 0; if exactly one exists it is the champion, else return -1.
+// Time: O(n + E) Space: O(n)
+
 public class Solution
 {
     public int FindChampion(int n, int[][] edges)

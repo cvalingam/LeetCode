@@ -1,3 +1,6 @@
+// Approach: DFS each component; complete if edge count = k*(k-1)/2 for k nodes.
+// Time: O(n + E) Space: O(n)
+
 public class Solution
 {
     public int CountCompleteComponents(int n, int[][] edges)

@@ -1,3 +1,6 @@
+// Approach: Track max prefix, max (prefix - mid); answer = max(prefix - mid) * suffix.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public long MaximumTripletValue(int[] nums)

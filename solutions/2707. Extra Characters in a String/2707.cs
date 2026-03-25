@@ -1,3 +1,6 @@
+// Approach: DP from left; at each position try all dict words starting here or skip one extra char.
+// Time: O(n * maxLen) Space: O(n)
+
 public class Solution
 {
     public int MinExtraChar(string s, string[] dictionary)

@@ -1,3 +1,6 @@
+// Approach: Sort; sliding window maintaining max - min ≤ 2k; length is beauty.
+// Time: O(n log n) Space: O(1)
+
 public class Solution
 {
     public int MaximumBeauty(int[] nums, int k)

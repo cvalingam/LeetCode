@@ -1,3 +1,6 @@
+// Approach: Prefix count of (interesting mod k); for each right find lefts where diff ≡ m (mod k).
+// Time: O(n) Space: O(k)
+
 public class Solution
 {
     public long CountInterestingSubarrays(IList<int> nums, int modulo, int k)

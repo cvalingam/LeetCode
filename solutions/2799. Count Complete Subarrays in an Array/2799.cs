@@ -1,3 +1,6 @@
+// Approach: Sliding window; shrink left while subarray still contains all distinct elements.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int CountCompleteSubarrays(int[] nums)

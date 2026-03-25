@@ -1,3 +1,6 @@
+// Approach: Filter words by checking if each contains the target character.
+// Time: O(n * L) Space: O(n)
+
 public class Solution
 {
     public IList<int> FindWordsContaining(string[] words, char x)

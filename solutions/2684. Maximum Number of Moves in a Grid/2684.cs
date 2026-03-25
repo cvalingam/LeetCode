@@ -1,3 +1,6 @@
+// Approach: DP column by column; each cell reachable from left column neighbors with strictly larger value.
+// Time: O(mn) Space: O(m)
+
 public class Solution
 {
     public int MaxMoves(int[][] grid)

@@ -1,3 +1,6 @@
+// Approach: Process queries offline; monotonic stack + binary search for next taller building.
+// Time: O((n + q) log n) Space: O(n + q)
+
 public class Solution
 {
     public int[] LeftmostBuildingQueries(int[] heights, int[][] queries)

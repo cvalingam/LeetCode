@@ -1,3 +1,6 @@
+// Approach: Use sum and sum-of-squares equations to find repeated (x) and missing (y) values.
+// Time: O(n²) Space: O(1)
+
 public class Solution
 {
     public int[] FindMissingAndRepeatedValues(int[][] grid)

@@ -1,3 +1,6 @@
+// Approach: Sliding window with sorted structure or two deques tracking min/max; expand while diff ≤ 2.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public long ContinuousSubarrays(int[] nums)

@@ -1,3 +1,6 @@
+// Approach: DP counting strings lacking at least one of l/e/t chars; subtract from total 26^n.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int StringCount(int n)
