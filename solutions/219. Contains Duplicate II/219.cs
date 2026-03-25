@@ -1,3 +1,7 @@
+// Approach: Store each value’s most recent index in a HashMap; return true
+// if the gap between the current and previous index is at most k.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public bool ContainsNearbyDuplicate(int[] nums, int k)

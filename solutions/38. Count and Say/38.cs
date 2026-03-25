@@ -1,3 +1,7 @@
+// Approach: Iteratively build each term by applying run-length encoding
+// to the previous term (count consecutive identical digits).
+// Time: O(n·|output|) Space: O(|output|)
+
 public class Solution
 {
     public string CountAndSay(int n)

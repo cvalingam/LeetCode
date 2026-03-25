@@ -1,3 +1,7 @@
+// Approach: Simulate bit-by-bit addition from LSB backwards with a carry bit,
+// then reverse the result.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string AddBinary(string a, string b)

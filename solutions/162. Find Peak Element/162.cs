@@ -1,3 +1,7 @@
+// Approach: Binary search — move toward the neighbor with the higher value;
+// a peak is guaranteed on that side by the monotonicity property.
+// Time: O(log n) Space: O(1)
+
 public class Solution
 {
     public int FindPeakElement(int[] nums)

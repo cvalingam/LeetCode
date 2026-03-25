@@ -1,3 +1,7 @@
+// Approach: Greedy — accumulate profit for every consecutive pair where
+// the next day's price is higher than today's.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MaxProfit(int[] prices)

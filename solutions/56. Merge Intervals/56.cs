@@ -1,3 +1,7 @@
+// Approach: Sort intervals by start time, then merge each overlapping interval
+// with the last entry in the result list.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int[][] Merge(int[][] intervals)

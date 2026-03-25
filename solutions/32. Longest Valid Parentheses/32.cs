@@ -1,3 +1,7 @@
+// Approach: DP where dp[i] is the longest valid substring ending at i.
+// When ')' matches an earlier '(', extend through the prior dp value.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int LongestValidParentheses(string s)

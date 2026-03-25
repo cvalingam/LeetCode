@@ -1,3 +1,7 @@
+// Approach: Doubly-linked list combined with a HashMap. Move the accessed
+// or inserted node to the front (most-recent) in O(1) per operation.
+// Time: O(1) per get/put Space: O(capacity)
+
 public class LRUCache
 {
     private int capacity;

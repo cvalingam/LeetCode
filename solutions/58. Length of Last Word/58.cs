@@ -1,3 +1,7 @@
+// Approach: Scan from the end of the string skipping trailing spaces,
+// then count characters until the next space or the start.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int LengthOfLastWord(string s)

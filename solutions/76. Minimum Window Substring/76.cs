@@ -1,3 +1,7 @@
+// Approach: Sliding window — expand right to cover required characters,
+// shrink left while still covered, tracking the minimum window size.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public string MinWindow(string s, string t)

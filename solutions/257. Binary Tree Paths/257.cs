@@ -1,3 +1,7 @@
+// Approach: DFS with backtracking — build the path string and add it
+// to the results when a leaf node is reached.
+// Time: O(n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

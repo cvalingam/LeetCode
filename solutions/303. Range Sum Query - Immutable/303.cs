@@ -1,3 +1,7 @@
+// Approach: Prefix sum array — precompute cumulative sums so each range
+// query is answered in O(1) with a single subtraction.
+// Time: O(n) build, O(1) query Space: O(n)
+
 public class NumArray
 {
 

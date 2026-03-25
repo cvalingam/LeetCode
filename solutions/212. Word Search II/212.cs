@@ -1,3 +1,7 @@
+// Approach: Build a trie from all target words. DFS over the board marking
+// cells visited, pruning branches and removing found words from the trie.
+// Time: O(m*n*4^L) Space: O(W*L)
+
 public class TrieNode
 {
     public TrieNode[] children = new TrieNode[26];

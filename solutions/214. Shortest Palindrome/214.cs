@@ -1,3 +1,7 @@
+// Approach: Rolling hash finds the longest palindromic prefix. Prepend the
+// reverse of the remaining suffix to form the shortest palindrome.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string ShortestPalindrome(string s)

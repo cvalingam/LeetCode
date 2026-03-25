@@ -1,3 +1,7 @@
+// Approach: Backtracking tracking open and close parenthesis counts.
+// Add '(' if open < n, add ')' if close < open.
+// Time: O(4^n/√n) Space: O(n)
+
 public class Solution
 {
     public IList<string> GenerateParenthesis(int n)

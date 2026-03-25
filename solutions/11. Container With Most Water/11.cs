@@ -1,3 +1,7 @@
+// Approach: Two pointers from both ends. Move the pointer at the shorter height
+// inward; the area is always limited by the shorter side.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MaxArea(int[] height)

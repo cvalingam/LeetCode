@@ -1,3 +1,7 @@
+// Approach: Map each symbol to its value. Subtract a symbol's value when
+// a smaller value precedes a larger one; otherwise add it.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int RomanToInt(string s)

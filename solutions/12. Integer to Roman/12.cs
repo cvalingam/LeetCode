@@ -1,3 +1,7 @@
+// Approach: Greedy with sorted value/symbol pairs. Repeatedly subtract the
+// largest value that fits and append its corresponding symbol.
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public string IntToRoman(int num)

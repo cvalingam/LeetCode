@@ -1,3 +1,7 @@
+// Approach: Sort the array, then for each element use two inward-moving pointers
+// to find pairs summing to its negation, skipping duplicate values.
+// Time: O(n²) Space: O(n)
+
 public class Solution
 {
     public IList<IList<int>> ThreeSum(int[] nums)

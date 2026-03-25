@@ -1,3 +1,7 @@
+// Approach: 2D prefix sums — build a summed-area table and answer each
+// rectangular query with the inclusion-exclusion formula in O(1).
+// Time: O(m*n) build, O(1) query Space: O(m*n)
+
 public class NumMatrix
 {
 

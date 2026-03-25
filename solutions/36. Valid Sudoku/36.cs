@@ -1,3 +1,7 @@
+// Approach: Three boolean[9][9] arrays for rows, columns, and 3×3 boxes;
+// flag each seen digit and return false on any duplicate.
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public bool IsValidSudoku(char[][] board)

@@ -1,3 +1,7 @@
+// Approach: Inorder traversal locates the two out-of-order adjacent nodes;
+// swapping their values restores the BST property.
+// Time: O(n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

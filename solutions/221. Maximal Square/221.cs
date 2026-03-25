@@ -1,3 +1,7 @@
+// Approach: DP where dp[i][j] = 1 + min(top, left, top-left) for '1' cells;
+// the side length of the largest all-ones square is the max dp value.
+// Time: O(m*n) Space: O(m*n)
+
 public class Solution
 {
     public int MaximalSquare(char[][] matrix)

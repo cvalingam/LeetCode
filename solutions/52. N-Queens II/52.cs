@@ -1,3 +1,7 @@
+// Approach: DFS with three boolean arrays for column, major diagonal, and minor
+// diagonal to count all valid queen placements.
+// Time: O(n!) Space: O(n)
+
 public class Solution
 {
     public int TotalNQueens(int n)

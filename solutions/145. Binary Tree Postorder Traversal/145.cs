@@ -1,3 +1,7 @@
+// Approach: Reverse-preorder technique — process root, right, left using
+// a stack, then reverse the collected values for postorder.
+// Time: O(n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

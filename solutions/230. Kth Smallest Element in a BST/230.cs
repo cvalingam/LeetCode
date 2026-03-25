@@ -1,3 +1,7 @@
+// Approach: Use the BST structure to count left-subtree nodes; decide whether
+// the k-th smallest is in the left subtree, at the root, or in the right.
+// Time: O(n) Space: O(h)
+
 public class TreeNode
 {
     public int val;

@@ -1,3 +1,7 @@
+// Approach: Bit-shift doubling — repeatedly double the divisor while it fits,
+// accumulate the quotient, and subtract; use long to avoid overflow.
+// Time: O(log²n) Space: O(1)
+
 public class Solution
 {
     public int Divide(int dividend, int divisor)

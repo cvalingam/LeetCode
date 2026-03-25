@@ -1,3 +1,7 @@
+// Approach: Insert all strings into a trie, then walk the trie until a
+// branching node or end-of-string is encountered.
+// Time: O(n*m) Space: O(n*m)
+
 public class Solution
 {
     public string LongestCommonPrefix(string[] strs)

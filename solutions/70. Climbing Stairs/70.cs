@@ -1,3 +1,7 @@
+// Approach: DP with two variables: ways to reach step i equals ways to reach
+// step i-1 plus step i-2 (Fibonacci), no extra array needed.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int ClimbStairs(int n)

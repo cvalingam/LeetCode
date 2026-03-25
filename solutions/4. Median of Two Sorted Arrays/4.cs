@@ -1,3 +1,7 @@
+// Approach: Binary search on the partition point in the smaller array so that
+// the left half of both arrays has at most (m+n)/2 elements and left max ≤ right min.
+// Time: O(log(min(m,n))) Space: O(1)
+
 public class Solution
 {
     public double FindMedianSortedArrays(int[] nums1, int[] nums2)

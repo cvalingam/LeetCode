@@ -1,3 +1,7 @@
+// Approach: DFS recursion. A node with one null child is not a leaf, so
+// recurse only on the non-null side in that case.
+// Time: O(n) Space: O(h)
+
 public class TreeNode
 {
     public int val;

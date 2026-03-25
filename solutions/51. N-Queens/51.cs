@@ -1,3 +1,7 @@
+// Approach: Backtracking column by column. Use sets to track occupied rows
+// and diagonals; record valid configurations as board strings.
+// Time: O(n!) Space: O(n)
+
 public class Solution
 {
     public IList<IList<string>> SolveNQueens(int n)

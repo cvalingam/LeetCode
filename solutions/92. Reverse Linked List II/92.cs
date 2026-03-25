@@ -1,3 +1,7 @@
+// Approach: Single pass — walk to position left, then iteratively reverse
+// the next (right – left) nodes using pointer manipulation.
+// Time: O(n) Space: O(1)
+
 public class ListNode
 {
     public int val;

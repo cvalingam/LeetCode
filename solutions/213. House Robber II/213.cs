@@ -1,3 +1,7 @@
+// Approach: Run the linear house-robber DP twice — once excluding the first
+// house and once excluding the last — then take the maximum.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int Rob(int[] nums)

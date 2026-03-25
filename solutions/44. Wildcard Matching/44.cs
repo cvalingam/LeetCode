@@ -1,3 +1,7 @@
+// Approach: DP table dp[i][j] = pattern[0..j] matches string[0..i].
+// '?' matches any single char; '*' matches any sequence including empty.
+// Time: O(m*n) Space: O(m*n)
+
 public class Solution
 {
     public bool IsMatch(string s, string p)

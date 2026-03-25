@@ -1,3 +1,7 @@
+// Approach: Bit circuit with ones/twos variables — each bit accumulates modulo 3
+// so it clears from both after appearing three times.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int SingleNumber(int[] nums)

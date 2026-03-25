@@ -1,3 +1,7 @@
+// Approach: Iteratively prune leaf nodes (degree 1) from the tree until
+// 1 or 2 central root candidates remain.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public IList<int> FindMinHeightTrees(int n, int[][] edges)

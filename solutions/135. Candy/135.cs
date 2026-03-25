@@ -1,3 +1,7 @@
+// Approach: Two passes — left-to-right assigns extra candy for ascending ratings;
+// right-to-left corrects for descending runs; take the max at each position.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int Candy(int[] ratings)

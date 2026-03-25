@@ -1,3 +1,7 @@
+// Approach: Monotonic stack — pop the stack when the top char is larger than
+// the current and still appears later; mark characters as permanently placed.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public string RemoveDuplicateLetters(string s)

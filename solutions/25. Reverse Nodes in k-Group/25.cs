@@ -1,3 +1,7 @@
+// Approach: Iteratively reverse groups of k nodes in place. Count k nodes
+// before each reversal; leave the last group unchanged if smaller than k.
+// Time: O(n) Space: O(1)
+
 public class ListNode
 {
     public int val;

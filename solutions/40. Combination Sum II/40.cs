@@ -1,3 +1,7 @@
+// Approach: Sort candidates, then backtrack skipping duplicate candidates
+// at the same recursion depth to avoid duplicate combinations.
+// Time: O(2^n) Space: O(n)
+
 public class Solution
 {
     public IList<IList<int>> CombinationSum2(int[] candidates, int target)

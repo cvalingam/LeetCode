@@ -1,3 +1,7 @@
+// Approach: Dutch National Flag — three pointers (low, mid, high) perform a
+// single-pass three-way partition of 0s, 1s, and 2s.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public void SortColors(int[] nums)

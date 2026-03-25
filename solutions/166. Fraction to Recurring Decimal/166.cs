@@ -1,3 +1,7 @@
+// Approach: Simulate long division; use a HashMap to detect when a remainder
+// repeats and mark the cycle start with parentheses.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string FractionToDecimal(int numerator, int denominator)

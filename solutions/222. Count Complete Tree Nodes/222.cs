@@ -1,3 +1,6 @@
+// Approach: DFS recursively counting all nodes in the complete binary tree.
+// Time: O(n) Space: O(log n)
+
 public class TreeNode
 {
     public int val;

@@ -1,3 +1,7 @@
+// Approach: Divide the expression at each operator, recursively compute all
+// results for each side, combine them with the operator, and memoize.
+// Time: O(n·Catalan(n)) Space: O(n·Catalan(n))
+
 public class Solution
 {
     // Cache to store already computed results for expressions.

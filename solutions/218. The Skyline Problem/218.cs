@@ -1,3 +1,7 @@
+// Approach: Divide and conquer — recursively split buildings and merge
+// two skylines by sweeping x-coordinates, always taking the higher elevation.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public IList<IList<int>> GetSkyline(int[][] buildings)

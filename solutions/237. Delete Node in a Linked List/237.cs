@@ -1,3 +1,7 @@
+// Approach: Copy the next node’s value into the current node and skip
+// the next node (no access to the head is needed).
+// Time: O(1) Space: O(1)
+
 public class ListNode
 {
     public int val;

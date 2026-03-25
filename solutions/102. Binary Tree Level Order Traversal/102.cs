@@ -1,3 +1,7 @@
+// Approach: BFS with a queue. Record the queue size at each level’s start
+// to correctly group nodes into their respective levels.
+// Time: O(n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

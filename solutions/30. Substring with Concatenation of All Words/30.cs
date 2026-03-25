@@ -1,3 +1,7 @@
+// Approach: Slide a window of total-word-length across the string; use a
+// frequency map to verify the window contains exactly the required words.
+// Time: O(n*w) Space: O(k)
+
 public class Solution
 {
     public IList<int> FindSubstring(string s, string[] words)

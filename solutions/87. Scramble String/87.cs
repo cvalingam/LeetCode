@@ -1,3 +1,7 @@
+// Approach: Memoized recursion splitting the string at every index.
+// Prune early by checking that both halves have matching character frequencies.
+// Time: O(n^4) Space: O(n^3)
+
 public class Solution
 {
     private Dictionary<string, bool> mem = new Dictionary<string, bool>();

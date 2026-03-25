@@ -1,3 +1,7 @@
+// Approach: Floyd’s cycle detection on the digit-square-sum sequence
+// (slow/fast pointers); the number is happy if the cycle ends at 1.
+// Time: O(log n) Space: O(1)
+
 public class Solution
 {
     public bool IsHappy(int n)

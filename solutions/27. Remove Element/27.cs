@@ -1,3 +1,7 @@
+// Approach: Two pointers — swap each non-target element to the write
+// position and advance the write pointer.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int RemoveElement(int[] nums, int val)

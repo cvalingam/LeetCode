@@ -1,3 +1,7 @@
+// Approach: Count exact-position matches (bulls) first; count digit frequency
+// overlap in non-matching positions for cows.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public string GetHint(string secret, string guess)

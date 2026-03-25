@@ -1,3 +1,7 @@
+// Approach: HashMap stores inorder indices for O(1) lookup. The last element
+// of postorder is always the root; recurse on left and right subarrays.
+// Time: O(n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

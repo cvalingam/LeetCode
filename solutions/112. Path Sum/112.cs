@@ -1,3 +1,7 @@
+// Approach: DFS subtracting each node’s value from the remaining sum;
+// return true at a leaf only when the remaining sum equals zero.
+// Time: O(n) Space: O(h)
+
 public class TreeNode
 {
     public int val;

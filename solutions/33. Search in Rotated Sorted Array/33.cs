@@ -1,3 +1,7 @@
+// Approach: Binary search. Determine which half is sorted, then check
+// whether the target lies in that half and narrow accordingly.
+// Time: O(log n) Space: O(1)
+
 public class Solution
 {
     public int Search(int[] nums, int target)

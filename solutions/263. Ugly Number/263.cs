@@ -1,3 +1,7 @@
+// Approach: Repeatedly divide by 2, 3, and 5; the number is ugly
+// if and only if the final result equals 1.
+// Time: O(log n) Space: O(1)
+
 public class Solution
 {
     public bool IsUgly(int n)

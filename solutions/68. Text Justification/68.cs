@@ -1,3 +1,7 @@
+// Approach: Greedily pack words into lines; distribute extra spaces evenly
+// between words and left-align the last line.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public IList<string> FullJustify(string[] words, int maxWidth)

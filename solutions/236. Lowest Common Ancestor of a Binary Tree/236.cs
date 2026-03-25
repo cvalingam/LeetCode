@@ -1,3 +1,7 @@
+// Approach: Recursive — if root equals p or q return it; if p and q are
+// found in different subtrees the current root is the LCA.
+// Time: O(n) Space: O(h)
+
 public class TreeNode
 {
     public int val;

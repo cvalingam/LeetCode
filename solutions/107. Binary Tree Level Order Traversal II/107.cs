@@ -1,3 +1,7 @@
+// Approach: BFS level-order traversal, then reverse the collected levels
+// list to get bottom-up order.
+// Time: O(n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

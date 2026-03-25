@@ -1,3 +1,7 @@
+// Approach: Bucket sort with bucket size valueDiff+1; within a sliding window
+// of indexDiff, check the same and two adjacent buckets for a near-duplicate.
+// Time: O(n) Space: O(k)
+
 public class Solution
 {
     public bool ContainsNearbyAlmostDuplicate(int[] nums, int indexDiff, int valueDiff)

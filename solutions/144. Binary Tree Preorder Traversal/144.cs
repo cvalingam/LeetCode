@@ -1,3 +1,7 @@
+// Approach: Iterative with a stack — push right child then left child so
+// the left child is processed first, matching preorder.
+// Time: O(n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

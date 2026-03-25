@@ -1,3 +1,7 @@
+// Approach: Two pointers spaced n apart. When fast reaches the end, slow
+// is just before the node to remove; update the next pointer.
+// Time: O(n) Space: O(1)
+
 public class ListNode
 {
     public int val;

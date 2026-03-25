@@ -1,3 +1,7 @@
+// Approach: Reverse DP from bottom-right to top-left. Each cell stores the
+// minimum health required there; clamp to at least 1.
+// Time: O(m*n) Space: O(m*n)
+
 public class Solution
 {
     public int CalculateMinimumHP(int[][] dungeon)

@@ -1,3 +1,7 @@
+// Approach: Topological sort (Kahn’s algorithm) — BFS from all zero-in-degree
+// nodes; return empty if a cycle prevents full ordering.
+// Time: O(V+E) Space: O(V+E)
+
 public class Solution
 {
     public int[] FindOrder(int numCourses, int[][] prerequisites)

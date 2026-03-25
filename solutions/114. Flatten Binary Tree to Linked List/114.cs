@@ -1,3 +1,7 @@
+// Approach: Iterative with a stack — push right then left child, link each
+// node in preorder so the flattened list uses only right pointers.
+// Time: O(n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

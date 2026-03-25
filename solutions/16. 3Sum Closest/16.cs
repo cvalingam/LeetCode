@@ -1,3 +1,7 @@
+// Approach: Sort the array, then use two pointers tracking the closest three-sum,
+// updating the result whenever the absolute difference shrinks.
+// Time: O(n²) Space: O(1)
+
 public class Solution
 {
     public int ThreeSumClosest(int[] nums, int target)

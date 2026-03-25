@@ -1,3 +1,7 @@
+// Approach: Monotonic deque of indices — remove out-of-window indices from
+// the front and smaller elements from the back on each step.
+// Time: O(n) Space: O(k)
+
 public class Solution
 {
     public int[] MaxSlidingWindow(int[] nums, int k)

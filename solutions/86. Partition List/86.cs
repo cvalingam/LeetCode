@@ -1,3 +1,7 @@
+// Approach: Two dummy-head sublists — one for nodes less than x and one
+// for nodes ≥ x; reconnect the two lists at the end.
+// Time: O(n) Space: O(1)
+
 public class ListNode
 {
     public int val;

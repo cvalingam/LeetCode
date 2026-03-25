@@ -1,3 +1,7 @@
+// Approach: Iterate from the last digit adding one with carry propagation.
+// If all digits carry over, prepend 1 to a new array.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int[] PlusOne(int[] digits)

@@ -1,3 +1,7 @@
+// Approach: Sort number-strings with the comparator (b+a).CompareTo(a+b)
+// so they are ordered to form the lexicographically largest concatenation.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public string LargestNumber(int[] nums)

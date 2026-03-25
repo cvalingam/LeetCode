@@ -1,3 +1,7 @@
+// Approach: Treat each row as the base of a histogram using cumulative heights,
+// then apply largest-rectangle-in-histogram via a monotonic stack.
+// Time: O(m*n) Space: O(n)
+
 public class Solution
 {
     public int MaximalRectangle(char[][] matrix)

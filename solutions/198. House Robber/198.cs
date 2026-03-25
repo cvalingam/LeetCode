@@ -1,3 +1,7 @@
+// Approach: Top-down DP — at each house choose the max of robbing it
+// (plus the result two houses back) or skipping it; memoize results.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int Rob(int[] nums)

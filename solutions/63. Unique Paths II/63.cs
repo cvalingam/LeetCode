@@ -1,3 +1,7 @@
+// Approach: 2D DP accumulating path counts from top-left;
+// set obstacle cells to zero since they block all paths through them.
+// Time: O(m*n) Space: O(m*n)
+
 public class Solution
 {
     public int UniquePathsWithObstacles(int[][] obstacleGrid)

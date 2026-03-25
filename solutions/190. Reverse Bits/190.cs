@@ -1,3 +1,7 @@
+// Approach: Iterate 32 times — shift the result left, extract the LSB of n
+// and append it, then shift n right.
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public uint ReverseBits(uint n)

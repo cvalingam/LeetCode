@@ -1,3 +1,7 @@
+// Approach: Recursively break the number into groups of thousands, millions,
+// and billions, handling words below 20 and tens with lookup tables.
+// Time: O(log n) Space: O(log n)
+
 public class Solution
 {
 

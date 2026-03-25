@@ -1,3 +1,7 @@
+// Approach: Recursively enumerate each number as the root, combining all
+// left and right subtree combinations from the remaining value ranges.
+// Time: O(n·Catalan(n)) Space: O(n·Catalan(n))
+
 public class TreeNode
 {
     public int val;

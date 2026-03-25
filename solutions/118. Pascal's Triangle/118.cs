@@ -1,3 +1,7 @@
+// Approach: Build row by row — start and end each row with 1, and every
+// interior element is the sum of the two elements above it.
+// Time: O(n²) Space: O(n²)
+
 public class Solution
 {
     public IList<IList<int>> Generate(int numRows)

@@ -1,3 +1,7 @@
+// Approach: Three in-place reverses — reverse the tail k elements, then the
+// first n-k elements, then the whole array (k is reduced mod n first).
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public void Rotate(int[] nums, int k)

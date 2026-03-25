@@ -1,3 +1,7 @@
+// Approach: Use the first row and column as in-place zero markers;
+// handle the first column separately to avoid overwriting its flag.
+// Time: O(m*n) Space: O(1)
+
 public class Solution
 {
     public void SetZeroes(int[][] matrix)

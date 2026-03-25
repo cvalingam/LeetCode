@@ -1,3 +1,7 @@
+// Approach: Recursively pick the middle element of the sorted subarray as
+// the root to ensure height balance.
+// Time: O(n) Space: O(log n)
+
 public class TreeNode
 {
     public int val;

@@ -1,3 +1,7 @@
+// Approach: DP tabulation — track the best profit in three states: holding,
+// just sold (cooldown next), and resting; advance one day at a time.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MaxProfit(int[] prices)

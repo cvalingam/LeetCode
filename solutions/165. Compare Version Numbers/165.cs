@@ -1,3 +1,7 @@
+// Approach: Split both strings by '.', parse integer segments, compare
+// pair-by-pair padding the shorter version with zeros.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int CompareVersion(string version1, string version2)

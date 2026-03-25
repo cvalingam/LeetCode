@@ -1,3 +1,7 @@
+// Approach: BFS to find the shortest path length and build word adjacency levels,
+// then DFS backtracking to reconstruct all shortest transformation sequences.
+// Time: O(n·w²) Space: O(n·w)
+
 public class Solution
 {
     Dictionary<string, int> mpp;

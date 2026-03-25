@@ -1,3 +1,7 @@
+// Approach: Bottom-up DP — modify in-place starting from the second-to-last
+// row, adding the minimum of the two adjacent lower cells upward.
+// Time: O(n²) Space: O(n)
+
 public class Solution
 {
     public int MinimumTotal(IList<IList<int>> triangle)
