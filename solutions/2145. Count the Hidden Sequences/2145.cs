@@ -1,3 +1,6 @@
+// Approach: Compute prefix sum of differences; answer = (upper - lower) - (max_prefix - min_prefix) + 1.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int NumberOfArrays(int[] differences, int lower, int upper)

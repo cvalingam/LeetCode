@@ -1,3 +1,6 @@
+// Approach: Two greedy passes (L→R and R→L) tracking range of possible open-bracket counts.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public bool CanBeValid(string s, string locked)

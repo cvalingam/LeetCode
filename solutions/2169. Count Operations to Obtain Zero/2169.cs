@@ -1,3 +1,6 @@
+// Approach: Simulate subtraction (equivalent to Euclidean GCD steps); count operations.
+// Time: O(log(min)) Space: O(1)
+
 public class Solution
 {
     public int CountOperations(int num1, int num2)

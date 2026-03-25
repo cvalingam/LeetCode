@@ -1,3 +1,6 @@
+// Approach: Track consecutive zero runs; each run of length k contributes k*(k+1)/2 subarrays.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public long ZeroFilledSubarray(int[] nums)

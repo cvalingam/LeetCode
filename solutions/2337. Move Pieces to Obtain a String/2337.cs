@@ -1,3 +1,6 @@
+// Approach: Two-pointer matching non-blank chars; 'L' can only move left, 'R' only right.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public bool CanChange(string start, string target)

@@ -1,3 +1,6 @@
+// Approach: HashMap tracking loss counts; separate players with 0 and exactly 1 loss.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public IList<IList<int>> FindWinners(int[][] matches)

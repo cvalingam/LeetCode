@@ -1,3 +1,6 @@
+// Approach: Binary search on run time; validate by checking total battery sum >= n * mid.
+// Time: O(b log(sum/n)) Space: O(1)
+
 public class Solution
 {
     public long MaxRunTime(int n, int[] batteries)

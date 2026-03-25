@@ -1,3 +1,6 @@
+// Approach: Build node map from descriptions; find root as node not appearing as any child.
+// Time: O(n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

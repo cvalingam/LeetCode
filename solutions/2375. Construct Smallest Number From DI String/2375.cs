@@ -1,3 +1,6 @@
+// Approach: Stack-based construction; push digits and flush on 'I' to produce lexicographically smallest result.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string SmallestNumber(string pattern)

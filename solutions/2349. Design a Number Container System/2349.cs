@@ -1,3 +1,6 @@
+// Approach: HashMap index→number; per-number SortedSet of indices; O(log n) per operation.
+// Time: O(log n) per op Space: O(n)
+
 public class NumberContainers
 {
     private Dictionary<int, int> indexToNumber = new Dictionary<int, int>();

@@ -1,3 +1,6 @@
+// Approach: Strip outer L-cars (never collide); count all non-L cars as collisions in middle.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int CountCollisions(string directions)

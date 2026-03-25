@@ -1,3 +1,6 @@
+// Approach: DP from right to left; for each question choose solve (skip next) or skip.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     private int numQuestions; // Total number of questions

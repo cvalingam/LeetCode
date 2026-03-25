@@ -1,3 +1,6 @@
+// Approach: Difference array tracking daily net change of secret-knowing people with delay/forget windows.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     private const int MOD = (int)1e9 + 7;

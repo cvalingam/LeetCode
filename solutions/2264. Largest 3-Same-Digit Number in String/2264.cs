@@ -1,3 +1,6 @@
+// Approach: Scan from digit '9' down; return first three-identical-digit substring found.
+// Time: O(10 * n) Space: O(1)
+
 public class Solution
 {
     public string LargestGoodInteger(string num)

@@ -1,3 +1,6 @@
+// Approach: Check root.val == left.val + right.val directly.
+// Time: O(1) Space: O(1)
+
 public class TreeNode
 {
     public int val;

@@ -1,3 +1,6 @@
+// Approach: Sort nums; build prefix sums; binary search per query for largest prefix ≤ query.
+// Time: O(n log n + q log n) Space: O(n)
+
 public class Solution
 {
     public int[] AnswerQueries(int[] nums, int[] queries)

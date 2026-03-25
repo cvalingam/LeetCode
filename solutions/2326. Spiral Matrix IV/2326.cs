@@ -1,3 +1,6 @@
+// Approach: Fill matrix in spiral order by consuming linked-list nodes; pad remainder with -1.
+// Time: O(mn) Space: O(mn)
+
 public class ListNode
 {
     public int val;

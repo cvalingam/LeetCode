@@ -1,3 +1,6 @@
+// Approach: Iteratively reduce array by pairwise modular sums until one element remains.
+// Time: O(n²) Space: O(1)
+
 public class Solution
 {
     public int TriangularSum(int[] nums)

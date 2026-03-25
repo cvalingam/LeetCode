@@ -1,3 +1,6 @@
+// Approach: Topological sort row and column conditions separately; place each value at (rowPos, colPos).
+// Time: O(k + r + c) Space: O(k²)
+
 public class Solution
 {
     public int[][] BuildMatrix(int k, int[][] rowConditions, int[][] colConditions)

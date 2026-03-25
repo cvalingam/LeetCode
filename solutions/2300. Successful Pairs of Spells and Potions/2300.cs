@@ -1,3 +1,6 @@
+// Approach: Sort potions; binary search for first potion where spell * potion >= success.
+// Time: O((n + m) log m) Space: O(1)
+
 public class Solution
 {
     public int[] SuccessfulPairs(int[] spells, int[] potions, long success)

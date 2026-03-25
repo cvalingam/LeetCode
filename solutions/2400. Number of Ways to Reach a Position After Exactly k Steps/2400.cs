@@ -1,3 +1,6 @@
+// Approach: Combinatorics — rightSteps = (k + (endPos - startPos)) / 2; answer = C(k, rightSteps) mod p.
+// Time: O(k) Space: O(k)
+
 public class Solution
 {
     public int NumberOfWays(int startPos, int endPos, int k)

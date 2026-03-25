@@ -1,3 +1,6 @@
+// Approach: Greedily take all 0s plus rightmost 1s that keep value ≤ k.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int LongestSubsequence(string s, int k)

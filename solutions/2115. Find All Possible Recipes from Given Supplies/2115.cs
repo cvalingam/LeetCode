@@ -1,3 +1,6 @@
+// Approach: Topological sort (Kahn’s) on ingredient dependency graph; collect reachable recipes.
+// Time: O(V + E) Space: O(V + E)
+
 public class Solution
 {
     public IList<string> FindAllRecipes(string[] recipes, IList<IList<string>> ingredients, string[] supplies)

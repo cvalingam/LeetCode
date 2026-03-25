@@ -1,3 +1,6 @@
+// Approach: 0-1 BFS (deque); obstacle cells cost 1, empty cells cost 0.
+// Time: O(mn) Space: O(mn)
+
 public class Solution
 {
     public int MinimumObstacles(int[][] grid)

@@ -1,3 +1,6 @@
+// Approach: Per-cuisine SortedSet of (rating, food) with custom comparator; HashMap for food→info lookup.
+// Time: O(log n) per op Space: O(n)
+
 public class FoodRatings
 {
     // Map from cuisine name to a sorted set of (rating, food) pairs

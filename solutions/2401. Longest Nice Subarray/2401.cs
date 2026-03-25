@@ -1,3 +1,6 @@
+// Approach: Sliding window with bitmask; shrink left when new element shares bits with window.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int LongestNiceSubarray(int[] nums)

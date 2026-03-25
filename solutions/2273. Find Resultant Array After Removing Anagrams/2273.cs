@@ -1,3 +1,6 @@
+// Approach: Sort each word's chars; remove consecutive words with same sorted form.
+// Time: O(n * k log k) Space: O(n)
+
 public class Solution
 {
     /// <summary>

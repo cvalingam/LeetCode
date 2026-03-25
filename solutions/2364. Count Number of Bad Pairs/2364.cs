@@ -1,3 +1,6 @@
+// Approach: Total pairs minus good pairs; good pairs share same (nums[i]-i) value, count via HashMap.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public long CountBadPairs(int[] nums)

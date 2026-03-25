@@ -1,3 +1,6 @@
+// Approach: Prefix sum scan; count splits where left prefix sum ≥ right suffix sum.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int WaysToSplitArray(int[] nums)

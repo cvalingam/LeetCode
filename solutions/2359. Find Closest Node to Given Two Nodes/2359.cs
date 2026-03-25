@@ -1,3 +1,6 @@
+// Approach: BFS/DFS from both nodes to compute distances; find node minimizing max of two distances.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     private int nodeCount; // Number of nodes in the graph

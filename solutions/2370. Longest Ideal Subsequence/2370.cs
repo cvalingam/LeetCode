@@ -1,3 +1,6 @@
+// Approach: DP over alphabet; dp[c] = longest ideal subsequence ending with char c.
+// Time: O(n * k) Space: O(26)
+
 public class Solution
 {
     public int LongestIdealString(string s, int k)

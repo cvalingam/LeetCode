@@ -1,3 +1,6 @@
+// Approach: Sliding window — try all windows anchored left or right of startPos within reach k.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MaxTotalFruits(int[][] fruits, int startPos, int k)

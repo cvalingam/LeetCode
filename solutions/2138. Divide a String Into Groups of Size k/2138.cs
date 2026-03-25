@@ -1,3 +1,6 @@
+// Approach: Partition string into ceil(n/k) groups of k, padding last with fill character.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string[] DivideString(string input, int partitionSize, char fillCharacter)

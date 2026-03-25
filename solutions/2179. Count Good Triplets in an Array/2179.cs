@@ -1,3 +1,6 @@
+// Approach: Map nums1 positions to nums2 order; use BIT to count left-smaller / right-larger pairs.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public long GoodTriplets(int[] nums1, int[] nums2)

@@ -1,3 +1,6 @@
+// Approach: Binary search on candy allocation; validate by summing floor(pile/mid) >= k.
+// Time: O(n log(sum/k)) Space: O(1)
+
 public class Solution
 {
     public int MaximumCandies(int[] candies, long k)

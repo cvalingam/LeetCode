@@ -1,3 +1,6 @@
+// Approach: DP memoized by position and seats in current section; split when 2 seats complete.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     private int _corridorLength;

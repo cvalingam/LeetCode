@@ -1,3 +1,6 @@
+// Approach: Sliding window of size k; count max 'B's in any window; answer = k - maxB.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinimumRecolors(string blocks, int k)

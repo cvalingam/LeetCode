@@ -1,3 +1,6 @@
+// Approach: Group numbers by digit sum; for each group keep top 2 and sum them.
+// Time: O(n log max) Space: O(n)
+
 public class Solution
 {
     public int MaximumSum(int[] nums)

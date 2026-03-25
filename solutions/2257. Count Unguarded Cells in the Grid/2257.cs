@@ -1,3 +1,6 @@
+// Approach: Mark guards/walls; propagate visibility left, right, up, down; count unmarked cells.
+// Time: O(mn) Space: O(mn)
+
 public class Solution
 {
     public int CountUnguarded(int m, int n, int[][] guards, int[][] walls)

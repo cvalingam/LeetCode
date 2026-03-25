@@ -1,3 +1,6 @@
+// Approach: Two-pointer over s and spaces array; insert space at each specified index.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string AddSpaces(string s, int[] spaces)

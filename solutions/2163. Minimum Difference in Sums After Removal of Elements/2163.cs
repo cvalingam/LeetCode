@@ -1,3 +1,6 @@
+// Approach: Min-heap prefix sums (left n smallest) + max-heap suffix sums (right n smallest); minimize difference.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public long MinimumDifference(int[] nums)

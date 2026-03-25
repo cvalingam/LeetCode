@@ -1,3 +1,6 @@
+// Approach: DFS post-order; leaf returns its value; internal node applies OR/AND to children.
+// Time: O(n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

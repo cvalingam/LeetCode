@@ -1,3 +1,6 @@
+// Approach: For each bit position count how many candidates have that bit set; return max count.
+// Time: O(n * 24) Space: O(1)
+
 public class Solution
 {
     public int LargestCombination(int[] candidates)

@@ -1,3 +1,6 @@
+// Approach: For each key occurrence in nums, mark all i within distance k; skip already-added indices.
+// Time: O(n²) Space: O(n)
+
 public class Solution
 {
     public IList<int> FindKDistantIndices(int[] nums, int key, int k)

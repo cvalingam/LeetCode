@@ -1,3 +1,6 @@
+// Approach: Single pass; accumulate values between 0-nodes and write sums into new list.
+// Time: O(n) Space: O(1)
+
 public class ListNode
 {
     public int val;

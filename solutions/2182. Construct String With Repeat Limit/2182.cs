@@ -1,3 +1,6 @@
+// Approach: Greedy from largest char; append up to repeatLimit, then insert next largest as separator.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string RepeatLimitedString(string s, int repeatLimit)

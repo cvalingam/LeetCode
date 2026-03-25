@@ -1,3 +1,6 @@
+// Approach: Sliding window of size k (count of 1s) on circular array; minimize zeros inside.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinSwaps(int[] nums)

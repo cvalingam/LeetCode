@@ -1,3 +1,6 @@
+// Approach: Sort tiles; binary search carpet end; prefix sums for covered tiles length.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int MaximumWhiteTiles(int[][] tiles, int carpetLen)

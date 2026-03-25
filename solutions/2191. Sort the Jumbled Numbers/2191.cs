@@ -1,3 +1,6 @@
+// Approach: Map each number through digit mapping; stable sort by mapped value.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int[] SortJumbled(int[] mapping, int[] nums)

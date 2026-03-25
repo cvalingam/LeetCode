@@ -1,3 +1,6 @@
+// Approach: Count occurrences; all counts must be even to form pairs.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public bool DivideArray(int[] nums)

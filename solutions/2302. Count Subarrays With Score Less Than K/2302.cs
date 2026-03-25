@@ -1,3 +1,6 @@
+// Approach: Sliding window; shrink left when sum * length >= k; count valid right positions.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public long CountSubarrays(int[] nums, long k)

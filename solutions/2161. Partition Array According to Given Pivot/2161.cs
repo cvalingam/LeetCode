@@ -1,3 +1,6 @@
+// Approach: Three-pass stable partition: less-than, equal, greater-than pivot.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int[] PivotArray(int[] nums, int pivot)

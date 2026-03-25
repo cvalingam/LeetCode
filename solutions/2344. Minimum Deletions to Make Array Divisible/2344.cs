@@ -1,3 +1,6 @@
+// Approach: GCD of numsDivide; sort nums; count how many elements don't divide the GCD.
+// Time: O(m log m + n log n) Space: O(1)
+
 public class Solution
 {
     public int MinOperations(int[] nums, int[] numsDivide)

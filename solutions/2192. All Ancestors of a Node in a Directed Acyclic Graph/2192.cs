@@ -1,3 +1,6 @@
+// Approach: DFS/BFS from each node; collect ancestors in sorted order with deduplication.
+// Time: O(n²) Space: O(n²)
+
 public class Solution
 {
     public IList<IList<int>> GetAncestors(int n, int[][] edges)

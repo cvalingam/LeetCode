@@ -1,3 +1,6 @@
+// Approach: Sort array; greedily start new partition when current element exceeds first by > k.
+// Time: O(n log n) Space: O(1)
+
 public class Solution
 {
     public int PartitionArray(int[] nums, int k)

@@ -1,3 +1,6 @@
+// Approach: Store nums in a HashSet; repeatedly double original while it exists in the set.
+// Time: O(n + log(max)) Space: O(n)
+
 public class Solution
 {
     public int FindFinalValue(int[] nums, int original)

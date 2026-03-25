@@ -1,3 +1,6 @@
+// Approach: Sort cities by degree; assign highest values to highest-degree cities.
+// Time: O(n + E) Space: O(n)
+
 public class Solution
 {
     public long MaximumImportance(int n, int[][] roads)

@@ -1,3 +1,6 @@
+// Approach: Count consecutive descent run lengths; each run of length k contributes k*(k+1)/2.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public long GetDescentPeriods(int[] prices)

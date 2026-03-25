@@ -1,3 +1,6 @@
+// Approach: Group indices by value; for each group check all index pairs if i*j divisible by k.
+// Time: O(n²) Space: O(n)
+
 public class Solution
 {
     public int CountPairs(int[] nums, int k)

@@ -1,3 +1,6 @@
+// Approach: Difference array on timeline; prefix sum gives cumulative shift at each index.
+// Time: O(n + m) Space: O(n)
+
 public class Solution
 {
     public string ShiftingLetters(string s, int[][] shifts)

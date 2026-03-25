@@ -1,3 +1,6 @@
+// Approach: Count word pairs using a 2D frequency array; match reverses, handle double-letter center.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int LongestPalindrome(string[] words)

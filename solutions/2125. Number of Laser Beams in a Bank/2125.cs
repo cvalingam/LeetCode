@@ -1,3 +1,6 @@
+// Approach: For each row count devices; multiply consecutive non-zero row counts.
+// Time: O(mn) Space: O(1)
+
 public class Solution
 {
     public int NumberOfBeams(string[] bank)

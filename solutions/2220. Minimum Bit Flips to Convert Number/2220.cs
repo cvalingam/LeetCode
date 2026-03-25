@@ -1,3 +1,6 @@
+// Approach: XOR start and goal; count set bits (number of differing bit positions).
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public int MinBitFlips(int start, int goal)

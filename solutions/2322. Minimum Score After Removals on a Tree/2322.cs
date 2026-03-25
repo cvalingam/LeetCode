@@ -1,3 +1,6 @@
+// Approach: DFS to compute subtree XORs and entry/exit times; enumerate all edge-pair removals.
+// Time: O(n²) Space: O(n)
+
 public class Solution
 {
     public int MinimumScore(int[] nums, int[][] edges)

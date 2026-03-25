@@ -1,3 +1,6 @@
+// Approach: DP on divisor chains up to maxValue; combine with stars-and-bars for position choices.
+// Time: O(max * log(max) + n * 14) Space: O(max * 14)
+
 public class Solution
 {
     private const int kMod = 1_000_000_007;

@@ -1,3 +1,6 @@
+// Approach: Find all 2-cycles (mutual favorites) plus longest tails; compare with longest cycle.
+// Time: O(n) Space: O(n)
+
 enum State { kInit, kVisiting, kVisited }
 
 public class Solution
