@@ -1,3 +1,6 @@
+// Approach: Adjacent-pair sums array; answer = (top k-1 sums) - (bottom k-1 sums) after sorting.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public long PutMarbles(int[] weights, int k)

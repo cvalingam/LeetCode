@@ -1,3 +1,6 @@
+// Approach: HashSet for banned; accumulate integers 1..n skipping banned until maxSum exceeded.
+// Time: O(n) Space: O(banned)
+
 public class Solution
 {
     public int MaxCount(int[] banned, int n, int maxSum)

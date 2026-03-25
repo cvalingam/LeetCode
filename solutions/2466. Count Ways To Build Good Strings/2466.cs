@@ -1,3 +1,6 @@
+// Approach: DP counting strings of each length; sum lengths in [low, high].
+// Time: O(high) Space: O(high)
+
 public class Solution
 {
     public int CountGoodStrings(int low, int high, int zero, int one)

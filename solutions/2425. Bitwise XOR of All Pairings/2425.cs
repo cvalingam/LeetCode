@@ -1,3 +1,6 @@
+// Approach: Each nums1[i] appears |nums2| times; XOR result depends on parity of array sizes.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int XorAllNums(int[] nums1, int[] nums2)

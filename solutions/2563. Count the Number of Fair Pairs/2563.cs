@@ -1,3 +1,5 @@
+// Approach: Sort; for each i binary search for valid j range where sum falls in [lower, upper].
+// Time: O(n log n) Space: O(1)
 public class Solution
 {
     public long CountFairPairs(int[] nums, int lower, int upper)

@@ -1,3 +1,6 @@
+// Approach: For each bit track last index it appears; scan backward taking max rightmost bit index.
+// Time: O(n log max) Space: O(n)
+
 public class Solution
 {
     public int[] SmallestSubarrays(int[] nums)

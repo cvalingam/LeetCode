@@ -1,3 +1,6 @@
+// Approach: Sliding window; HashMap tracks element counts; pairs in window = sum of (count[x]-1) per element.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public long CountGood(int[] nums, int k)

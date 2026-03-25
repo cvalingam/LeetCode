@@ -1,3 +1,6 @@
+// Approach: Count consecutive zeros then ones per segment; take min of each pair and track max.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int FindTheLongestBalancedSubstring(string s)

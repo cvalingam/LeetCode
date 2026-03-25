@@ -1,3 +1,6 @@
+// Approach: Sort; binary search on max difference; greedy consecutive-pair validation.
+// Time: O(n log n) Space: O(1)
+
 public class Solution
 {
     public int MinimizeMax(int[] nums, int p)

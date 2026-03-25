@@ -1,3 +1,6 @@
+// Approach: Match bit count of num2; turn off excess set bits in num1 or set lowest clear bits.
+// Time: O(log max) Space: O(1)
+
 public class Solution
 {
     public int MinimizeXor(int num1, int num2)

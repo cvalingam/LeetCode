@@ -1,3 +1,6 @@
+// Approach: Binary search for first non-negative and first positive; return max count.
+// Time: O(log n) Space: O(1)
+
 public class Solution
 {
     public int MaximumCount(int[] nums)

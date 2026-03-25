@@ -1,3 +1,6 @@
+// Approach: Binary search on time; mechanic with rank r fixes floor(sqrt(t/r)) cars; validate sum >= n.
+// Time: O(n log(min * n²)) Space: O(1)
+
 public class Solution
 {
     public long RepairCars(int[] ranks, int cars)

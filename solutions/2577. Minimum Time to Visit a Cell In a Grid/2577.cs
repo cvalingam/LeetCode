@@ -1,3 +1,6 @@
+// Approach: Dijkstra with waiting: if arrival parity mismatches cell time, wait one step.
+// Time: O(mn log(mn)) Space: O(mn)
+
 public class Solution
 {
     public int MinimumTime(int[][] grid)

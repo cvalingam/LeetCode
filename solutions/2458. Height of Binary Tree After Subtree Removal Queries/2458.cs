@@ -1,3 +1,6 @@
+// Approach: DFS to compute subtree sizes/depths; for each query return best height without that subtree.
+// Time: O(n + q) Space: O(n)
+
 public class TreeNode
 {
     public int val;

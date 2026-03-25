@@ -1,3 +1,6 @@
+// Approach: DFS flood fill each unvisited water cell accumulating fish count; return global max.
+// Time: O(mn) Space: O(mn)
+
 public class Solution
 {
     public int FindMaxFish(int[][] grid)

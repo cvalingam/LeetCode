@@ -1,3 +1,6 @@
+// Approach: Track seen elements from A and B using sets; count overlap at each index.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int[] FindThePrefixCommonArray(int[] A, int[] B)

@@ -1,3 +1,6 @@
+// Approach: Union-Find for components; BFS each component to find maximum bipartite grouping depth.
+// Time: O(n + E) Space: O(n)
+
 public class Solution
 {
     public int MagnificentSets(int n, int[][] edges)

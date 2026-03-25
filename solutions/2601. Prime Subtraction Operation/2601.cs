@@ -1,3 +1,6 @@
+// Approach: Sieve primes; for each element subtract largest prime that keeps it > previous element.
+// Time: O(n + max) Space: O(max)
+
 public class Solution
 {
     public bool PrimeSubOperation(int[] nums)

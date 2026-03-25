@@ -1,3 +1,6 @@
+// Approach: Merge equal adjacent pairs (double first, zero second); shift non-zeros to front.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int[] ApplyOperations(int[] nums)

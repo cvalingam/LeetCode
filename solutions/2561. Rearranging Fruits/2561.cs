@@ -1,3 +1,6 @@
+// Approach: Count surpluses of each fruit; pair cheapest swaps using minimum fruit value as pivot.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public long MinCost(int[] basket1, int[] basket2)

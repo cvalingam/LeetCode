@@ -1,3 +1,6 @@
+// Approach: Track running max; score[i] = nums[i] + max(nums[0..i]); accumulate as prefix sums.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public long[] FindPrefixScore(int[] nums)

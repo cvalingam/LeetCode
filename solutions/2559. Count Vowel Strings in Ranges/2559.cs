@@ -1,3 +1,6 @@
+// Approach: Prefix sum of words starting and ending with vowel; answer each query in O(1).
+// Time: O(n + q) Space: O(n)
+
 public class Solution
 {
     public int[] VowelStrings(string[] words, int[][] queries)

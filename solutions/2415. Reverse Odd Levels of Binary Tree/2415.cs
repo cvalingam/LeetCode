@@ -1,4 +1,7 @@
 
+// Approach: BFS level order; collect odd-level nodes and swap their values symmetrically.
+// Time: O(n) Space: O(n)
+
 //Definition for a binary tree node.
 public class TreeNode
 {

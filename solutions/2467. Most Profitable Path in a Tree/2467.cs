@@ -1,3 +1,6 @@
+// Approach: DFS to find Bob's path to root; DFS for Alice maximizing gate income considering Bob's timing.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MostProfitablePath(int[][] edges, int bob, int[] amount)

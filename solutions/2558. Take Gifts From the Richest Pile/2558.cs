@@ -1,3 +1,6 @@
+// Approach: Max-heap; k times take max and push floor(sqrt(max)) back.
+// Time: O(n + k log n) Space: O(n)
+
 public class Solution
 {
     public long PickGifts(int[] gifts, int k)

@@ -1,3 +1,6 @@
+// Approach: Find global max; find longest run of consecutive equal-to-max elements.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int LongestSubarray(int[] nums)

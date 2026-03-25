@@ -1,3 +1,6 @@
+// Approach: Sort (value, index) pairs; greedily pick smallest unmarked and mark its neighbors.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public long FindScore(int[] nums)

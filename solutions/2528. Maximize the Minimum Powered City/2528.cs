@@ -1,3 +1,6 @@
+// Approach: Binary search on minimum power; prefix sums + greedy placement of added stations.
+// Time: O(n log(sum)) Space: O(n)
+
 public class Solution
 {
     public long MaxPower(int[] stations, int r, int k)

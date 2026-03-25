@@ -1,3 +1,6 @@
+// Approach: After n minutes the colored diamond has n² + (n-1)² cells.
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public long ColoredCells(int n)

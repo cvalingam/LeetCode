@@ -1,3 +1,6 @@
+// Approach: Max-heap; k times take max element, add to score, push ceil(max/3) back.
+// Time: O(n + k log n) Space: O(n)
+
 public class Solution
 {
     public long MaxKelements(int[] nums, int k)

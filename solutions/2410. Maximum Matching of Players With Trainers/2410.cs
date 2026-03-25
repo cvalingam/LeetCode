@@ -1,3 +1,6 @@
+// Approach: Sort both arrays; greedy two-pointer — match player to smallest capable trainer.
+// Time: O(n log n) Space: O(1)
+
 public class Solution
 {
     public int MatchPlayersAndTrainers(int[] players, int[] trainers)

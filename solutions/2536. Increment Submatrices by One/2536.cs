@@ -1,3 +1,6 @@
+// Approach: 2D difference array for range increments; apply prefix sums to reconstruct result.
+// Time: O(n² + q) Space: O(n²)
+
 public class Solution
 {
     public int[][] RangeAddQueries(int n, int[][] queries)

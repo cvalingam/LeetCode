@@ -1,3 +1,6 @@
+// Approach: Sort; pair smallest with largest; all pairs must sum to same target skill.
+// Time: O(n log n) Space: O(1)
+
 public class Solution
 {
     public long DividePlayers(int[] skill)

@@ -1,3 +1,6 @@
+// Approach: Track last out-of-bound, last minK, last maxK indices; count valid left endpoints.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public long CountSubarrays(int[] nums, int minK, int maxK)

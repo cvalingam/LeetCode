@@ -1,3 +1,6 @@
+// Approach: Map values to (row, col); track row/col fill counts; return index when any fills completely.
+// Time: O(mn) Space: O(mn)
+
 public class Solution
 {
     public int FirstCompleteIndex(int[] arr, int[][] mat)

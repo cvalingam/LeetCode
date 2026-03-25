@@ -1,3 +1,6 @@
+// Approach: BFS collects row sums; sort descending and return kth element.
+// Time: O(n log n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

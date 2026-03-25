@@ -1,3 +1,6 @@
+// Approach: Binary search on capability; greedy non-adjacent selection validates feasibility.
+// Time: O(n log max) Space: O(1)
+
 public class Solution
 {
     public int MinCapability(int[] nums, int k)

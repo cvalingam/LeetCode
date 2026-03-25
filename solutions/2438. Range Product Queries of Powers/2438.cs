@@ -1,3 +1,6 @@
+// Approach: Extract bit positions from n as power-of-2 array; range product = 2^(prefix sum of exponents).
+// Time: O(n + q) Space: O(log n)
+
 public class Solution
 {
     // Define the mod constant for the problem (10^9 + 7)

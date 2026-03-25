@@ -1,3 +1,6 @@
+// Approach: Sliding window of size k; HashMap tracks element counts; sum only when all distinct.
+// Time: O(n) Space: O(k)
+
 public class Solution
 {
     public long MaximumSubarraySum(int[] nums, int k)

@@ -1,3 +1,6 @@
+// Approach: Check each word boundary where last char of prev equals first char of next; wrap around.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public bool IsCircularSentence(string sentence)

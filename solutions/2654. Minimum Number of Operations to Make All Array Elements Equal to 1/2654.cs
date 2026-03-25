@@ -1,3 +1,6 @@
+// Approach: If any 1 exists, count non-1s; else find shortest subarray with GCD=1 and use it to spread.
+// Time: O(n²) Space: O(1)
+
 public class Solution
 {
     public int MinOperations(int[] nums)

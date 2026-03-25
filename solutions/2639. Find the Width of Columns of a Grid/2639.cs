@@ -1,3 +1,6 @@
+// Approach: For each column track max string width of each integer (handle negative sign).
+// Time: O(mn * digits) Space: O(n)
+
 public class Solution
 {
     public int[] FindColumnWidth(int[][] grid)

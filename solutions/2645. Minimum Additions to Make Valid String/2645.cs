@@ -1,3 +1,6 @@
+// Approach: Greedily advance through 'abc' template; count extra blocks needed at breaks.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int AddMinimum(string word)

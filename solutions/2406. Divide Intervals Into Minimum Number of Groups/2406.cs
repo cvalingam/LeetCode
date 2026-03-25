@@ -1,3 +1,6 @@
+// Approach: Sort by start; use min-heap of end times; each overlapping interval needs a new group.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int MinGroups(int[][] intervals)

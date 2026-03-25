@@ -1,3 +1,6 @@
+// Approach: Compute position via modular arithmetic on zigzag period of 2*(n-1).
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public int PassThePillow(int n, int time)

@@ -1,3 +1,6 @@
+// Approach: Stack + suffix minimum array; pop to output when stack top ≤ suffix min of remaining.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string RobotWithString(string s)

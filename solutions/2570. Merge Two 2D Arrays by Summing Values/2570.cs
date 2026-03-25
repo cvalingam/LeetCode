@@ -1,3 +1,6 @@
+// Approach: Two-pointer merge of sorted arrays; sum values with matching ids.
+// Time: O(n + m) Space: O(n + m)
+
 public class Solution
 {
     public int[][] MergeArrays(int[][] nums1, int[][] nums2)

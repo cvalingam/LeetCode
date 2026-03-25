@@ -1,3 +1,6 @@
+// Approach: Max: replace first digit with 9; Min: replace first non-9 digit with 0 (or 1st digit→0).
+// Time: O(d) Space: O(d)
+
 public class Solution
 {
     public int MinMaxDifference(int num)

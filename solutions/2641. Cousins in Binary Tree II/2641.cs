@@ -1,4 +1,7 @@
 
+// Approach: BFS to compute level sums; replace each node with levelSum minus sum of siblings' subtrees.
+// Time: O(n) Space: O(n)
+
 // Definition for a binary tree node.
 public class TreeNode
 {

@@ -1,3 +1,6 @@
+// Approach: Sliding window on excluded middle; maximize exclusion while keeping ≥k of each char.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int TakeCharacters(string s, int k)

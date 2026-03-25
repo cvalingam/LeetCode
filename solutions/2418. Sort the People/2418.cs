@@ -1,3 +1,6 @@
+// Approach: Pair (height, name) and sort by height descending; extract names.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public string[] SortPeople(string[] names, int[] heights)

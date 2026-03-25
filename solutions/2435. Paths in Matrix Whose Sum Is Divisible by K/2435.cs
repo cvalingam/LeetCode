@@ -1,3 +1,6 @@
+// Approach: DP memoized by (row, col, sum mod k); count paths from (0,0) to (m-1,n-1).
+// Time: O(mn*k) Space: O(mn*k)
+
 public class Solution
 {
     private const int MOD = 1_000_000_007;

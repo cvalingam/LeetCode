@@ -1,3 +1,6 @@
+// Approach: Walk both nodes up to LCA by halving (parent = node/2); count total steps + 1.
+// Time: O(q log n) Space: O(1)
+
 public class Solution
 {
     public int[] CycleLengthQueries(int n, int[][] queries)

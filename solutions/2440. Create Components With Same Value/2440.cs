@@ -1,3 +1,6 @@
+// Approach: Binary search on component value; DFS to check if tree can be split into equal-sum parts.
+// Time: O(n log(sum)) Space: O(n)
+
 public class Solution
 {
     public int ComponentValue(int[] nums, int[][] edges)

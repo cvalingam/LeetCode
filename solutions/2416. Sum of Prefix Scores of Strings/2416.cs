@@ -1,3 +1,6 @@
+// Approach: Build Trie inserting all words; each node stores pass count; sum counts along each word's path.
+// Time: O(total chars) Space: O(total chars)
+
 public class Solution
 {
     private TrieNode root = new TrieNode();

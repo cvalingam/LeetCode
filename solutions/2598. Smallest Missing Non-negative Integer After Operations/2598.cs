@@ -1,3 +1,6 @@
+// Approach: Map each element to remainder mod value; find smallest integer with no fully-filled bucket.
+// Time: O(n) Space: O(value)
+
 public class Solution
 {
     public int FindSmallestInteger(int[] nums, int value)

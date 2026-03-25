@@ -1,3 +1,6 @@
+// Approach: Sort; HashSet for O(1) lookup; dp[x] = dp[x*x] + 1 if x*x exists.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int LongestSquareStreak(int[] nums)

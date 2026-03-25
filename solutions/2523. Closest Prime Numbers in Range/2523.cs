@@ -1,3 +1,6 @@
+// Approach: Sieve of Eratosthenes; scan primes in [left, right] for consecutive pair with min gap.
+// Time: O(right log log right) Space: O(right)
+
 public class Solution
 {
     public int[] ClosestPrimes(int left, int right)
