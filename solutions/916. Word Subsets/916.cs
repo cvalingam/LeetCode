@@ -1,3 +1,6 @@
+// Approach: Compute the max-frequency requirement across all words in B; a word in A is universal if it satisfies the merged frequency vector.
+// Time: O(|A|·m + |B|·m) Space: O(1)
+
 public class Solution
 {
     public IList<string> WordSubsets(string[] A, string[] B)

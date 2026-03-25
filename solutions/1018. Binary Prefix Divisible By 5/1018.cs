@@ -1,3 +1,6 @@
+// Approach: Maintain running value mod 5; only the last 3 bits matter since 2^3 mod 5 cycles.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public IList<bool> PrefixesDivBy5(int[] nums)

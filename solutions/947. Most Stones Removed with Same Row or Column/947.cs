@@ -1,3 +1,6 @@
+// Approach: Union-Find on rows and columns; map column index to a disjoint row-space; answer = stones - number of connected components.
+// Time: O(n α(n)) Space: O(n)
+
 public class Solution
 {
     public int RemoveStones(int[][] stones)

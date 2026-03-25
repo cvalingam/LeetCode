@@ -1,3 +1,6 @@
+// Approach: Count columns where any adjacent row pair is out of lexicographic order.
+// Time: O(n·m) Space: O(1)
+
 public class Solution
 {
     public int MinDeletionSize(string[] strs)

@@ -1,3 +1,6 @@
+// Approach: Max-heap of size k; maintain the k smallest squared distances by evicting the farthest when size exceeds k.
+// Time: O(n log k) Space: O(k)
+
 public class Solution
 {
     public int[][] KClosest(int[][] points, int k)

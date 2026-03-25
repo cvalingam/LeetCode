@@ -1,3 +1,6 @@
+// Approach: Greedy monotone stack; for each character, pop the stack top if it's larger and still appears later; use a 'used' set to avoid duplicates.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string SmallestSubsequence(string s)

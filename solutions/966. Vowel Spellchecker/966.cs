@@ -1,3 +1,6 @@
+// Approach: Build three lookup structures (exact, case-insensitive, vowel-pattern); resolve each query with priority: exact > case > vowel.
+// Time: O(n·m) Space: O(n·m)
+
 public class Solution
 {
     public string[] Spellchecker(string[] wordlist, string[] queries)

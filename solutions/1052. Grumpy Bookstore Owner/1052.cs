@@ -1,3 +1,6 @@
+// Approach: Add base satisfied customers, then find the sliding window of length 'minutes' that maximises extra customers recovered from grumpy minutes.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MaxSatisfied(int[] customers, int[] grumpy, int minutes)

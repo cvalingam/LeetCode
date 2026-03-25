@@ -1,3 +1,6 @@
+// Approach: Union-Find on 26 letters where the smaller letter always becomes the representative; map each character in baseStr to its root.
+// Time: O(n α(26)) Space: O(26)
+
 public class Solution
 {
     // Parent array representing the disjoint set (union-find structure)

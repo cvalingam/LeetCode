@@ -1,3 +1,6 @@
+// Approach: Closed-form formula based on n mod 4; compute offset pattern directly without simulation.
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public int Clumsy(int n)

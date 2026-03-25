@@ -1,3 +1,6 @@
+// Approach: Sliding window; mark flip positions in-place using value 2; track running flip parity with a counter.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinKBitFlips(int[] nums, int k)

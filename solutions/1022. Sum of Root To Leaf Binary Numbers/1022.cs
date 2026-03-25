@@ -1,20 +1,7 @@
-public class TreeNode
-{
-    public int val;
-    public TreeNode left;
-    public TreeNode right;
-    public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
-    {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-}
+// Approach: DFS accumulating the binary number from root to leaf; add the leaf value to the running sum.
+// Time: O(n) Space: O(n)
 
-
-public class Solution
-{
-    public int SumRootToLeaf(TreeNode root)
+public class TreeNode(TreeNode root)
     {
         DFS(root, 0);
         return ans;

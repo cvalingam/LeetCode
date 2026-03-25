@@ -1,3 +1,6 @@
+// Approach: Compute LCS via DP table, then backtrack to interleave both strings sharing common characters.
+// Time: O(m·n) Space: O(m·n)
+
 public class Solution
 {
     public string ShortestCommonSupersequence(string str1, string str2)

@@ -1,3 +1,6 @@
+// Approach: Binary search on capacity between max(weights) and sum(weights); greedily count days needed for a given capacity.
+// Time: O(n log(sum)) Space: O(1)
+
 public class Solution {
     public int ShipWithinDays(int[] weights, int days) {
         int maxEle = Int32.MinValue;

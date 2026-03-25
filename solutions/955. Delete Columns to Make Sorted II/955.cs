@@ -1,3 +1,6 @@
+// Approach: Greedy scan; track which adjacent row pairs are already strictly sorted; delete a column only if it creates an inversion in an unsorted pair.
+// Time: O(n·m) Space: O(n)
+
 public class Solution
 {
     public int MinDeletionSize(string[] strs)

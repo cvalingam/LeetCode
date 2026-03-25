@@ -1,3 +1,6 @@
+// Approach: Build a decreasing-value stack of indices left-to-right; scan right-to-left popping while nums[j] >= nums[stack.top].
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MaxWidthRamp(int[] nums)

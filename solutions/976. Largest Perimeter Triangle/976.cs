@@ -1,3 +1,6 @@
+// Approach: Sort descending; the first consecutive triple satisfying the triangle inequality gives the maximum perimeter.
+// Time: O(n log n) Space: O(1)
+
 public class Solution
 {
     public int LargestPerimeter(int[] nums)

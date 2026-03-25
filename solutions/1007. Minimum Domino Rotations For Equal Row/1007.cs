@@ -1,3 +1,6 @@
+// Approach: Count frequency of each value in tops, bottoms, and common positions; the answer for a candidate value = min(tops - common, bottoms - common).
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinDominoRotations(int[] tops, int[] bottoms)

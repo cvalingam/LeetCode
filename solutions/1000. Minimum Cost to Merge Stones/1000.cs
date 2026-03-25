@@ -1,3 +1,6 @@
+// Approach: Interval DP; dp[i][j][k] = min cost to reduce stones[i..j] to k piles; merge K piles into 1 costs prefix[j+1]-prefix[i].
+// Time: O(n³ / K) Space: O(n² K)
+
 public class Solution
 {
     public int MergeStones(int[] stones, int K)

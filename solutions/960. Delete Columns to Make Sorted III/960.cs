@@ -1,3 +1,6 @@
+// Approach: LIS-style DP; dp[j] = min deletions to keep columns 0..j with column j included and all strings non-decreasing.
+// Time: O(m²·n) Space: O(m)
+
 public class Solution
 {
     public int MinDeletionSize(string[] strs)

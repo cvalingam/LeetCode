@@ -1,3 +1,6 @@
+// Approach: Digit DP; count all shorter-length numbers freely, then for same length use prefix enumeration with digit comparison.
+// Time: O(log n) Space: O(log n)
+
 public class Solution
 {
     public int AtMostNGivenDigitSet(string[] digits, int n)

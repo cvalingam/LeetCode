@@ -1,3 +1,6 @@
+// Approach: Use a HashSet; the first element that fails insertion is the repeated element.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int RepeatedNTimes(int[] nums)

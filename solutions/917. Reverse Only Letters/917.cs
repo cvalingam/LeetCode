@@ -1,3 +1,6 @@
+// Approach: Two-pointer swap; advance left/right pointers past non-letter characters, then swap the bracketing letters.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string ReverseOnlyLetters(string s)

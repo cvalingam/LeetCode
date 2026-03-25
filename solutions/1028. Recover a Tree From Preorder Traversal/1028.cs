@@ -1,19 +1,7 @@
-public class TreeNode
-{
-    public int val;
-    public TreeNode left;
-    public TreeNode right;
-    public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
-    {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-}
+// Approach: Single-pass with a depth counter; track current index i; at each position count leading dashes to determine depth, then recursively build left/right subtrees.
+// Time: O(n) Space: O(n)
 
-public class Solution
-{
-    private int i = 0;
+public class TreeNode
 
     public TreeNode RecoverFromPreorder(string traversal)
     {

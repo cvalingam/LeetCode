@@ -1,3 +1,6 @@
+// Approach: Use a stack; unmatched '(' and ')' characters remain; the stack size at the end equals the number of additions needed.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MinAddToMakeValid(string s)

@@ -1,3 +1,6 @@
+// Approach: Reverse in-order traversal (right → node → left); accumulate a running prefix sum and assign it to each node.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     int prefix = 0;

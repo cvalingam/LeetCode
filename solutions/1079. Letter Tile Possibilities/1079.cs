@@ -1,3 +1,6 @@
+// Approach: Frequency-array DFS; for each non-zero character, decrement its count, recurse, and accumulate all sub-sequence counts.
+// Time: O(n!) Space: O(n)
+
 public class Solution
 {
     public int NumTilePossibilities(string tiles)

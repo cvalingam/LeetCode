@@ -1,3 +1,6 @@
+// Approach: BFS on board squares 1..n²; convert square number to (row, col) accounting for boustrophedon layout; follow snakes/ladders automatically.
+// Time: O(n²) Space: O(n²)
+
 public class Solution
 {
     private int boardSize;

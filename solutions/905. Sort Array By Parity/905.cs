@@ -1,3 +1,6 @@
+// Approach: In-place two-pointer partition; move even numbers to the front by swapping with a write pointer.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int[] SortArrayByParity(int[] nums)

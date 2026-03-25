@@ -1,3 +1,6 @@
+// Approach: Simulate repunit growth mod K; if a remainder repeats before reaching 0 it's impossible; early-exit if K ends in even digit or 5.
+// Time: O(K) Space: O(K)
+
 public class Solution
 {
     public int SmallestRepunitDivByK(int k)

@@ -1,3 +1,6 @@
+// Approach: Dictionary of sorted timestamp lists per key; binary search for the largest timestamp ≤ query time.
+// Time: O(log n) per get, O(1) per set Space: O(n)
+
 public class TimeMap
 {
     private Dictionary<string, List<T>> map = new Dictionary<string, List<T>>();

@@ -1,3 +1,6 @@
+// Approach: Greedy DP with two sliding queues for 7-day and 30-day windows; for each travel day pick the cheapest option.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MincostTickets(int[] days, int[] costs)

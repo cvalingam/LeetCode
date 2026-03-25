@@ -1,3 +1,6 @@
+// Approach: Build a bitmask of all 1s with the same bit-length as n; XOR with n gives the complement.
+// Time: O(log n) Space: O(1)
+
 public class Solution
 {
     public int BitwiseComplement(int n)

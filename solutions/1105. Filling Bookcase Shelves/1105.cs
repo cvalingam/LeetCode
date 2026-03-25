@@ -1,3 +1,6 @@
+// Approach: DP where dp[i] = min total height for first i books; for each book i try starting a new shelf or extending the current one backwards.
+// Time: O(n²) Space: O(n)
+
 public class Solution
 {
     public int MinHeightShelves(int[][] books, int shelfWidth)

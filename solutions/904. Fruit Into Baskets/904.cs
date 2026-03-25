@@ -1,3 +1,6 @@
+// Approach: Sliding window with a frequency map; shrink the window when more than 2 distinct fruit types are present.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int TotalFruit(int[] tree)

@@ -1,3 +1,5 @@
+// Approach: Post-order DFS; prune a child subtree if its max root-to-leaf sum is below limit; prune the root itself if both children are pruned at a leaf.
+// Time: O(n) Space: O(n)
 
 public class TreeNode
 {

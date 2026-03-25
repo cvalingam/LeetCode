@@ -1,3 +1,6 @@
+// Approach: For each row, normalize it and its complement to a canonical form; the most-frequent canonical form gives the answer.
+// Time: O(m·n) Space: O(m·n)
+
 public class Solution
 {
     public int MaxEqualRowsAfterFlips(int[][] matrix)

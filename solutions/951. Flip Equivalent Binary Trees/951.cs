@@ -1,19 +1,7 @@
-public class TreeNode
-{
-    public int val;
-    public TreeNode left;
-    public TreeNode right;
-    public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
-    {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-}
+// Approach: Recursive equivalence check; two trees are flip-equivalent if they match directly or after swapping children at any node.
+// Time: O(n) Space: O(n)
 
-public class Solution
-{
-    public bool FlipEquiv(TreeNode root1, TreeNode root2)
+public class TreeNode(TreeNode root1, TreeNode root2)
     {
         if (root1 == null)
             return root2 == null;

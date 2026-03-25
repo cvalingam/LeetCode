@@ -1,3 +1,6 @@
+// Approach: Interval DP on the polygon; for each sub-polygon [i..j] try every vertex k as the apex of the triangle sharing edge (i,j).
+// Time: O(n³) Space: O(n²)
+
 public class Solution
 {
     // Number of vertices in the polygon

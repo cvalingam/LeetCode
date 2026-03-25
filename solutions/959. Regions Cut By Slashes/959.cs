@@ -1,3 +1,6 @@
+// Approach: Upscale each cell to 3×3; draw slash characters as walls; count connected components in the resulting grid via DFS/BFS.
+// Time: O(n²) Space: O(n²)
+
 public class Solution
 {
     public int RegionsBySlashes(string[] grid)

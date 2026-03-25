@@ -1,3 +1,6 @@
+// Approach: Merge sort; recursively split array in halves and merge sorted halves.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int[] SortArray(int[] nums)

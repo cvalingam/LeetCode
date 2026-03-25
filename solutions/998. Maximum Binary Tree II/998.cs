@@ -1,19 +1,7 @@
-public class TreeNode
-{
-    public int val;
-    public TreeNode left;
-    public TreeNode right;
-    public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
-    {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-}
+// Approach: If val is larger than root insert as new root with old root as left child; otherwise recurse right to find insertion point.
+// Time: O(n) Space: O(n)
 
-public class Solution
-{
-    public TreeNode InsertIntoMaxTree(TreeNode root, int val)
+public class TreeNode(TreeNode root, int val)
     {
         if (root == null)
             return new TreeNode(val);
