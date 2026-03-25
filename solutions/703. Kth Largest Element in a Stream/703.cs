@@ -1,3 +1,7 @@
+// Approach: Min-heap of size k — the top is always the k-th largest;
+// add each new element and evict the minimum if size exceeds k.
+// Time: O(n log k) build, O(log k) add Space: O(k)
+
 public class KthLargest
 {
     private int k;

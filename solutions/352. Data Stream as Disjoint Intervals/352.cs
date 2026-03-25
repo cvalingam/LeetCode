@@ -1,3 +1,7 @@
+// Approach: SortedDictionary of intervals keyed by start. On each Add,
+// merge with adjacent intervals on the left and right if they touch or overlap.
+// Time: O(log n) per add Space: O(n)
+
 public class SummaryRanges
 {
     private SortedDictionary<int, int[]> intervals = new SortedDictionary<int, int[]>();

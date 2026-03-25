@@ -1,3 +1,7 @@
+// Approach: Min-heap with one element from each list; track the global max;
+// pop the minimum and advance its list until any list is exhausted.
+// Time: O(n log k) Space: O(k)
+
 public class Solution
 {
     private record T(int i, int j, int num); // num := nums[i][j]

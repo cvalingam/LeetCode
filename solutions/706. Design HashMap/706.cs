@@ -1,3 +1,7 @@
+// Approach: Separate-chaining hash table with a fixed array of lists;
+// bucket index = key % size, linear search within the bucket.
+// Time: O(1) avg Space: O(n)
+
 public class MyHashMap
 {
     private const int kSize = 10000;

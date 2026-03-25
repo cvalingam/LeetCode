@@ -1,3 +1,7 @@
+// Approach: Digit DP on the binary representation — Fibonacci-like recurrences
+// zero[i]/one[i] count valid i-bit endings; subtract over-counts above num.
+// Time: O(log n) Space: O(log n)
+
 public class Solution
 {
     public int FindIntegers(int num)

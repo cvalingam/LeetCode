@@ -1,3 +1,7 @@
+// Approach: Recursive BST search — go left if val < root, right if val > root;
+// return the matching node or null.
+// Time: O(h) Space: O(h)
+
 public class TreeNode
 {
     public int val;

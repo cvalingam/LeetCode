@@ -1,3 +1,7 @@
+// Approach: Convert times to total minutes, bucket sort into a boolean array,
+// then scan for the minimum gap including the circular wrap-around.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int FindMinDifference(IList<string> timePoints)

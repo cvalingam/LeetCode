@@ -1,3 +1,7 @@
+// Approach: Min-heap by capital releases affordable projects to a max-heap
+// by profit; greedily pick the best available project k times.
+// Time: O(n log n) Space: O(n)
+
 public class Solution {
     public int FindMaximizedCapital(int k, int w, int[] profits, int[] capital) {
         var pqMin = new PriorityQueue<IPO, IPO>(Comparer<IPO>.Create((a, b) => a.capital.CompareTo(b.capital)));

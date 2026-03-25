@@ -1,3 +1,7 @@
+// Approach: Binary search for the left boundary of the optimal k-element
+// window; compare distances x-arr[m] vs arr[m+k]-x symmetrically.
+// Time: O(log(n-k)+k) Space: O(1)
+
 public class Solution
 {
     public IList<int> FindClosestElements(int[] arr, int k, int x)

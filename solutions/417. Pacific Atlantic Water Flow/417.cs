@@ -1,3 +1,7 @@
+// Approach: Reverse BFS from Pacific-border cells and from Atlantic-border cells;
+// cells reachable from both queues can flow to both oceans.
+// Time: O(m*n) Space: O(m*n)
+
 public class Solution
 {
     private static readonly int[][] DIRS = new int[][] {

@@ -1,3 +1,7 @@
+// Approach: Compute all 6 pairwise squared distances; a valid non-degenerate
+// square has exactly 2 distinct values (4 equal sides + 2 equal diagonals).
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public bool ValidSquare(int[] p1, int[] p2, int[] p3, int[] p4)

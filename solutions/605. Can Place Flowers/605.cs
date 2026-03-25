@@ -1,3 +1,7 @@
+// Approach: Greedy single pass — plant a flower whenever the current cell
+// and both neighbors are empty; modify the array in-place.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public bool CanPlaceFlowers(int[] flowerbed, int n)

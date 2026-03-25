@@ -1,3 +1,7 @@
+// Approach: LCS-variant DP where the cost is the sum of ASCII values deleted;
+// dp[i][j] = min total ASCII cost to equalize s1[0..i) and s2[0..j).
+// Time: O(m*n) Space: O(m*n)
+
 public class Solution
 {
     public int MinimumDeleteSum(string s1, string s2)

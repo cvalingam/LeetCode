@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
+// Approach: Parse all numerator/denominator pairs with regex, then
+// iteratively accumulate A/B by combining fractions and reducing via GCD.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string FractionAddition(string expression)

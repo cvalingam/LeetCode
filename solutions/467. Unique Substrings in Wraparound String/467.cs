@@ -1,3 +1,7 @@
+// Approach: Track the longest consecutive run ending at each character;
+// sum of per-character maximums is the total unique substring count.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int FindSubstringInWraproundString(string p)

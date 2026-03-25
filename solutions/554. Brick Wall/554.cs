@@ -1,3 +1,7 @@
+// Approach: Count crack frequencies (prefix sums of brick widths) per row;
+// the fewest crossings = rows − max crack frequency.
+// Time: O(n*k) Space: O(n)
+
 public class Solution
 {
     public int LeastBricks(IList<IList<int>> wall)

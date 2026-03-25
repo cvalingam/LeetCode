@@ -1,3 +1,7 @@
+// Approach: BFS to the (depth-1)th level; insert a new node with the given
+// value as the left/right child of every node at that level.
+// Time: O(n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

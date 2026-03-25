@@ -1,3 +1,7 @@
+// Approach: Repeatedly divide by 3; the number is a power of three
+// if and only if the result reduces to exactly 1.
+// Time: O(log n) Space: O(1)
+
 public class Solution
 {
     public bool IsPowerOfThree(int n)

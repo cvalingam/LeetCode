@@ -1,3 +1,7 @@
+// Approach: DFS computes each subtree sum; HashMap tracks frequency of each sum;
+// return all sums with the maximum frequency.
+// Time: O(n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

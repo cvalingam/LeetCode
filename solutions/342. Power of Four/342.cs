@@ -1,3 +1,7 @@
+// Approach: A power of four must be a power of two (one set bit)
+// and that bit must sit at an even position — so (n-1) % 3 == 0.
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public bool IsPowerOfFour(int n)

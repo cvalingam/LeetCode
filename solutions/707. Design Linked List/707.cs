@@ -1,3 +1,7 @@
+// Approach: Singly-linked list with a dummy head node; maintain length for
+// O(1) index validation and O(n) traversal.
+// Time: O(n) Space: O(n)
+
 public class MyLinkedList
 {
 

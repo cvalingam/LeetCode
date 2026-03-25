@@ -1,3 +1,7 @@
+// Approach: Frequency HashMap on the first array; for each element in the
+// second array consume a match if available, building the intersection.
+// Time: O(m+n) Space: O(min(m,n))
+
 public class Solution
 {
     public int[] Intersect(int[] nums1, int[] nums2)

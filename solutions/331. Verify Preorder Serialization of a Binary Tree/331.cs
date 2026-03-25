@@ -1,3 +1,7 @@
+// Approach: Track available slots (starts at 1); each internal node consumes
+// one slot but adds two; null nodes consume one. Valid if slots reach exactly 0.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public bool IsValidSerialization(string preorder)

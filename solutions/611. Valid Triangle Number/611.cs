@@ -1,3 +1,7 @@
+// Approach: Sort, fix the largest side, then apply two pointers: when the
+// two smaller sides sum exceeds the largest, all left-to-right pairs count.
+// Time: O(n²) Space: O(1)
+
 public class Solution
 {
     public int TriangleNumber(int[] nums)

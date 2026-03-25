@@ -1,3 +1,7 @@
+// Approach: Sorted interval map keyed by x-range tracks current heights;
+// when a square drops, find all overlapping intervals and compute the new height.
+// Time: O(n²) Space: O(n)
+
 public class Solution
 {
     public IList<int> FallingSquares(IList<IList<int>> positions)

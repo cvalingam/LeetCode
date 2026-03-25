@@ -1,3 +1,7 @@
+// Approach: Iterate over the char array; subtract the ASCII difference
+// ('A'-'a') from each uppercase letter.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string ToLowerCase(string s)

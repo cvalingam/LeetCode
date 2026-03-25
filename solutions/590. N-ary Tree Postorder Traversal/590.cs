@@ -1,3 +1,7 @@
+// Approach: Iterative reverse-preorder: collect root, then process children
+// left-to-right; the reversed result gives postorder.
+// Time: O(n) Space: O(n)
+
 public class Node
 {
     public int val;

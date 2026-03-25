@@ -1,3 +1,7 @@
+// Approach: Count horizontal (L/R) and vertical (U/D) moves separately;
+// return true only if both net displacements are zero.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public bool JudgeCircle(string moves)

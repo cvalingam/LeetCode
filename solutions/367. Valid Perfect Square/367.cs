@@ -1,3 +1,6 @@
+// Approach: Binary search for an integer r in [1, num] such that r*r == num.
+// Time: O(log n) Space: O(1)
+
 public class Solution
 {
     public bool IsPerfectSquare(int num)

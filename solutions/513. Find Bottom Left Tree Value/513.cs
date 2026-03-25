@@ -1,3 +1,7 @@
+// Approach: Reverse BFS — enqueue right child before left; the last dequeued
+// node is the bottom-left (leftmost) node.
+// Time: O(n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

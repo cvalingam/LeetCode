@@ -1,3 +1,7 @@
+// Approach: Sort, then DP where dp[i] = longest subset ending at nums[i];
+// backtrack via a prev-index array to reconstruct the actual subset.
+// Time: O(n²) Space: O(n)
+
 public class Solution
 {
     public IList<int> LargestDivisibleSubset(int[] nums)

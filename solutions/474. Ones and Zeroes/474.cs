@@ -1,3 +1,7 @@
+// Approach: 2D 0/1 knapsack DP with dimensions (max zeros, max ones);
+// for each string update dp[m][n] = max(dp[m][n], dp[m-z][n-o] + 1).
+// Time: O(L*m*n) Space: O(m*n)
+
 public class Solution
 {
     public int FindMaxForm(string[] strs, int m, int n)

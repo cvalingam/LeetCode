@@ -1,3 +1,7 @@
+// Approach: Track previous and current group lengths; at each group boundary,
+// add min(prev, curr) valid substrings to the answer.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int CountBinarySubstrings(string s)

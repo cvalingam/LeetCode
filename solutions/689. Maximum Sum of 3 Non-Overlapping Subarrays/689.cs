@@ -1,3 +1,7 @@
+// Approach: Precompute window sums and left/right max-index arrays; scan the
+// middle window position to find the optimal non-overlapping triple.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int[] MaxSumOfThreeSubarrays(int[] nums, int k)

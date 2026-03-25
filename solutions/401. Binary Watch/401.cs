@@ -1,3 +1,7 @@
+// Approach: DFS choosing turnedOn LEDs from the 10 positions (4 hours + 6 mins);
+// record the time when all LEDs are assigned and it represents a valid time.
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public IList<string> ReadBinaryWatch(int turnedOn)

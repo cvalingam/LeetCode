@@ -1,3 +1,7 @@
+// Approach: BFS with a queue; collect all children of dequeued nodes
+// at each level into the next level’s snapshot.
+// Time: O(n) Space: O(n)
+
 public class Node
 {
     public int val;

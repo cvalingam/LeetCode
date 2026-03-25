@@ -1,3 +1,7 @@
+// Approach: Recursively merge two quad-trees. If either is an all-true leaf
+// the result is immediately true; otherwise merge all four quadrants.
+// Time: O(n) Space: O(log n)
+
 // Definition for a QuadTree node.
 public class Node
 {

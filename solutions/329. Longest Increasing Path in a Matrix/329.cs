@@ -1,3 +1,7 @@
+// Approach: DFS with memoization from each cell, stepping only to strictly
+// larger neighbors; cache the longest path starting at each cell.
+// Time: O(m*n) Space: O(m*n)
+
 public class Solution
 {
     public int LongestIncreasingPath(int[][] matrix)

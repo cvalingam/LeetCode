@@ -1,3 +1,7 @@
+// Approach: Union-Find — the first edge whose two vertices share the same
+// root is the redundant connection forming a cycle.
+// Time: O(nα(n)) Space: O(n)
+
 public class Solution
 {
     public int[] FindRedundantConnection(int[][] edges)

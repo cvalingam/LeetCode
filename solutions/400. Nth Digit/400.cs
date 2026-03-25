@@ -1,3 +1,7 @@
+// Approach: Identify the digit-length group (1-, 2-, 3-digit numbers…)
+// that contains the n-th digit, find the actual number, extract the digit.
+// Time: O(log n) Space: O(1)
+
 public class Solution
 {
     public int FindNthDigit(int n)

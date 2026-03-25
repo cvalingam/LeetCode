@@ -1,3 +1,7 @@
+// Approach: Binary search on the distance; count pairs with distance ≤ m
+// using a two-pointer sliding window on the sorted array.
+// Time: O(n log n + n log W) Space: O(1)
+
 public class Solution
 {
     public int SmallestDistancePair(int[] nums, int k)

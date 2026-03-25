@@ -1,3 +1,7 @@
+// Approach: BFS level-order traversal; track the maximum value encountered
+// across all nodes at each level.
+// Time: O(n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

@@ -1,3 +1,7 @@
+// Approach: Enumerate diagonals 0 to m+n-2; collect elements of each diagonal
+// and reverse alternating diagonals to produce the zigzag traversal.
+// Time: O(m*n) Space: O(min(m,n))
+
 public class Solution
 {
     public int[] FindDiagonalOrder(int[][] matrix)

@@ -1,3 +1,7 @@
+// Approach: DFS over all pairs and all 6 operator variations (a op b and b op a);
+// recursively reduce four numbers until one remains; check if it equals 24.
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public bool JudgePoint24(int[] nums)

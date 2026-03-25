@@ -1,3 +1,7 @@
+// Approach: Extract each 4-bit nibble from bits 28 down to 0, map to hex
+// character, skipping leading zeros. Handles negative numbers via two's complement.
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public string ToHex(int number)

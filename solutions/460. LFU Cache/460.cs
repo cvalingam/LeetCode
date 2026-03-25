@@ -1,3 +1,7 @@
+// Approach: Track minFreq; HashMap key→freq and freq→LRU-ordered-keys;
+// on eviction remove the LRU entry from the minFreq bucket.
+// Time: O(1) per get/put Space: O(capacity)
+
 public class LFUCache
 {
     private int capacity;

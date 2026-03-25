@@ -1,3 +1,7 @@
+// Approach: For each n-digit number as the left half, mirror it to create
+// a palindrome candidate and check if it has an n-digit divisor.
+// Time: O(10^n) Space: O(1)
+
 public class Solution
 {
     public int LargestPalindrome(int n)

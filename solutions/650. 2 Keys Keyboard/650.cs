@@ -1,3 +1,7 @@
+// Approach: DP where dp[i] is the min operations to reach i 'A's; for each
+// divisor j of i, dp[i] = min(dp[i], dp[i/j] + j).
+// Time: O(n√n) Space: O(n)
+
 public class Solution
 {
     public int MinSteps(int n)

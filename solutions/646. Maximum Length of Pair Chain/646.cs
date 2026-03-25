@@ -1,3 +1,7 @@
+// Approach: Greedy — sort pairs by their end value; always pick the next
+// pair whose start exceeds the last selected pair’s end.
+// Time: O(n log n) Space: O(1)
+
 public class Solution
 {
     public int FindLongestChain(int[][] pairs)

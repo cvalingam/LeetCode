@@ -1,3 +1,7 @@
+// Approach: XOR n with n>>2; if the result has exactly one set bit
+// (is a power of two or 1), the bits alternate.
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public bool HasAlternatingBits(int n)

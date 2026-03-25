@@ -1,3 +1,7 @@
+// Approach: Sliding window with a 26-element frequency array and a required-
+// count variable; shrink left while all characters are matched.
+// Time: O(m+n) Space: O(1)
+
 public class Solution
 {
     public bool CheckInclusion(string s1, string s2)

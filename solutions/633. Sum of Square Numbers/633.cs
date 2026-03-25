@@ -1,3 +1,7 @@
+// Approach: Two pointers starting at 0 and sqrt(c); advance left if sum too
+// small and retreat right if too large.
+// Time: O(√c) Space: O(1)
+
 public class Solution {
     public bool JudgeSquareSum(int c) {
         long l = 0;

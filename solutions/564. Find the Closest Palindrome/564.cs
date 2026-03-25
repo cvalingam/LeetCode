@@ -1,3 +1,7 @@
+// Approach: Generate five candidate palindromes (mirror current prefix, mirror
+// prefix ±1, 10^n ± 1) and return the numerically closest to the input.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string NearestPalindromic(string n)

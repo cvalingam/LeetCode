@@ -1,3 +1,7 @@
+// Approach: Simulate a preorder DFS on a decimal trie: multiply by 10 to
+// descend a level, then increment by 1 to move to the next sibling.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public IList<int> LexicalOrder(int n)

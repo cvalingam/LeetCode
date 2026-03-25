@@ -1,3 +1,7 @@
+// Approach: Circular array with front/rear pointers and a size counter;
+// insert and delete at both ends by advancing pointers modulo k.
+// Time: O(1) per operation Space: O(k)
+
 public class MyCircularDeque
 {
     private readonly int k;

@@ -1,3 +1,7 @@
+// Approach: Min-heap BFS from the boundary. Water level at each interior
+// cell equals max(0, boundary height − cell height); propagate inward.
+// Time: O(m*n log(m*n)) Space: O(m*n)
+
 class WaterCell
 {
     public int Row;

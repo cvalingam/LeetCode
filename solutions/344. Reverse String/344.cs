@@ -1,3 +1,7 @@
+// Approach: Recursive two-pointer swap: exchange the outermost characters
+// then recurse on the inner subarray.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public void ReverseString(char[] s)

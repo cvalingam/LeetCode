@@ -1,3 +1,7 @@
+// Approach: Single pass — compare each array’s max/min against the running
+// global min/max from all previous arrays before updating the trackers.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MaxDistance(IList<IList<int>> arrays)

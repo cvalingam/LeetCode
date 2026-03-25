@@ -1,3 +1,7 @@
+// Approach: Reduce to subset sum: assign '+' to a subset summing to
+// (total + target)/2. Top-down DP with memoization counts the ways.
+// Time: O(n*sum) Space: O(n*sum)
+
 public class Solution
 {
     public int FindTargetSumWays(int[] nums, int target)

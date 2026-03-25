@@ -1,3 +1,7 @@
+// Approach: Subset-sum DP — check if any subset sums to totalSum/2.
+// dp[i][t] = true if the first i elements can form a subset summing to t.
+// Time: O(n*sum) Space: O(n*sum)
+
 public class Solution
 {
     public bool CanPartition(int[] nums)

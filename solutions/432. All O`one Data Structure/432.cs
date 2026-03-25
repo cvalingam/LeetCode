@@ -1,3 +1,7 @@
+// Approach: Doubly-linked list of count-nodes each holding a set of keys;
+// HashMap from key to node enables O(1) inc/dec/getMin/getMax.
+// Time: O(1) per operation Space: O(n)
+
 public class Node
 {
     public int count;

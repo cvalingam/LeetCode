@@ -1,3 +1,7 @@
+// Approach: Map each letter to its keyboard row (1/2/3); a word is valid
+// if every character shares the same row as the first character.
+// Time: O(n*k) Space: O(1)
+
 public class Solution
 {
     public string[] FindWords(string[] words)

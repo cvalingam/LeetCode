@@ -1,3 +1,7 @@
+// Approach: Find the virtual median via quickselect, then use 3-way Dutch-Flag
+// partition with index mapping to place larger elements at odd positions.
+// Time: O(n) avg Space: O(1)
+
 public class Solution
 {
     public void WiggleSort(int[] nums)

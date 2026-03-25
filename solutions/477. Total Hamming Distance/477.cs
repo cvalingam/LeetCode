@@ -1,3 +1,7 @@
+// Approach: For each of the 30 bit positions, count ones and zeros across
+// all numbers; contribute ones×zeros pairs to the total distance.
+// Time: O(30n) Space: O(1)
+
 public class Solution
 {
     public int TotalHammingDistance(int[] nums)

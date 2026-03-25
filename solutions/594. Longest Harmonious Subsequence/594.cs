@@ -1,3 +1,7 @@
+// Approach: Frequency HashMap; for each distinct value, if value+1 also
+// exists combine their counts for a candidate harmonious length.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int FindLHS(int[] nums)

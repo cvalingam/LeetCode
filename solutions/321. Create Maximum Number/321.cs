@@ -1,3 +1,7 @@
+// Approach: Try every split (k1 from 0 to k) between the two arrays. Build
+// the max-subsequence of length k1 and k2 from each, merge them, keep the best.
+// Time: O(k*(m+n+k)) Space: O(k)
+
 public class Solution
 {
     public int[] MaxNumber(int[] nums1, int[] nums2, int k)
