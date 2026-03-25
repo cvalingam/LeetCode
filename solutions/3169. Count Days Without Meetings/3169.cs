@@ -1,3 +1,6 @@
+// Approach: Sort and merge meeting intervals; subtract covered ranges from total days.
+// Time: O(m log m) Space: O(1)
+
 public class Solution
 {
     public int CountDays(int days, int[][] meetings)

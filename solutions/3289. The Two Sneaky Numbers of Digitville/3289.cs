@@ -1,3 +1,6 @@
+// Approach: Find duplicate by tracking seen values; repeated and missing follow from XOR or count.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int[] GetSneakyNumbers(int[] nums)

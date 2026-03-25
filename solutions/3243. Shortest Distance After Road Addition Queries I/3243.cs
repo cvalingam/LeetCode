@@ -1,3 +1,6 @@
+// Approach: BFS on graph after each query addition; return shortest path from 0 to n-1.
+// Time: O(q * (n + q)) Space: O(n + q)
+
 public class Solution
 {
     public int[] ShortestDistanceAfterQueries(int n, int[][] queries)

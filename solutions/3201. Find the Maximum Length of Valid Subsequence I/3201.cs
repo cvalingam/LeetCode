@@ -1,3 +1,6 @@
+// Approach: Greedily alternate parities; max of all-even, all-odd, alternating-even-start, alternating-odd-start.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MaximumLength(int[] nums)

@@ -1,3 +1,6 @@
+// Approach: DP counting perms where even-indexed digits sum = odd-indexed digits sum.
+// Time: O(n * sum) Space: O(n * sum)
+
 public class Solution
 {
     public int CountBalancedPermutations(string num)

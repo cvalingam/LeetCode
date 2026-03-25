@@ -1,4 +1,7 @@
 
+// Approach: HashSet of values to remove; traverse list skipping nodes whose value is in the set.
+// Time: O(n + m) Space: O(m)
+
 public class ListNode
 {
     public int val;

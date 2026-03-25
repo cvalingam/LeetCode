@@ -1,3 +1,6 @@
+// Approach: DP(zeros_left, ones_left, last) with prefix sum optimization to avoid O(limit) inner loop.
+// Time: O(zero * one) Space: O(zero * one)
+
 public class Solution
 {
     public int NumberOfStableArrays(int zero, int one, int limit)

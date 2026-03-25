@@ -1,3 +1,6 @@
+// Approach: Sort; binary search for window boundaries; sliding window over sorted unique targets.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int MaxFrequency(int[] nums, int k, int numOperations)

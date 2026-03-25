@@ -1,3 +1,6 @@
+// Approach: For each column pick digit minimizing changes; use DP to ensure adjacent columns differ.
+// Time: O(mn * 10) Space: O(10)
+
 public class Solution
 {
     public int MinimumOperations(int[][] grid)

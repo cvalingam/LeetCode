@@ -1,3 +1,6 @@
+// Approach: DP dp[rem][last] = longest subsequence ending with value whose (prev+last)%k = rem.
+// Time: O(n * k) Space: O(k²)
+
 public class Solution
 {
     public int MaximumLength(int[] nums, int k)

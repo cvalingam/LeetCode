@@ -1,3 +1,6 @@
+// Approach: HashMap ball→color and color→count; swap colors updating counts; track distinct color count.
+// Time: O(q) Space: O(n + q)
+
 public class Solution
 {
     public int[] QueryResults(int limit, int[][] queries)

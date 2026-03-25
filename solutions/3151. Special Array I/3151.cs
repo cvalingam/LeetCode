@@ -1,3 +1,6 @@
+// Approach: Check every adjacent pair has different parity.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public bool IsArraySpecial(int[] nums)

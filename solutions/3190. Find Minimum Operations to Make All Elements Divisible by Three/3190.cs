@@ -1,3 +1,6 @@
+// Approach: For each element cost = min(n % 3, 3 - n % 3); sum all costs.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinimumOperations(int[] nums)

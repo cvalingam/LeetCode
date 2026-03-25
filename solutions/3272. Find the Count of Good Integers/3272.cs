@@ -1,3 +1,6 @@
+// Approach: Enumerate k-digit palindromes divisible by k; count distinct digit permutations for each.
+// Time: O(10^(n/2) * n!) Space: O(n)
+
 public class Solution
 {
     public long CountGoodIntegers(int n, int k)

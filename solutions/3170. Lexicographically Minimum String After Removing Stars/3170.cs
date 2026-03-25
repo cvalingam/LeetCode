@@ -1,3 +1,6 @@
+// Approach: Priority queue tracking (char, index); for each '*' remove lexicographically smallest char.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public string ClearStars(string s)

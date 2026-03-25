@@ -1,3 +1,6 @@
+// Approach: Count consecutive run lengths > 1; each contributes one extra possible original string.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int PossibleStringCount(string word)

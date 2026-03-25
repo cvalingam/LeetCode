@@ -1,3 +1,6 @@
+// Approach: Bit trick: popcount(k-1) % 26 determines offset from 'a'.
+// Time: O(log k) Space: O(1)
+
 public class Solution
 {
     public char KthCharacter(int k)

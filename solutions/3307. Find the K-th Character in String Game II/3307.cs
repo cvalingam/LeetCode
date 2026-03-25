@@ -1,3 +1,6 @@
+// Approach: Find highest set bit of k; trace back through operations to determine character.
+// Time: O(log k) Space: O(log k)
+
 public class Solution
 {
     public char KthCharacter(long k, int[] operations)

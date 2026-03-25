@@ -1,3 +1,6 @@
+// Approach: Try all 3-rectangle horizontal/vertical splits; find min sum of bounding boxes.
+// Time: O(mn * (m + n)) Space: O(1)
+
 public class Solution
 {
     public int MinimumSum(int[][] grid)

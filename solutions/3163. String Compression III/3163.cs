@@ -1,3 +1,6 @@
+// Approach: Run-length encoding capping each run at 9; append count then character.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string CompressedString(string word)

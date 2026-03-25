@@ -1,3 +1,6 @@
+// Approach: Compute run lengths of strictly increasing subarrays; check adjacent runs ≥ k.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public bool HasIncreasingSubarrays(IList<int> nums, int k)

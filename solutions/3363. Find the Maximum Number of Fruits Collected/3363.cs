@@ -1,3 +1,6 @@
+// Approach: Precompute max collectible on three paths; diagonal path always collects diagonal cells.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MaxCollectedFruits(int[][] fruits)

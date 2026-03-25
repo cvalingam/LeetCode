@@ -1,3 +1,6 @@
+// Approach: For each prime p find largest x < p where x | (x+1) = p by checking bit patterns.
+// Time: O(n * log max) Space: O(1)
+
 public class Solution
 {
     public int[] MinBitwiseArray(IList<int> nums)

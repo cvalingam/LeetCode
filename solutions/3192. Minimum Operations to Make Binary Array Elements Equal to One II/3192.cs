@@ -1,3 +1,6 @@
+// Approach: Greedy; count flips needed tracking current parity.
+// Time: O(n) Space: O(1)
+
 public class Solution {
     public int MinOperations(int[] nums) {
         int n = nums.Length, ans = 0, times = 0;

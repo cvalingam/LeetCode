@@ -1,3 +1,6 @@
+// Approach: Greedy sliding window of size 3; flip starting at each 0.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinOperations(int[] nums)

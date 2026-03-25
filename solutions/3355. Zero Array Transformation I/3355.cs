@@ -1,3 +1,6 @@
+// Approach: Difference array; apply all query decrements; check all elements reducible to 0.
+// Time: O(n + q) Space: O(n)
+
 public class Solution
 {
     public bool IsZeroArray(int[] nums, int[][] queries)

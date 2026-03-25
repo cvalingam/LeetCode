@@ -1,3 +1,6 @@
+// Approach: Sort; DP skipping spells with conflicting damage values (like house robber with ranges).
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     // Memoization array to store computed results for each index

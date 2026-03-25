@@ -1,3 +1,6 @@
+// Approach: Sliding window; count substrings where #ones ≥ #zeros².
+// Time: O(n * sqrt(n)) Space: O(1)
+
 public class Solution
 {
     public int NumberOfSubstrings(string s)

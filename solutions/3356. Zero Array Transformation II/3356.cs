@@ -1,3 +1,6 @@
+// Approach: Binary search on number of queries used; validate with difference array prefix sum.
+// Time: O((n + q) log q) Space: O(n)
+
 public class Solution
 {
     public int MinZeroArray(int[] nums, int[][] queries)

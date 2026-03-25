@@ -1,3 +1,6 @@
+// Approach: Matrix exponentiation on 26x26 char transition matrix for t steps.
+// Time: O(26² * log t + n) Space: O(26²)
+
 public class Solution
 {
     public int LengthAfterTransformations(string s, int t, IList<int> nums)

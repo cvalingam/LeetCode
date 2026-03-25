@@ -1,3 +1,6 @@
+// Approach: Prefix sum; for each 0 check if left sum equals right sum.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int CountValidSelections(int[] nums)

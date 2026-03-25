@@ -1,3 +1,6 @@
+// Approach: Sliding window of size k; track current consecutive run length; power = max if run ≥ k.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int[] ResultsArray(int[] nums, int k)

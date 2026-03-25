@@ -1,3 +1,6 @@
+// Approach: Return 2^(floor(log2(n))+1) - 1 = all bits set up to bit count of n.
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public int SmallestNumber(int n)

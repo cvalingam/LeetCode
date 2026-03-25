@@ -1,3 +1,6 @@
+// Approach: Find diameter of each tree via BFS; merged diameter = max(d1, d2, ceil(d1/2)+ceil(d2/2)+1).
+// Time: O(n + m) Space: O(n + m)
+
 public class Solution
 {
     public int MinimumDiameterAfterMerge(int[][] edges1, int[][] edges2)

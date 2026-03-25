@@ -1,3 +1,6 @@
+// Approach: Prefix count of same-parity adjacent pairs; answer each query with range sum check.
+// Time: O(n + q) Space: O(n)
+
 public class Solution
 {
     public bool[] IsArraySpecial(int[] nums, int[][] queries)

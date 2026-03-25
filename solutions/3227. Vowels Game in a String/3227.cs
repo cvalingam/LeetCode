@@ -1,3 +1,6 @@
+// Approach: Count vowels; Alice wins if count is odd or nonzero (she can always take advantage).
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public bool DoesAliceWin(string s)

@@ -1,3 +1,6 @@
+// Approach: Binary search on k; check adjacent increasing subarrays of length k exist.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MaxIncreasingSubarrays(IList<int> nums)

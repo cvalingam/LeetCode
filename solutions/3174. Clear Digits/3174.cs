@@ -1,3 +1,6 @@
+// Approach: Stack; remove each digit and the nearest preceding non-digit character.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string ClearDigits(string s)

@@ -1,3 +1,6 @@
+// Approach: Precompute k-reachable counts for each node in both trees; combine max of tree2 nodes.
+// Time: O((n + m) * (n + m)) Space: O(n + m)
+
 public class Solution
 {
     public int[] MaxTargetNodes(int[][] edges1, int[][] edges2, int k)

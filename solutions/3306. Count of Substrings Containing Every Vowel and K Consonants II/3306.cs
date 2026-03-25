@@ -1,3 +1,6 @@
+// Approach: Sliding window; count subarrays with all vowels + exactly k consonants using overflow.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public long CountOfSubstrings(string word, int k)

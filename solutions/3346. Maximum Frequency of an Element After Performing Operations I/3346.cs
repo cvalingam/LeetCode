@@ -1,3 +1,6 @@
+// Approach: Sort; sliding window candidate target values; count reachable elements within k operations.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int MaxFrequency(int[] nums, int k, int numOperations)

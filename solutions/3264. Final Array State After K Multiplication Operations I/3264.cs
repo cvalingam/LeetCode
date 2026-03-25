@@ -1,3 +1,6 @@
+// Approach: Min-heap; k times multiply minimum by multiplier and push back.
+// Time: O(n + k log n) Space: O(n)
+
 public class Solution
 {
     public int[] GetFinalState(int[] nums, int k, int multiplier)

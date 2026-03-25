@@ -1,3 +1,6 @@
+// Approach: Track char frequencies; each step 'z' splits to 'a'+'b'; use array rotation.
+// Time: O(26 * t) Space: O(26)
+
 public class Solution
 {
     public int LengthAfterTransformations(string s, int t)

@@ -1,3 +1,6 @@
+// Approach: Spread n-1 bits into the free bit positions of x to form the smallest valid sequence.
+// Time: O(log n + log x) Space: O(1)
+
 public class Solution
 {
     public long MinEnd(int n, int x)

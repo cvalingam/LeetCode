@@ -1,3 +1,6 @@
+// Approach: Sliding window of size k; maintain top-x elements by frequency then value using sorted set.
+// Time: O(n log k) Space: O(k)
+
 public class Solution
 {
     private int windowSum = 0;

@@ -1,3 +1,6 @@
+// Approach: DP with bitmask tracking visited elements; reconstruct lexicographically smallest min-cost path.
+// Time: O(n² * 2^n) Space: O(n * 2^n)
+
 public class Solution
 {
     public int[] FindPermutation(int[] nums)

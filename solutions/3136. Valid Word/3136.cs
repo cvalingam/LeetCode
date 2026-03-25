@@ -1,3 +1,6 @@
+// Approach: Check length ≥ 3, all alnum, has ≥ 1 vowel and ≥ 1 consonant.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public bool IsValid(string word)

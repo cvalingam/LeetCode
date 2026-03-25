@@ -1,3 +1,6 @@
+// Approach: DFS from suspicious nodes; mark reachable from invocations; exclude from result.
+// Time: O(n + E) Space: O(n)
+
 public class Solution
 {
     private bool[] suspicious;

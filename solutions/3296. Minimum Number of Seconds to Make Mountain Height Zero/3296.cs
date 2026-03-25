@@ -1,3 +1,6 @@
+// Approach: Binary search on time; each worker with rank r decreases height h in r*h*(h+1)/2 seconds.
+// Time: O(n log(min * h²)) Space: O(1)
+
 public class Solution 
 {
     public long MinNumberOfSeconds(int mountainHeight, int[] workerTimes) 

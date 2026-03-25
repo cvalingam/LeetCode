@@ -1,3 +1,6 @@
+// Approach: Color both trees bipartite; pick larger color class from tree2; combine with tree1 same-parity nodes.
+// Time: O(n + m) Space: O(n + m)
+
 public class Solution
 {
     public int[] MaxTargetNodes(int[][] edges1, int[][] edges2)

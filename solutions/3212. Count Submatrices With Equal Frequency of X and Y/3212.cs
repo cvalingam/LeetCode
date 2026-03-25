@@ -1,3 +1,6 @@
+// Approach: Prefix sum to compute X and Y counts; for each cell check prefix X == prefix Y and X > 0.
+// Time: O(mn) Space: O(mn)
+
 public class Solution
 {
     public int NumberOfSubmatrices(char[][] grid)

@@ -1,3 +1,6 @@
+// Approach: Sliding window of size k on circular array with duplicate prefix; count valid alternating windows.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int NumberOfAlternatingGroups(int[] colors, int k)

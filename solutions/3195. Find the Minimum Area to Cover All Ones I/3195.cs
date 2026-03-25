@@ -1,3 +1,6 @@
+// Approach: Find bounding box (min/max row and col) of all 1s; return area.
+// Time: O(mn) Space: O(1)
+
 public class Solution
 {
     public int MinimumArea(int[][] grid)

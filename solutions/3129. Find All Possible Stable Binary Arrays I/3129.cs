@@ -1,3 +1,6 @@
+// Approach: DP(zeros_left, ones_left, last) tracking remaining counts and last element; limit run length.
+// Time: O(zero * one * 2) Space: O(zero * one)
+
 public class Solution
 {
     public int NumberOfStableArrays(int zero, int one, int limit)

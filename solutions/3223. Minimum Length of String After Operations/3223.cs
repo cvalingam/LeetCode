@@ -1,3 +1,6 @@
+// Approach: For each char if frequency ≥ 3 we can reduce; count final length from frequency parities.
+// Time: O(n) Space: O(26)
+
 public class Solution
 {
     public int MinimumLength(string s)

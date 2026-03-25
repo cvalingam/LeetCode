@@ -1,3 +1,6 @@
+// Approach: For each 1 count zeros to its right; sum = total operations.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MaxOperations(string s)
