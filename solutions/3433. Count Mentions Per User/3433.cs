@@ -1,3 +1,6 @@
+// Approach: Sort events by time; process ALL/HERE offline tracking online users; sum mentions per user.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     private record OfflineUser(int ReturnTimestamp, int UserId);

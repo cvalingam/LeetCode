@@ -1,3 +1,6 @@
+// Approach: Union-Find for connected components; process queries tracking component sizes.
+// Time: O((c + q) * alpha(n)) Space: O(n)
+
 public class Solution
 {
     public int[] ProcessQueries(int c, int[][] connections, int[][] queries)

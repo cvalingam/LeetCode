@@ -1,3 +1,6 @@
+// Approach: Greedy; sort baskets; for each fruit find smallest capable basket using binary search.
+// Time: O(n log n) Space: O(1)
+
 public class Solution
 {
     public int NumOfUnplacedFruits(int[] fruits, int[] baskets)

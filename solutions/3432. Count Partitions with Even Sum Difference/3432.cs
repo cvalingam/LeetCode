@@ -1,3 +1,6 @@
+// Approach: Partition sum difference is even iff total sum is even; count valid partitions directly.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int CountPartitions(int[] nums)

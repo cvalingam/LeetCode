@@ -1,3 +1,6 @@
+// Approach: Doubly linked list + priority queue; always remove the minimum-sum adjacent pair.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int MinimumPairRemoval(int[] nums)

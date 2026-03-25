@@ -1,3 +1,6 @@
+// Approach: Monotonic stack; pop when current value > 0 and ≤ stack top; count non-zero pops.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MinOperations(int[] nums)

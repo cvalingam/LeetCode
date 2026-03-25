@@ -1,3 +1,6 @@
+// Approach: Sliding window of length >= k; track parity prefix states per (a, b) char pair.
+// Time: O(n * 25) Space: O(n)
+
 public class Solution
 {
     public int MaxDifference(string s, int k)

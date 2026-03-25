@@ -1,3 +1,6 @@
+// Approach: For each cell determine flip parity from range queries applied; XOR result.
+// Time: O(n * k) Space: O(n²)
+
 public class Solution
 {
     public int[][] ReverseSubmatrix(int[][] grid, int x, int y, int k)

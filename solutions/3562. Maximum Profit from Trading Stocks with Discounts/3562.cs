@@ -1,3 +1,6 @@
+// Approach: Tree DP; for each subtree track best buy/sell profit with discount from manager.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     private int budget;

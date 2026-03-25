@@ -1,3 +1,6 @@
+// Approach: Two-pass approach; scan for max balanced window with equal 0s and 1s.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int LongestBalanced(string s)

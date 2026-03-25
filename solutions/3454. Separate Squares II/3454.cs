@@ -1,3 +1,6 @@
+// Approach: Coordinate-compress; binary search on x-coordinate to split equal total square area.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public double SeparateSquares(int[][] squares)

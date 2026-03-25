@@ -1,3 +1,6 @@
+// Approach: Binary search on y-coordinate; count square area above/below; find equal split line.
+// Time: O(n log(max)) Space: O(1)
+
 public class Solution
 {
     public double SeparateSquares(int[][] squares)

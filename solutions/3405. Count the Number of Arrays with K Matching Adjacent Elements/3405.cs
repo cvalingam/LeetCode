@@ -1,3 +1,6 @@
+// Approach: C(n-1, k) * m * (m-1)^(n-1-k) ways: choose k positions for matches, fill freely elsewhere.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     private const int MOD = 1_000_000_007;

@@ -1,3 +1,6 @@
+// Approach: Collect unique values > k; if any < k return -1; else count distinct unique values > k.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MinOperations(int[] nums, int k)

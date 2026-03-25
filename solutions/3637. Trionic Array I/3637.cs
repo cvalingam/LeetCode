@@ -1,3 +1,6 @@
+// Approach: Check if prefix sums can be split at two points with equal thirds.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public bool IsTrionic(int[] nums)

@@ -1,3 +1,6 @@
+// Approach: For each building check if another building fully covers its x and y range.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int CountCoveredBuildings(int n, int[][] buildings)

@@ -1,3 +1,6 @@
+// Approach: Count frequencies; find max odd-frequency - min even-frequency.
+// Time: O(n) Space: O(26)
+
 public class Solution
 {
     public int MaxDifference(string s)

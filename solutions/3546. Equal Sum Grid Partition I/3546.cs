@@ -1,3 +1,6 @@
+// Approach: Prefix row sums; check if any horizontal or vertical cut splits into equal halves.
+// Time: O(mn) Space: O(1)
+
 public class Solution
 {
     public bool CanPartitionGrid(int[][] grid)

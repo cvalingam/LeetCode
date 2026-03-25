@@ -1,3 +1,6 @@
+// Approach: DP tracking buy/sell states with at most k transactions and cooldown constraints.
+// Time: O(n * k) Space: O(k)
+
 public class Solution
 {
     public long MaximumProfit(int[] prices, int k)

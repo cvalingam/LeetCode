@@ -1,3 +1,6 @@
+// Approach: Find longest subarray where all elements appear equal number of times.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int LongestBalanced(int[] nums)

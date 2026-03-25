@@ -1,3 +1,6 @@
+// Approach: Sort rectangles by x or y; check if projections allow ≥ 2 gaps (forming 3 sections).
+// Time: O(n log n) Space: O(1)
+
 public class Solution
 {
     public bool CheckValidCuts(int n, int[][] rectangles)

@@ -1,3 +1,6 @@
+// Approach: Precompute prefix min-max and suffix min-max; find min removals where left max < right min.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MinRemoval(int[] nums, int k)

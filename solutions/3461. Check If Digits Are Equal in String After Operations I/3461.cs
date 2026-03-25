@@ -1,3 +1,6 @@
+// Approach: Reduce string by summing adjacent digits mod 10 repeatedly; check final two digits equal.
+// Time: O(n²) Space: O(n)
+
 public class Solution
 {
     public bool HasSameDigits(string s)

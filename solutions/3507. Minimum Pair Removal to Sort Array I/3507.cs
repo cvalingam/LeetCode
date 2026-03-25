@@ -1,3 +1,6 @@
+// Approach: Simulate removing min-sum adjacent pairs until array is non-decreasing.
+// Time: O(n²) Space: O(n)
+
 public class Solution
 {
     public int MinimumPairRemoval(int[] nums)

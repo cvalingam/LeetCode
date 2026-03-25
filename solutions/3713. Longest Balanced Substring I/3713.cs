@@ -1,3 +1,6 @@
+// Approach: Find longest substring with equal 0s and 1s using prefix sum approach.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int LongestBalanced(string s)

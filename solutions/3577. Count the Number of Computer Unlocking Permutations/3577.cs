@@ -1,3 +1,6 @@
+// Approach: Count permutations where complexity[0] is the minimum; multiply (n-1)! if complexity[0] is min.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int CountPermutations(int[] complexity)

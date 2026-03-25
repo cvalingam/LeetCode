@@ -1,3 +1,6 @@
+// Approach: Sliding window of k meetings; compute max gap after removing k consecutive meetings.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MaxFreeTime(int eventTime, int k, int[] startTime, int[] endTime)

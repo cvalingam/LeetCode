@@ -1,3 +1,6 @@
+// Approach: Scan all length-3 windows; check if middle == (left + right) / 2.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int CountSubarrays(int[] nums)

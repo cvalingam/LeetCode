@@ -1,3 +1,6 @@
+// Approach: Dijkstra on grid with normal moves costing 1 and teleportation edges costing 0.
+// Time: O(mn log(mn)) Space: O(mn)
+
 public class Solution
 {
     public int MinCost(int[][] grid, int k)

@@ -1,3 +1,6 @@
+// Approach: Prefix and suffix maps; for each middle element count left*right where nums[l]*nums[r]=nums[m]².
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int SpecialTriplets(int[] nums)

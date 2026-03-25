@@ -1,3 +1,6 @@
+// Approach: Find lex-largest substring of length max(1, n - numFriends + 1) by direct scan.
+// Time: O(n²) Space: O(1)
+
 public class Solution
 {
     public string AnswerString(string word, int numFriends)

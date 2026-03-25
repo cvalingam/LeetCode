@@ -1,3 +1,6 @@
+// Approach: Validate each coupon's code format, business line membership, and active status.
+// Time: O(n * L) Space: O(1)
+
 public class Solution
 {
     public IList<string> ValidateCoupons(string[] code, string[] businessLine, bool[] isActive)

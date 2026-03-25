@@ -1,3 +1,6 @@
+// Approach: Count vowel and consonant frequencies; return max-freq vowel + max-freq consonant.
+// Time: O(n) Space: O(26)
+
 public class Solution
 {
     public int MaxFreqSum(string s)

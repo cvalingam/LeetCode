@@ -1,3 +1,6 @@
+// Approach: If no duplicates, sum all positives; else take max element + all unique positives.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MaxSum(int[] nums)

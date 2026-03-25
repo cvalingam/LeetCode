@@ -1,3 +1,6 @@
+// Approach: HashMap for cell values; evaluate formulas by parsing references and summing values.
+// Time: O(L) per call Space: O(cells)
+
 public class Spreadsheet
 {
 

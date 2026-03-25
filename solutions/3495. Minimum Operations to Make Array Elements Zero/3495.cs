@@ -1,3 +1,6 @@
+// Approach: For each query range pair count non-zero groups; sum ceil(log4(max)) per group.
+// Time: O(q * log max) Space: O(1)
+
 public class Solution
 {
     public long MinOperations(int[][] queries)

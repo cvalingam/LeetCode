@@ -1,3 +1,6 @@
+// Approach: For each conflicting pair track contribution; try removing each pair and maximize total subarrays.
+// Time: O(n + m) Space: O(n)
+
 public class Solution
 {
     public long MaxSubarrays(int n, int[][] conflictingPairs)

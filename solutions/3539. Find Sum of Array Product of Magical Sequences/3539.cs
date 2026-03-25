@@ -1,3 +1,6 @@
+// Approach: DP over elements tracking (count of chosen, popcount so far mod m) to count magical sequences.
+// Time: O(n * m * k) Space: O(m * k)
+
 class Solution
 {
     private const int MOD = 1_000_000_007;

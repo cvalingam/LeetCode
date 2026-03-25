@@ -1,3 +1,6 @@
+// Approach: Sliding window; count partitions ending at each index where max-min ≤ k.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int CountPartitions(int[] nums, int k)

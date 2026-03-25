@@ -1,3 +1,6 @@
+// Approach: Sort; greedy assign each element the smallest available value ≥ nums[i]-k.
+// Time: O(n log n) Space: O(1)
+
 public class Solution
 {
     public int MaxDistinctElements(int[] nums, int k)

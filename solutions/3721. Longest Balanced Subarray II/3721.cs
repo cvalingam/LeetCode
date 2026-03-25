@@ -1,3 +1,6 @@
+// Approach: Sliding window tracking element frequency balance in integer subarray.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int LongestBalanced(int[] nums)

@@ -1,3 +1,6 @@
+// Approach: DP on each diagonal direction; find longest V (turn at most once) using memoization.
+// Time: O(mn * 4) Space: O(mn * 4)
+
 public class Solution
 {
     private static readonly int[][] DIRS = { new[] { -1, 1 }, new[] { 1, 1 }, new[] { 1, -1 }, new[] { -1, -1 } };

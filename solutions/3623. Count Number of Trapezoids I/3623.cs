@@ -1,3 +1,6 @@
+// Approach: Group points by y; count all pairs of horizontal segments as potential parallel bases.
+// Time: O(n²) Space: O(n)
+
 public class Solution
 {
     public int CountTrapezoids(int[][] points)

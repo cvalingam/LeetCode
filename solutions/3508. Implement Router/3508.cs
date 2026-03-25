@@ -1,3 +1,6 @@
+// Approach: HashMap (source,dest)->SortedSet of timestamps; deque for capacity eviction.
+// Time: O(log n) per op Space: O(capacity)
+
 public class Router
 {
     private record Packet(int source, int destination, int timestamp) { }

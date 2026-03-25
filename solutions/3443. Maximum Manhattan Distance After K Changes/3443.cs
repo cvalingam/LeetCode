@@ -1,3 +1,6 @@
+// Approach: Track 4 direction counts; greedily flip least beneficial directions to maximize Manhattan distance.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     // Class level variables to store the character array and the integer k

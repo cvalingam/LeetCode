@@ -1,3 +1,6 @@
+// Approach: Binary search on stability; Kruskal MST with k upgrades allowed on edges.
+// Time: O(E log E * alpha(n)) Space: O(n + E)
+
 public class Solution
 {
     int n;

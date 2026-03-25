@@ -1,3 +1,6 @@
+// Approach: Prefix sums; try all split positions finding maximum sum balanced trionic partition.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public long MaxSumTrionic(int[] nums)

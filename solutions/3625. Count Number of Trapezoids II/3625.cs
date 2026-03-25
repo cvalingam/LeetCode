@@ -1,3 +1,6 @@
+// Approach: Count pairs with same slope; combine to find all non-degenerate trapezoids.
+// Time: O(n²) Space: O(n²)
+
 public class Solution
 {
     public int CountTrapezoids(int[][] points)

@@ -1,3 +1,6 @@
+// Approach: Simulate brewing; each wizard starts when the previous mana assigned finishes.
+// Time: O(n * m) Space: O(n)
+
 public class Solution
 {
     public long MinTime(int[] skill, int[] mana)

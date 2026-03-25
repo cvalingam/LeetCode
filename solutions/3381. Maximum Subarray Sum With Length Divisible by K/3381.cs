@@ -1,3 +1,6 @@
+// Approach: Prefix sums mod k tracking; for each prefix[i] add current prefix minus min prefix of same mod.
+// Time: O(n) Space: O(k)
+
 public class Solution
 {
     public long MaxSubarraySum(int[] nums, int k)

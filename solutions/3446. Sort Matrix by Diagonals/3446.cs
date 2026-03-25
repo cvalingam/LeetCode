@@ -1,3 +1,6 @@
+// Approach: Extract each diagonal; sort ascending (lower-left) or descending (upper-right); re-insert.
+// Time: O(mn log(min(m,n))) Space: O(mn)
+
 public class Solution
 {
     public int[][] SortMatrix(int[][] grid)

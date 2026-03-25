@@ -1,3 +1,6 @@
+// Approach: Scan all adjacent pairs including wrap-around; return max absolute difference.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MaxAdjacentDistance(int[] nums)

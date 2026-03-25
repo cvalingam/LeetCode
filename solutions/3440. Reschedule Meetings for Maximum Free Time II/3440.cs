@@ -1,3 +1,6 @@
+// Approach: Greedy; for each meeting check if it fits into an adjacent free gap yielding max free time.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MaxFreeTime(int eventTime, int[] startTime, int[] endTime)

@@ -1,3 +1,6 @@
+// Approach: Scan from right in groups of 3; stop when first duplicate encountered; ops = ceil remaining.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MinimumOperations(int[] nums)

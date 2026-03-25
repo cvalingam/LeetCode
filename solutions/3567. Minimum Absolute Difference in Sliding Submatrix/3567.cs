@@ -1,3 +1,6 @@
+// Approach: For each k×k submatrix sort unique elements; find min adjacent difference.
+// Time: O(mn * k² log k) Space: O(k²)
+
 public class Solution
 {
     public int[][] MinAbsDiff(int[][] grid, int k)

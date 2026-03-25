@@ -1,3 +1,6 @@
+// Approach: Priority queue ordered by (priority, taskId); HashMap for O(1) access and removal.
+// Time: O(log n) per op Space: O(n)
+
 class Task : IComparable<Task>
 {
     public int UserId { get; set; }
