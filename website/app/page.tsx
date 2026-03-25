@@ -5,7 +5,15 @@ import { Suspense } from 'react'
 import { SITE_URL } from '@/lib/constants'
 
 export const metadata: Metadata = {
+  title: 'LeetCode C# Solutions — 800+ Problems Solved',
+  description: 'Clean, readable C# solutions to 800+ LeetCode problems and 500+ GeeksforGeeks Java solutions. Built for .NET developers cracking the coding interview.',
   alternates: { canonical: '/' },
+  openGraph: {
+    title: 'LeetCode C# Solutions — DSA Solutions',
+    description: 'Clean, readable C# solutions to 800+ LeetCode problems and 500+ GeeksforGeeks Java solutions.',
+    url: '/',
+    type: 'website',
+  },
 }
 
 const websiteJsonLd = {

@@ -6,6 +6,12 @@ export const metadata: Metadata = {
   description: 'About DSA Solutions — clean C# LeetCode and Java GFG solutions for interview prep.',
   alternates: { canonical: '/about' },
   keywords: ['LeetCode', 'GeeksforGeeks', 'C#', 'Java', 'DSA', 'interview prep'],
+  openGraph: {
+    title: 'About DSA Solutions',
+    description: 'About DSA Solutions — clean C# LeetCode and Java GFG solutions for interview prep.',
+    url: '/about',
+    type: 'website',
+  },
 }
 
 export default function AboutPage() {
