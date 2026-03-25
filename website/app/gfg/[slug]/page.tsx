@@ -22,7 +22,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!problem) return {}
 
   const title = problem.title
-  const desc  = `GeeksforGeeks: ${problem.title} — clean Java solution. GFG Problem of the Day.`
+  let desc = `GeeksforGeeks ${problem.title} – Java solution`
+  if (problem.approach) desc += `. ${problem.approach}`
+  else desc += `. GFG Problem of the Day.`
 
   return {
     title,
@@ -43,6 +45,9 @@ export default async function GfgProblemPage({ params }: Props) {
 
   const { prev, next } = getAdjacentGfgProblems(params.slug)
   const gfgSlug = toLeetCodeSlug(problem.title)
+  let schemaDesc = `GeeksforGeeks ${problem.title} – Java solution`
+  if (problem.approach) schemaDesc += `. ${problem.approach}`
+  else schemaDesc += `. GFG Problem of the Day.`
 
   return (
     <article className="max-w-3xl mx-auto py-8">
@@ -56,12 +61,14 @@ export default async function GfgProblemPage({ params }: Props) {
               {
                 '@type': 'TechArticle',
                 headline: `${problem.title} — GFG Java Solution`,
-                description: `GeeksforGeeks: ${problem.title} — clean Java solution. GFG Problem of the Day.`,
+                description: schemaDesc,
                 author: { '@type': 'Person', name: 'Sivalingam Ramasamy', url: 'https://github.com/cvalingam' },
                 url: `${SITE_URL}/gfg/${problem.slug}`,
                 datePublished: '2025-01-01',
-                dateModified: '2025-01-01',
+                dateModified: '2025-06-01',
                 image: `${SITE_URL}/opengraph-image`,
+                programmingLanguage: 'Java',
+                proficiencyLevel: 'Beginner',
               },
               {
                 '@type': 'BreadcrumbList',

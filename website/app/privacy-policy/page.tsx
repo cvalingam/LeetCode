@@ -5,6 +5,12 @@ export const metadata: Metadata = {
   title: 'Privacy Policy',
   description: 'Privacy Policy for DSA Solutions (dsasolved.com).',
   alternates: { canonical: '/privacy-policy' },
+  openGraph: {
+    title: 'Privacy Policy — DSA Solutions',
+    description: 'Privacy Policy for DSA Solutions (dsasolved.com).',
+    url: '/privacy-policy',
+    type: 'website',
+  },
 }
 
 export default function PrivacyPolicyPage() {

@@ -97,6 +97,8 @@ export default async function ProblemPage({ params }: Props) {
                 datePublished: '2024-01-01',
                 dateModified: '2025-06-01',
                 image: `${SITE_URL}/opengraph-image`,
+                programmingLanguage: primaryLabel,
+                proficiencyLevel: 'Beginner',
               },
               {
                 '@type': 'BreadcrumbList',
