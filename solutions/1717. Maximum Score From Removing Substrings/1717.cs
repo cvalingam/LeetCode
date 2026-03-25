@@ -1,3 +1,6 @@
+// Approach: Greedy stack — remove higher-scoring pair first, then lower-scoring pair in second pass.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MaximumGain(string s, int x, int y)

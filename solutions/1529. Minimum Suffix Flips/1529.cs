@@ -1,3 +1,6 @@
+// Approach: Greedily count each time the current state differs from target[i]; flip state on mismatch.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinFlips(string target)

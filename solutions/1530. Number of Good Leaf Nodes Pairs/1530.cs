@@ -1,3 +1,6 @@
+// Approach: DFS returning depth-list of leaves; count pairs within distance using two-pointer on merged sorted lists.
+// Time: O(n * distance²) Space: O(n)
+
 public class TreeNode
 {
     public int val;

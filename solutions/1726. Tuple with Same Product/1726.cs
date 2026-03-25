@@ -1,3 +1,6 @@
+// Approach: Count all pairwise products in a HashMap; each duplicate pair yields 8 tuples.
+// Time: O(n²) Space: O(n²)
+
 public class Solution
 {
     public int TupleSameProduct(int[] nums)

@@ -1,3 +1,6 @@
+// Approach: DFS tree with per-value stacks of (node, depth); for each node check coprime values for deepest ancestor.
+// Time: O(n * 50²) Space: O(n)
+
 public class Solution
 {
     public int[] GetCoprimes(int[] nums, int[][] edges)

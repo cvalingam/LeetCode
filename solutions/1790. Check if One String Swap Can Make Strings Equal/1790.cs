@@ -1,3 +1,6 @@
+// Approach: Collect differing indices; must be 0 (equal) or exactly 2 with cross-match chars.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public bool AreAlmostEqual(string s1, string s2)

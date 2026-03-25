@@ -1,3 +1,6 @@
+// Approach: Check 0 days (already disconnected), then try removing each land cell (1 day), otherwise answer is 2.
+// Time: O((mn)²) Space: O(mn)
+
 public class Solution
 {
     public int MinDays(int[][] grid)

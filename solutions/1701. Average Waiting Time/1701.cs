@@ -1,3 +1,6 @@
+// Approach: Simulate chef's current finish time; accumulate wait time and divide by n.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public double AverageWaitingTime(int[][] customers)

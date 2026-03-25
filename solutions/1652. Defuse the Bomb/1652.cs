@@ -1,3 +1,6 @@
+// Approach: Circular sliding window sum — use prefix sums on doubled array to handle wrap-around.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int[] Decrypt(int[] code, int k)

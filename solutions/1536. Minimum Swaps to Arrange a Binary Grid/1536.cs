@@ -1,3 +1,6 @@
+// Approach: Precompute suffix zeros per row; for each diagonal requirement greedily find the nearest valid row and bubble it up.
+// Time: O(n²) Space: O(n)
+
 public class Solution
 {
     public int MinSwaps(int[][] grid)

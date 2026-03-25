@@ -1,3 +1,6 @@
+// Approach: Sliding window with last-seen index array; track window sum via prefix sums.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MaximumUniqueSubarray(int[] nums)

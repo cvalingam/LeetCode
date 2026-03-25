@@ -1,3 +1,6 @@
+// Approach: Two-pass prefix scan (left-to-right then right-to-left) accumulating count and moves.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int[] MinOperations(string boxes)

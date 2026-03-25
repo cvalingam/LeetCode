@@ -1,3 +1,6 @@
+// Approach: Lazy linear transform a*x+b maintained globally; use Fermat's little theorem for modular inverse on GetIndex.
+// Time: O(1) per op, O(n) for getIndex Space: O(n)
+
 public class Fancy
 {
     // To undo a * val + b and get the original value, we append (val - b) / a.

@@ -1,3 +1,6 @@
+// Approach: Max-heap keyed by marginal gain of adding one student; greedily assign all extra students.
+// Time: O((n+e) log n) Space: O(n)
+
 public class Solution
 {
     public double MaxAverageRatio(int[][] classes, int extraStudents)

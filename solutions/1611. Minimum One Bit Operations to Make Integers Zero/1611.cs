@@ -1,3 +1,6 @@
+// Approach: Gray code recursion — f(n) = f(n XOR (highBit | highBit>>1)) + 1 + highBit - 1.
+// Time: O(log n) Space: O(log n)
+
 public class Solution
 {
     public int MinimumOneBitOperations(int n)

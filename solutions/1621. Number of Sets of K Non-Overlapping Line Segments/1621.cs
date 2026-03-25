@@ -1,3 +1,6 @@
+// Approach: DP with memoization — state (point, segments, prevUsed) to count valid placements.
+// Time: O(n²k) Space: O(nk)
+
 public class Solution
 {
     public int NumberOfSets(int n, int k)

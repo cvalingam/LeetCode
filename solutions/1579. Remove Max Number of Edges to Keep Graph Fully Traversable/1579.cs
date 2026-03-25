@@ -1,3 +1,6 @@
+// Approach: Dual Union-Find for Alice and Bob; process type-3 edges first (shared), then type 1/2; count unused.
+// Time: O(E α(n)) Space: O(n)
+
 public class Solution
 {
     public int MaxNumEdgesToRemove(int n, int[][] edges)

@@ -1,3 +1,6 @@
+// Approach: Prefix sums mod p with a HashMap to find shortest subarray whose removal makes total divisible by p.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MinSubarray(int[] nums, int p)

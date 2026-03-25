@@ -1,3 +1,6 @@
+// Approach: Sort by end time; DP with binary search to find last non-overlapping event for each state.
+// Time: O(nk log n) Space: O(nk)
+
 public class Solution
 {
     public int MaxValue(int[][] events, int k)

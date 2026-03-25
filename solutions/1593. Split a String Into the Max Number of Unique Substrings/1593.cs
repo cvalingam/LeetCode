@@ -1,3 +1,6 @@
+// Approach: DFS backtracking trying all prefix splits while maintaining a seen set of used substrings.
+// Time: O(n * 2^n) Space: O(n)
+
 public class Solution
 {
     private int ans = 0;

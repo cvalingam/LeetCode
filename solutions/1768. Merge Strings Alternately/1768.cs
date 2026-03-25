@@ -1,3 +1,6 @@
+// Approach: Two-pointer alternating append, then append remainder of whichever string is longer.
+// Time: O(m+n) Space: O(m+n)
+
 public class Solution
 {
     public string MergeAlternately(string word1, string word2)

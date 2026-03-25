@@ -1,3 +1,6 @@
+// Approach: Find longest non-decreasing prefix and suffix; two-pointer merge to find shortest removal.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int FindLengthOfShortestSubarray(int[] arr)

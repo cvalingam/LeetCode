@@ -1,3 +1,6 @@
+// Approach: LIS from left and right; find peak where both sides > 1; minimize removals = n - (l[i]+r[i]-1).
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int MinimumMountainRemovals(int[] nums)

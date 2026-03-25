@@ -1,3 +1,6 @@
+// Approach: Greedy — for each run of same color balloons keep the max-cost one and sum the rest.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinCost(string colors, int[] neededTime)

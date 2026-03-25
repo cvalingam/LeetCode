@@ -1,3 +1,6 @@
+// Approach: Binary search on bag size; validate by counting required splits ≤ maxOperations.
+// Time: O(n log(max)) Space: O(1)
+
 public class Solution
 {
     public int MinimumSize(int[] nums, int maxOperations)

@@ -1,3 +1,6 @@
+// Approach: Binary search on minimum force; validate each mid by greedy placement.
+// Time: O(n log n + n log(max-min)) Space: O(1)
+
 public class Solution
 {
     public int MaxDistance(int[] position, int m)

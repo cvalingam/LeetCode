@@ -1,3 +1,6 @@
+// Approach: Count student preferences; simulate serving sandwiches top-of-stack; stop when no match possible.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int CountStudents(int[] students, int[] sandwiches)

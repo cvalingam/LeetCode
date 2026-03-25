@@ -1,3 +1,6 @@
+// Approach: Linear scan maintaining running sum of current ascending subarray; reset on non-increase.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MaxAscendingSum(int[] nums)

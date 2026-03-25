@@ -1,3 +1,6 @@
+// Approach: Count ones; if not divisible by 3 return 0; choose 2 split points from gaps between groups.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int NumWays(string s)

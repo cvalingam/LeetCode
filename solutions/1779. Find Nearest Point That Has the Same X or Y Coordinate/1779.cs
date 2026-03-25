@@ -1,3 +1,6 @@
+// Approach: Linear scan; filter points sharing x or y with query; return index of minimum Manhattan distance.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int NearestValidPoint(int x, int y, int[][] points)

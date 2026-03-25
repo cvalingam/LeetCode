@@ -1,3 +1,6 @@
+// Approach: BFS exploring all reachable strings via add-to-odd-indices and rotate operations.
+// Time: O(n * 10² * n) Space: O(n * 10²)
+
 public class Solution
 {
     public string FindLexSmallestString(string s, int a, int b)

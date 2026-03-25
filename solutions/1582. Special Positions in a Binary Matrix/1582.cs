@@ -1,3 +1,6 @@
+// Approach: Precompute row and column sums; count cells that are 1 with row sum = col sum = 1.
+// Time: O(mn) Space: O(m+n)
+
 public class Solution
 {
     public int NumSpecial(int[][] mat)

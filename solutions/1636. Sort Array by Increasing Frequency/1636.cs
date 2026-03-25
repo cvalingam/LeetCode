@@ -1,3 +1,6 @@
+// Approach: Count frequencies then sort by frequency ascending, value descending.
+// Time: O(n log n) Space: O(n)
+
 public class Solution {
     public int[] FrequencySort(int[] nums) {
         int[] cnt = new int[201];

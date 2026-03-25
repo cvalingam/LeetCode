@@ -1,3 +1,6 @@
+// Approach: Track max prefix sum and min prefix sum; answer is max(maxSum, -minSum).
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MaxAbsoluteSum(int[] nums)

@@ -1,3 +1,6 @@
+// Approach: Scan the command string; 'G'→'G', '()'→'o', '(al)'→'al'.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string Interpret(string command)

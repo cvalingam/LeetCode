@@ -1,3 +1,6 @@
+// Approach: Find friendships that can't communicate; for each candidate language count people who don't know it.
+// Time: O(f * p * L) Space: O(fp)
+
 public class Solution
 {
     public int MinimumTeachings(int n, int[][] languages, int[][] friendships)

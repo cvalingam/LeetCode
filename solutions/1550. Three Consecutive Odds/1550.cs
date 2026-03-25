@@ -1,3 +1,6 @@
+// Approach: Linear scan counting consecutive odd numbers; reset on even.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public bool ThreeConsecutiveOdds(int[] arr)

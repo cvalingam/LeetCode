@@ -1,3 +1,6 @@
+// Approach: Build column histograms row by row; sort each row's histogram and compute max width * height.
+// Time: O(mn log n) Space: O(n)
+
 public class Solution
 {
     public int LargestSubmatrix(int[][] matrix)

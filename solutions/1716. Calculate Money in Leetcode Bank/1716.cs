@@ -1,3 +1,6 @@
+// Approach: Math formula — sum complete weeks (arithmetic series of week totals) plus remaining days.
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public int TotalMoney(int n)

@@ -1,3 +1,6 @@
+// Approach: Multi-source BFS from all water cells simultaneously; each land cell gets distance to nearest water.
+// Time: O(mn) Space: O(mn)
+
 public class Solution
 {
     public int[][] HighestPeak(int[][] isWater)

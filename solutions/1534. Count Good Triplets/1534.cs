@@ -1,3 +1,6 @@
+// Approach: Brute-force O(n³) check all triplets i<j<k satisfying all three difference constraints.
+// Time: O(n³) Space: O(1)
+
 public class Solution
 {
     public int CountGoodTriplets(int[] arr, int a, int b, int c)

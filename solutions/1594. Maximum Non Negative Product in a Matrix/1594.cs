@@ -1,3 +1,6 @@
+// Approach: DP tracking min and max products at each cell to handle sign flips; return max mod 1e9+7.
+// Time: O(mn) Space: O(mn)
+
 public class Solution
 {
     public int MaxProductPath(int[][] grid)

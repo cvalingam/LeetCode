@@ -1,3 +1,6 @@
+// Approach: Boolean set of allowed chars; count words where every char is in set.
+// Time: O(n*m) Space: O(1)
+
 public class Solution
 {
     public int CountConsistentStrings(string allowed, string[] words)

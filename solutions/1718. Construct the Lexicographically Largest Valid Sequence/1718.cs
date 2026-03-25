@@ -1,3 +1,6 @@
+// Approach: DFS backtracking with bitmask; place largest unused number first at valid positions.
+// Time: O(n!) Space: O(n)
+
 public class Solution
 {
     public int[] ConstructDistancedSequence(int n)

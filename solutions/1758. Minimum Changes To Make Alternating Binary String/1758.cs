@@ -1,3 +1,6 @@
+// Approach: Count mismatches for '1010...' pattern; answer is min(cost, n-cost).
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinOperations(string s)

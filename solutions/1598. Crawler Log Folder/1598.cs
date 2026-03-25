@@ -1,3 +1,6 @@
+// Approach: Simulate directory depth: '../' decrements, './' stays, otherwise increment; clamp at 0.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinOperations(string[] logs)
