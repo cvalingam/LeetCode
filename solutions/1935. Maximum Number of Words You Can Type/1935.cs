@@ -1,3 +1,6 @@
+// Approach: Mark broken letters in a boolean array; count words with no broken letter.
+// Time: O(n*m) Space: O(1)
+
 public class Solution
 {
     public int CanBeTypedWords(string text, string brokenLetters)

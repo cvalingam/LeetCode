@@ -1,3 +1,6 @@
+// Approach: Union-Find; group meetings by timestamp; process each group and reset non-secret nodes.
+// Time: O(m log m + n) Space: O(n)
+
 public class Solution
 {
     public IList<int> FindAllPeople(int n, int[][] meetings, int firstPerson)

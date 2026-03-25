@@ -1,3 +1,6 @@
+// Approach: Binary search on the peak value at index; use arithmetic-series formula to validate sum constraint.
+// Time: O(log(maxSum)) Space: O(1)
+
 public class Solution
 {
     public int MaxValue(int n, int index, int maxSum)

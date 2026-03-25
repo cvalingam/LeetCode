@@ -1,3 +1,6 @@
+// Approach: Build result StringBuilder; skip appending char if last two are already the same.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string MakeFancyString(string s)

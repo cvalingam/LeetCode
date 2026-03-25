@@ -1,3 +1,6 @@
+// Approach: DP over prime bitmasks; for each squarefree value multiply contribution using count array.
+// Time: O(30 * 1024) Space: O(1024)
+
 public class Solution
 {
     public int NumberOfGoodSubsets(int[] nums)

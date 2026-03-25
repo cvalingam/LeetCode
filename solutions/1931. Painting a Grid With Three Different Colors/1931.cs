@@ -1,3 +1,6 @@
+// Approach: DP over column masks; memoize by (column, mask); precompute valid transitions between masks.
+// Time: O(n * 3^m) Space: O(n * 3^m)
+
 public class Solution
 {
     private int m;

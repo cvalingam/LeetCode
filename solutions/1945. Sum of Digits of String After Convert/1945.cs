@@ -1,3 +1,6 @@
+// Approach: Convert letters to numbers, concatenate, then sum digits k times.
+// Time: O(|s| + k * 10) Space: O(|s|)
+
 public class Solution
 {
     public int GetLucky(string s, int k)

@@ -1,3 +1,6 @@
+// Approach: Split sentence, sort by trailing digit (word position), strip digits and rejoin.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public string SortSentence(string s)

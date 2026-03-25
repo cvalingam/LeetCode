@@ -1,3 +1,6 @@
+// Approach: Build XOR prefix; for each query XOR prefix with (2^maximumBit - 1) to flip all bits.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int[] GetMaximumXor(int[] nums, int maximumBit)

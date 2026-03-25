@@ -1,3 +1,6 @@
+// Approach: Compute required missing sum; distribute evenly across n dice, adjust remainder.
+// Time: O(n + m) Space: O(n)
+
 public class Solution
 {
     public int[] MissingRolls(int[] rolls, int mean, int n)

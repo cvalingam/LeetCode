@@ -1,3 +1,6 @@
+// Approach: Frequency prefix sums; for each value v iterate multiples k*v and add count[k*v] * k.
+// Time: O(max log max) Space: O(max)
+
 public class Solution
 {
     public int SumOfFlooredPairs(int[] nums)

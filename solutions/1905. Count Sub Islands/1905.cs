@@ -1,3 +1,6 @@
+// Approach: DFS flood fill each island in grid2; sub-island only if all its cells are land in grid1.
+// Time: O(mn) Space: O(mn)
+
 public class Solution
 {
     public int CountSubIslands(int[][] grid1, int[][] grid2)

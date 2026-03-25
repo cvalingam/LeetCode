@@ -1,3 +1,6 @@
+// Approach: Simulate gravity rightward per row; then rotate the matrix 90° clockwise.
+// Time: O(mn) Space: O(mn)
+
 public class Solution
 {
     public char[][] RotateTheBox(char[][] box)

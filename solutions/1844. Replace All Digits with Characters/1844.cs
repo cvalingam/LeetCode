@@ -1,3 +1,6 @@
+// Approach: For each even-index letter, shift the following digit to produce the target char.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string ReplaceDigits(string s)

@@ -1,3 +1,6 @@
+// Approach: DP with two states (even/odd position sums); greedily add or skip each element.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public long MaxAlternatingSum(int[] nums)

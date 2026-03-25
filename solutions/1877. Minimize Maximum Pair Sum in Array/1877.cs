@@ -1,3 +1,6 @@
+// Approach: Sort array; pair smallest with largest; maximum pair sum is minimized.
+// Time: O(n log n) Space: O(1)
+
 public class Solution
 {
     public int MinPairSum(int[] nums)

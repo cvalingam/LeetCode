@@ -1,3 +1,6 @@
+// Approach: Memoized DFS simulating rounds; for each arrangement try outcomes for all pairs.
+// Time: O(n^4) Space: O(n^4)
+
 public class Solution
 {
     public int[] EarliestAndLatest(int n, int firstPlayer, int secondPlayer)

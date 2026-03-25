@@ -1,3 +1,6 @@
+// Approach: HashMap for nums2 frequencies; update adjusts map; count queries scan nums1 checking (tot-v) in map.
+// Time: O(n2) per count, O(1) amortized update Space: O(n2)
+
 public class FindSumPairs
 {
     // Arrays to store the two input integer arrays

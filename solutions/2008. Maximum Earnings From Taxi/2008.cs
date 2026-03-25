@@ -1,3 +1,6 @@
+// Approach: DP on city positions; store rides by start; at each point take best ending ride or skip.
+// Time: O(n + r log r) Space: O(n + r)
+
 public class Solution
 {
     public long MaxTaxiEarnings(int n, int[][] rides)

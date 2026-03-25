@@ -1,3 +1,6 @@
+// Approach: Sort + deduplicate; sliding window of size n; minimize elements outside window to replace.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int MinOperations(int[] nums)

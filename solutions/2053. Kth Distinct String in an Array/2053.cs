@@ -1,3 +1,6 @@
+// Approach: Count occurrences with a dictionary; iterate in order and return the kth string with count 1.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string KthDistinct(string[] arr, int k)

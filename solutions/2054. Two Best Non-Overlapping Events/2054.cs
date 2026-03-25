@@ -1,3 +1,6 @@
+// Approach: Sort events by end time; sweep with prefix max value; binary search for non-overlapping pair.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int MaxTwoEvents(int[][] events)

@@ -1,3 +1,6 @@
+// Approach: Sort array; use a queue/map to match each element with its double; build original array.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int[] FindOriginalArray(int[] changed)

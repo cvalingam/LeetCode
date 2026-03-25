@@ -1,3 +1,6 @@
+// Approach: Sort items; build prefix max beauty array; binary search per query for affordable max beauty.
+// Time: O((n + q) log n) Space: O(n)
+
 public class Solution
 {
     public int[] MaximumBeauty(int[][] items, int[] queries)

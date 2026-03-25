@@ -1,3 +1,6 @@
+// Approach: Eulerian path — find start node (outDegree - inDegree = 1 or arbitrary); Hierholzer's DFS.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int[][] ValidArrangement(int[][] pairs)

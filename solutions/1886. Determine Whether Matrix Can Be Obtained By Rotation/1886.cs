@@ -1,3 +1,6 @@
+// Approach: Try all 4 rotations; return true if any matches target matrix.
+// Time: O(n²) Space: O(1)
+
 public class Solution
 {
     public bool FindRotation(int[][] mat, int[][] target)

@@ -1,3 +1,6 @@
+// Approach: For each char find first/last occurrence; count distinct chars between them as middle.
+// Time: O(26n) Space: O(1)
+
 public class Solution
 {
     public int CountPalindromicSubsequence(string s)

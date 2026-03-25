@@ -1,3 +1,6 @@
+// Approach: Store balances in array; validate account indices on each operation.
+// Time: O(1) per op Space: O(n)
+
 public class Bank
 {
     // Array to store account balances

@@ -1,3 +1,6 @@
+// Approach: Sort by value descending to pick top k; sort their original indices to preserve order.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int[] MaxSubsequence(int[] nums, int k)

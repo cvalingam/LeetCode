@@ -1,3 +1,6 @@
+// Approach: Two-loop with HashMap tracking nums[d]-nums[c] values; count matching a+b+c == d.
+// Time: O(n²) Space: O(n)
+
 public class Solution
 {
     public int CountQuadruplets(int[] nums)

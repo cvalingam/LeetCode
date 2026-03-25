@@ -1,3 +1,6 @@
+// Approach: Find LCA; DFS paths from LCA to start (all 'U') and LCA to dest; concatenate.
+// Time: O(n) Space: O(n)
+
 public class TreeNode
 {
     public int val;

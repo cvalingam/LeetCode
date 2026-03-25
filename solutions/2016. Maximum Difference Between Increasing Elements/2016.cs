@@ -1,3 +1,6 @@
+// Approach: Track running minimum; for each element compute diff with running min; take max.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MaximumDifference(int[] nums)

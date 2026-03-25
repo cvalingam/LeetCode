@@ -1,3 +1,6 @@
+// Approach: Double the string; sliding window of length n; track flip costs for both patterns.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MinFlips(string s)

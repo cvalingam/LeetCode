@@ -1,3 +1,6 @@
+// Approach: Sum absolute values; if odd number of negatives subtract 2 * minimum absolute value.
+// Time: O(mn) Space: O(1)
+
 public class Solution
 {
     public long MaxMatrixSum(int[][] matrix)

@@ -1,3 +1,6 @@
+// Approach: Brute-force from n+1 upward; for each candidate check if digit d appears exactly d times.
+// Time: O(answer * 10) Space: O(1)
+
 public class Solution
 {
     public int NextBeautifulNumber(int n)

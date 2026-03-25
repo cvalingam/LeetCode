@@ -1,3 +1,6 @@
+// Approach: Modified BFS tracking best and second-best distance to each node; handle traffic light waits.
+// Time: O((n + E) log n) Space: O(n)
+
 public class Solution
 {
     public int SecondMinimum(int n, int[][] edges, int time, int change)

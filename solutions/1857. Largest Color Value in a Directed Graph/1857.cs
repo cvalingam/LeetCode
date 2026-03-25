@@ -1,3 +1,6 @@
+// Approach: Topological sort (Kahn's); DP tracks max frequency of each color along paths; detect cycles.
+// Time: O(n + E) Space: O(n)
+
 public class Solution
 {
     public int LargestPathValue(string colors, int[][] edges)

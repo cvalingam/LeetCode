@@ -1,3 +1,6 @@
+// Approach: Binary search on max products per store; validate by summing ceil(qty/mid) for each product type.
+// Time: O(n log max) Space: O(1)
+
 public class Solution
 {
     public int MinimizedMaximum(int n, int[] quantities)

@@ -1,3 +1,6 @@
+// Approach: Union-Find; union all edges; return true if source and destination are in same component.
+// Time: O(E α(n)) Space: O(n)
+
 public class Solution
 {
     public bool ValidPath(int n, int[][] edges, int source, int destination)

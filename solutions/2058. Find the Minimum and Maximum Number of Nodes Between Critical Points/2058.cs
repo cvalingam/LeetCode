@@ -1,3 +1,6 @@
+// Approach: Single pass tracking first and last critical point indices; compute min gap between consecutive.
+// Time: O(n) Space: O(1)
+
 public class ListNode
 {
     public int val;

@@ -1,3 +1,6 @@
+// Approach: Find min and max indices; try 3 removal strategies (both from left, both from right, one each side).
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinimumDeletions(int[] nums)

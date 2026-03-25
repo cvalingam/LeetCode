@@ -1,3 +1,6 @@
+// Approach: DFS tree traversal with an online Trie; for each query node answer XOR queries against active path.
+// Time: O((n + q) log max) Space: O(n log max)
+
 public class Solution
 {
     public int[] MaxGeneticDifference(int[] parents, int[][] queries)

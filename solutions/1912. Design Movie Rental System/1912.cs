@@ -1,3 +1,6 @@
+// Approach: SortedSets keyed by (price, shop) for unrented; per-movie SortedSets for cheapest rented.
+// Time: O(log n) per op Space: O(n)
+
 public class MovieRentingSystem
 {
     private class Entry : IComparable<Entry>

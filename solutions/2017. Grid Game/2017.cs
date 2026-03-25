@@ -1,3 +1,6 @@
+// Approach: First robot splits row0 (left prefix) and row1 (right prefix); second robot takes max of remainders.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public long GridGame(int[][] grid)

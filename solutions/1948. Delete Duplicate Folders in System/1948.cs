@@ -1,3 +1,6 @@
+// Approach: Build Trie; serialize each subtree; mark duplicates via HashMap; output surviving paths.
+// Time: O(total path length) Space: O(n)
+
 public class Solution
 {
     public IList<IList<string>> DeleteDuplicateFolder(IList<IList<string>> paths)

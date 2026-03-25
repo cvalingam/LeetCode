@@ -1,3 +1,6 @@
+// Approach: Use StringBuilder as a virtual stack; after each append, check if suffix matches part and remove.
+// Time: O(n * k) Space: O(n)
+
 public class Solution
 {
     public string RemoveOccurrences(string s, string part)

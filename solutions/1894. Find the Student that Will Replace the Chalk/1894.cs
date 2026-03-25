@@ -1,3 +1,6 @@
+// Approach: Sum all chalk; reduce k mod total sum; linear scan to find who runs out.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int ChalkReplacer(int[] chalk, int k)

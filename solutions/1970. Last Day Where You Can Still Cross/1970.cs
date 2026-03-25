@@ -1,3 +1,6 @@
+// Approach: Binary search on day; BFS/DFS to check if top-to-bottom path exists with flooded cells.
+// Time: O(mn log(mn)) Space: O(mn)
+
 public class Solution
 {
     private int[][] cells;

@@ -1,3 +1,6 @@
+// Approach: Encode new and old values into same cell using modular arithmetic; decode in second pass.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int[] BuildArray(int[] nums)

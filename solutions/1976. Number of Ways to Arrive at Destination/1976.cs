@@ -1,3 +1,6 @@
+// Approach: Dijkstra shortest path; accumulate count of shortest-path ways with DP.
+// Time: O((n + E) log n) Space: O(n + E)
+
 public class Solution
 {
     public int CountPaths(int n, int[][] roads)

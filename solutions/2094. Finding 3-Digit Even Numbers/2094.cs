@@ -1,3 +1,6 @@
+// Approach: Count digit frequencies; enumerate all 3-digit even numbers and check feasibility with counts.
+// Time: O(1000) Space: O(1)
+
 public class Solution
 {
     public int[] FindEvenNumbers(int[] digits)

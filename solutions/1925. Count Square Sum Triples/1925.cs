@@ -1,3 +1,6 @@
+// Approach: Brute-force all pairs (a,b); check if a²+b² is a perfect square ≤ n.
+// Time: O(n²) Space: O(n)
+
 public class Solution
 {
     public int CountTriples(int n)

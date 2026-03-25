@@ -1,3 +1,6 @@
+// Approach: Prefix sums; fill averages for indices with full window of size 2k+1.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int[] GetAverages(int[] nums, int k)

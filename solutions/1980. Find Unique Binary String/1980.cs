@@ -1,3 +1,6 @@
+// Approach: Cantor's diagonal — flip the i-th bit of nums[i] to guarantee the result differs from every string.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string FindDifferentBinaryString(string[] nums)

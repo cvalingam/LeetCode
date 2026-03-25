@@ -1,3 +1,6 @@
+// Approach: Flatten grid; check all values share same remainder mod x; sort and use median as target.
+// Time: O(mn log(mn)) Space: O(mn)
+
 public class Solution
 {
     public int MinOperations(int[][] grid, int x)

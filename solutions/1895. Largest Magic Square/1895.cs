@@ -1,3 +1,6 @@
+// Approach: Precompute row and diagonal prefix sums; check all submatrices for equal row/col/diagonal sums.
+// Time: O(mn * min(m,n)) Space: O(mn)
+
 public class Solution
 {
     public int LargestMagicSquare(int[][] grid)

@@ -1,3 +1,6 @@
+// Approach: Split into word arrays; match common prefix and suffix with two pointers; check if shorter is covered.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public bool AreSentencesSimilar(string sentence1, string sentence2)

@@ -1,3 +1,6 @@
+// Approach: For each cell try all rhombus sizes; compute border sums with diagonal prefix sums; track top 3.
+// Time: O(mn * min(m,n)) Space: O(mn)
+
 public class Solution
 {
     public int[] GetBiggestThree(int[][] grid)

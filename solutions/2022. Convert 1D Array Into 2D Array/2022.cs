@@ -1,3 +1,6 @@
+// Approach: Validate m*n == len; fill 2D array row by row from 1D index.
+// Time: O(mn) Space: O(mn)
+
 public class Solution
 {
     public int[][] Construct2DArray(int[] original, int m, int n)

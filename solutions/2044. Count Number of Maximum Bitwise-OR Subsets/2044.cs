@@ -1,3 +1,6 @@
+// Approach: Compute max OR of whole array; DFS enumerate subsets counting those achieving max OR.
+// Time: O(2^n) Space: O(n)
+
 public class Solution
 {
     private int ans = 0;

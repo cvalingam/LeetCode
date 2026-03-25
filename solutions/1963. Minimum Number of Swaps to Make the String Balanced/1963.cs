@@ -1,3 +1,6 @@
+// Approach: Count unmatched ']' after cancelling matched pairs; answer = ceil(unmatched / 2).
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinSwaps(string s)

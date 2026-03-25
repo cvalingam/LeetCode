@@ -1,3 +1,6 @@
+// Approach: Fast power for count of even-position choices (5 options) and odd-position choices (4 options).
+// Time: O(log n) Space: O(1)
+
 public class Solution
 {
     int mod = 1000000007;

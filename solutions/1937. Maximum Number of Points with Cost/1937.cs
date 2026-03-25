@@ -1,3 +1,6 @@
+// Approach: DP row by row; left-right sweeps track running max to avoid O(n²) per row.
+// Time: O(mn) Space: O(n)
+
 public class Solution
 {
     public long MaxPoints(int[][] points)

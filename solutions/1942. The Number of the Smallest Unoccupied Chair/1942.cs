@@ -1,3 +1,6 @@
+// Approach: Min-heaps for free chairs and occupied (endTime, chair) pairs; assign smallest available.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int SmallestChair(int[][] times, int targetFriend)
