@@ -1,3 +1,6 @@
+// Approach: Two arrays can be made equal by reversals iff they have the same multiset of elements.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public bool CanBeEqual(int[] target, int[] arr)

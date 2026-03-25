@@ -1,3 +1,6 @@
+// Approach: Floyd-Warshall transitive closure; isPrerequisite[i][j] = true if i can reach j through the prerequisite graph.
+// Time: O(n³) Space: O(n²)
+
 public class Solution
 {
     public IList<bool> CheckIfPrerequisite(int numCourses, int[][] prerequisites, int[][] queries)

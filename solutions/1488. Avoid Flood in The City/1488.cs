@@ -1,3 +1,6 @@
+// Approach: Track filled lakes; greedily use a SortedSet of sunny days to drain the lake that was most recently filled before it rains again.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int[] AvoidFlood(int[] rains)

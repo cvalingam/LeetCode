@@ -1,3 +1,6 @@
+// Approach: Count characters with odd frequency; need at least that many palindromes; also need |s| >= k.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public bool CanConstruct(string s, int k)

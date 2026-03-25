@@ -1,3 +1,6 @@
+// Approach: Count numbers per digit-sum group (max sum = 36 for 4-digit); return count of groups with maximum size.
+// Time: O(n log n) Space: O(1)
+
 public class Solution
 {
     public int CountLargestGroup(int n)

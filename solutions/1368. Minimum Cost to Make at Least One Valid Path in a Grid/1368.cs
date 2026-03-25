@@ -1,3 +1,6 @@
+// Approach: 0-1 BFS; following the existing arrow costs 0, changing direction costs 1; deque-based Dijkstra.
+// Time: O(m·n) Space: O(m·n)
+
 public class Solution
 {
     public int MinCost(int[][] grid)

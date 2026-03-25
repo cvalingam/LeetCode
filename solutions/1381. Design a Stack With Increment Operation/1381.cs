@@ -1,3 +1,6 @@
+// Approach: Lazy increment array; increment(k, val) adds val to pendingIncrements[k-1]; propagates down on pop.
+// Time: O(1) per op Space: O(n)
+
 public class CustomStack
 {
     private int maxSize;

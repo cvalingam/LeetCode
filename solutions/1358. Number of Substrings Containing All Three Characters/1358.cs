@@ -1,3 +1,6 @@
+// Approach: Sliding window; shrink left while all three characters are present; every valid window contributes 'l' substrings for each right position.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int NumberOfSubstrings(string s)

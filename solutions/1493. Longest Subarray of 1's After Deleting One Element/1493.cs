@@ -1,3 +1,6 @@
+// Approach: Precompute left/right consecutive-1 counts; answer = max(left[i] + right[i]) over all positions.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     // Function to find the length of the longest subarray consisting of 1s after deleting exactly one element.

@@ -1,7 +1,7 @@
+// Approach: In-order traversal produces a sorted array; recursively build a balanced BST by choosing the mid-point as root.
+// Time: O(n) Space: O(n)
+
 public class Solution
-{
-    public TreeNode BalanceBST(TreeNode root)
-    {
         var nums = new List<int>();
         Inorder(root, nums);
         return build(nums, 0, nums.Count - 1);

@@ -1,3 +1,6 @@
+// Approach: Sort; try all 4 ways of removing 3 elements from the ends; return the minimum resulting range.
+// Time: O(n log n) Space: O(1)
+
 public class Solution
 {
     public int MinDifference(int[] nums)

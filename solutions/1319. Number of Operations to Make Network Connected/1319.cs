@@ -1,3 +1,6 @@
+// Approach: Union-Find; count redundant edges and connected components; need components-1 cables.
+// Time: O(n α(n)) Space: O(n)
+
 public class Solution
 {
     public int MakeConnected(int n, int[][] connections)

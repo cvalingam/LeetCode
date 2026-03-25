@@ -1,3 +1,6 @@
+// Approach: HashSet; for each element check if its double or (if even) its half is already seen.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public bool CheckIfExist(int[] arr)

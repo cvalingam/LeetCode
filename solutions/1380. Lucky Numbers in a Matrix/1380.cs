@@ -1,3 +1,6 @@
+// Approach: For each element that is the minimum of its row, check if it equals the maximum of its column.
+// Time: O(m·n) Space: O(1)
+
 public class Solution
 {
     public IList<int> LuckyNumbers(int[][] matrix)

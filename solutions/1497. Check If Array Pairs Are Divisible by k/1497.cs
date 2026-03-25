@@ -1,3 +1,6 @@
+// Approach: Frequency of remainders mod k; remainder r must pair with remainder k-r; remainder 0 must be even-count.
+// Time: O(n) Space: O(k)
+
 public class Solution
 {
     public bool CanArrange(int[] arr, int k)

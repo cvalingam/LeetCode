@@ -1,3 +1,6 @@
+// Approach: Count consecutive 1s ending at each position; each run of length k contributes k new substrings.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int NumSub(string s)

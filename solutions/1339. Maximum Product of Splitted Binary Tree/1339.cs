@@ -1,3 +1,5 @@
+// Approach: Two DFS passes; first computes total sum; second finds the subtree sum whose product with the remainder is maximised.
+// Time: O(n) Space: O(n)
 
 // Definition for a binary tree node.
 public class TreeNode

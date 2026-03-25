@@ -1,3 +1,6 @@
+// Approach: Brute-force; for each word check if it appears as a substring of any longer word.
+// Time: O(n² · m) Space: O(n)
+
 public class Solution
 {
     public IList<string> StringMatching(string[] words)

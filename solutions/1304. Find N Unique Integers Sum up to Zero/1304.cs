@@ -1,3 +1,6 @@
+// Approach: Fill pairs (i, -i) for i = 1..n/2; if n is odd, the last element stays 0.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int[] SumZero(int n)

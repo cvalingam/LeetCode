@@ -1,3 +1,6 @@
+// Approach: BFS generates all happy strings in lexicographic order; return the k-th if it exists.
+// Time: O(3 · 2^(n-1)) Space: O(3 · 2^(n-1))
+
 public class Solution
 {
     public string GetHappyString(int n, int k)

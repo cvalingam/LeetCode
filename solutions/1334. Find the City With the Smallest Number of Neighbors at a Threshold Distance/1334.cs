@@ -1,3 +1,6 @@
+// Approach: Floyd-Warshall all-pairs shortest paths; for each city count reachable cities within threshold; return the highest-indexed city with fewest neighbors.
+// Time: O(n³) Space: O(n²)
+
 public class Solution
 {
     public int FindTheCity(int n, int[][] edges, int distanceThreshold)

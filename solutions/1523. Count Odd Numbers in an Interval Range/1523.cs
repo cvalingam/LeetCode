@@ -1,3 +1,6 @@
+// Approach: Formula: (high+1)/2 - low/2 counts odds in [low, high] using integer division.
+// Time: O(1) Space: O(1)
+
 public class Solution
 {
     public int CountOdds(int low, int high)

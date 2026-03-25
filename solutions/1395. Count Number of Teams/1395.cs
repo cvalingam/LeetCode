@@ -1,3 +1,6 @@
+// Approach: For each middle element count smaller/larger elements to its left and right; multiply and sum for both ascending and descending triples.
+// Time: O(n²) Space: O(1)
+
 public class Solution
 {
     public int NumTeams(int[] rating)

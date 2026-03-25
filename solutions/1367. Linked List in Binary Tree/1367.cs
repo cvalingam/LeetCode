@@ -1,3 +1,6 @@
+// Approach: For each tree node try matching the linked list head starting there; DFS checks if all list nodes match a root-to-leaf path.
+// Time: O(n·m) Space: O(n)
+
 public class ListNode
 {
     public int val;

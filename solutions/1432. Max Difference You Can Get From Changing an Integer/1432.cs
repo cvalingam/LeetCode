@@ -1,3 +1,6 @@
+// Approach: For max replace the first non-'9' digit with '9'; for min replace the leading digit with '1' or the first non-leading non-'0'/'1' with '0'.
+// Time: O(log n) Space: O(log n)
+
 public class Solution
 {
     public int MaxDiff(int num)

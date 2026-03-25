@@ -1,3 +1,6 @@
+// Approach: Running prefix product; reset on 0; GetProduct(k) = prefix.last / prefix[n-k] or 0 if a zero is within the window.
+// Time: O(1) per op Space: O(n)
+
 public class ProductOfNumbers
 {
     private List<int> prefix;

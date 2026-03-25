@@ -1,3 +1,6 @@
+// Approach: Sliding window of length k with rolling bitwise update; mark each window value in a boolean array; check all 2^k are seen.
+// Time: O(n) Space: O(2^k)
+
 public class Solution
 {
     public bool HasAllCodes(string s, int k)

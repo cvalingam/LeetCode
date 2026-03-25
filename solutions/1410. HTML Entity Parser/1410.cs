@@ -1,3 +1,6 @@
+// Approach: Sequential string replacement for each HTML entity; process '&amp;' last to avoid double-replacement.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public string EntityParser(string text)

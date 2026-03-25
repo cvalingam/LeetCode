@@ -1,3 +1,6 @@
+// Approach: Build XOR prefix array; each query [l, r] is answered by prefix[l] ^ prefix[r+1].
+// Time: O(n + q) Space: O(n)
+
 public class Solution
 {
     public int[] XorQueries(int[] arr, int[][] queries)

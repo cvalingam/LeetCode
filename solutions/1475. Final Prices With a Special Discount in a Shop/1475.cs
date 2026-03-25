@@ -1,3 +1,6 @@
+// Approach: Monotone stack; for each price pop all stack elements whose price is >= current price and apply the discount.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int[] FinalPrices(int[] prices)

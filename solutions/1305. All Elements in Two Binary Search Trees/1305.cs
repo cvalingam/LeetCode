@@ -1,17 +1,7 @@
-public class TreeNode
-{
-    public int val;
-    public TreeNode left;
-    public TreeNode right;
-    public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
-    {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-}
+// Approach: In-order traversal of each BST produces sorted lists; merge the two sorted lists.
+// Time: O(m+n) Space: O(m+n)
 
-public class BSTIterator
+public class TreeNode
 {
     private Stack<TreeNode> stack = new Stack<TreeNode>();
 

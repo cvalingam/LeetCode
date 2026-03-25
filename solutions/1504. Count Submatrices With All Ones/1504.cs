@@ -1,3 +1,6 @@
+// Approach: For each row compute consecutive-1 widths; for each column scan upward counting how many consecutive rows have width >= current width.
+// Time: O(m·n) Space: O(m·n)
+
 public class Solution
 {
     public int NumSubmat(int[][] mat)

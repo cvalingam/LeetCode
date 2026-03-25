@@ -1,3 +1,6 @@
+// Approach: Sort cuts; find max gap in horizontal and vertical cuts; answer = maxGapH × maxGapV mod 10^9+7.
+// Time: O(n log n) Space: O(1)
+
 public class Solution
 {
     public int MaxArea(int h, int w, int[] horizontalCuts, int[] verticalCuts)

@@ -1,3 +1,6 @@
+// Approach: Greedy recursive; always use up to 2 of the most-frequent character, then 1 of the second most.
+// Time: O(a+b+c) Space: O(a+b+c)
+
 public class Solution
 {
     public string LongestDiverseString(int a, int b, int c, char A = 'a', char B = 'b', char C = 'c')

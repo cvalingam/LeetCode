@@ -1,3 +1,6 @@
+// Approach: Track the index of the previous '1'; return false if any gap between consecutive 1s is less than k.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public bool KLengthApart(int[] nums, int k)

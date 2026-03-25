@@ -1,3 +1,6 @@
+// Approach: 2D DP; dp[i][j] = max dot product using a subsequence of nums1[0..i] and nums2[0..j]; use max(0, dp[i-1][j-1]) to optionally start fresh.
+// Time: O(m·n) Space: O(m·n)
+
 public class Solution
 {
     public int MaxDotProduct(int[] nums1, int[] nums2)

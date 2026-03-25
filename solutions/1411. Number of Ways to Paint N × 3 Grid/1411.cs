@@ -1,3 +1,6 @@
+// Approach: DP tracking count of rows using 2-color pattern vs 3-color pattern; transitions per row follow fixed multiplicative rules.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int NumOfWays(int n)

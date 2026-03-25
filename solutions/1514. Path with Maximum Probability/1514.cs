@@ -1,7 +1,7 @@
+// Approach: Modified Dijkstra with a max-heap; propagate maximum probability along edges.
+// Time: O((V+E) log V) Space: O(V+E)
+
 public class Solution
-{
-    public double MaxProbability(int n, int[][] edges, double[] succProb, int start_node, int end_node)
-    {
         // {a: [(b, probability_ab)]}
         List<(int, double)>[] graph = new List<(int, double)>[n];
         // (the probability to reach u, u)

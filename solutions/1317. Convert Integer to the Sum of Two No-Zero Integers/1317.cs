@@ -1,3 +1,6 @@
+// Approach: Iterate a from 1 upward; check whether neither a nor n-a contains a '0' digit.
+// Time: O(n log n) Space: O(1)
+
 public class Solution
 {
     public int[] GetNoZeroIntegers(int n)

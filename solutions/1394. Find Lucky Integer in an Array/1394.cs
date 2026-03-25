@@ -1,3 +1,6 @@
+// Approach: Frequency array; find the largest value where frequency[v] == v.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int FindLucky(int[] arr)

@@ -1,3 +1,6 @@
+// Approach: Each position starts from the previous; only increases over the previous element require new operations.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinNumberOperations(int[] target)

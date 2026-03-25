@@ -1,3 +1,6 @@
+// Approach: For each number iterate divisors up to sqrt; count exactly 4 divisors (i, n/i, 1, n); sum those.
+// Time: O(n √n) Space: O(1)
+
 public class Solution
 {
     public int SumFourDivisors(int[] nums)

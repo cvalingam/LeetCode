@@ -1,3 +1,6 @@
+// Approach: XOR bitmask tracks parity of each vowel; store first occurrence of each bitmask state; answer is max(i - first[prefix]).
+// Time: O(n) Space: O(32)
+
 public class Solution
 {
     public int FindTheLongestSubstring(string s)

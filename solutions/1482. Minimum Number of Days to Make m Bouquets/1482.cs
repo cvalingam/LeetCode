@@ -1,3 +1,6 @@
+// Approach: Binary search on the number of days; check feasibility by counting consecutive bloomed flowers of length k.
+// Time: O(n log(max)) Space: O(1)
+
 public class Solution {
     public int MinDays(int[] bloomDay, int m, int k) {
         int n = bloomDay.Length;

@@ -1,3 +1,6 @@
+// Approach: Rolling hash; simultaneously compute prefix hash from left and suffix hash from right; track longest matching pair.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public string LongestPrefix(string s)

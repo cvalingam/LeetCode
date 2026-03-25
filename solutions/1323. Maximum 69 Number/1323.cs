@@ -1,3 +1,6 @@
+// Approach: Scan left to right; replace the first '6' with '9' to maximise the number.
+// Time: O(log n) Space: O(log n)
+
 public class Solution
 {
     public int Maximum69Number(int num)

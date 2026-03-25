@@ -1,3 +1,6 @@
+// Approach: DP tracking count of even-sum subarrays ending here; an odd current element swaps even/odd counts.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int NumOfSubarrays(int[] arr)

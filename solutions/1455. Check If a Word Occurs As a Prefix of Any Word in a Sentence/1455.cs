@@ -1,3 +1,6 @@
+// Approach: Split sentence into words; return 1-indexed position of first word that starts with searchWord.
+// Time: O(n·m) Space: O(n)
+
 public class Solution
 {
     public int IsPrefixOfWord(string sentence, string searchWord)

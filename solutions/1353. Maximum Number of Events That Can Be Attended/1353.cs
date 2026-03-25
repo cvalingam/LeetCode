@@ -1,3 +1,6 @@
+// Approach: Sort events by start day; use a min-heap of end days; greedily attend the event with the earliest deadline each day.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int MaxEvents(int[][] events)

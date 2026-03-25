@@ -1,3 +1,6 @@
+// Approach: Sort a deduplicated copy; build value-to-rank map; replace each element.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int[] ArrayRankTransform(int[] arr)

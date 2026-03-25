@@ -1,3 +1,6 @@
+// Approach: Generate all n*(n+1)/2 subarray sums, sort them, return sum of indices [left-1..right-1] mod 10^9+7.
+// Time: O(n² log n) Space: O(n²)
+
 public class Solution
 {
     public int RangeSum(int[] nums, int n, int left, int right)

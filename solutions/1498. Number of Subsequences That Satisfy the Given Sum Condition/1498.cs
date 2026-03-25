@@ -1,3 +1,6 @@
+// Approach: Sort array; two-pointer on (l, r); for each valid l the count of subsequences is 2^(r-l) using precomputed powers.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public int NumSubseq(int[] nums, int target)

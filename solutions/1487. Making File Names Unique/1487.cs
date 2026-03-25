@@ -1,3 +1,6 @@
+// Approach: Dictionary tracks the next suffix to try for each name; increment suffix until a fresh name is found.
+// Time: O(n·m) Space: O(n·m)
+
 public class Solution
 {
     public string[] GetFolderNames(string[] names)

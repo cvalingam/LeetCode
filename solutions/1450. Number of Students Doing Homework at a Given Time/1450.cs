@@ -1,3 +1,6 @@
+// Approach: Simple range check; count students whose [startTime, endTime] interval includes queryTime.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int BusyStudent(int[] startTime, int[] endTime, int queryTime)
