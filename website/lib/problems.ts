@@ -29,14 +29,8 @@ export interface ProblemMeta {
   tags: Tag[]
 }
 
-export function toSlug(number: number, title: string): string {
-  const clean = title
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .trim()
-  return `${number}-${clean}`
+export function toSlug(number: number, _title?: string): string {
+  return String(number)
 }
 
 // Module-level cache — built once per build process

@@ -44,8 +44,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const primaryLabel = EXT_TO_LABEL[problem.primaryExt] ?? problem.primaryExt.toUpperCase()
   const allLabels = [primaryLabel, ...Object.keys(problem.extraCodes ?? {}).map(e => EXT_TO_LABEL[e] ?? e)].join(', ')
-  const title  = `${problem.number}. ${problem.title}`
-  const desc   = `LeetCode ${problem.number} ${problem.title} — clean ${allLabels} solution. ${problem.difficulty} difficulty.`
+  const title = `${problem.number}. ${problem.title}`
+  let desc = `LeetCode ${problem.number} ${problem.title} – ${problem.difficulty} ${allLabels} solution`
+  if (problem.approach) desc += `. ${problem.approach}`
+  if (problem.complexity) desc += `. Time: ${problem.complexity.time}, Space: ${problem.complexity.space}.`
+  else desc += `.`
 
   return {
     title,
@@ -70,6 +73,11 @@ export default async function ProblemPage({ params }: Props) {
   const lcSlug = toLeetCodeSlug(problem.title)
   const primaryLabel = EXT_TO_LABEL[problem.primaryExt] ?? problem.primaryExt.toUpperCase()
   const allLabels = [primaryLabel, ...Object.keys(problem.extraCodes ?? {}).map(e => EXT_TO_LABEL[e] ?? e)].join(', ')
+  const schemaTitle = `${problem.number}. ${problem.title} — LeetCode ${primaryLabel} Solution`
+  let schemaDesc = `LeetCode ${problem.number} ${problem.title} – ${problem.difficulty} ${allLabels} solution`
+  if (problem.approach) schemaDesc += `. ${problem.approach}`
+  if (problem.complexity) schemaDesc += `. Time: ${problem.complexity.time}, Space: ${problem.complexity.space}.`
+  else schemaDesc += `.`
 
   return (
     <article className="max-w-3xl mx-auto py-8">
@@ -82,12 +90,12 @@ export default async function ProblemPage({ params }: Props) {
             '@graph': [
               {
                 '@type': 'TechArticle',
-                headline: `${problem.number}. ${problem.title} — LeetCode ${EXT_TO_LABEL[problem.primaryExt] ?? problem.primaryExt.toUpperCase()} Solution`,
-                description: `LeetCode ${problem.number} ${problem.title} — clean ${allLabels} solution. ${problem.difficulty} difficulty.`,
+                headline: schemaTitle,
+                description: schemaDesc,
                 author: { '@type': 'Person', name: 'Sivalingam Ramasamy', url: 'https://github.com/cvalingam' },
                 url: `${SITE_URL}/problems/${problem.slug}`,
                 datePublished: '2024-01-01',
-                dateModified: '2024-01-01',
+                dateModified: '2025-06-01',
                 image: `${SITE_URL}/opengraph-image`,
               },
               {
