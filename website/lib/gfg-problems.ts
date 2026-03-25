@@ -10,6 +10,7 @@ export interface GfgProblem {
   title: string
   slug: string  // e.g. "two-sum-pair-with-given-sum"
   code: string
+  approach?: string  // parsed from "// Approach: ..." multi-line comment block
 }
 
 export interface GfgProblemMeta {
@@ -49,10 +50,29 @@ export function getAllGfgProblems(): GfgProblem[] {
     if (!javaFile) continue
 
     const code = fs.readFileSync(path.join(folderPath, javaFile), 'utf-8')
+
+    // Parse approach from comment block starting with "// Approach:"
+    const approachLines: string[] = []
+    let inApproach = false
+    for (const line of code.split('\n')) {
+      const t = line.trim()
+      if (!inApproach) {
+        const m = t.match(/^\/\/\s*Approach:\s*(.*)/)
+        if (m) { inApproach = true; if (m[1].trim()) approachLines.push(m[1].trim()) }
+      } else {
+        if (t.match(/^\/\/\s*Time:/i)) break
+        const cm = t.match(/^\/\/\s*(.+)/)
+        if (cm) approachLines.push(cm[1].trim())
+        else break
+      }
+    }
+    const approach = approachLines.length > 0 ? approachLines.join(' ') : undefined
+
     result.push({
       title: folder,
       slug: toSlug(folder),
       code,
+      ...(approach ? { approach } : {}),
     })
   }
 

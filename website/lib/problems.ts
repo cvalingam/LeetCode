@@ -18,6 +18,7 @@ export interface Problem {
   code: string
   extraCodes?: Record<string, string>  // extension → code, e.g. { java: '...', sql: '...' }
   complexity?: { time: string; space: string }  // parsed from "// Time: O(n) Space: O(n)" comment
+  approach?: string                              // parsed from "// Approach: ..." multi-line comment block
 }
 
 export interface ProblemMeta {
@@ -90,6 +91,23 @@ export function getAllProblems(): Problem[] {
       ? { time: complexityMatch[1], space: complexityMatch[2] }
       : undefined
 
+    // Parse approach from comment block starting with "// Approach:"
+    const approachLines: string[] = []
+    let inApproach = false
+    for (const line of code.split('\n')) {
+      const t = line.trim()
+      if (!inApproach) {
+        const m = t.match(/^\/\/\s*Approach:\s*(.*)/)
+        if (m) { inApproach = true; if (m[1].trim()) approachLines.push(m[1].trim()) }
+      } else {
+        if (t.match(/^\/\/\s*Time:/i)) break
+        const cm = t.match(/^\/\/\s*(.+)/)
+        if (cm) approachLines.push(cm[1].trim())
+        else break
+      }
+    }
+    const approach = approachLines.length > 0 ? approachLines.join(' ') : undefined
+
     // Read remaining language files as extra
     const extraCodes: Record<string, string> = {}
     for (const file of filesInFolder) {
@@ -108,6 +126,7 @@ export function getAllProblems(): Problem[] {
       primaryExt,
       code,
       ...(complexity ? { complexity } : {}),
+      ...(approach ? { approach } : {}),
       ...(Object.keys(extraCodes).length > 0 ? { extraCodes } : {}),
     })
   }

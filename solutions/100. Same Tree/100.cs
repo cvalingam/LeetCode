@@ -1,3 +1,8 @@
+// Approach: Recursively compare both trees node by node. If both nodes are null
+// the subtrees are identical at this point. If only one is null, or their values
+// differ, return false. Otherwise check left and right subtrees recursively.
+// Time: O(n) Space: O(h)
+
 public class TreeNode
 {
     public int val;

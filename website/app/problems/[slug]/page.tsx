@@ -170,6 +170,14 @@ export default async function ProblemPage({ params }: Props) {
         </div>
       )}
 
+      {/* Approach */}
+      {problem.approach && (
+        <div className="mb-8 p-4 rounded-xl bg-slate-50 dark:bg-gray-800/50 border border-slate-100 dark:border-gray-800">
+          <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">Approach</h2>
+          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{problem.approach}</p>
+        </div>
+      )}
+
       {/* Code */}
       <section className="mb-8">
         {problem.extraCodes && Object.keys(problem.extraCodes).length > 0 ? (
