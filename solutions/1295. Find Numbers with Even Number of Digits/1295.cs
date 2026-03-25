@@ -1,3 +1,6 @@
+// Approach: Count numbers that fall in the even-digit ranges (10-99, 1000-9999, 100000).
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int FindNumbers(int[] nums)

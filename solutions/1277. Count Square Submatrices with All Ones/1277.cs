@@ -1,3 +1,6 @@
+// Approach: DP identical to Maximal Square; dp[i][j] = side length of largest all-ones square with bottom-right at (i,j); sum all dp values.
+// Time: O(m·n) Space: O(m·n)
+
 public class Solution
 {
     public int CountSquares(int[][] matrix)

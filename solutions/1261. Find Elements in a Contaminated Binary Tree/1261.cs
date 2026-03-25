@@ -1,17 +1,7 @@
-public class TreeNode
-{
-    public int val;
-    public TreeNode left;
-    public TreeNode right;
-    public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
-    {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-}
+// Approach: DFS to recover tree values (root=0, left=2*v+1, right=2*v+2) into a HashSet; Find() is O(1) lookup.
+// Time: O(n) build, O(1) find Space: O(n)
 
-public class FindElements
+public class TreeNode
 {
     private HashSet<int> vals = new HashSet<int>();
 

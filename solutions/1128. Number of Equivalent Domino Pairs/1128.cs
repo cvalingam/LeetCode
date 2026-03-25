@@ -1,3 +1,6 @@
+// Approach: Normalize each domino to (min, max) and count frequencies; pairs = n*(n-1)/2 for each group.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int NumEquivDominoPairs(int[][] dominoes)

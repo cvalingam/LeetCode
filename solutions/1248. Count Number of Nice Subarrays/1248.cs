@@ -1,3 +1,6 @@
+// Approach: Sliding window with at-most trick; NumberOfSubarraysAtMost(k) - NumberOfSubarraysAtMost(k-1).
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int NumberOfSubarrays(int[] nums, int k)

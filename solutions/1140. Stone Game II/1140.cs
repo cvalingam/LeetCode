@@ -1,3 +1,6 @@
+// Approach: Memoized recursion with suffix sums; at each position the current player picks 1..2M piles and M updates to max(M, X).
+// Time: O(n²) Space: O(n²)
+
 public class Solution
 {
     public int StoneGameII(int[] piles)

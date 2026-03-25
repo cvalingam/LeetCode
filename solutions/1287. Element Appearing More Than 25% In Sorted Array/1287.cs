@@ -1,3 +1,6 @@
+// Approach: In a sorted array the element appearing > 25% must equal its neighbor at index+n/4; check each candidate.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int FindSpecialInteger(int[] arr)

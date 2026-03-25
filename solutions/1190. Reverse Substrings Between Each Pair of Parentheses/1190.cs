@@ -1,3 +1,6 @@
+// Approach: Stack-based; push the current StringBuilder position on '('; on ')' reverse the substring since that open paren.
+// Time: O(n²) Space: O(n)
+
 public class Solution
 {
     public string ReverseParentheses(string s)

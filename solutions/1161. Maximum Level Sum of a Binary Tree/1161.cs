@@ -1,3 +1,6 @@
+// Approach: BFS level-order traversal; track the level with the maximum sum.
+// Time: O(n) Space: O(n)
+
 //Definition for a binary tree node.
 public class TreeNode
 {

@@ -1,3 +1,6 @@
+// Approach: Traverse the linked list shifting the accumulated result left and OR-ing in each bit.
+// Time: O(n) Space: O(1)
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {

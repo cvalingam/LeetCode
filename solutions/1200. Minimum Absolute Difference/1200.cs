@@ -1,3 +1,6 @@
+// Approach: Sort the array; scan adjacent pairs to find the minimum difference, then collect all pairs with that difference.
+// Time: O(n log n) Space: O(n)
+
 public class Solution
 {
     public IList<IList<int>> MinimumAbsDifference(int[] arr)

@@ -1,3 +1,6 @@
+// Approach: Count servers per row and per column; a server communicates if its row count > 1 or its column count > 1.
+// Time: O(m·n) Space: O(m+n)
+
 public class Solution
 {
     public int CountServers(int[][] grid)

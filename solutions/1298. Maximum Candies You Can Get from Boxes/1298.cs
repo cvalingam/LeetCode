@@ -1,3 +1,6 @@
+// Approach: BFS; open available unlocked boxes, collect keys and contained boxes, re-enqueue newly openable boxes.
+// Time: O(n) Space: O(n)
+
 public class Solution
 {
     public int MaxCandies(int[] status, int[] candies, int[][] keys, int[][] containedBoxes, int[] initialBoxes)

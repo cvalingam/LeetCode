@@ -1,3 +1,6 @@
+// Approach: The time to move between consecutive points is max(|dx|, |dy|) because diagonal moves are allowed.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MinTimeToVisitAllPoints(int[][] points)

@@ -1,19 +1,7 @@
-public class TreeNode
-{
-    public int val;
-    public TreeNode left;
-    public TreeNode right;
-    public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
-    {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-}
+// Approach: Post-order DFS returning (lca, depth); when left and right depths are equal the current node is the LCA of the deepest leaves.
+// Time: O(n) Space: O(n)
 
-public class Solution
-{
-    public TreeNode LcaDeepestLeaves(TreeNode root)
+public class TreeNode(TreeNode root)
     {
         return Dfs(root).Lca;
     }

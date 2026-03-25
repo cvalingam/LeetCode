@@ -1,3 +1,6 @@
+// Approach: DP with 3 states tracking max sum with remainder 0, 1, 2; transition by adding each number and updating all three remainders.
+// Time: O(n) Space: O(1)
+
 public class Solution
 {
     public int MaxSumDivThree(int[] nums)
