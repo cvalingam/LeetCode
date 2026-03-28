@@ -1,11 +1,80 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import type { ProblemMeta, Difficulty } from '@/lib/problems'
 import DifficultyBadge from './DifficultyBadge'
 import AdUnit from './AdUnit'
+
+const ROW_H = 45   // px — must match the rendered row height
+const OVERSCAN = 5 // extra rows rendered above/below the visible window
+
+function VirtualTable({ items }: { items: ProblemMeta[] }) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [scrollTop, setScrollTop] = useState(0)
+  const [containerH, setContainerH] = useState(600)
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const ro = new ResizeObserver(() => setContainerH(el.clientHeight))
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  const totalH = items.length * ROW_H
+  const firstVisible = Math.max(0, Math.floor(scrollTop / ROW_H) - OVERSCAN)
+  const lastVisible  = Math.min(items.length - 1, Math.ceil((scrollTop + containerH) / ROW_H) + OVERSCAN)
+  const paddingTop   = firstVisible * ROW_H
+  const paddingBot   = Math.max(0, (items.length - lastVisible - 1) * ROW_H)
+  const visible      = items.slice(firstVisible, lastVisible + 1)
+
+  return (
+    <div className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm bg-white dark:bg-gray-900">
+      {/* Sticky header */}
+      <div className="grid grid-cols-[3.5rem_1fr_7rem] border-b border-gray-100 dark:border-gray-800 bg-gray-50/80 dark:bg-gray-800/80 sticky top-0 z-10">
+        <span className="px-4 py-3 text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">#</span>
+        <span className="px-4 py-3 text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Title</span>
+        <span className="px-4 py-3 text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Difficulty</span>
+      </div>
+
+      {/* Scrollable body */}
+      <div
+        ref={containerRef}
+        className="overflow-y-auto"
+        style={{ height: Math.min(totalH, 630) }}
+        onScroll={e => setScrollTop(e.currentTarget.scrollTop)}
+      >
+        <div style={{ height: totalH, position: 'relative' }}>
+          <div style={{ position: 'absolute', top: paddingTop, left: 0, right: 0 }}>
+            {visible.map(p => (
+              <div
+                key={p.slug}
+                className="grid grid-cols-[3.5rem_1fr_7rem] border-b border-gray-50 dark:border-gray-800 hover:bg-indigo-50/30 dark:hover:bg-indigo-950/20 transition-colors group"
+                style={{ height: ROW_H }}
+              >
+                <span className="px-4 flex items-center text-gray-400 dark:text-gray-500 tabular-nums font-mono text-xs">{p.number}</span>
+                <span className="px-4 flex items-center">
+                  <Link
+                    href={`/problems/${p.slug}`}
+                    className="font-medium text-gray-800 dark:text-gray-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate"
+                  >
+                    {p.title}
+                  </Link>
+                </span>
+                <span className="px-4 flex items-center">
+                  <DifficultyBadge difficulty={p.difficulty} />
+                </span>
+              </div>
+            ))}
+            <div style={{ height: paddingBot }} />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 type Filter = 'All' | Difficulty
 
@@ -28,6 +97,10 @@ export default function ProblemList({
   const initialQuery = searchParams.get('q') ?? ''
   const [search, setSearch] = useState(initialQuery)
   const [filter, setFilter] = useState<Filter>('All')
+  // Delay virtual scrolling until after hydration so all links are in the
+  // server-rendered HTML (visible to Google and other crawlers).
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => { setSearch(initialQuery) }, [initialQuery])
 
@@ -121,35 +194,25 @@ export default function ProblemList({
           <div className="text-4xl mb-3">🔍</div>
           <p>No problems match your search.</p>
         </div>
+      ) : mounted ? (
+        <VirtualTable items={filtered} />
       ) : (
+        /* SSR fallback: full list so all links are in the initial HTML for crawlers */
         <div className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm bg-white dark:bg-gray-900">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-gray-100 dark:border-gray-800 bg-gray-50/80 dark:bg-gray-800/80">
-                <th className="px-4 py-3 text-left text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider w-14">#</th>
-                <th className="px-4 py-3 text-left text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Title</th>
-                <th className="px-4 py-3 text-left text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider w-28">Difficulty</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-50 dark:divide-gray-800">
-              {filtered.map(p => (
-                <tr key={p.slug} className="hover:bg-indigo-50/30 dark:hover:bg-indigo-950/20 transition-colors group">
-                  <td className="px-4 py-3 text-gray-400 dark:text-gray-500 tabular-nums font-mono text-xs">{p.number}</td>
-                  <td className="px-4 py-3">
-                    <Link
-                      href={`/problems/${p.slug}`}
-                      className="font-medium text-gray-800 dark:text-gray-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors"
-                    >
-                      {p.title}
-                    </Link>
-                  </td>
-                  <td className="px-4 py-3">
-                    <DifficultyBadge difficulty={p.difficulty} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="grid grid-cols-[3.5rem_1fr_7rem] border-b border-gray-100 dark:border-gray-800 bg-gray-50/80 dark:bg-gray-800/80">
+            <span className="px-4 py-3 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">#</span>
+            <span className="px-4 py-3 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Title</span>
+            <span className="px-4 py-3 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Difficulty</span>
+          </div>
+          {filtered.map(p => (
+            <div key={p.slug} className="grid grid-cols-[3.5rem_1fr_7rem] border-b border-gray-50 dark:border-gray-800" style={{ height: ROW_H }}>
+              <span className="px-4 flex items-center text-gray-400 tabular-nums font-mono text-xs">{p.number}</span>
+              <span className="px-4 flex items-center">
+                <Link href={`/problems/${p.slug}`} className="font-medium text-gray-800 dark:text-gray-200 truncate">{p.title}</Link>
+              </span>
+              <span className="px-4 flex items-center"><DifficultyBadge difficulty={p.difficulty} /></span>
+            </div>
+          ))}
         </div>
       )}
     </>
