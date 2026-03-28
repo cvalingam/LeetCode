@@ -1,11 +1,18 @@
+
+// Approach: Run Tarjan's DFS tracking discovery time (tin) and lowest reachable time (low).
+// A non-root node u is an articulation point if any child v has low[v] >= tin[u] (no back edge
+// bypasses u). The root is an articulation point only if it has more than one DFS child.
+// Time: O(V+E) Space: O(V+E)
 import java.util.*;
 
 class Solution {
+
     static ArrayList<Integer> articulationPoints(int V, int[][] edges) {
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
 
-        for (int i = 0; i < V; i++)
+        for (int i = 0; i < V; i++) {
             adj.add(new ArrayList<>());
+        }
 
         for (int[] edge : edges) {
             adj.get(edge[0]).add(edge[1]);
@@ -16,21 +23,24 @@ class Solution {
         int[] low = new int[V];
         boolean[] vis = new boolean[V];
         boolean[] isArticulation = new boolean[V];
-        int[] timer = { 0 };
+        int[] timer = {0};
 
         for (int i = 0; i < V; i++) {
-            if (!vis[i])
+            if (!vis[i]) {
                 dfs(i, -1, adj, vis, tin, low, timer, isArticulation);
+            }
         }
 
         ArrayList<Integer> ans = new ArrayList<>();
         for (int i = 0; i < V; i++) {
-            if (isArticulation[i])
+            if (isArticulation[i]) {
                 ans.add(i);
+            }
         }
 
-        if (ans.size() == 0)
+        if (ans.size() == 0) {
             ans.add(-1);
+        }
 
         return ans;
     }
@@ -43,20 +53,24 @@ class Solution {
 
         for (int v : adj.get(u)) {
 
-            if (v == parent)
+            if (v == parent) {
                 continue;
+            }
 
             if (!vis[v]) {
                 dfs(v, u, adj, vis, tin, low, timer, isArticulation);
                 low[u] = Math.min(low[u], low[v]);
-                if (low[v] >= tin[u] && parent != -1)
+                if (low[v] >= tin[u] && parent != -1) {
                     isArticulation[u] = true;
+                }
 
                 children++;
-            } else
+            } else {
                 low[u] = Math.min(low[u], tin[v]);
+            }
         }
-        if (parent == -1 && children > 1)
+        if (parent == -1 && children > 1) {
             isArticulation[u] = true;
+        }
     }
 }
