@@ -9,8 +9,17 @@ const nextConfig = {
   experimental: {
     outputFileTracingRoot: path.join(__dirname, '../'),
   },
-  // Uncomment if you ever want a static export for GitHub Pages:
-  // output: 'export',
+  // Redirect www → non-www so Google always indexes the canonical domain
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.dsasolved.com' }],
+        destination: 'https://dsasolved.com/:path*',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig
