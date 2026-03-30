@@ -1,3 +1,8 @@
+
+// Approach: Prim's MST algorithm using a min-heap. Start from node 0, greedily pick the unvisited
+// node with the smallest Manhattan distance to the current MST. Update candidate costs for all
+// unvisited neighbours after each inclusion. Sum all edge weights added to the MST.
+// Time: O(n^2 * log n) Space: O(n)
 import java.util.*;
 
 class Solution {
@@ -12,15 +17,16 @@ class Solution {
 
         // Min-heap to pick the node with the smallest connection cost
         PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
-        pq.offer(new int[] { 0, 0 }); // {cost, index}
+        pq.offer(new int[]{0, 0}); // {cost, index}
 
         while (!pq.isEmpty()) {
             int[] top = pq.poll();
             int cost = top[0];
             int u = top[1];
 
-            if (inMST[u])
+            if (inMST[u]) {
                 continue;
+            }
 
             inMST[u] = true;
             totalCost += cost;
@@ -30,7 +36,7 @@ class Solution {
                     int dist = manhattanDist(houses[u], houses[v]);
                     if (dist < minDist[v]) {
                         minDist[v] = dist;
-                        pq.offer(new int[] { dist, v });
+                        pq.offer(new int[]{dist, v});
                     }
                 }
             }
