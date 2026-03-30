@@ -3,9 +3,9 @@
 <span>💡 <i>Clean, readable solutions to <a href="https://leetcode.com/problemset/all/">LeetCode</a> in C# and <a href="https://www.geeksforgeeks.org/">GeeksforGeeks</a> POTD in Java.</i></span>
 <br/><br/>
 
-<a href="https://dsasolved.com"><strong>🌐 dsasolved.com</strong></a> &nbsp;·&nbsp;
-<a href="https://dsasolved.com/topics">Topics</a> &nbsp;·&nbsp;
-<a href="https://dsasolved.com/gfg">GFG Solutions</a>
+<a href="https://dsasolved.com"><strong>🌐 Browse 800+ LeetCode C# Solutions</strong></a> &nbsp;·&nbsp;
+<a href="https://dsasolved.com/topics">Browse by Topic</a> &nbsp;·&nbsp;
+<a href="https://dsasolved.com/gfg">GFG Java Solutions</a>
 
 <br/><br/>
 
