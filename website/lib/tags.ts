@@ -472,7 +472,7 @@ export const PROBLEM_TAGS: Record<number, Tag[]> = {
   894: ['dynamic-programming', 'binary-tree'],
   896: ['array'],
   897: ['stack', 'tree', 'depth-first-search', 'binary-search-tree', 'binary-tree'],
-  901: ['stack', 'design', 'monotonic-stack', 'data-stream'],
+  901: ['stack', 'design', 'monotonic-stack'],
   904: ['array', 'hash-table', 'sliding-window'],
   907: ['array', 'stack', 'monotonic-stack'],
   909: ['array', 'hash-table', 'breadth-first-search', 'matrix'],
