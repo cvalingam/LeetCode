@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ThemeProvider from '@/components/ThemeProvider'
 import { SITE_URL } from '@/lib/constants'
+import { GTMScript, GTMNoScript } from '@/components/GoogleTagManager'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -55,14 +56,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5486715116636186"
           crossOrigin="anonymous"
         />
-        {/* Microsoft Clarity */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vzu51pq6gv");`,
-          }}
-        />
+        {/* Google Tag Manager */}
+        <GTMScript />
       </head>
       <body className="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 antialiased flex flex-col min-h-screen font-sans transition-colors duration-200">
+        {/* Google Tag Manager (noscript) */}
+        <GTMNoScript />
         <ThemeProvider>
           <Header />
           <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 pt-20 pb-16">
