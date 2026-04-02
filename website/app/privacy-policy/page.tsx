@@ -17,7 +17,7 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="max-w-2xl mx-auto py-10">
       <h1 className="text-3xl font-bold mb-2">Privacy Policy</h1>
-      <p className="text-slate-400 text-sm mb-8"><em>Last updated: March 2026</em></p>
+      <p className="text-slate-400 text-sm mb-8"><em>Last updated: April 2026</em></p>
 
       <p className="text-slate-600 mb-6">
         This Privacy Policy describes how DSA Solutions (dsasolved.com) collects, uses, and
@@ -43,16 +43,35 @@ export default function PrivacyPolicyPage() {
         </p>
       </Section>
 
+      <Section title="Analytics (Google Analytics 4)">
+        <p>
+          This site uses Google Analytics 4, loaded via Google Tag Manager, to collect anonymised
+          usage data such as pages visited, session duration, and geographic region. No personally
+          identifiable information is collected. You can opt out via{' '}
+          <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+            Google Analytics Opt-out
+          </a>.
+        </p>
+      </Section>
+
       <Section title="Analytics (Microsoft Clarity)">
         <p>
           This site uses{' '}
           <a href="https://clarity.microsoft.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Microsoft Clarity</a>
-          {' '}to understand how visitors interact with the site. Clarity may collect session
-          recordings, heatmaps, click maps, and aggregated usage data. This data does not
-          personally identify you. You can learn more in{' '}
+          {' '}(loaded via Google Tag Manager) to understand how visitors interact with the site.
+          Clarity may collect session recordings, heatmaps, click maps, and aggregated usage data.
+          This data does not personally identify you. You can learn more in{' '}
           <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
             Microsoft&apos;s Privacy Statement
           </a>.
+        </p>
+      </Section>
+
+      <Section title="Tag management (Google Tag Manager)">        
+        <p>
+          This site uses Google Tag Manager to manage and deploy analytics and tracking scripts.
+          GTM itself does not collect personal data but may load third-party tags (GA4, Clarity)
+          that collect usage data as described above.
         </p>
       </Section>
 

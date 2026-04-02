@@ -28,7 +28,7 @@ website/            # Next.js 14 app
 | Styling | Tailwind CSS v3 |
 | Syntax highlighting | Shiki v1.29 |
 | Deployment | Vercel (auto-deploy on push to `main`) |
-| Analytics | Microsoft Clarity (`vzu51pq6gv`) |
+| Analytics | Google Tag Manager (`GTM-M7QWTWRM`) — fires GA4 (`G-GNGGLPG4SD`) + Microsoft Clarity (`vzu51pq6gv`) |
 | Ads | Google AdSense `ca-pub-5486715116636186` |
 | Contact form | Formspree `xnjgkaaa` |
 
@@ -38,7 +38,8 @@ website/            # Next.js 14 app
 - `website/lib/problems.ts` — reads LeetCode `.cs` files, returns `Problem[]`
 - `website/lib/gfg-problems.ts` — reads GFG `.java` files, returns `GfgProblem[]`
 - `website/lib/difficulty.ts` — maps problem number → difficulty
-- `website/app/layout.tsx` — global metadata, AdSense + Clarity scripts in `<head>`
+- `website/app/layout.tsx` — global metadata, GTM script in `<head>`, AdSense in `<head>`
+- `website/components/GoogleTagManager.tsx` — GTM `<script>` + `<noscript>` components
 - `website/app/sitemap.ts` — custom sitemap (no next-sitemap package)
 - `website/app/robots.ts` — disallows `/*?q=`
 
