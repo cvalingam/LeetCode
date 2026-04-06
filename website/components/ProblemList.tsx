@@ -148,7 +148,7 @@ export default function ProblemList({
       </section>
 
       {/* AdSense */}
-      <AdUnit slot="YOUR_AD_SLOT" style="leaderboard" className="mb-6" />
+        <AdUnit slot="4545599910" style="leaderboard" className="mb-6" />
 
       {/* Search + Filters */}
       <div className="flex flex-wrap items-center gap-3 mb-4">

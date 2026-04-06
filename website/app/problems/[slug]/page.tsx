@@ -122,7 +122,7 @@ export default async function ProblemPage({ params }: Props) {
       </nav>
 
       {/* Ad: leaderboard */}
-      <AdUnit slot="YOUR_AD_SLOT" style="leaderboard" className="mb-8" />
+      <AdUnit slot="4545599910" style="leaderboard" className="mb-8" />
 
       {/* Title */}
       <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-3">
@@ -216,7 +216,7 @@ export default async function ProblemPage({ params }: Props) {
       </section>
 
       {/* Ad: rectangle */}
-      <AdUnit slot="YOUR_AD_SLOT" style="rectangle" className="mb-6" />
+        <AdUnit slot="1364902808" style="rectangle" className="mb-6" />
 
       {/* Helpful widget */}
       <HelpfulWidget />

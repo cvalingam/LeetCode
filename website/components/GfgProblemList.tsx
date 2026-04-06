@@ -45,7 +45,7 @@ export default function GfgProblemList({
         </div>
       </section>
 
-      <AdUnit slot="YOUR_AD_SLOT" style="leaderboard" className="mb-6" />
+        <AdUnit slot="4545599910" style="leaderboard" className="mb-6" />
 
       {/* Search */}
       <div className="mb-4">
