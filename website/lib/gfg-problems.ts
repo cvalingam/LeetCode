@@ -11,6 +11,7 @@ export interface GfgProblem {
   slug: string  // e.g. "two-sum-pair-with-given-sum"
   code: string
   approach?: string  // parsed from "// Approach: ..." multi-line comment block
+  complexity?: { time: string; space: string }
 }
 
 export interface GfgProblemMeta {
@@ -51,8 +52,9 @@ export function getAllGfgProblems(): GfgProblem[] {
 
     const code = fs.readFileSync(path.join(folderPath, javaFile), 'utf-8')
 
-    // Parse approach from comment block starting with "// Approach:"
+    // Parse approach + complexity from comment block starting with "// Approach:"
     const approachLines: string[] = []
+    let complexityResult: { time: string; space: string } | undefined
     let inApproach = false
     for (const line of code.split('\n')) {
       const t = line.trim()
@@ -60,7 +62,11 @@ export function getAllGfgProblems(): GfgProblem[] {
         const m = t.match(/^\/\/\s*Approach:\s*(.*)/)
         if (m) { inApproach = true; if (m[1].trim()) approachLines.push(m[1].trim()) }
       } else {
-        if (t.match(/^\/\/\s*Time:/i)) break
+        if (t.match(/^\/\/\s*Time:/i)) {
+          const cm = t.match(/^\/\/\s*Time:\s*(\S+)\s+Space:\s*(\S+)/i)
+          if (cm) complexityResult = { time: cm[1].trim(), space: cm[2].trim() }
+          break
+        }
         const cm = t.match(/^\/\/\s*(.+)/)
         if (cm) approachLines.push(cm[1].trim())
         else break
@@ -73,6 +79,7 @@ export function getAllGfgProblems(): GfgProblem[] {
       slug: toSlug(folder),
       code,
       ...(approach ? { approach } : {}),
+      ...(complexityResult ? { complexity: complexityResult } : {}),
     })
   }
 
