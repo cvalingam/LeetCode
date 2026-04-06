@@ -1,3 +1,5 @@
+﻿// Approach: Backtracking. Try placing +, -, * between digits; track current value and last operand for * undo.
+// Time: O(n * 4^n) Space: O(n)
 import java.util.*;
 
 class Solution {

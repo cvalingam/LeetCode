@@ -1,3 +1,5 @@
+﻿// Approach: Greedy / simulation. Process purchases and track available change denominations.
+// Time: O(n) Space: O(1)
 class Solution {
     public boolean canServe(int[] arr) {
         if (arr[0] != 5)

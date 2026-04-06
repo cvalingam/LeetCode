@@ -1,3 +1,5 @@
+﻿// Approach: Binary search on days. For a given day, count consecutive bloomed flowers of length k.
+// Time: O(n log(max)) Space: O(1)
 class Solution {
     public int minDaysBloom(int[] arr, int k, int m) {
         int n = arr.length;

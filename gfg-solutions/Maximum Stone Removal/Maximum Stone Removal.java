@@ -1,3 +1,5 @@
+﻿// Approach: Union-Find on rows and columns. Each stone in a connected component can be removed except one.
+// Time: O(n * alpha) Space: O(n)
 import java.util.*;
 
 class Solution {

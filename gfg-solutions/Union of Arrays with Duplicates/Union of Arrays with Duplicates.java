@@ -1,3 +1,5 @@
+﻿// Approach: HashSet of all elements from both arrays, return its size.
+// Time: O(n+m) Space: O(n+m)
 import java.util.*;
 
 class Solution {

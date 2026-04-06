@@ -1,3 +1,5 @@
+﻿// Approach: DFS-based topological sort. Add node to stack after visiting all its descendants. Reverse for order.
+// Time: O(V+E) Space: O(V)
 import java.util.*;
 
 class Solution {

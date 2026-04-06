@@ -1,3 +1,5 @@
+﻿// Approach: Binary search to find the position where elements become > k.
+// Time: O(log n) Space: O(1)
 class Solution {
     public int countLessEqual(int[] arr, int x) {
         int pivot = getPivot(arr);

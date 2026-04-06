@@ -1,3 +1,5 @@
+﻿// Approach: Sort both arrays. Two pointers: advance the pointer with smaller value, track minimum absolute diff.
+// Time: O(n log n + m log m) Space: O(1)
 import java.util.*;
 
 class Solution {

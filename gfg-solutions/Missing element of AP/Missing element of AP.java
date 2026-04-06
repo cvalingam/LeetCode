@@ -1,3 +1,5 @@
+﻿// Approach: Binary search for the position where the AP formula breaks (arr[mid] != arr[0] + mid * d).
+// Time: O(log n) Space: O(1)
 class Solution {
     public int findMissing(int[] arr) {
         int n = arr.length;

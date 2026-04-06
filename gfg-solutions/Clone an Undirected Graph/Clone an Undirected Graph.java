@@ -1,3 +1,6 @@
+﻿// Approach: BFS/DFS with a HashMap mapping original nodes to clones.
+// For each neighbor, create clone if absent and add to cloned adjacency list.
+// Time: O(V+E) Space: O(V)
 import java.util.*;
 
 class Node {

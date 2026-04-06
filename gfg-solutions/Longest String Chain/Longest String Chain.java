@@ -1,3 +1,5 @@
+﻿// Approach: Sort by word length. DP: for each word, try removing each character and check if predecessor is in chain.
+// Time: O(n * len^2) Space: O(n * len)
 class Solution {
     public int longestStringChain(String words[]) {
         // Step 1: Sort the words by their lengths

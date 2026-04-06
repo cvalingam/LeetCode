@@ -1,3 +1,5 @@
+﻿// Approach: In-order traversal to flatten BST. Middle element is the median.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Node {

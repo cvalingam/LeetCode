@@ -1,3 +1,5 @@
+﻿// Approach: Recursive or iterative in-order (left-root-right) traversal of binary tree.
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left, right;

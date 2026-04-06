@@ -1,3 +1,6 @@
+﻿// Approach: Reverse in-order traversal (right-root-left). Maintain a running suffix sum.
+// Update each node's value with the accumulated suffix sum.
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left;

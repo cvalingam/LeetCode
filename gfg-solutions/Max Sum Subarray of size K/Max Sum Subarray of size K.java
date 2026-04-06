@@ -1,3 +1,6 @@
+// Approach: Sliding window of fixed size k. Compute sum of first k elements, then
+// slide: add new element and remove leftmost element. Track maximum sum seen.
+// Time: O(n) Space: O(1)
 class Solution {
     public int maxSubarraySum(int[] arr, int k) {
         int n = arr.length;

@@ -1,3 +1,5 @@
+﻿// Approach: Dynamic programming. Track max_ending_here (reset to arr[i] if negative) and max_so_far.
+// Time: O(n) Space: O(1)
 class Solution {
 
     // arr: input array

@@ -1,3 +1,5 @@
+﻿// Approach: Backtracking DFS on grid. For each starting cell try to match the word character by character.
+// Time: O(n*m * 4^len) Space: O(len)
 class Solution {
     static public boolean isWordExist(char[][] mat, String word) {
         int n = mat.length, m = mat[0].length;

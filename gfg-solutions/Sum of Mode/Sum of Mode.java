@@ -1,3 +1,5 @@
+﻿// Approach: Frequency map to find mode (most frequent element). Sum all occurrences of the mode.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

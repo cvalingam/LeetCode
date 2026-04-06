@@ -1,3 +1,5 @@
+﻿// Approach: Binary search within each row, or binary search treating matrix as 1D using (mid/cols, mid%cols).
+// Time: O(n log m) Space: O(1)
 class Solution {
     // Function to search a given number in row-column sorted matrix.
     public boolean searchRowMatrix(int[][] mat, int x) {

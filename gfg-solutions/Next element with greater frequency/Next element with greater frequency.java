@@ -1,3 +1,5 @@
+﻿// Approach: Precompute frequency map. Monotonic stack: push indices, pop when a more frequent element is found.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

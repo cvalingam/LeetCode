@@ -1,3 +1,5 @@
+﻿// Approach: Monotonic stack. A person is visible if no taller person is between them and the viewer.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

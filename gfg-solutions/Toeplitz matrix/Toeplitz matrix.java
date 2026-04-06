@@ -1,3 +1,5 @@
+﻿// Approach: For each element, check if it equals the element diagonally below-right: matrix[i][j] == matrix[i+1][j+1].
+// Time: O(n*m) Space: O(1)
 class Solution {
     boolean isToeplitz(int mat[][]) {
         int n = mat.length;

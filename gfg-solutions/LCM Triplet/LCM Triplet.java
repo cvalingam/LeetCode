@@ -1,3 +1,5 @@
+﻿// Approach: For any n>=3 the answer is among {n, n-1, n-2} or {n, n-1, n-3} or similar small cases.
+// Time: O(1) Space: O(1)
 class Solution {
     int lcmTriplets(int n) {
         int ans;

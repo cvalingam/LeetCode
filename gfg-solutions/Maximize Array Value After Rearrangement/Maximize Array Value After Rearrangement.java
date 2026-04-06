@@ -1,3 +1,5 @@
+﻿// Approach: Sort array and positions, then greedily assign largest values to positions with highest multipliers.
+// Time: O(n log n) Space: O(1)
 import java.util.*;
 
 class Solution {

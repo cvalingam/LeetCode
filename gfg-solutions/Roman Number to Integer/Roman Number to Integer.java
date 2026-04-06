@@ -1,3 +1,5 @@
+﻿// Approach: HashMap for values. Subtract current if next is larger, otherwise add.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Scan left to right: if arr[i] == arr[i-1], increment arr[i]. Use a set to track used values.
+// Time: O(n log n) Space: O(n)
 class Solution {
     static ArrayList<Integer> modifyAndRearrangeArr(int arr[]) {
         for (int i = 1; i < arr.length; i++) {

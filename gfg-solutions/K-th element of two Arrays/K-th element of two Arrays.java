@@ -1,3 +1,5 @@
+﻿// Approach: Binary search. Eliminate k/2 elements from one array per step depending on comparison.
+// Time: O(log k) Space: O(1)
 class Solution {
     public long kthElement(int k, int arr1[], int arr2[]) {
         int n = arr1.length;

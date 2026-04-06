@@ -1,3 +1,5 @@
+﻿// Approach: Sort array. For each pair (i,j) with j>i, binary search for the largest k where arr[k] < arr[i]+arr[j].
+// Time: O(n^2 log n) Space: O(1)
 import java.util.*;
 
 class Solution {

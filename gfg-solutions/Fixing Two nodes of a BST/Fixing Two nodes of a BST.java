@@ -1,3 +1,6 @@
+﻿// Approach: In-order traversal. Find the two swapped nodes (first: curr < prev violation, second: last such violation).
+// Swap their values.
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left;

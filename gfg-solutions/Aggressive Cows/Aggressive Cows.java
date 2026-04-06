@@ -1,3 +1,6 @@
+﻿// Approach: Binary search on the minimum distance between cows.
+// For a given distance, greedily check if we can place all k cows in sorted stalls.
+// Time: O(n log(max-min)) Space: O(1)
 class Solution {
     public static int aggressiveCows(int[] stalls, int k) {
         Arrays.sort(stalls); // Sort stall positions to enable binary search

@@ -1,3 +1,5 @@
+﻿// Approach: Use gap method (Shell sort variant). Start with gap = ceil((n+m)/2), exchange and reduce gap.
+// Time: O((n+m) log(n+m)) Space: O(1)
 class Solution {
     // Function to merge the arrays.
     public void mergeArrays(int a[], int b[]) {

@@ -1,3 +1,5 @@
+﻿// Approach: Single pass tracking the largest and second largest distinct values.
+// Time: O(n) Space: O(1)
 class Solution {
     public int getSecondLargest(int[] arr) {
         int l = arr[0];

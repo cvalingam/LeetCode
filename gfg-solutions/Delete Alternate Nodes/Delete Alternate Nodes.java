@@ -1,3 +1,5 @@
+﻿// Approach: Traverse the list and skip every other node by updating next pointers.
+// Time: O(n) Space: O(1)
 class Solution {
     public void deleteAlt(Node head) {
         Node prev = null;

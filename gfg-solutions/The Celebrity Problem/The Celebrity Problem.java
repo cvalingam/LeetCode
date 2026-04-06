@@ -1,3 +1,6 @@
+﻿// Approach: Stack/two-pointer elimination. Eliminate non-celebrities: if A knows B, A is not celebrity.
+// Verify the one remaining candidate.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

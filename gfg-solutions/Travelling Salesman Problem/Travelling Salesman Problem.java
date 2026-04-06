@@ -1,3 +1,5 @@
+﻿// Approach: Bitmask DP. dp[mask][i] = min cost to visit all cities in mask ending at city i.
+// Time: O(2^n * n^2) Space: O(2^n * n)
 import java.util.*;
 
 class Solution {

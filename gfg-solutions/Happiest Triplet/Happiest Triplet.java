@@ -1,3 +1,5 @@
+﻿// Approach: Sort or brute-force check all triplets for the maximum happiness score metric.
+// Time: O(n^2) Space: O(1)
 import java.util.*;
 
 class Solution {

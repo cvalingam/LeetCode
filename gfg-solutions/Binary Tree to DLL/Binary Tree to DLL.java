@@ -1,3 +1,6 @@
+﻿// Approach: In-order traversal. Convert BST to sorted doubly linked list in-place using Morris or recursive in-order.
+// Track the previous node and link current node's left to prev, prev's right to current.
+// Time: O(n) Space: O(h)
 import java.util.*;
 
 class Node {

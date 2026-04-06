@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i] = min cost to reach step i = min(dp[i-1] + cost[i-1], dp[i-2] + cost[i-2]).
+// Time: O(n) Space: O(1)
 class Solution {
     static int minCostClimbingStairs(int[] cost) {
         int[] dp = new int[cost.length + 1];

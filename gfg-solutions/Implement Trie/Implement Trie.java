@@ -1,3 +1,5 @@
+﻿// Approach: Trie node with 26 children and an isEnd flag. Insert, search, and startsWith via character traversal.
+// Time: O(len) per op Space: O(total chars)
 class Trie {
 
     Node root;

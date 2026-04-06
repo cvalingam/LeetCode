@@ -1,3 +1,5 @@
+﻿// Approach: Stack-based. Push numbers; on operator pop two, evaluate, push result.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

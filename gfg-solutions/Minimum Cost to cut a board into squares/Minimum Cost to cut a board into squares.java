@@ -1,3 +1,5 @@
+﻿// Approach: Greedy. Sort cuts by cost descending. Use Kruskal-style approach: apply most expensive cuts first.
+// Time: O(n log n) Space: O(1)
 import java.util.*;
 
 class Solution {

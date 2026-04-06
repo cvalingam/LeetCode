@@ -1,3 +1,5 @@
+﻿// Approach: Clean the string (lowercase, remove non-alpha), then check if it equals its reverse.
+// Time: O(n) Space: O(n)
 class Solution {
     public boolean isPalinSent(String s) {
         StringBuilder builder = new StringBuilder();

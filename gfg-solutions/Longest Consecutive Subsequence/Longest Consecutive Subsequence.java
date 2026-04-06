@@ -1,3 +1,5 @@
+﻿// Approach: HashSet of all numbers. For each number that starts a sequence (n-1 not in set), extend the chain.
+// Time: O(n) Space: O(n)
 class Solution {
 
     // Function to return length of longest subsequence of consecutive integers.

@@ -1,3 +1,5 @@
+﻿// Approach: Stack storing indices. Push -1 as base. On ')' pop; if stack empty push index, else update max span.
+// Time: O(n) Space: O(n)
 class Solution {
     static int maxLength(String S) {
 

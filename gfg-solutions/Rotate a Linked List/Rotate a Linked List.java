@@ -1,3 +1,5 @@
+﻿// Approach: Find (length - k % length)-th node; it becomes the new tail. Reconnect head and tail.
+// Time: O(n) Space: O(1)
 class Node {
     int data;
     Node next;

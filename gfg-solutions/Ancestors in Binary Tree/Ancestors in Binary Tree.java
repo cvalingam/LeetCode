@@ -1,3 +1,5 @@
+﻿// Approach: DFS. Recursively search for the target node; on the way back up, print ancestors.
+// Time: O(n) Space: O(h)
 import java.util.*;
 
 class Node {

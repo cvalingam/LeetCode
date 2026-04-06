@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window with HashMap tracking first occurrence of prefix state.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

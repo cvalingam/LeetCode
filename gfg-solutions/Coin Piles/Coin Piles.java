@@ -1,3 +1,5 @@
+﻿// Approach: Sort piles. Use greedy or binary search to find the minimum required removals.
+// Time: O(n log n) Space: O(1)
 import java.util.*;
 
 class Solution {

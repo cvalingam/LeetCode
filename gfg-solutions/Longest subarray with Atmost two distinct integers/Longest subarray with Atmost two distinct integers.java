@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window. Shrink left when distinct count exceeds 2, tracking max window size.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

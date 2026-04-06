@@ -1,3 +1,6 @@
+﻿// Approach: Greedy. Sort activities by finish time.
+// Always pick the next activity that starts after the last selected one ends.
+// Time: O(n log n) Space: O(1)
 import java.util.*;
 
 class Solution {

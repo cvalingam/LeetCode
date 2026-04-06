@@ -1,3 +1,5 @@
+﻿// Approach: Start from top-right corner. Move left if current > target, move down if current < target.
+// Time: O(n+m) Space: O(1)
 class Solution {
     public static boolean matSearch(int mat[][], int x) {
         for (int i = 0; i < mat.length; i++) {

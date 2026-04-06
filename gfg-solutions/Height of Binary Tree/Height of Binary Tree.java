@@ -1,3 +1,5 @@
+﻿// Approach: DFS. Return 1 + max(height(left), height(right)). Base case: null node returns 0.
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left, right;

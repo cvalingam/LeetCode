@@ -1,3 +1,5 @@
+﻿// Approach: DP. Process column by column. For each cell, best gold = cell + max of (upper-left, left, lower-left).
+// Time: O(n*m) Space: O(n*m)
 import java.util.*;
 
 class Solution {

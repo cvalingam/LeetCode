@@ -1,3 +1,5 @@
+﻿// Approach: Event sweep. Sort arrivals and departures separately; sweep to find peak simultaneous trains.
+// Time: O(n log n) Space: O(1)
 class Solution {
     // Function to find the minimum number of platforms required at the
     // railway station such that no train waits.

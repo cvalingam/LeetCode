@@ -1,3 +1,5 @@
+﻿// Approach: DP with binary search. Maintain a 'tails' array; binary search position for each element.
+// Time: O(n log n) Space: O(n)
 class Solution {
     static int lis(int arr[]) {
         int n = arr.length;

@@ -1,3 +1,5 @@
+﻿// Approach: Two-pointer: expand right to find subsequence, then contract left to minimize window.
+// Time: O(n * m) Space: O(1)
 class Solution {
     public String minWindow(String s1, String s2) {
         int i = 0, j = 0, k = 0;

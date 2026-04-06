@@ -1,3 +1,5 @@
+﻿// Approach: Sort meetings by end time. Greedily select meetings whose start time >= last selected end time.
+// Time: O(n log n) Space: O(n)
 import java.util.*;
 
 class Solution {

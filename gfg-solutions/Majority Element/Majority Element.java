@@ -1,3 +1,5 @@
+﻿// Approach: Boyer-Moore voting algorithm. One pass maintaining candidate and count.
+// Time: O(n) Space: O(1)
 class Solution {
     static int majorityElement(int arr[]) {
         int cnt = 0;

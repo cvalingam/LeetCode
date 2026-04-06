@@ -1,3 +1,5 @@
+﻿// Approach: Interval DP. dp[i][j] = min cost to cut stick between cuts[i] and cuts[j].
+// Time: O(n^3) Space: O(n^2)
 class Solution {
     public int minCutCost(int n, int[] cuts) {
         int m = cuts.length;

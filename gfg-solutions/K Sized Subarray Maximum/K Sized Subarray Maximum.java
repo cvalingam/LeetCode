@@ -1,3 +1,5 @@
+﻿// Approach: Monotonic deque. Maintain decreasing deque of indices; front is max of current window.
+// Time: O(n) Space: O(k)
 import java.util.*;
 
 class Solution {

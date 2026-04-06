@@ -1,3 +1,6 @@
+﻿// Approach: 2D prefix sum (integral image). Precompute prefix[i][j] = sum of all cells (0,0) to (i-1,j-1).
+// Answer any submatrix query in O(1) using inclusion-exclusion on prefix sums.
+// Time: O(n*m) build, O(1) query Space: O(n*m)
 import java.util.*;
 
 class Solution {

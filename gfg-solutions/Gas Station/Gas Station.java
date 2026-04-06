@@ -1,3 +1,5 @@
+﻿// Approach: Greedy. If total gas >= total cost, a solution exists. Start from where cumulative tank first goes negative.
+// Time: O(n) Space: O(1)
 class Solution {
     public int startStation(int[] gas, int[] cost) {
         int n = gas.length;

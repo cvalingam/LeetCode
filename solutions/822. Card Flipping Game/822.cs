@@ -1,3 +1,7 @@
+// Approach: Collect all numbers that appear on both sides of the same card (they can
+// never be the chosen number). Then find the minimum value appearing anywhere that is
+// not in that "same" set.
+// Time: O(n) Space: O(n)
 public class Solution
 {
     public int Flipgame(int[] fronts, int[] backs)

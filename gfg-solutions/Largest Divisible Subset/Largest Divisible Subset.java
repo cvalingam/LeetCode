@@ -1,3 +1,6 @@
+﻿// Approach: Sort array. DP: dp[i] = largest subset ending at i where every pair divides.
+// Track parent pointers to reconstruct subset.
+// Time: O(n^2) Space: O(n)
 import java.util.*;
 
 class Solution {

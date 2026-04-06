@@ -1,3 +1,5 @@
+﻿// Approach: DP with states: before first buy, holding first, after first sell, holding second, after second sell.
+// Time: O(n) Space: O(1)
 class Solution {
     public static int maxProfit(int[] prices) {
         int buy1 = Integer.MIN_VALUE, buy2 = Integer.MIN_VALUE;

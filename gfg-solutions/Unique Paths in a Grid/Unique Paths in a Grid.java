@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i][j] = dp[i-1][j] + dp[i][j-1] for empty cells; 0 for obstacles.
+// Time: O(n*m) Space: O(n*m)
 class Solution {
     public int uniquePaths(int[][] grid) {
         int rw = grid.length;

@@ -1,3 +1,5 @@
+﻿// Approach: Sort citations descending. H-index = max h such that first h papers have >= h citations.
+// Time: O(n log n) Space: O(1)
 import java.util.*;
 
 class Solution {

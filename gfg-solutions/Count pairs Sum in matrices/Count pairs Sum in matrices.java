@@ -1,3 +1,5 @@
+﻿// Approach: Flatten both matrices and use a two-pointer or hash set approach to count pairs summing to target.
+// Time: O(n^2) Space: O(n^2)
 import java.util.*;
 
 class Solution {

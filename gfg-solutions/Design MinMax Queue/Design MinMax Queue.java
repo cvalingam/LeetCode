@@ -1,3 +1,6 @@
+﻿// Approach: Use two deques (monotonic) tracking min and max alongside the main queue.
+// On dequeue, remove from front of monotonic deques if they match.
+// Time: O(1) amortized Space: O(n)
 import java.util.*;
 
 class SpecialQueue {

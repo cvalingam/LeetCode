@@ -1,3 +1,5 @@
+﻿// Approach: Sort array + Trie of binary representations. For each element, count pairs with XOR < K using Trie.
+// Time: O(n * 32) Space: O(n * 32)
 class Solution {
     class TrieNode {
         TrieNode[] child = new TrieNode[2];

@@ -1,3 +1,5 @@
+﻿// Approach: Three-step reversal: reverse all, reverse first k, reverse remaining. O(n) in-place.
+// Time: O(n) Space: O(1)
 class Solution {
     // Function to rotate an array by d elements in counter-clockwise direction.
     static void rotateArr(int arr[], int d) {

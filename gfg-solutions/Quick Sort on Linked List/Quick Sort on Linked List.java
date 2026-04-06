@@ -1,3 +1,5 @@
+﻿// Approach: Choose pivot (last node), partition list around pivot, recursively sort both halves.
+// Time: O(n log n) avg, O(n^2) worst Space: O(log n)
 class Node {
     int data;
     Node next;

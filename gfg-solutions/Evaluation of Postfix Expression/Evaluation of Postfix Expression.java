@@ -1,3 +1,5 @@
+﻿// Approach: Stack-based evaluation. Push operands; on operator, pop two values, apply op, push result.
+// Time: O(n) Space: O(n)
 class Solution {
     public int evaluate(String[] arr) {
         Deque<Integer> operands = new ArrayDeque<>();

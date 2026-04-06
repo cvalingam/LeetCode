@@ -1,3 +1,5 @@
+﻿// Approach: Repeat s until length >= len(target)*2. Check if target is a substring of repeated s.
+// Time: O(n * m) Space: O(n)
 class Solution {
     static int minRepeats(String s1, String s2) {
         StringBuilder str = new StringBuilder(s1);

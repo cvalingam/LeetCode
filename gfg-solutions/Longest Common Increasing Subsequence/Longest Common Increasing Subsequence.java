@@ -1,3 +1,5 @@
+﻿// Approach: DP combining LCS and LIS. dp[j] = length of LCIS ending at B[j].
+// Time: O(n*m) Space: O(m)
 class Solution {
     public int LCIS(int[] a, int[] b) {
         int n = a.length, m = b.length;

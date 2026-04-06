@@ -1,3 +1,5 @@
+﻿// Approach: DP with three states: hold, sold (cooldown), rest. Transition between states each day.
+// Time: O(n) Space: O(1)
 class Solution {
     public int maxProfit(int arr[]) {
         int n = arr.length;

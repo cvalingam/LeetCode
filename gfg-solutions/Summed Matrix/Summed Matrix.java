@@ -1,3 +1,5 @@
+﻿// Approach: Mathematical observation: cell (i,j) value is a function of (i+j). Derive count formula.
+// Time: O(1) Space: O(1)
 class Solution {
     static long sumMatrix(long n, long q) {
         if (q < 2 || q > 2 * n)

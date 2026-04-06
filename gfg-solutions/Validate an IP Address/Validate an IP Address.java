@@ -1,3 +1,5 @@
+﻿// Approach: Split by '.' for IPv4 or ':' for IPv6. Validate each octet/hextet via regex or manual check.
+// Time: O(1) bounded Space: O(1)
 class Solution {
 
     public boolean isValid(String str) {

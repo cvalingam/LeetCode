@@ -1,3 +1,5 @@
+﻿// Approach: For each element, find previous and next smaller element (monotonic stack) to determine its window range.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

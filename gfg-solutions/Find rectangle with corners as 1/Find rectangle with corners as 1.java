@@ -1,3 +1,5 @@
+﻿// Approach: For each pair of rows, find common column positions with 1. A rectangle exists if any column pair repeats.
+// Time: O(n^2 * m) Space: O(m)
 import java.util.*;
 
 class Solution {

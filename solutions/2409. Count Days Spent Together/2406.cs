@@ -1,3 +1,7 @@
+// Approach: Convert all dates to day-of-year integers using a prefix-sum of month lengths.
+// The overlap is max(0, min(leaveA, leaveB) - max(arriveA, arriveB) + 1), computed by
+// iterating all 365 days checking membership in both intervals.
+// Time: O(1) Space: O(1)
 public class Solution
 {
     public int CountDaysTogether(string arriveAlice, string leaveAlice, string arriveBob, string leaveBob)

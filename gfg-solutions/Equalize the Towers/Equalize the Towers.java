@@ -1,3 +1,5 @@
+﻿// Approach: Binary search or math derivation. Find the optimal height minimizing total cost.
+// Time: O(n log(max)) Space: O(1)
 class Solution {
     public int minCost(int[] heights, int[] cost) {
         int low = Integer.MAX_VALUE;

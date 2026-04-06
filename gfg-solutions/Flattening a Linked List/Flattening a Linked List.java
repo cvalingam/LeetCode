@@ -1,3 +1,5 @@
+﻿// Approach: Use merge sort approach: recursively flatten the right chain, then merge current column with flattened.
+// Time: O(n * m) Space: O(n)
 class Node {
     int data;
     Node next;

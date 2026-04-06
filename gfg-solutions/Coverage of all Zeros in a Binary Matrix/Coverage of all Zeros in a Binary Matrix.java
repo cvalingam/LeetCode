@@ -1,3 +1,5 @@
+﻿// Approach: BFS/DFS from all 1-cells simultaneously. Track minimum distance to reach each 0-cell.
+// Time: O(n*m) Space: O(n*m)
 class Solution {
     public int FindCoverage(int[][] matrix) {
         int cnt = 0;

@@ -1,3 +1,5 @@
+﻿// Approach: Stack-based. Push open brackets; on close bracket check stack top matches.
+// Time: O(n) Space: O(n)
 class Solution {
     static boolean isBalanced(String s) {
         Stack<Character> st = new Stack<>();

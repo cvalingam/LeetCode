@@ -1,3 +1,5 @@
+﻿// Approach: Backtracking. At each position, try all prefixes that are palindromes, recurse on remainder.
+// Time: O(n * 2^n) Space: O(n)
 import java.util.*;
 
 class Solution {

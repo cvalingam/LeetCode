@@ -1,3 +1,5 @@
+﻿// Approach: Handle deletion with pointer adjustment for circular structure; reverse by relinking all nodes.
+// Time: O(n) Space: O(1)
 class Solution {
     // Function to reverse a circular linked list
     Node reverse(Node head) {

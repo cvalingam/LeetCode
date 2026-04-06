@@ -1,3 +1,5 @@
+﻿// Approach: XOR all elements to get XOR of two unique numbers. Split by a set bit; XOR each group separately.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

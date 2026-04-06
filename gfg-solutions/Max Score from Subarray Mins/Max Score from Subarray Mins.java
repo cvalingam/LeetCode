@@ -1,3 +1,5 @@
+﻿// Approach: For each pair of adjacent elements, their sum is a candidate (no non-adjacent sum can be better).
+// Time: O(n) Space: O(1)
 class Solution {
     public int maxSum(int arr[]) {
         int ans = Integer.MIN_VALUE;

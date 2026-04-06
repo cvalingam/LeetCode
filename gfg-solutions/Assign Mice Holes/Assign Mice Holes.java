@@ -1,3 +1,6 @@
+﻿// Approach: Greedy. Sort both mice and hole positions.
+// Pair i-th mouse with i-th hole; the answer is the maximum absolute difference.
+// Time: O(n log n) Space: O(1)
 import java.util.*;
 
 class Solution {

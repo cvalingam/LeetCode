@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i][j] = can pattern[0..i-1] match string[0..j-1]. '*' matches empty or any sequence.
+// Time: O(n*m) Space: O(n*m)
 import java.util.*;
 
 class Solution {

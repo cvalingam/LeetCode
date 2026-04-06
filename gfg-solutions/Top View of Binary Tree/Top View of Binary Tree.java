@@ -1,3 +1,5 @@
+﻿// Approach: BFS with horizontal distance tracking. For each HD, store only the first node encountered.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Node {

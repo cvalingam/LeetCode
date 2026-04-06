@@ -1,3 +1,6 @@
+﻿// Approach: DP. LPS(s) = LCS(s, reverse(s)), or direct DP on reversed s.
+// dp[i][j] = LPS of s[i..j].
+// Time: O(n^2) Space: O(n^2)
 class Solution {
     public int longestPalinSubseq(String s) {
         int n = s.length();

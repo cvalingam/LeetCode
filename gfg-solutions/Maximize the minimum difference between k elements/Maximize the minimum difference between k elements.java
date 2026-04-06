@@ -1,3 +1,5 @@
+﻿// Approach: Sort array. Binary search on minimum difference; check if we can pick k elements with that gap.
+// Time: O(n log(max-min)) Space: O(1)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Binary search. If arr[mid] < arr[mid+1], peak is on right; else peak is on left or at mid.
+// Time: O(log n) Space: O(1)
 class Solution {
 
     public int peakElement(int[] arr) {

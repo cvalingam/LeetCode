@@ -1,3 +1,5 @@
+﻿// Approach: Greedy. Sort digits, interleave smallest digits alternately into two numbers to minimize sum.
+// Time: O(n log n) Space: O(n)
 import java.util.*;
 
 class Solution {

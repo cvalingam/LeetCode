@@ -1,3 +1,5 @@
+﻿// Approach: Find LCS. Min operations = (n - LCS) deletions + (m - LCS) insertions.
+// Time: O(n*m) Space: O(n*m)
 import java.util.*;
 
 class Solution {

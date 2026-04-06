@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window. Expand right until all pattern chars found, then shrink left to minimize.
+// Time: O(n + m) Space: O(1)
 class Solution {
     // Function to find the smallest window in the string s consisting
     // of all the characters of string p.

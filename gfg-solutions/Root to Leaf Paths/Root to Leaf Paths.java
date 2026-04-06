@@ -1,3 +1,5 @@
+﻿// Approach: DFS with backtracking. Maintain current path and print on reaching a leaf.
+// Time: O(n) Space: O(h)
 import java.util.*;
 
 class Node {

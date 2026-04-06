@@ -1,3 +1,6 @@
+﻿// Approach: Find LCS, then merge both strings including LCS characters only once.
+// Total length = m + n - LCS length.
+// Time: O(n*m) Space: O(n*m)
 class Solution {
     public static int minSuperSeq(String s1, String s2) {
         int n = s1.length();

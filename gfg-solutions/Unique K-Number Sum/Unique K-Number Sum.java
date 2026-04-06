@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window of size k with frequency map. Sum unique values in each window.
+// Time: O(n) Space: O(k)
 import java.util.*;
 
 class Solution {

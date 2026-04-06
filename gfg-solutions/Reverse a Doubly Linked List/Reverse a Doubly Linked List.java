@@ -1,3 +1,5 @@
+﻿// Approach: Swap prev and next pointers for every node while traversing.
+// Time: O(n) Space: O(1)
 class Node {
     int data;
     Node next;

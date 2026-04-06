@@ -1,3 +1,5 @@
+﻿// Approach: Catalan number-based DP. dp[i][j] = number of BSTs from arr[i..j] using each element as root.
+// Time: O(n^3) Space: O(n^2)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,6 @@
+﻿// Approach: Model as directed graph: each string adds edge from first to last character.
+// Eulerian circuit exists iff the graph is connected and every node has equal in/out degree.
+// Time: O(n * len) Space: O(26)
 import java.util.*;
 
 class Solution {

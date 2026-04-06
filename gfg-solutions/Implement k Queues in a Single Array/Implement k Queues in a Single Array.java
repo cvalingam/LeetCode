@@ -1,3 +1,5 @@
+﻿// Approach: Use extra 'next' and 'front' arrays for free slots and queue heads. Linked-list-style management.
+// Time: O(1) per operation Space: O(n)
 import java.util.*;
 
 class kQueues {

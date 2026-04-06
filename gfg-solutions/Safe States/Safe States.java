@@ -1,3 +1,5 @@
+﻿// Approach: Reverse graph, then topological sort / BFS from terminal nodes. Safe = reachable from terminal.
+// Time: O(V+E) Space: O(V+E)
 import java.util.*;
 
 class Solution {

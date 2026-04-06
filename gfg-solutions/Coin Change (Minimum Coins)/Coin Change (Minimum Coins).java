@@ -1,3 +1,6 @@
+﻿// Approach: DP. dp[i] = minimum coins needed to make amount i.
+// For each coin, dp[j] = min(dp[j], dp[j-coin]+1) for j from coin to amount.
+// Time: O(n * amount) Space: O(amount)
 class Solution {
 
     public int minCoins(int coins[], int sum) {

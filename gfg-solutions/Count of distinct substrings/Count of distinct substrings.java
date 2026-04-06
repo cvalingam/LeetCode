@@ -1,3 +1,5 @@
+﻿// Approach: Build a Suffix Automaton or Suffix Array. Count distinct substrings from the structure.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

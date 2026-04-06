@@ -1,3 +1,5 @@
+﻿// Approach: Use first row/column as flags to mark which rows/columns should be zeroed; zero them in second pass.
+// Time: O(n*m) Space: O(1)
 class Solution {
     public void setMatrixZeroes(int[][] mat) {
         int n = mat.length;

@@ -1,3 +1,5 @@
+﻿// Approach: DP. contribution[i] = d[i] * (i+1) * (n-i). Each digit contributes based on its position.
+// Time: O(n) Space: O(1)
 class Solution {
     public static int sumSubstrings(String s) {
         int n = s.length();

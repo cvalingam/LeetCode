@@ -1,3 +1,5 @@
+﻿// Approach: DFS. For each node, diameter through it = height(left) + height(right). Track global max.
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left;

@@ -1,3 +1,5 @@
+﻿// Approach: Greedy BFS. Track current range end and farthest reachable. Each full range traversal = one jump.
+// Time: O(n) Space: O(1)
 class Solution {
     static int minJumps(int[] arr) {
         int n = arr.length;

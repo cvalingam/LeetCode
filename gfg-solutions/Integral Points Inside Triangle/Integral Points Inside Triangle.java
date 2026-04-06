@@ -1,3 +1,5 @@
+﻿// Approach: Pick's theorem: I = A - B/2 + 1 where A = triangle area (shoelace), B = boundary lattice points.
+// Time: O(1) Space: O(1)
 class Solution {
     long InternalCount(long p[], long q[], long r[]) {
         long x1 = p[0], y1 = p[1];

@@ -1,3 +1,5 @@
+﻿// Approach: Binary search. Find the pivot; the element at pivot is the minimum.
+// Time: O(log n) Space: O(1)
 class Solution {
     public int findMin(int[] arr) {
         int i = 0;

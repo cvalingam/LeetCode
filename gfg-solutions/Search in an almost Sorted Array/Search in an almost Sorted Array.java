@@ -1,3 +1,5 @@
+﻿// Approach: Modified binary search: check mid, mid-1, mid+1 for each step since element may be one off.
+// Time: O(log n) Space: O(1)
 
 class Solution {
     public int findTarget(int arr[], int target) {

@@ -1,3 +1,5 @@
+﻿// Approach: DP (0/1 Knapsack). Find if any subset sums to totalSum/2. dp[j] = can we achieve sum j.
+// Time: O(n * sum) Space: O(sum)
 class Solution {
     static boolean equalPartition(int arr[]) {
         int sum = 0;

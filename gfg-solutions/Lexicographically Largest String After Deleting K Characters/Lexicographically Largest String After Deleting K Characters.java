@@ -1,3 +1,5 @@
+﻿// Approach: Greedy with monotonic stack. Remove characters that are smaller than the next character while k > 0.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

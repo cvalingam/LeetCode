@@ -1,3 +1,5 @@
+﻿// Approach: Traverse both lists to compute their numeric values (mod 10^9+7), then multiply.
+// Time: O(n+m) Space: O(1)
 class Solution {
     long e = 1000000007;
 

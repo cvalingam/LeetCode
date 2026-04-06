@@ -1,3 +1,5 @@
+﻿// Approach: DFS postorder. If a node has exactly one child, return that child (remove the half node).
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left, right;

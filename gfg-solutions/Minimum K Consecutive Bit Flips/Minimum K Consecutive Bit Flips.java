@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window with a flip count array. Track pending flips without actually modifying the array.
+// Time: O(n) Space: O(n)
 class Solution {
     public int kBitFlips(int[] arr, int k) {
         int n = arr.length;

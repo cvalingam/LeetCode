@@ -1,3 +1,5 @@
+﻿// Approach: Compute total sum; if odd, impossible. Find split point where left prefix sum = sum/2.
+// Time: O(n) Space: O(1)
 class Solution {
     public boolean canSplit(int arr[]) {
         int sum = 0;

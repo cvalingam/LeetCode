@@ -1,3 +1,5 @@
+﻿// Approach: BFS with a queue. Process each level fully before moving to the next.
+// Time: O(n) Space: O(n)
 class Solution {
     public ArrayList<ArrayList<Integer>> levelOrder(Node root) {
         ArrayList<ArrayList<Integer>> list = new ArrayList<>();

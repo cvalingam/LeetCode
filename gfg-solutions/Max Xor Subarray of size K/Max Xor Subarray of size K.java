@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window XOR. Maintain running XOR; for a window of size k, slide and track max XOR.
+// Time: O(n) Space: O(1)
 class Solution {
     public int maxSubarrayXOR(int[] arr, int k) {
         int maxXOR = Integer.MIN_VALUE;

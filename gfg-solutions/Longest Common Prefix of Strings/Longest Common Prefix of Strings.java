@@ -1,3 +1,5 @@
+﻿// Approach: Sort strings, then compare only first and last in sorted order character by character.
+// Time: O(n log n * len) Space: O(1)
 import java.util.*;
 
 class Solution {

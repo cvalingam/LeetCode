@@ -1,3 +1,5 @@
+﻿// Approach: Sort by end time. Greedily keep intervals; if overlap with previous, remove the one ending later.
+// Time: O(n log n) Space: O(1)
 class Solution {
     static int minRemoval(int arr[][]) {
         Arrays.sort(arr, (a, b) -> (a[1] - b[1]));

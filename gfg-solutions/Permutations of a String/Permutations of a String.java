@@ -1,3 +1,5 @@
+﻿// Approach: Backtracking with a visited boolean array or swap-based approach to generate all permutations.
+// Time: O(n! * n) Space: O(n)
 class Solution {
     public ArrayList<String> findPermutation(String s) {
         ArrayList<String> result = new ArrayList<>();

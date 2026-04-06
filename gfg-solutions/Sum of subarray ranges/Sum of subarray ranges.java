@@ -1,3 +1,5 @@
+﻿// Approach: Sum of max of all subarrays minus sum of min of all subarrays. Use monotonic stacks for each.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

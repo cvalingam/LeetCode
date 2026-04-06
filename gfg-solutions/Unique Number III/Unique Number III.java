@@ -1,3 +1,5 @@
+﻿// Approach: Bit counting modulo 3. For each bit position, count total 1s; the unique element has count % 3 != 0.
+// Time: O(32n) Space: O(1)
 class Solution {
     public int getSingle(int[] arr) {
         int res = 0;

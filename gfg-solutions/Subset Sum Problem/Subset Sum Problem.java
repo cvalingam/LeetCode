@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[j] = can we achieve sum j? For each element, iterate sum from high to low and set dp[j] |= dp[j-num].
+// Time: O(n * sum) Space: O(sum)
 class Solution {
 
     static Boolean isSubsetSum(int arr[], int sum) {

@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i][j] = can s1[0..i-1] and s2[0..j-1] interleave to form s3[0..i+j-1].
+// Time: O(n*m) Space: O(n*m)
 class Solution {
     public boolean isInterleave(String s1, String s2, String s3) {
         int n = s1.length();

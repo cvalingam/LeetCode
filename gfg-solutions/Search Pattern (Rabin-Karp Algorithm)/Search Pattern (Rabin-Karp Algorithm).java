@@ -1,3 +1,5 @@
+﻿// Approach: Rolling hash. Compute hash of pattern and each window. Compare hashes then verify on match.
+// Time: O(n+m) avg Space: O(m)
 import java.util.*;
 
 class Solution {

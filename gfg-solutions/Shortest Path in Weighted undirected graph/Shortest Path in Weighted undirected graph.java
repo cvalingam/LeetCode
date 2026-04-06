@@ -1,3 +1,5 @@
+﻿// Approach: Dijkstra with min-heap. Relax edges greedily from shortest known distance.
+// Time: O((V+E) log V) Space: O(V+E)
 import java.util.*;
 
 class Solution {

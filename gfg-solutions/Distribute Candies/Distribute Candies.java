@@ -1,3 +1,5 @@
+﻿// Approach: Count unique candy types. Answer = min(unique types, n/2) where n = total candies.
+// Time: O(n) Space: O(n)
 class Node {
     int data;
     Node left;

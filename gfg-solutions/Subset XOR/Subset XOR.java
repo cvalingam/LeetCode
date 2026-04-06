@@ -1,3 +1,5 @@
+﻿// Approach: Each bit is determined independently. Total XOR sum of all subsets = OR of all elements * 2^(n-1).
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

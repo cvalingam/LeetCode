@@ -1,3 +1,5 @@
+﻿// Approach: Linear scan tracking maximum length string seen so far.
+// Time: O(n * len) Space: O(1)
 import java.util.*;
 
 class Solution {

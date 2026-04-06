@@ -1,3 +1,6 @@
+﻿// Approach: Relax all edges V-1 times to find shortest paths from source in graphs with negative edges.
+// Detect negative cycles by checking if any edge can still be relaxed on the V-th pass.
+// Time: O(V*E) Space: O(V)
 class Solution {
     public int[] bellmanFord(int V, int[][] edges, int src) {
         int[] dist = new int[V];

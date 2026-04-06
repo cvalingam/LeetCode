@@ -1,3 +1,6 @@
+﻿// Approach: Monotonic stack. For each element, find left and right boundaries where it is the minimum.
+// Contribution = arr[i] * left_count * right_count. Sum all contributions.
+// Time: O(n) Space: O(n)
 import java.util.Stack;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Frequency map + min-heap of size k. Or bucket sort by frequency for O(n) solution.
+// Time: O(n log k) Space: O(n)
 import java.util.*;
 
 class Solution {

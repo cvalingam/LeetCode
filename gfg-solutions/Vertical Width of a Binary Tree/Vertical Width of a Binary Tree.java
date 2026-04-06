@@ -1,3 +1,5 @@
+﻿// Approach: DFS tracking horizontal distances. Width = max HD - min HD + 1.
+// Time: O(n) Space: O(n)
 class Node {
     int data;
     Node left;

@@ -1,3 +1,5 @@
+﻿// Approach: Two-pointer or greedy scan. Match each thief to the nearest available police within distance k.
+// Time: O(n) Space: O(n)
 class Solution {
     public int catchThieves(char[] arr, int k) {
         int ans = 0;

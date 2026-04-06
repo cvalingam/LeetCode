@@ -1,3 +1,6 @@
+﻿// Approach: Use a HashSet to track seen elements, collect duplicates.
+// Alternatively use index marking: for each num, negate arr[|num|-1] and check sign.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

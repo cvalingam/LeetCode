@@ -1,3 +1,5 @@
+﻿// Approach: Each element arr[i] contributes to (i+1)*(n-i) subarrays. Total = sum of arr[i]*(i+1)*(n-i).
+// Time: O(n) Space: O(1)
 class Solution {
     public int subarraySum(int[] arr) {
         int n = arr.length;

@@ -1,3 +1,5 @@
+﻿// Approach: Track open brackets needed and close brackets needed. On '(' increment open; on ')' decrement or increment close.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,6 @@
+﻿// Approach: BFS serialization with null markers. Tokens are node values or '#' for null.
+// Deserialize by replaying BFS queue with the token stream.
+// Time: O(n) Space: O(n)
 class Tree {
     int data;
     Tree left, right;

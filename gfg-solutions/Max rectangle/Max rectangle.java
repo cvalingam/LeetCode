@@ -1,3 +1,5 @@
+﻿// Approach: Compute histogram row by row. For each row apply largest rectangle in histogram (monotonic stack).
+// Time: O(n*m) Space: O(m)
 import java.util.*;
 
 class Solution {

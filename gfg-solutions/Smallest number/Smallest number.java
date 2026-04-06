@@ -1,3 +1,5 @@
+﻿// Approach: Greedy. For each position pick the smallest available digit; handle leading zeros.
+// Time: O(n log n) Space: O(n)
 class Solution {
     public String smallestNumber(int s, int d) {
         int result = solve(s, d, 0);

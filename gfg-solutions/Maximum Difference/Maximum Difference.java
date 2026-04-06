@@ -1,3 +1,5 @@
+﻿// Approach: For max b-a with b>a and index_b>index_a: track minimum so far; max diff = max(arr[i] - minSoFar).
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

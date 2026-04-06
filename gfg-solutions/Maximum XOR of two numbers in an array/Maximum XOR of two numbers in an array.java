@@ -1,3 +1,5 @@
+﻿// Approach: Trie of binary representations. For each number, traverse trie choosing opposite bit greedily.
+// Time: O(n * 32) Space: O(n * 32)
 class Solution {
     public int maxXor(int[] arr) {
         TrieNode root = new TrieNode();

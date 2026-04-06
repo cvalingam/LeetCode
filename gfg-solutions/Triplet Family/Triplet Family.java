@@ -1,3 +1,5 @@
+﻿// Approach: Sort array. For each element as potential largest, two pointers find if a+b = third element.
+// Time: O(n^2) Space: O(1)
 class Solution {
     public boolean findTriplet(int[] arr) {
         int n = arr.length;

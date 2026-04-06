@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { getAllTags, getProblemNumbersByTag, TAG_LABELS } from '@/lib/tags'
+import { getAllTags, getProblemNumbersByTag, TAG_LABELS, TOPIC_DESCRIPTIONS } from '@/lib/tags'
 import { getAllProblemsMeta } from '@/lib/problems'
 import DifficultyBadge from '@/components/DifficultyBadge'
 import { SITE_URL } from '@/lib/constants'
@@ -19,14 +19,16 @@ export const dynamicParams = false
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const label = TAG_LABELS[params.tag]
   if (!label) return {}
-  const desc = `LeetCode C# solutions for ${label} problems — clean, readable C# code for every ${label} problem on LeetCode.`
+  const desc = TOPIC_DESCRIPTIONS[params.tag]
+    ?? `LeetCode C# solutions for ${label} problems — clean, readable C# code for every ${label} problem on LeetCode.`
+  const metaDesc = `LeetCode C# solutions for ${label} problems — clean, readable C# code for every ${label} problem on LeetCode.`
   return {
     title: `${label} LeetCode Problems`,
-    description: desc,
+    description: metaDesc,
     alternates: { canonical: `/topics/${params.tag}` },
     openGraph: {
       title: `${label} LeetCode Problems — C# Solutions`,
-      description: desc,
+      description: metaDesc,
       url: `/topics/${params.tag}`,
       type: 'website',
     },
@@ -43,6 +45,8 @@ export default function TopicPage({ params }: Props) {
   const problems = numbers.map(n => problemMap.get(n)).filter(Boolean) as typeof allProblems
 
   if (!problems.length) notFound()
+
+  const description = TOPIC_DESCRIPTIONS[params.tag]
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -88,7 +92,13 @@ export default function TopicPage({ params }: Props) {
       <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-1">
         {label}
       </h1>
-      <p className="text-gray-500 dark:text-gray-400 text-sm mb-7">{problems.length} problems</p>
+      <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">{problems.length} problems</p>
+
+      {description && (
+        <div className="bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/50 rounded-xl p-4 mb-7 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+          {description}
+        </div>
+      )}
 
       <ul className="divide-y divide-gray-100 dark:divide-gray-800">
         {problems.map(p => (

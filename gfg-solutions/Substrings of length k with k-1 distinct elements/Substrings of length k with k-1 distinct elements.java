@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window of size k with frequency map. Count windows with exactly k-1 distinct characters.
+// Time: O(n) Space: O(k)
 import java.util.*;
 
 class Solution {

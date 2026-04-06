@@ -1,3 +1,5 @@
+﻿// Approach: Reverse in-order traversal (right-root-left). Track the previous node and assign as successor.
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left, right, next;

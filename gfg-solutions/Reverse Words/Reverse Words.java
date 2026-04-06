@@ -1,3 +1,5 @@
+﻿// Approach: Split string by spaces, collect non-empty tokens, reverse array, join with single space.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

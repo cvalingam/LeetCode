@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i] = dp[i-1] + dp[i-2] (can take 1 or 2 steps). Base: dp[0]=dp[1]=1.
+// Time: O(n) Space: O(1)
 class Solution {
     int countWays(int n) {
         int dp[] = new int[n + 1];

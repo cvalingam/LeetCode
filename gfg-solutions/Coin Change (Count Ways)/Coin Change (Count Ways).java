@@ -1,3 +1,6 @@
+﻿// Approach: DP. dp[i] = number of ways to make sum i using given coins.
+// For each coin, update dp from coin to sum: dp[j] += dp[j - coin].
+// Time: O(n * sum) Space: O(sum)
 class Solution {
     public int count(int coins[], int sum) {
         int n = coins.length;

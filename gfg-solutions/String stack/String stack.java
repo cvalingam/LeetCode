@@ -1,3 +1,5 @@
+﻿// Approach: Stack of characters for push/pop operations; concatenate for peek/display.
+// Time: O(1) per op Space: O(n)
 class Solution {
     public boolean stringStack(String pat, String tar) {
 

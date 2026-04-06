@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window with a monotonic deque tracking min and max. Shrink when max-min > k.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

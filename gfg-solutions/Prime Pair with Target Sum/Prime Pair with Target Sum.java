@@ -1,3 +1,5 @@
+﻿// Approach: Sieve to find all primes up to n. Two pointer on prime list to find pairs summing to target.
+// Time: O(n log log n) Space: O(n)
 class Solution {
     public static ArrayList<Integer> getPrimes(int n) {
         int[] prime = new int[n + 1];

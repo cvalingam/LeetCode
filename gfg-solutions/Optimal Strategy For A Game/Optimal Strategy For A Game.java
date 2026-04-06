@@ -1,3 +1,5 @@
+﻿// Approach: Interval DP. dp[i][j] = max coins player can collect from arr[i..j] when it's their turn.
+// Time: O(n^2) Space: O(n^2)
 
 class Solution {
     public int maximumAmount(int arr[]) {

@@ -1,3 +1,5 @@
+﻿// Approach: Binary search. Find the peak element where arr[mid] > arr[mid-1] and arr[mid] > arr[mid+1].
+// Time: O(log n) Space: O(1)
 class Solution {
     public int findMaximum(int[] arr) {
         int n = arr.length;

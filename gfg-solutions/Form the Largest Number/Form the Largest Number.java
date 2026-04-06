@@ -1,3 +1,5 @@
+﻿// Approach: Custom sort: compare 'ab' vs 'ba' as strings. Concatenate sorted numbers for maximum result.
+// Time: O(n log n * digits) Space: O(n)
 import java.util.*;
 
 class Solution {

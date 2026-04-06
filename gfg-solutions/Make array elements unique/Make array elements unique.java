@@ -1,3 +1,5 @@
+﻿// Approach: Sort array. Ensure each element is strictly greater than previous by incrementing and counting moves.
+// Time: O(n log n) Space: O(1)
 class Solution {
     public int minIncrements(int[] arr) {
         Arrays.sort(arr);

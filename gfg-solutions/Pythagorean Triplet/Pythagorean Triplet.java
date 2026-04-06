@@ -1,3 +1,5 @@
+﻿// Approach: Sort array, square all elements. For each largest element use two pointers to find a^2 + b^2 = c^2.
+// Time: O(n^2) Space: O(1)
 import java.util.*;
 
 class Solution {

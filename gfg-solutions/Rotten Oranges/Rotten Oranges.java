@@ -1,3 +1,5 @@
+﻿// Approach: Multi-source BFS from all initially rotten oranges. Track time steps to rot all fresh oranges.
+// Time: O(n*m) Space: O(n*m)
 import java.util.*;
 
 class Solution {

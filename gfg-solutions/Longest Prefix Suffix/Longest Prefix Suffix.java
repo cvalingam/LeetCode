@@ -1,3 +1,5 @@
+﻿// Approach: KMP prefix function (failure function). lps[i] = length of longest prefix-suffix for s[0..i].
+// Time: O(n) Space: O(n)
 class Solution {
     int lps(String str) {
         int[] preArry = new int[str.length()];

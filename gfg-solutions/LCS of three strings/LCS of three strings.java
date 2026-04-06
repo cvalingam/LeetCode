@@ -1,3 +1,5 @@
+﻿// Approach: 3D DP. dp[i][j][k] = LCS length of s1[0..i-1], s2[0..j-1], s3[0..k-1].
+// Time: O(n*m*p) Space: O(n*m*p)
 class Solution {
     int lcsOf3(String s1, String s2, String s3) {
         int n = s1.length();

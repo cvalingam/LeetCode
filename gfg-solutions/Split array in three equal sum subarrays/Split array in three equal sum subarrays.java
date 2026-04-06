@@ -1,3 +1,5 @@
+﻿// Approach: Find prefix sum/3 and 2*sum/3 split points. Track positions where these exact sums occur.
+// Time: O(n) Space: O(n)
 class Solution {
     // Function to determine if array arr can be split into three equal sum sets.
     public List<Integer> findSplit(int[] arr) {

@@ -1,3 +1,5 @@
+﻿// Approach: Greedy with HashMap. Append to existing subsequences or start new ones; track ends.
+// Time: O(n log n) Space: O(n)
 import java.util.*;
 
 class Solution {

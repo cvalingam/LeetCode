@@ -1,3 +1,5 @@
+﻿// Approach: Compute length difference, advance longer list pointer, then advance both until they meet.
+// Time: O(n+m) Space: O(1)
 class Node {
     int data;
     Node next;

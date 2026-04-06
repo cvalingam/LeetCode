@@ -1,3 +1,5 @@
+﻿// Approach: XOR all indices 1..n with all array elements. Missing element = XOR result.
+// Time: O(n) Space: O(1)
 class Solution {
 
     // Note that the size of the array is n-1

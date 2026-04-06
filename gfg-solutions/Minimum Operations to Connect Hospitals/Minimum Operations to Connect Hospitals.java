@@ -1,3 +1,5 @@
+﻿// Approach: Minimum spanning tree (Kruskal or Prim) on the hospital graph.
+// Time: O(E log E) Space: O(V)
 import java.util.*;
 
 class Solution {

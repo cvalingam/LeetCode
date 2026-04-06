@@ -1,3 +1,5 @@
+﻿// Approach: Compute all subarray sums (prefix sums), then find kth largest using min-heap of size k.
+// Time: O(n^2 log k) Space: O(n^2)
 import java.util.*;
 
 class Solution {

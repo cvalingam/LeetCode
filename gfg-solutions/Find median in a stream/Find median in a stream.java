@@ -1,3 +1,5 @@
+﻿// Approach: Two heaps: max-heap for lower half, min-heap for upper half. Median is top of appropriate heap.
+// Time: O(log n) insert, O(1) query Space: O(n)
 class Solution {
     public ArrayList<Double> getMedian(int[] arr) {
         ArrayList<Double> ans = new ArrayList<>();

@@ -1,3 +1,5 @@
+﻿// Approach: Interval DP. dp[i][j] = min cost to merge stones[i..j]. Only possible if (j-i) % (k-1) == 0.
+// Time: O(n^3 / k) Space: O(n^2)
 class Solution {
     public static int mergeStones(int[] stones, int k) {
         int n = stones.length;

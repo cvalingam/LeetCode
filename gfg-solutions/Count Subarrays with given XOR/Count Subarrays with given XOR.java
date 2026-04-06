@@ -1,3 +1,5 @@
+﻿// Approach: Prefix XOR + HashMap. For each prefix XOR, count how many previous prefixes have XOR = (prefixXOR ^ k).
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Binary search to find the index of the minimum element, which equals the rotation count.
+// Time: O(log n) Space: O(1)
 class Solution {
     public int findKRotation(int arr[]) {
         int start = 0;

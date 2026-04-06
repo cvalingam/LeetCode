@@ -1,3 +1,5 @@
+﻿// Approach: Three phases: add all non-overlapping intervals before new, merge overlapping, add remaining.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

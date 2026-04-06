@@ -1,3 +1,5 @@
+﻿// Approach: DFS with timestamps. Track visited time; a back edge to an in-stack node gives cycle length.
+// Time: O(V+E) Space: O(V)
 
 import java.util.*;
 

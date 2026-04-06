@@ -1,3 +1,6 @@
+﻿// Approach: BFS with a flag to reverse alternate levels.
+// Use two stacks or deque to alternate direction.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Sort array. Two pointers from ends: track closest pair sum to target, move pointers accordingly.
+// Time: O(n log n) Space: O(1)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Greedy simulation. Assign resources optimally to maximize victory count based on constraints.
+// Time: O(n log n) Space: O(n)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Min-heap of size k storing head nodes. Extract min, add its next to heap, repeat.
+// Time: O(n log k) Space: O(k)
 import java.util.*;
 
 class Node {

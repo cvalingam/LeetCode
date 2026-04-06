@@ -1,3 +1,5 @@
+﻿// Approach: Binary search on eating speed k. For each k, check if Koko finishes all piles in H hours.
+// Time: O(n log(max_pile)) Space: O(1)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Stack-based. Assign incrementing numbers to opening brackets; use stack to match closing brackets.
+// Time: O(n) Space: O(n)
 import java.util.ArrayList;
 
 class Solution {

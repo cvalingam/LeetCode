@@ -1,3 +1,5 @@
+﻿// Approach: Iterative three-pointer reversal: prev, current, next. Update links and advance.
+// Time: O(n) Space: O(1)
 class Node {
     int data;
     Node next;

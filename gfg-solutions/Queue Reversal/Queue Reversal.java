@@ -1,3 +1,5 @@
+﻿// Approach: Use a stack: dequeue all to stack, enqueue all back from stack.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

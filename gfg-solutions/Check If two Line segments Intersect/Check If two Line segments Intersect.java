@@ -1,3 +1,5 @@
+﻿// Approach: Use cross-product orientation tests. Check if segments straddle each other; handle collinear edge cases.
+// Time: O(1) Space: O(1)
 class Solution {
     String doIntersect(int p1[], int q1[], int p2[], int q2[]) {
         int o1 = orientation(p1, q1, p2);

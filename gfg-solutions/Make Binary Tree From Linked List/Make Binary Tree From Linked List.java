@@ -1,3 +1,5 @@
+﻿// Approach: Use queue-based level-order construction. Convert linked list nodes to tree nodes level by level.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Tree {

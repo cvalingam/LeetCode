@@ -1,3 +1,5 @@
+﻿// Approach: DP on tree. dp[node] = (include_sum, exclude_sum). Use post-order.
+// Time: O(n) Space: O(n)
 class Node {
     int data;
     Node left, right;

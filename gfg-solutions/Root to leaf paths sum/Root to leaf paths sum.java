@@ -1,3 +1,5 @@
+﻿// Approach: DFS. Accumulate all root-to-leaf path sums as numbers; return total.
+// Time: O(n) Space: O(h)
 class Tree {
     int data;
     Tree left, right;

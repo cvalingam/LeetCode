@@ -1,3 +1,5 @@
+﻿// Approach: Floyd's cycle detection. Find loop start, then advance one pointer to find the node just before the start.
+// Time: O(n) Space: O(1)
 class Node {
     int data;
     Node next;

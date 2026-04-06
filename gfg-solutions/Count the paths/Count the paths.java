@@ -1,3 +1,5 @@
+﻿// Approach: DFS/BFS from source to destination. Count all distinct simple paths.
+// Time: O(V+E) Space: O(V)
 import java.util.*;
 
 class Solution {

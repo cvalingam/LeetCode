@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window: count subarrays with at most k odds minus subarrays with at most k-1 odds.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

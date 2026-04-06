@@ -1,3 +1,5 @@
+﻿// Approach: Prefix sum HashMap. For each prefix sum, check how many prior prefix sums equal (prefixSum - k).
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

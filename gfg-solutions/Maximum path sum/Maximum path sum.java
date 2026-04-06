@@ -1,3 +1,5 @@
+﻿// Approach: DFS postorder. For paths from root to leaf sum values. Track and return maximum path sum.
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left, right;

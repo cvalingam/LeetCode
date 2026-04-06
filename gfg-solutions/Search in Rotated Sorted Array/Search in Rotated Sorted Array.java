@@ -1,3 +1,5 @@
+﻿// Approach: Binary search. Determine which half is sorted, then narrow the search accordingly.
+// Time: O(log n) Space: O(1)
 class Solution {
     int search(int[] arr, int key) {
         int low = 0, high = arr.length - 1;

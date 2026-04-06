@@ -1,3 +1,6 @@
+﻿// Approach: DP. dp[i][j][0/1] = number of ways to parenthesize s[i..j] to get false/true.
+// Split at each operator and combine counts from left and right sub-expressions.
+// Time: O(n^3) Space: O(n^2)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Compare array to sorted version. Count positions differing; exactly 0 or 2 mismatches = one swap.
+// Time: O(n log n) Space: O(n)
 class Solution {
 
     public boolean checkSorted(List<Integer> arr) {

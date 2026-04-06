@@ -1,3 +1,5 @@
+﻿// Approach: For each element, find the farthest index to its right that has a smaller value using monotonic stack.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

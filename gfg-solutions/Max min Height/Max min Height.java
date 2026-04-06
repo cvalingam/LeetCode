@@ -1,3 +1,5 @@
+﻿// Approach: Binary search on the answer. For a given min height, check if it's achievable with given operations.
+// Time: O(n log(max)) Space: O(1)
 class Solution {
     public int maxMinHeight(int[] arr, int k, int w) {
         int low = getMin(arr);

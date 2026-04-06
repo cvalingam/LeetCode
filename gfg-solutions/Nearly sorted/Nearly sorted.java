@@ -1,3 +1,5 @@
+﻿// Approach: Insertion sort or min-heap of size k+1. Each element is at most k positions from its sorted position.
+// Time: O(n log k) Space: O(k)
 import java.util.*;
 
 class Solution {

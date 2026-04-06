@@ -1,3 +1,5 @@
+﻿// Approach: Floyd's cycle detection to find meeting point, then count loop length by traversing the cycle.
+// Time: O(n) Space: O(1)
 class Node {
     int data;
     Node next;

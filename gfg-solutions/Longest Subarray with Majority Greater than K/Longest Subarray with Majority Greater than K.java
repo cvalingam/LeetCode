@@ -1,3 +1,5 @@
+﻿// Approach: Replace elements: +1 if > k, -1 otherwise. Find longest subarray with positive sum using prefix sums.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

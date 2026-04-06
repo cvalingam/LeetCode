@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i][j] = side of largest square with bottom-right at (i,j) = 1+min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]).
+// Time: O(n*m) Space: O(n*m)
 class Solution {
     static int maxSquare(int n, int m, int mat[][]) {
         int[][] dp = new int[n][m];

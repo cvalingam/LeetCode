@@ -1,3 +1,5 @@
+﻿// Approach: Binary search for row candidate, then binary search within row.
+// Time: O(log(n*m)) Space: O(1)
 class Solution {
     public boolean searchMatrix(int[][] mat, int x) {
         int n = mat.length;

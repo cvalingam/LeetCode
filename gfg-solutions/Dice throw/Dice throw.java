@@ -1,3 +1,6 @@
+﻿// Approach: DP. dp[i][j] = ways to get sum j using i dice.
+// Transition: dp[i][j] = sum of dp[i-1][j-face] for face in [1, m].
+// Time: O(m * n * sum) Space: O(n * sum)
 class Solution {
     static int noOfWays(int m, int n, int x) {
         if (n * m < x)

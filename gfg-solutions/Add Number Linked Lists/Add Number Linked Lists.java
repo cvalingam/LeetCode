@@ -1,3 +1,5 @@
+﻿// Approach: Reverse both linked lists, add digit by digit with carry, build result list, reverse it.
+// Time: O(max(n,m)) Space: O(max(n,m))
 class Node {
     int data;
     Node next;

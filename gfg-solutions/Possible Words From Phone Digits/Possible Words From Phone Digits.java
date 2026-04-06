@@ -1,3 +1,5 @@
+﻿// Approach: Backtracking. Map each digit to its letters; combine all possibilities recursively.
+// Time: O(4^n * n) Space: O(n)
 import java.util.*;
 
 class Solution {

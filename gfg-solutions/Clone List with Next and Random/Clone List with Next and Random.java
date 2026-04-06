@@ -1,3 +1,5 @@
+﻿// Approach: Interleave cloned nodes between originals, set random pointers, then separate lists.
+// Time: O(n) Space: O(1)
 class Node {
     int data;
     Node next;

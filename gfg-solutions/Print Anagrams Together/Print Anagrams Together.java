@@ -1,3 +1,5 @@
+﻿// Approach: Sort each word's characters to get a key. Group words by their sorted key using a HashMap.
+// Time: O(n * k log k) Space: O(n * k)
 class Solution {
     public ArrayList<ArrayList<String>> anagrams(String[] arr) {
         ArrayList<ArrayList<String>> res = new ArrayList<>();

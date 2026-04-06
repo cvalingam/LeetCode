@@ -1,3 +1,6 @@
+﻿// Approach: Binary search on the answer (max pages allocated to a student).
+// For each mid value, greedily count how many students are needed; adjust search range.
+// Time: O(n log(sum)) Space: O(1)
 class Solution {
     public static int findPages(int[] arr, int k) {
         int n = arr.length;

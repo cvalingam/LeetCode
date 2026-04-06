@@ -1,3 +1,5 @@
+﻿// Approach: Two-pointer technique. Move unique elements forward in-place.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

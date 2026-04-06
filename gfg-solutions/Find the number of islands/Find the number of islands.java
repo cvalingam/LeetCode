@@ -1,3 +1,5 @@
+﻿// Approach: DFS/BFS flood fill. For each unvisited '1' cell, flood-fill it and increment island count.
+// Time: O(n*m) Space: O(n*m)
 import java.util.*;
 
 class Solution {

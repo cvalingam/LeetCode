@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window with a frequency HashMap. Track distinct count as window slides.
+// Time: O(n) Space: O(k)
 import java.util.*;
 
 class Solution {

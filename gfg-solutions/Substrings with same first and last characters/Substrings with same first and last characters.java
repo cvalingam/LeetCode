@@ -1,3 +1,5 @@
+﻿// Approach: Count frequency of each character. For each char with count c, it contributes c*(c+1)/2 substrings.
+// Time: O(n) Space: O(26)
 import java.util.*;
 
 class Solution {

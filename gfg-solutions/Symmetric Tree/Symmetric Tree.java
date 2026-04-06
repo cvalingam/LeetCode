@@ -1,3 +1,5 @@
+﻿// Approach: DFS. Tree is symmetric if left subtree mirrors right. Recursively compare left.left with right.right etc.
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left;

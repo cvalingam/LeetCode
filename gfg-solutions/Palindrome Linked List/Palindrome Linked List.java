@@ -1,3 +1,5 @@
+﻿// Approach: Find middle, reverse second half, compare with first half, restore list.
+// Time: O(n) Space: O(1)
 class Node {
     int data;
     Node next;

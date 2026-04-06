@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window with a Set or char-to-index map. Shrink window on duplicate character.
+// Time: O(n) Space: O(min(n,26))
 class Solution {
     public int longestUniqueSubstr(String s) {
         boolean c[] = new boolean[26];

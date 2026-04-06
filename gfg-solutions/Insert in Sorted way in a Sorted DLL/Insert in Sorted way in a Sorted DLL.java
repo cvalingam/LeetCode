@@ -1,3 +1,5 @@
+﻿// Approach: Traverse the sorted DLL to find the correct position, then update pointers.
+// Time: O(n) Space: O(1)
 class Solution {
     public Node sortedInsert(Node head, int x) {
         Node newNode = new Node(x);

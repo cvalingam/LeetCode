@@ -1,3 +1,5 @@
+﻿// Approach: Track minimum price seen so far; at each day, max profit = price - minPrice. Update max profit.
+// Time: O(n) Space: O(1)
 class Solution {
     public int maximumProfit(int prices[]) {
         int minSofar = prices[0];

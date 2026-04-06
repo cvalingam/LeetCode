@@ -1,3 +1,5 @@
+﻿// Approach: Check if each value's frequency <= 2 (can assign half to each part). Count unique elements.
+// Time: O(n) Space: O(n)
 class Solution {
 
     public static int countgroup(int arr[]) {

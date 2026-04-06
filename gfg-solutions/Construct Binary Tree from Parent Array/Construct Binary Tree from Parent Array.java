@@ -1,3 +1,5 @@
+﻿// Approach: Build nodes array first, then set parent-child relationships using the parent array.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Node {

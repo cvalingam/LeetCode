@@ -1,3 +1,5 @@
+﻿// Approach: Greedy with min-heap. Always combine two smallest ropes. Total cost = sum of all intermediate sums.
+// Time: O(n log n) Space: O(n)
 import java.util.*;
 
 class Solution {

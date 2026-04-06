@@ -1,3 +1,5 @@
+﻿// Approach: Count character differences between original and target. Greedily assign characters to maximize score.
+// Time: O(n) Space: O(26)
 import java.util.*;
 
 class Solution {

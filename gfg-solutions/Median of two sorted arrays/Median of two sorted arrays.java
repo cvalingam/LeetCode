@@ -1,3 +1,5 @@
+﻿// Approach: Binary search on the smaller array. Partition both arrays so left halves have total (n+m+1)/2 elements.
+// Time: O(log(min(n,m))) Space: O(1)
 class Solution {
     public int sumOfMiddleElements(int[] arr1, int[] arr2) {
         int n = arr1.length + arr2.length;

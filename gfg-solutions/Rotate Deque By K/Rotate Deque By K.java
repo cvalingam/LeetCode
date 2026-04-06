@@ -1,3 +1,5 @@
+﻿// Approach: Pop k elements from front and add to back (or use modular arithmetic on index).
+// Time: O(k) Space: O(1)
 import java.util.*;
 
 class Solution {

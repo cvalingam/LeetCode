@@ -1,3 +1,5 @@
+﻿// Approach: HashMap storing first index of each element. For each recurrence, update max distance.
+// Time: O(n) Space: O(n)
 class Solution {
     public int maxDistance(int[] arr) {
         int res = 0;

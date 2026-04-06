@@ -1,3 +1,6 @@
+﻿// Approach: 2D difference array to apply range updates in O(1).
+// Reconstruct final matrix by computing 2D prefix sums.
+// Time: O(n*m) Space: O(n*m)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: DFS/BFS with parent tracking. A cycle exists if a visited non-parent neighbor is found.
+// Time: O(V+E) Space: O(V)
 import java.util.*;
 
 class Solution {

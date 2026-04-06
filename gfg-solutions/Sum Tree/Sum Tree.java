@@ -1,3 +1,5 @@
+﻿// Approach: DFS. Verify each node = sum of all values in its left and right subtrees.
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left, right;

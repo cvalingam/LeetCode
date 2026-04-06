@@ -1,3 +1,5 @@
+﻿// Approach: Traverse to find the correct insertion point considering wrap-around cases.
+// Time: O(n) Space: O(1)
 class Node {
     int data;
     Node next;

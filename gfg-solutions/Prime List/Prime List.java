@@ -1,3 +1,5 @@
+﻿// Approach: Sieve of Eratosthenes up to max. For each node's value, find nearest prime by checking neighbors.
+// Time: O(max log log max) Space: O(max)
 class Node {
     Node next;
     int val;

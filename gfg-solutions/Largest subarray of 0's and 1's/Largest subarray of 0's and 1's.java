@@ -1,3 +1,5 @@
+﻿// Approach: Replace 0s with -1s. Problem reduces to finding the longest subarray with sum 0 using prefix sum HashMap.
+// Time: O(n) Space: O(n)
 class Solution {
     public int maxLen(int[] arr) {
         int n = arr.length;

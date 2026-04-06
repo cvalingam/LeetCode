@@ -1,3 +1,5 @@
+﻿// Approach: Compute total sum, then iterate: if leftSum == totalSum - leftSum - arr[i], return i.
+// Time: O(n) Space: O(1)
 class Solution {
     // Function to find equilibrium point in the array.
     public static int findEquilibrium(int arr[]) {

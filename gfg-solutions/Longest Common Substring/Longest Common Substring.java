@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i][j] = length of longest common substring ending at s1[i-1] and s2[j-1].
+// Time: O(n*m) Space: O(n*m)
 class Solution {
     public int longestCommonSubstr(String str1, String str2) {
         int n = str1.length();

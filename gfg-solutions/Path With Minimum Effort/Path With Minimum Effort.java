@@ -1,3 +1,5 @@
+﻿// Approach: Dijkstra with effort = max absolute difference along path. Use min-heap on (effort, row, col).
+// Time: O(n*m * log(n*m)) Space: O(n*m)
 import java.util.*;
 
 class Solution {

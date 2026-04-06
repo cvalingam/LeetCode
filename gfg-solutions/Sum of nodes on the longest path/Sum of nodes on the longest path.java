@@ -1,3 +1,5 @@
+﻿// Approach: DFS. Track (depth, sum) from root to each leaf. Maximize depth; break ties by sum.
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left, right;

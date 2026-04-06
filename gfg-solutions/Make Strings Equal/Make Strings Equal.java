@@ -1,3 +1,5 @@
+﻿// Approach: Count operations needed. Each operation changes one character; derive minimum based on differences.
+// Time: O(n) Space: O(1)
 class Solution {
     public int minCost(String s, String t, char[][] transform, int[] cost) {
         final int INF = (int) 1e9;

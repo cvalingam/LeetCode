@@ -1,3 +1,6 @@
+﻿// Approach: 3D DP. Two robots move from row 0 to row n-1 simultaneously.
+// State dp[row][c1][c2]: max chocolates when robot1 is at col c1to and robot2 at col c2.
+// Time: O(n*m^2) Space: O(n*m^2)
 import java.util.*;
 
 class Solution {

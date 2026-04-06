@@ -1,3 +1,5 @@
+﻿// Approach: Swap elements at (i,j) and (j,i) for all i < j to transpose in-place.
+// Time: O(n^2) Space: O(1)
 import java.util.*;
 
 class Solution {

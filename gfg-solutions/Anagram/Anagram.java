@@ -1,3 +1,6 @@
+﻿// Approach: Count character frequencies of both strings using a frequency array of size 26.
+// If all counts match, they are anagrams.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

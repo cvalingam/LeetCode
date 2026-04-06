@@ -1,3 +1,5 @@
+﻿// Approach: Sort array B. For each element in A, binary search in B to count elements <= that value.
+// Time: O((n+m) log m) Space: O(m)
 import java.util.*;
 
 class Solution {

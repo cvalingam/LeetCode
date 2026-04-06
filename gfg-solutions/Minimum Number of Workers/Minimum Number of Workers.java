@@ -1,3 +1,5 @@
+﻿// Approach: Greedy assignment. Sort and pair workers to tasks in optimal order.
+// Time: O(n log n) Space: O(1)
 class Solution {
     public int minMen(int arr[]) {
         int n = arr.length;

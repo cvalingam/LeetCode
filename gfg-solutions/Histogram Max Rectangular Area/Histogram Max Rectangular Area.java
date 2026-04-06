@@ -1,3 +1,5 @@
+﻿// Approach: Monotonic stack. Maintain stack of increasing bar indices; on decrease, pop and compute area.
+// Time: O(n) Space: O(n)
 class Solution {
     public static int getMaxArea(int arr[]) {
         Stack<Integer> st = new Stack<>();

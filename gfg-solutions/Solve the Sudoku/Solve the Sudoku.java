@@ -1,3 +1,5 @@
+﻿// Approach: Backtracking. For each empty cell, try digits 1-9 validating row/col/box constraints, recurse.
+// Time: O(9^empty_cells) Space: O(81)
 class Solution {
     // Function to find a solved Sudoku.
     static void solveSudoku(int[][] mat) {

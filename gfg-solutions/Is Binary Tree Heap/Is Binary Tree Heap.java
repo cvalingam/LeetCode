@@ -1,3 +1,6 @@
+﻿// Approach: Check completeness with BFS (once a null is seen, no more nodes should follow).
+// Verify heap property by DFS checking parent >= children.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Node {

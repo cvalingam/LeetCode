@@ -41,6 +41,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li><Link href="/gfg" className="text-sm text-gray-500 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">GFG Java Solutions</Link></li>
               <li><Link href="/privacy-policy" className="text-sm text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="text-sm text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Terms of Use</Link></li>
               <li>
                 <a
                   href="https://github.com/cvalingam/DSA-Solutions"

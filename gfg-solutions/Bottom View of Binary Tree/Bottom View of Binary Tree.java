@@ -1,3 +1,6 @@
+﻿// Approach: BFS with horizontal distance tracking. For each node record its HD.
+// The last node seen at each HD in level-order gives the bottom view.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

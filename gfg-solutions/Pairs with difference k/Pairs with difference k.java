@@ -1,3 +1,5 @@
+﻿// Approach: Sort array or HashSet. For each element check if element+k or element-k exists.
+// Time: O(n log n) Space: O(1)
 class Solution {
     int countPairsWithDiffK(int[] arr, int k) {
         HashMap<Integer, Integer> map = new HashMap<>();

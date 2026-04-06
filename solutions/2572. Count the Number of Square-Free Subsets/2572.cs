@@ -1,3 +1,7 @@
+// Approach: Bitmask DP. Represent each number as a bitmask over the 10 primes ≤ 30.
+// A number is invalid if any prime divides it twice. Use DP over subsets: dp[i][mask] =
+// ways to pick subsets of nums[0..i] using exactly the primes in 'mask'.
+// Time: O(n * 2^10) Space: O(n * 2^10)
 public class Solution
 {
     private const int kMod = 1000000007;

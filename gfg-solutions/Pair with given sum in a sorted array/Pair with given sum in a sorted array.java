@@ -1,3 +1,5 @@
+﻿// Approach: Two pointers starting from both ends. Move left right if sum < target, move right left if sum > target.
+// Time: O(n) Space: O(1)
 class Solution {
 
     int countPairs(int arr[], int target) {

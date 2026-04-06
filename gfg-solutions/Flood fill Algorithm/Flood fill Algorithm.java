@@ -1,3 +1,5 @@
+﻿// Approach: DFS/BFS from source pixel. Replace all connected pixels of the old color with new color.
+// Time: O(n*m) Space: O(n*m)
 import java.util.*;
 
 class Solution {

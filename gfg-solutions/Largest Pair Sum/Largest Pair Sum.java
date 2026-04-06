@@ -1,3 +1,5 @@
+﻿// Approach: Linear scan for the two largest distinct values.
+// Time: O(n) Space: O(1)
 class Solution {
     public static int pairsum(int[] arr) {
         int first = Math.max(arr[0], arr[1]);

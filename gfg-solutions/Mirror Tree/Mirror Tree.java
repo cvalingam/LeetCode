@@ -1,3 +1,5 @@
+﻿// Approach: DFS. Recursively swap left and right children of every node.
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left, right;

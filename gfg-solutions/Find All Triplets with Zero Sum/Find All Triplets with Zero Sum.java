@@ -1,3 +1,5 @@
+﻿// Approach: Sort, then for each element use two pointers to find pairs summing to its negation.
+// Time: O(n^2) Space: O(1)
 class Solution {
     public List<List<Integer>> findTriplets(int[] arr) {
         List<List<Integer>> result = new ArrayList<>();

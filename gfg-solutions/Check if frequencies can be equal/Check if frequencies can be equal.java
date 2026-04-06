@@ -1,3 +1,5 @@
+﻿// Approach: Count character frequencies. Find if removing exactly one character can make all frequencies equal.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

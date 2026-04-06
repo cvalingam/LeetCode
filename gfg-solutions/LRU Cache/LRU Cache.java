@@ -1,3 +1,5 @@
+﻿// Approach: HashMap + Doubly Linked List. HashMap for O(1) access; DLL for O(1) move-to-front and eviction.
+// Time: O(1) Space: O(capacity)
 class LRUCache {
     private static int capacity;
     private static LinkedHashMap<Integer, Integer> cache;

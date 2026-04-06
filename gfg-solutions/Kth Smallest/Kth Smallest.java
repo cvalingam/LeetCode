@@ -1,3 +1,5 @@
+﻿// Approach: Min-heap merge of k sorted arrays, or binary search on value with counting.
+// Time: O(k log n) Space: O(n)
 import java.util.*;
 
 class Solution {

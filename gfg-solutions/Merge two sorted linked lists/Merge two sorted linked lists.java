@@ -1,3 +1,5 @@
+﻿// Approach: Two-pointer merge: compare heads, attach smaller, advance its pointer. Handle remaining.
+// Time: O(n+m) Space: O(1)
 class Node {
     int data;
     Node next;

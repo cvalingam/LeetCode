@@ -1,3 +1,6 @@
+﻿// Approach: Greedy. A building faces sun if it is taller than all buildings to its left.
+// Track the current maximum height from the left.
+// Time: O(n) Space: O(1)
 class Solution {
     // Returns count buildings that can see sunlight
     public int countBuildings(int[] height) {

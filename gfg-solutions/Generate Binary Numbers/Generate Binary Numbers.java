@@ -1,3 +1,5 @@
+﻿// Approach: BFS queue. Start with '1', for each dequeued string enqueue it + '0' and it + '1'.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

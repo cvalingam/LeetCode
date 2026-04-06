@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[n] = min perfect squares summing to n. dp[i] = min(dp[i - j*j] + 1) for all j*j <= i.
+// Time: O(n * sqrt(n)) Space: O(n)
 class Solution {
     public int minSquares(int n) {
         int[] dp = new int[n + 1];

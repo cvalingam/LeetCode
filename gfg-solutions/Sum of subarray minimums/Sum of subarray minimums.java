@@ -1,3 +1,5 @@
+﻿// Approach: Monotonic stack (same as above). Sum of arr[i] * (i - left[i]) * (right[i] - i) for each element.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

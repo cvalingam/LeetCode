@@ -1,3 +1,5 @@
+﻿// Approach: Handle leading spaces, optional sign, then parse digits. Handle overflow by clamping to INT bounds.
+// Time: O(n) Space: O(1)
 class Solution {
     public int myAtoi(String s) {
         int i = 0;

@@ -1,3 +1,5 @@
+﻿// Approach: Post-order DFS. For each subtree return (isBST, size, min, max). Propagate largest BST size up.
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left, right;

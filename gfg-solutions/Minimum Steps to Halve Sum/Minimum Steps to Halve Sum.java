@@ -1,3 +1,5 @@
+﻿// Approach: Greedy with max-heap. Always halve the largest element; accumulate savings until total >= sum/2.
+// Time: O(n log n) Space: O(n)
 import java.util.*;
 
 class Solution {

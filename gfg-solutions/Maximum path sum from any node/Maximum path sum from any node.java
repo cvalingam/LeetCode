@@ -1,3 +1,5 @@
+﻿// Approach: DFS. At each node compute max path through it as left+ + right+ + node.val. Track global max.
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left, right;

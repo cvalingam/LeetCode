@@ -1,3 +1,6 @@
+﻿// Approach: Floyd's algorithm to detect cycle. After meeting, reset one pointer to head; advance both by 1.
+// They meet at the loop start.
+// Time: O(n) Space: O(1)
 class Node {
     int data;
     Node next;

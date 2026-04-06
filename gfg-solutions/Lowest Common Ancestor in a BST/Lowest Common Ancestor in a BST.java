@@ -1,3 +1,5 @@
+﻿// Approach: BST property: if both nodes < root go left; if both > root go right; else root is LCA.
+// Time: O(h) Space: O(1)
 class Node {
     int data;
     Node left, right;

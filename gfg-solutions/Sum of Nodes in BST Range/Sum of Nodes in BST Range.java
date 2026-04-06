@@ -1,3 +1,5 @@
+﻿// Approach: BST in-order traversal skipping branches outside [l, r]. Accumulate values in range.
+// Time: O(n) Space: O(h)
 import java.util.*;
 
 class Node {

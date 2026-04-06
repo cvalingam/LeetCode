@@ -1,3 +1,5 @@
+﻿// Approach: Frequency array of size 26. First pass count; second pass find first with frequency 1.
+// Time: O(n) Space: O(1)
 class Solution {
     // Function to find the first non-repeating character in a string.
     static char nonRepeatingChar(String s) {

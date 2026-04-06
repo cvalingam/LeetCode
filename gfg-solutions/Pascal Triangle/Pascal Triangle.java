@@ -1,3 +1,5 @@
+﻿// Approach: Each row: first and last are 1, middle[j] = prev[j-1] + prev[j]. Build row by row.
+// Time: O(n^2) Space: O(n)
 import java.util.*;
 
 class Solution {

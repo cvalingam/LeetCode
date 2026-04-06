@@ -1,3 +1,5 @@
+﻿// Approach: Binary search on max load. Greedily assign boards to painters; check if k painters suffice.
+// Time: O(n log(sum)) Space: O(1)
 class Solution {
     public int minTime(int[] arr, int k) {
         int l = 1, h = 10000000, ans = -1;

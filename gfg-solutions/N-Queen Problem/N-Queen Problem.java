@@ -1,3 +1,5 @@
+﻿// Approach: Backtracking. Place queens row by row; prune when column/diagonal conflicts detected.
+// Time: O(n!) Space: O(n)
 import java.util.*;
 
 class Solution {

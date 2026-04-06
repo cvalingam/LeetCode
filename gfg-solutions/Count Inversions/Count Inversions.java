@@ -1,3 +1,5 @@
+﻿// Approach: Modified merge sort. Count inversions during the merge step when a right element is placed before left elements.
+// Time: O(n log n) Space: O(n)
 import java.util.*;
 
 class Solution {

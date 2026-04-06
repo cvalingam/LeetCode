@@ -1,3 +1,5 @@
+﻿// Approach: Binary search on [0, n]. Find largest x where x*x <= n.
+// Time: O(log n) Space: O(1)
 class Solution {
     long floorSqrt(long n) {
         if (n == 0 || n == 1)

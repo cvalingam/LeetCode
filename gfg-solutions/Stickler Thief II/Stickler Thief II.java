@@ -1,3 +1,5 @@
+﻿// Approach: Circular array DP. Run house robber DP twice: once excluding first, once excluding last; take max.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

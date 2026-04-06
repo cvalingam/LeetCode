@@ -1,3 +1,5 @@
+﻿// Approach: Sort array. Track the smallest sum not expressible. If arr[i] > reach+1, return reach+1.
+// Time: O(n log n) Space: O(1)
 class Solution {
     public long findSmallest(int[] arr) {
         int res = 1;

@@ -1,3 +1,5 @@
+﻿// Approach: Grade-school multiplication. Use an array of size m+n for partial products, then convert to string.
+// Time: O(n*m) Space: O(n+m)
 class Solution {
     public String multiplyStrings(String s1, String s2) {
         if (s1.equals("0") || s2.equals("0"))

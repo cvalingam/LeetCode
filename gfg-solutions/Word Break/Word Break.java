@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i] = can s[0..i-1] be segmented using dict? dp[i] = any dp[j] where s[j..i-1] is in dict.
+// Time: O(n^2) Space: O(n)
 import java.util.*;
 
 class Solution {

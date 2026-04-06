@@ -1,3 +1,5 @@
+﻿// Approach: DP for longest palindromic subsequence. Min insertions = n - LPS length.
+// Time: O(n^2) Space: O(n^2)
 import java.util.*;
 
 class Solution {

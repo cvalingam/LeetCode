@@ -1,3 +1,5 @@
+﻿// Approach: Two passes: left product array, right product array. Result[i] = left[i] * right[i].
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

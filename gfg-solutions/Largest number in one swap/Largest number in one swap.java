@@ -1,3 +1,5 @@
+﻿// Approach: Find rightmost larger digit to swap with each digit from left. Pick the swap that maximizes result.
+// Time: O(n) Space: O(n)
 class Solution {
     public String largestSwap(String s) {
         char maxVal = '0';

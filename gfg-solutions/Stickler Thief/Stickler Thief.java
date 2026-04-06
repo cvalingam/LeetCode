@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i] = max loot at house i = max(dp[i-1], dp[i-2] + arr[i]). Cannot rob adjacent houses.
+// Time: O(n) Space: O(1)
 class Solution {
     public int findMaxSum(int arr[]) {
         if (arr.length == 0)

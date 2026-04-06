@@ -1,3 +1,5 @@
+﻿// Approach: Sort array and check differences between consecutive elements against the threshold.
+// Time: O(n log n) Space: O(1)
 import java.util.*;
 
 class Solution {

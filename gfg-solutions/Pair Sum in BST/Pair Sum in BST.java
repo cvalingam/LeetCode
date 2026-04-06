@@ -1,3 +1,5 @@
+﻿// Approach: Augmented BST inorder + two pointers, or HashSet: traverse and check if (target - node.val) is in set.
+// Time: O(n) Space: O(n)
 class Node {
     int data;
     Node left, right;

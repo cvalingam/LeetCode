@@ -1,3 +1,6 @@
+﻿// Approach: BFS using a queue. Start from source, mark visited, enqueue adjacent unvisited nodes.
+// Process level by level until all reachable nodes are visited.
+// Time: O(V+E) Space: O(V)
 import java.util.*;
 
 class Solution {

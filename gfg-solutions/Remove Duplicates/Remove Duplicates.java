@@ -1,3 +1,5 @@
+﻿// Approach: Linked list: traverse keeping previous; skip duplicate consecutive nodes.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

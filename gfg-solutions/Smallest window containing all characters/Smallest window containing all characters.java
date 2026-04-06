@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window with character frequency tracking. Shrink left when all required chars are covered.
+// Time: O(n) Space: O(distinct)
 import java.util.*;
 
 class Solution {

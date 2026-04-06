@@ -1,3 +1,5 @@
+﻿// Approach: Boyer-Moore voting for two candidates. First pass: find candidates; second pass: verify counts.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

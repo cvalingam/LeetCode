@@ -1,3 +1,5 @@
+﻿// Approach: Fix left and right columns; compress to 1D using column sums, then apply Kadane's.
+// Time: O(n^2 * m) Space: O(n)
 class Solution {
     public int maxRectSum(int M[][]) {
         int R = M.length;

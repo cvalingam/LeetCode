@@ -1,3 +1,7 @@
+// Approach: Prefix sums. Compute prefix sums of prices and strategy*price products.
+// The base profit is sum(prices[i]*strategy[i]). For each window of size k, try swapping
+// to the actual prices and maximize using the prefix difference arrays.
+// Time: O(n) Space: O(n)
 public class Solution
 {
     public long MaxProfit(int[] prices, int[] strategy, int k)

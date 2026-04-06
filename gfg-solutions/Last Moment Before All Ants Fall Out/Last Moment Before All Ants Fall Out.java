@@ -1,3 +1,5 @@
+﻿// Approach: Ants colliding effectively pass through each other. Max time = max of (max left ant, n - min right ant).
+// Time: O(n) Space: O(1)
 class Solution {
     public int getLastMoment(int n, int left[], int right[]) {
         // Find maximum distance for ants moving left (from their position to left edge)

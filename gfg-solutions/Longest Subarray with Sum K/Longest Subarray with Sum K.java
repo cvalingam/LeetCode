@@ -1,3 +1,5 @@
+﻿// Approach: Prefix sum with HashMap. Store first occurrence of each prefix sum; check for sum = prefixSum - k.
+// Time: O(n) Space: O(n)
 class Solution {
     public int longestSubarray(int[] arr, int k) {
         Map<Integer, Integer> list = new HashMap<>();

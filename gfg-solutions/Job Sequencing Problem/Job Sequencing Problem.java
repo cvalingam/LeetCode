@@ -1,3 +1,5 @@
+﻿// Approach: Greedy. Sort by profit descending. For each job, assign to the latest available slot before deadline.
+// Time: O(n log n + n*max_deadline) Space: O(max_deadline)
 import java.util.*;
 
 class Solution {

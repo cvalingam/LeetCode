@@ -1,3 +1,5 @@
+﻿// Approach: Legendre's formula. Count multiples of k, k^2, k^3, ... up to n. Sum = floor sums.
+// Time: O(log_k n) Space: O(1)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Traverse linked list, storing positions. Find pairs with exactly k distance apart.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

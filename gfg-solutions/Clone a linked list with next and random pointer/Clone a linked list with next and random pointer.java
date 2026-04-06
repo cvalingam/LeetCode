@@ -1,3 +1,5 @@
+﻿// Approach: Three-pass: interleave cloned nodes, set random pointers, then separate the two lists.
+// Time: O(n) Space: O(1)
 class Node {
     int data;
     Node next, random;

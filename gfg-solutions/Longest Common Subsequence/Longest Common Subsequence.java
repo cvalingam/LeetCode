@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i][j] = LCS of s1[0..i-1] and s2[0..j-1]. Match: dp[i-1][j-1]+1; no match: max of skip either.
+// Time: O(n*m) Space: O(n*m)
 class Solution {
     static int lcs(String s1, String s2) {
         int n = s1.length();

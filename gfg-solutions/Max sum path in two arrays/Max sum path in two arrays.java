@@ -1,3 +1,5 @@
+﻿// Approach: Two-pointer merge. Accumulate sums; at common elements take maximum of both paths.
+// Time: O(n+m) Space: O(1)
 import java.util.*;
 
 class Solution {

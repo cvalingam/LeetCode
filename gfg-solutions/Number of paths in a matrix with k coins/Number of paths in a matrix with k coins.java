@@ -1,3 +1,5 @@
+﻿// Approach: 3D DP. dp[i][j][c] = number of paths to reach (i,j) with exactly c coins collected.
+// Time: O(n*m*k) Space: O(n*m*k)
 import java.util.*;
 
 class Solution {

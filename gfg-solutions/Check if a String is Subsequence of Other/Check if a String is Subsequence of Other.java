@@ -1,3 +1,6 @@
+﻿// Approach: Two-pointer approach. Advance pointer in string s whenever characters match.
+// If s pointer reaches the end, s is a subsequence of t.
+// Time: O(n) Space: O(1)
 class Solution {
     public boolean isSubSeq(String s1, String s2) {
         int l = s1.length(), n = s2.length(), i = 0, j = 0;

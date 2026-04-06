@@ -1,3 +1,5 @@
+﻿// Approach: Sort array. Pair largest with smallest alternately to maximize the swapped sum.
+// Time: O(n log n) Space: O(1)
 class Solution {
     public long maxSum(Long[] arr) {
         Arrays.sort(arr);

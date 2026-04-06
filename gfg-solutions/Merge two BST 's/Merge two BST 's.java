@@ -1,3 +1,5 @@
+﻿// Approach: In-order traverse both BSTs to get sorted arrays, merge the two sorted arrays, build balanced BST.
+// Time: O(n+m) Space: O(n+m)
 import java.util.*;
 
 class Node {

@@ -1,3 +1,5 @@
+﻿// Approach: Two BFS passes: BFS from any node finds the farthest node u; BFS from u gives the diameter.
+// Time: O(V+E) Space: O(V)
 import java.util.*;
 
 class Solution {

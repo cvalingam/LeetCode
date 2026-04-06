@@ -1,3 +1,5 @@
+﻿// Approach: Max of: (1) Kadane's on original array, (2) totalSum - min subarray sum (Kadane's for min).
+// Time: O(n) Space: O(1)
 class Solution {
 
     // a: input array

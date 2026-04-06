@@ -1,3 +1,5 @@
+﻿// Approach: Monotonic stack. Process array right to left; for each element pop smaller elements from stack.
+// Time: O(n) Space: O(n)
 class Solution {
     // Function to find the next greater element for each element of the array.
     public ArrayList<Integer> nextLargerElement(int[] arr) {

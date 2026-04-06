@@ -1,3 +1,5 @@
+﻿// Approach: Cross-multiply to compare a/b vs c/d: compare a*d with c*b.
+// Time: O(1) Space: O(1)
 class Solution {
 
     String compareFrac(String str) {

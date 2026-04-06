@@ -1,3 +1,5 @@
+﻿// Approach: Dijkstra or DP. dp[i][j] = min cost to reach (i,j) from (0,0) moving right, down, or diagonally.
+// Time: O(n*m) Space: O(n*m)
 import java.util.*;
 
 class Solution {

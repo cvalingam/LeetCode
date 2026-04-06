@@ -1,3 +1,5 @@
+﻿// Approach: For each element, find range where it is the minimum (previous/next smaller). Then aggregate.
+// Time: O(n) Space: O(n)
 class Solution {
     public ArrayList<Integer> maxOfMins(int[] arr) {
         int n = arr.length;

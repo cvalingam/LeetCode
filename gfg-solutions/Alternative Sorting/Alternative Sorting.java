@@ -1,3 +1,5 @@
+﻿// Approach: Sort the array, then interleave: pick from the largest end and smallest end alternately.
+// Time: O(n log n) Space: O(n)
 import java.util.*;
 
 class Solution {

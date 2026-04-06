@@ -1,3 +1,5 @@
+﻿// Approach: Sort dimensions. Maximize length*width*height under constraints using sorting and greedy pairing.
+// Time: O(n log n) Space: O(1)
 class Solution {
 
     double maxVolume(double perimeter, double area) {

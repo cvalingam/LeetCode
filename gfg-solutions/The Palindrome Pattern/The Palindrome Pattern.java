@@ -1,3 +1,5 @@
+﻿// Approach: Check each row and column for palindrome property. Report row/column indices with this property.
+// Time: O(n*m) Space: O(1)
 class Solution {
     public String pattern(int[][] arr) {
         int n = arr.length;

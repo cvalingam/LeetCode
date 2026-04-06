@@ -1,3 +1,5 @@
+﻿// Approach: Scan string character by character, accumulate digits, parse the resulting number.
+// Time: O(n) Space: O(1)
 class Solution {
     long ExtractNumber(String sentence) {
         String arr[] = sentence.split(" ");

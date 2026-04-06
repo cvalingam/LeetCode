@@ -1,3 +1,7 @@
+// Approach: Divide and Conquer. Recursively split s into special substrings
+// (balanced by +1 for '1' and -1 for '0'). For each, recursively process the inner
+// part and wrap with '1...0'. Sort resulting strings descending and concatenate.
+// Time: O(n^2) Space: O(n)
 public class Solution
 {
     public string MakeLargestSpecial(string s)

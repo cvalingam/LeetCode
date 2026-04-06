@@ -1,3 +1,5 @@
+﻿// Approach: Queue plus frequency map. On each new character, if frequency > 1, remove from queue front.
+// Time: O(n) Space: O(26)
 import java.util.*;
 
 class Solution {

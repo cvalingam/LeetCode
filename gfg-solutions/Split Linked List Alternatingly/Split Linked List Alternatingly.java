@@ -1,3 +1,5 @@
+﻿// Approach: Two-pointer: one for even-indexed nodes (second list) and one for odd-indexed; split into two.
+// Time: O(n) Space: O(1)
 class Solution {
     // Function to append a new node with newData at the end of a linked list
     Node[] alternatingSplitList(Node head) {

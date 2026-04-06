@@ -1,3 +1,5 @@
+﻿// Approach: Binary search on value. Count elements <= mid across all rows (each with binary search). Check if count = n*m/2+1.
+// Time: O(n * log(max) * log(m)) Space: O(1)
 class Solution {
     public int median(int[][] mat) {
         int n = mat.length;

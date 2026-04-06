@@ -1,3 +1,5 @@
+﻿// Approach: Greedy. Count the number of consecutive ascending steps from the start.
+// Time: O(n) Space: O(1)
 class Solution {
     // Function to find maximum number of consecutive steps
     // to gain an increase in altitude with each step.

@@ -1,3 +1,5 @@
+﻿// Approach: Prefix sums of even-indexed and odd-indexed elements. For each split point check balance condition.
+// Time: O(n) Space: O(1)
 class Solution {
     public int cntWays(int[] arr) {
         int n = arr.length;

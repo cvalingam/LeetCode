@@ -1,3 +1,5 @@
+﻿// Approach: HashMap counting. For each element, check how many previous elements equal (target - current).
+// Time: O(n) Space: O(n)
 class Solution {
     
     int countPairs(int arr[], int target) {

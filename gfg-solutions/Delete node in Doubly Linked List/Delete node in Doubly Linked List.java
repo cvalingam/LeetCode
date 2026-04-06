@@ -1,3 +1,5 @@
+﻿// Approach: Find the node with the given value, then update prev and next pointers to bypass it.
+// Time: O(n) Space: O(1)
 //Definition for doubly Link List Node
 class Node {
     int data;

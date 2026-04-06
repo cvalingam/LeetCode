@@ -1,3 +1,5 @@
+﻿// Approach: Count vowels in each string. Use combinatorics or counting argument to find unique arrangements.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

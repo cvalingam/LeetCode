@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i] = ways to tile floor of width i. dp[i] = dp[i-1] (1-tile) + dp[i-2] (2-tile).
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

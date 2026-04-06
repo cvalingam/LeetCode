@@ -1,3 +1,5 @@
+﻿// Approach: Greedy. Sum all positive consecutive differences (buy every valley, sell every peak).
+// Time: O(n) Space: O(1)
 class Solution {
     public int maximumProfit(int prices[]) {
         int res = 0;

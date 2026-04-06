@@ -1,3 +1,5 @@
+﻿// Approach: Monotonic stack on doubled array (or two passes). For each element find first greater to its right circularly.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

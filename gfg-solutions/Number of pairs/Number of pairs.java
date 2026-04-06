@@ -1,3 +1,5 @@
+﻿// Approach: Sort. For each element use binary search to count valid partners satisfying the constraint.
+// Time: O(n log n) Space: O(1)
 import java.util.*;
 
 class Solution {

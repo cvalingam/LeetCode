@@ -1,3 +1,5 @@
+﻿// Approach: Find each row and column max, then ensure every row/column sums to the global max.
+// Time: O(n*m) Space: O(n+m)
 class Solution {
     public static int balanceSums(int[][] mat) {
         int n = mat.length;

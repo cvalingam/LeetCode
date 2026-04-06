@@ -1,3 +1,5 @@
+﻿// Approach: Each node stores XOR of prev and next address. Traverse by XORing current address with known prev.
+// Time: O(n) Space: O(n)
 class Node {
     int data;
     Node npx;

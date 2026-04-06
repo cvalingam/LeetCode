@@ -1,3 +1,5 @@
+﻿// Approach: Backtracking. Try all splits for first two numbers, verify sum-string property for the rest.
+// Time: O(n^3) Space: O(n)
 class Solution {
     public boolean isSumString(String s) {
         int n = s.length();

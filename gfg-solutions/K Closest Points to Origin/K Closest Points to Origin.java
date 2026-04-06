@@ -1,3 +1,5 @@
+﻿// Approach: Max-heap of size k. For each point, if its distance < heap top, replace. Or partial sort.
+// Time: O(n log k) Space: O(k)
 import java.util.*;
 
 class Solution {

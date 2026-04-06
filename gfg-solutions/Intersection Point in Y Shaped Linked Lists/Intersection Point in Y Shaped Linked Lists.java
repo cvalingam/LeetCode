@@ -1,3 +1,5 @@
+﻿// Approach: Advance the longer list by the length difference, then traverse both simultaneously until equal.
+// Time: O(n+m) Space: O(1)
 class Node {
     int data;
     Node next;

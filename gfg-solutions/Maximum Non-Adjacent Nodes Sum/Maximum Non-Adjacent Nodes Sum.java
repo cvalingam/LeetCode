@@ -1,3 +1,5 @@
+﻿// Approach: DP on tree. For each node: take = node.val + sum(skip children); skip = sum(max(take,skip) each child).
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Node {

@@ -1,3 +1,5 @@
+﻿// Approach: Digit DP or direct enumeration. Count numbers in range containing all specified digits.
+// Time: O(log n) Space: O(1)
 import java.util.*;
 
 class Solution {

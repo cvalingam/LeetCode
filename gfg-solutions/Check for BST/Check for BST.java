@@ -1,3 +1,6 @@
+﻿// Approach: DFS with valid range [min, max]. For each node verify min < node.val < max.
+// Update range: left child gets [min, node.val], right child gets [node.val, max].
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left;

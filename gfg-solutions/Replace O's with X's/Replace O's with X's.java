@@ -1,3 +1,5 @@
+﻿// Approach: BFS/DFS from border O-cells marking them safe. Then flip all remaining O to X.
+// Time: O(n*m) Space: O(n*m)
 import java.util.*;
 
 class Solution {

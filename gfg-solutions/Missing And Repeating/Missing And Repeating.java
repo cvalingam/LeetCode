@@ -1,3 +1,5 @@
+﻿// Approach: Math approach: use sum and sum of squares formulas, or XOR to find missing and repeating.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solve {

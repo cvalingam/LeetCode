@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i][c] = min cost to paint wall i with color c, considering the k-window constraint.
+// Time: O(n * colors) Space: O(n)
 class Solution {
     int minCost(int[][] costs) {
         int n = costs.length;

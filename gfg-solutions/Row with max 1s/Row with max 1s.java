@@ -1,3 +1,5 @@
+﻿// Approach: Start from top-right corner: move left on 1, move down on 0. Track row with most 1s.
+// Time: O(n+m) Space: O(1)
 class Solution {
     public int rowWithMax1s(int arr[][]) {
         int res = -1;

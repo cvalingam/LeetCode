@@ -1,3 +1,5 @@
+﻿// Approach: Expand-around-center for each position. Count each expansion that forms a palindrome.
+// Time: O(n^2) Space: O(1)
 class Solution {
     public int countPS(String s) {
         int n = s.length();

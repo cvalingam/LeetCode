@@ -1,3 +1,5 @@
+﻿// Approach: Two pointer merge: collect all distinct elements from both sorted arrays.
+// Time: O(n+m) Space: O(n+m)
 class Solution {
     // Function to return a list containing the union of the two arrays.
     public static ArrayList<Integer> findUnion(int a[], int b[]) {

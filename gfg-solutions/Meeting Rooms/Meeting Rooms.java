@@ -1,3 +1,5 @@
+﻿// Approach: Sort intervals by start time. Check if any interval starts before the previous one ends.
+// Time: O(n log n) Space: O(1)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Sort. Try decrease each by k and increase others by k. Track min of max-min across splits.
+// Time: O(n log n) Space: O(1)
 class Solution {
     public int getMinDiff(int k, int[] arr) {
         int n = arr.length;

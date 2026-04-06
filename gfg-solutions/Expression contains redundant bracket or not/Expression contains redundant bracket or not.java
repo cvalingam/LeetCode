@@ -1,3 +1,5 @@
+﻿// Approach: Stack-based. If after popping an operator inside brackets nothing useful remains, it's redundant.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: DP similar to LIS but maximize sum. dp[i] = max sum of increasing subsequence ending at i.
+// Time: O(n^2) Space: O(n)
 class Solution {
     public int maxSumIS(int arr[]) {
         int n = arr.length;

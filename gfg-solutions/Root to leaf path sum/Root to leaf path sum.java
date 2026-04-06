@@ -1,3 +1,5 @@
+﻿// Approach: DFS. Track current path sum; at leaf, check if it equals target.
+// Time: O(n) Space: O(h)
 class Solution {
     boolean hasPathSum(Node root, int target) {
         return pathSum(root, target);

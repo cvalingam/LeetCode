@@ -1,3 +1,5 @@
+﻿// Approach: Monotonic stack storing indices. Span[i] = i - index of prev greater element (or i+1 if none).
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

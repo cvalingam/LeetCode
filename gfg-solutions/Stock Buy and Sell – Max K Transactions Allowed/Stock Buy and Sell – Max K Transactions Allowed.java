@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[k][i] = max profit with at most k transactions up to day i.
+// Time: O(k*n) Space: O(k*n)
 class Solution {
     static int maxProfit(int prices[], int k) {
         int n = prices.length;

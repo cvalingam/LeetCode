@@ -1,3 +1,5 @@
+﻿// Approach: Four-boundary approach: top, bottom, left, right. Shrink boundaries as each boundary is traversed.
+// Time: O(n*m) Space: O(1)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,7 @@
+// Approach: Greedy. Sort intervals by end ascending (ties broken by start descending).
+// Track the last two selected intersection points. For each interval, add 0, 1, or 2
+// new points (the last two of that interval) based on how many tracked points it covers.
+// Time: O(n log n) Space: O(1)
 public class Solution
 {
     public int IntersectionSizeTwo(int[][] intervals)

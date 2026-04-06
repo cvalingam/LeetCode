@@ -1,3 +1,5 @@
+﻿// Approach: Three parts: left boundary (top-down), leaf nodes (left to right), right boundary (bottom-up).
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left, right;

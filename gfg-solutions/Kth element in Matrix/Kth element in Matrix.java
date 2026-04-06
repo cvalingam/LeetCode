@@ -1,3 +1,5 @@
+﻿// Approach: Binary search on value. Count elements <= mid in O(n) row-by-row. Narrow until kth element found.
+// Time: O(n log(max-min)) Space: O(1)
 class Solution {
     public int kthSmallest(int[][] matrix, int k) {
         int n = matrix.length;

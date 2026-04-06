@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i] = max cuts of length i using segments of size x, y, z. dp[i] = max over valid dp[i-x]+1 etc.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

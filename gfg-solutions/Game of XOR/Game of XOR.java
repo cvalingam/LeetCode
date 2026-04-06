@@ -1,3 +1,5 @@
+﻿// Approach: Observe XOR pattern. XOR of a range [1..n] follows a 4-cycle pattern. Use prefix XOR.
+// Time: O(n) Space: O(1)
 class Solution {
     public int subarrayXor(int[] arr) {
         int n = arr.length;

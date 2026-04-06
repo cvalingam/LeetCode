@@ -1,3 +1,5 @@
+﻿// Approach: Sort by end time. DP: dp[i] = max weight inc. job i + dp[latest non-conflicting job]. Binary search for that.
+// Time: O(n log n) Space: O(n)
 import java.util.*;
 
 class Solution {

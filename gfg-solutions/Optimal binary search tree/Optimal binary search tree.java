@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i][j] = min cost BST for keys[i..j]. Try each key as root and combine sub-costs with freq sum.
+// Time: O(n^3) Space: O(n^2)
 class Solution {
     public int minCost(int keys[], int freq[]) {
         int n = keys.length;

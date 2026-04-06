@@ -1,3 +1,5 @@
+﻿// Approach: Min-heap of size k+1. Extract min, insert next element from its source into heap.
+// Time: O(n log k) Space: O(k)
 
 // User function Template for Java
 class Solution {

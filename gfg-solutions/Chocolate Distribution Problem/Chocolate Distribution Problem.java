@@ -1,3 +1,5 @@
+﻿// Approach: Sort the array. Slide a window of size m and find the window with minimum (max - min).
+// Time: O(n log n) Space: O(1)
 import java.util.*;
 
 class Solution {

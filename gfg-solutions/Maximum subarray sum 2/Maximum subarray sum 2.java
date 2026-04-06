@@ -1,3 +1,5 @@
+﻿// Approach: Compute all subarray sums using prefix sums, then find maximum among those of length >= 2.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

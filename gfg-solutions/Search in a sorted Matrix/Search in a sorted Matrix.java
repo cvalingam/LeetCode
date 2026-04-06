@@ -1,3 +1,5 @@
+﻿// Approach: Binary search on the flattened virtual 1D array. Index i maps to (i/cols, i%cols).
+// Time: O(log(n*m)) Space: O(1)
 class Solution {
     // Function to search a given number in row-column sorted matrix.
     public boolean searchMatrix(int[][] mat, int x) {

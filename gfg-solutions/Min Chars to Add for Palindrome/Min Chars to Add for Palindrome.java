@@ -1,3 +1,5 @@
+﻿// Approach: Compute KMP failure function on s + '#' + reversed(s). Last failure value = length of palindromic prefix.
+// Time: O(n) Space: O(n)
 class Solution {
     public static int minChar(String s) {
         String rev = new StringBuilder(s).reverse().toString();

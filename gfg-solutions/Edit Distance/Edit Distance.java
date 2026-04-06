@@ -1,3 +1,6 @@
+﻿// Approach: DP. dp[i][j] = minimum operations to convert s1[0..i-1] to s2[0..j-1].
+// Transitions: match (0 cost), insert, delete, replace (each +1 cost).
+// Time: O(n*m) Space: O(n*m)
 import java.util.*;
 
 class Solution {

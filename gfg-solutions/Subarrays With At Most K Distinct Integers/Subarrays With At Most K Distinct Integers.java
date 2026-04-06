@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window. Shrink left when distinct count > k; count is right - left + 1 for each right.
+// Time: O(n) Space: O(k)
 import java.util.*;
 
 class Solution {

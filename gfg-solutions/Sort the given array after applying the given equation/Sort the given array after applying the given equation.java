@@ -1,3 +1,5 @@
+﻿// Approach: Apply the equation to all elements, sort the result (or use two-pointer since input is sorted).
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

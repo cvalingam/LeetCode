@@ -1,3 +1,5 @@
+﻿// Approach: Floyd's cycle detection (fast/slow pointers). If they meet, a cycle exists.
+// Time: O(n) Space: O(1)
 class Node {
     int data;
     Node next;

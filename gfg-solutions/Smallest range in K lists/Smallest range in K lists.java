@@ -1,3 +1,5 @@
+﻿// Approach: Min-heap of (value, list_index, element_index). Track current max; advance to shrink range.
+// Time: O(n log k) Space: O(k)
 import java.util.*;
 
 class Solution {

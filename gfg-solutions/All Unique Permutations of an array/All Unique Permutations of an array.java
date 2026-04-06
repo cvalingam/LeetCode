@@ -1,3 +1,6 @@
+﻿// Approach: Sort array, then backtrack with a 'used' boolean array.
+// Skip duplicate elements at the same recursion depth to avoid duplicate permutations.
+// Time: O(n! * n) Space: O(n)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Frequency map, then custom sort: by frequency descending, then by value ascending.
+// Time: O(n log n) Space: O(n)
 import java.util.*;
 
 class Solution {

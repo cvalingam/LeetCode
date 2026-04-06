@@ -1,3 +1,5 @@
+﻿// Approach: Multi-source BFS from all cells containing 1. Spread distance outward level by level.
+// Time: O(n*m) Space: O(n*m)
 import java.util.*;
 
 class Solution {

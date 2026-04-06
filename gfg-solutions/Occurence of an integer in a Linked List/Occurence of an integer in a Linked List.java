@@ -1,3 +1,5 @@
+﻿// Approach: Traverse list and count nodes with matching value.
+// Time: O(n) Space: O(1)
 class Node {
     int data;
     Node next;

@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window with at-most-k trick: atMost(k) - atMost(k-1) gives exactly-k.
+// Time: O(n) Space: O(k)
 class Solution {
     int countSubstr(String s, int k) {
         return (int) (calcCount(s, k) - calcCount(s, k - 1));

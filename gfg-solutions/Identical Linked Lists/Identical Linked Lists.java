@@ -1,3 +1,5 @@
+﻿// Approach: Traverse both lists simultaneously, comparing each node's data. Both must end at the same time.
+// Time: O(n) Space: O(1)
 
 class Node {
     int data;

@@ -1,3 +1,5 @@
+﻿// Approach: Greedy. Sort the differences between consecutive stones. Skip k-1 largest gaps (jump over them).
+// Time: O(n log n) Space: O(n)
 class Solution {
     public int minimizeCost(int k, int arr[]) {
         int n = arr.length;

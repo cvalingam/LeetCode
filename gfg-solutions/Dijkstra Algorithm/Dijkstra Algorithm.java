@@ -1,3 +1,5 @@
+﻿// Approach: Min-heap Dijkstra. Extract minimum distance node, relax neighbors, update distances.
+// Time: O((V+E) log V) Space: O(V)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: KMP failure function. lps[i] = longest proper prefix of s[0..i] which is also a suffix.
+// Time: O(n) Space: O(n)
 class Solution {
     int getLongestPrefix(String s) {
         int n = s.length();

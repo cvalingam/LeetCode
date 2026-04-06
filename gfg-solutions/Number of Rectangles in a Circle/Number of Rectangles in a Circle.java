@@ -1,3 +1,5 @@
+﻿// Approach: Count integer pairs (w,h) where diagonal <= r*2 and w,h >= 1 using mathematical approach.
+// Time: O(r^2) Space: O(1)
 class Solution {
     int rectanglesInCircle(int r) {
         int ans = 0;

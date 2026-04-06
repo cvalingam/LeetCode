@@ -1,3 +1,5 @@
+﻿// Approach: For each element as the first, use two pointers on the remaining sorted array.
+// Time: O(n^2) Space: O(1)
 class Solution {
     public int countTriplets(int[] arr, int target) {
         int count = 0;

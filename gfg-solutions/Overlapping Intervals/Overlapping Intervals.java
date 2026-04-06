@@ -1,3 +1,5 @@
+﻿// Approach: Sort by start time. Merge overlapping intervals by extending end when current start <= prev end.
+// Time: O(n log n) Space: O(n)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Normalize k = k % cols. Slice and rearrange each row to simulate left circular rotation.
+// Time: O(n*m) Space: O(n*m)
 class Solution {
     int[][] rotateMatrix(int k, int mat[][]) {
         int n = mat.length;

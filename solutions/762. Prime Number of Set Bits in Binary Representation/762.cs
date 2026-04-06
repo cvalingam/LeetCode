@@ -1,3 +1,7 @@
+// Approach: Bit manipulation with prime bitmask. Precompute a magic integer with
+// bits set at prime positions (2,3,5,7,11,13,17,19). For each number in [left,right],
+// count set bits and check if that count's bit is set in the magic mask.
+// Time: O((right-left) * log(right)) Space: O(1)
 public class Solution
 {
     public int CountPrimeSetBits(int left, int right)

@@ -1,3 +1,5 @@
+﻿// Approach: Sort both arrays descending. Max-heap initialized with (a[0]+b[0]). Expand by incrementing indices.
+// Time: O(k log k) Space: O(k)
 import java.util.*;
 
 class Solution {

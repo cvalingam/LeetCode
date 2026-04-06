@@ -1,3 +1,5 @@
+﻿// Approach: Binary search on target median value. Check feasibility with greedy increments.
+// Time: O(n log(max)) Space: O(1)
 import java.util.*;
 
 class Solution {

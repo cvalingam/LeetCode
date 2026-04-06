@@ -1,3 +1,5 @@
+﻿// Approach: Custom sort comparator: sort by absolute difference from target.
+// Time: O(n log n) Space: O(1)
 import java.util.*;
 
 class Solution {

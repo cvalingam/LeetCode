@@ -1,3 +1,5 @@
+﻿// Approach: Auxiliary stack tracking minimums. Push to aux only when new element <= current min.
+// Time: O(1) Space: O(n)
 class Solution {
     Stack<Integer> st;
     Stack<Integer> minSt;

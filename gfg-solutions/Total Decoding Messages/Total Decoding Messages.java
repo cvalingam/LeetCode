@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i] = ways to decode s[0..i-1]. One-char decode + two-char decode transitions.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

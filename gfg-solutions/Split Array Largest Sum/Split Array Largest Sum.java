@@ -1,3 +1,5 @@
+﻿// Approach: Binary search on the max sum. For each mid, greedily count splits; adjust range.
+// Time: O(n log(sum)) Space: O(1)
 class Solution {
     public int splitArray(int[] arr, int k) {
         int n = arr.length;

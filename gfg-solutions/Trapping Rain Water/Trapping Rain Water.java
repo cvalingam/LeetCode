@@ -1,3 +1,5 @@
+﻿// Approach: Two-pointer approach. Track left max and right max; water at i = min(leftMax, rightMax) - height[i].
+// Time: O(n) Space: O(1)
 class Solution {
     public int maxWater(int arr[]) {
         int n = arr.length;

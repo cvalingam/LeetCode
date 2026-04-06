@@ -1,3 +1,5 @@
+﻿// Approach: Sort array. Two pointers: for each left pointer, binary search or move right pointer.
+// Time: O(n log n) Space: O(1)
 class Solution {
     int countPairs(int arr[], int target) {
         int n = arr.length;

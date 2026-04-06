@@ -1,3 +1,5 @@
+﻿// Approach: Reverse the linked list, add 1 with carry propagation, then reverse again.
+// Time: O(n) Space: O(1)
 class Node {
     int data;
     Node next;

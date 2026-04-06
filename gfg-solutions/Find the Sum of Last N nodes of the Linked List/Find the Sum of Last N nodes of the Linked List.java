@@ -1,3 +1,5 @@
+﻿// Approach: Two-pass or two-pointer technique. Find the (total - N + 1)-th node and sum from there.
+// Time: O(n) Space: O(1)
 class Solution {
 
     // Return the sum of last k nodes

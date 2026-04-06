@@ -1,3 +1,5 @@
+﻿// Approach: Fast exponentiation (binary exponentiation). Reduce exponent by half at each step.
+// Time: O(log n) Space: O(log n)
 class Solution {
     double power(double b, int e) {
         double ans = 1.0;

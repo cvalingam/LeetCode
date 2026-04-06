@@ -1,3 +1,5 @@
+﻿// Approach: Separate uppercase and lowercase characters, sort each group, then merge back in original case positions.
+// Time: O(n log n) Space: O(n)
 class Solution {
     public static String caseSort(String s) {
         int[] upper = new int[26];

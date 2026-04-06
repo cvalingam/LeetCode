@@ -1,3 +1,5 @@
+﻿// Approach: Greedy/sorting. Group consecutive balls following a sequence rule by sorting and scanning.
+// Time: O(n log n) Space: O(n)
 import java.util.*;
 
 class Solution {

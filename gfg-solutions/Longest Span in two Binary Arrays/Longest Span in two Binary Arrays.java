@@ -1,3 +1,5 @@
+﻿// Approach: Compute difference array (a[i]-b[i]). Find longest subarray with sum 0 using prefix sum HashMap.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

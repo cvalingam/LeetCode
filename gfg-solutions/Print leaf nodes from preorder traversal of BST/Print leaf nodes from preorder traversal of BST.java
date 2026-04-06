@@ -1,3 +1,5 @@
+﻿// Approach: Simulate BST insertion using a stack-based preorder traversal to identify leaf nodes.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

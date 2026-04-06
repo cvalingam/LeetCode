@@ -1,3 +1,6 @@
+﻿// Approach: Track both max and min product ending here (negative * negative = positive).
+// Update both at each step; update global max.
+// Time: O(n) Space: O(1)
 class Solution {
     // Function to find maximum product subarray
     int maxProduct(int[] arr) {

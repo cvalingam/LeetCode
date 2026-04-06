@@ -1,3 +1,5 @@
+﻿// Approach: Greedy backtracking. At each position, find the max digit in remaining positions and swap it forward.
+// Time: O(n! in worst) Space: O(n)
 class Solution {
     // Function to find the largest number after k swaps.
     public String findMaximumNum(String str, int k) {

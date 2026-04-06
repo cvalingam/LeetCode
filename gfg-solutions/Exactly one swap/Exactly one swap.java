@@ -1,3 +1,5 @@
+﻿// Approach: Count character frequencies. Check if exactly one swap can sort or satisfy the condition.
+// Time: O(n) Space: O(26)
 class Solution {
     int countStrings(String s) {
         int n = s.length();

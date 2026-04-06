@@ -1,3 +1,6 @@
+﻿// Approach: DP (Matrix Chain Order). dp[i][j] = min scalar multiplications for matrices i..j.
+// Record the split point k for each (i,j) to reconstruct the parenthesization.
+// Time: O(n^3) Space: O(n^2)
 class Solution {
     public String matrixChainOrder(int arr[]) {
         int n = arr.length;

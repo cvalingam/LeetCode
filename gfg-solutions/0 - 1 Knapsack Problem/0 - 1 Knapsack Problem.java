@@ -1,3 +1,6 @@
+﻿// Approach: DP (top-down memoization). For each item decide to include (if weight allows) or exclude.
+// State: (index, remaining capacity). Recurse with memoization.
+// Time: O(n*W) Space: O(n*W)
 import java.util.*;
 
 class Solution {

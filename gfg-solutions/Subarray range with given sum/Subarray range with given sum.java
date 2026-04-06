@@ -1,3 +1,5 @@
+﻿// Approach: Prefix sum HashMap. For each index, check if prefixSum - k exists in the map.
+// Time: O(n) Space: O(n)
 class Solution {
     // Function to count the number of subarrays which adds to the given sum.
     static int subArraySum(int arr[], int tar) {

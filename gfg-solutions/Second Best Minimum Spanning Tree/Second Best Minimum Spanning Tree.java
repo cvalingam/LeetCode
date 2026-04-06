@@ -1,3 +1,5 @@
+﻿// Approach: Build MST (Kruskal/Prim). For each non-MST edge (u,v), find max edge in MST path u-v; replace it.
+// Time: O(V*E) or O(E log V) Space: O(V)
 import java.util.*;
 
 class Solution {

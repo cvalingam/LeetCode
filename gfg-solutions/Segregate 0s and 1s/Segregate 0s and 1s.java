@@ -1,3 +1,5 @@
+﻿// Approach: Dutch National Flag (2-way). Two pointers: swap 0s to front and 1s to back.
+// Time: O(n) Space: O(1)
 class Solution {
     void segregate0and1(int[] arr) {
         int low = 0, n = arr.length;

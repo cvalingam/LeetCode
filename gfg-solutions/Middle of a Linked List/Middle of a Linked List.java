@@ -1,3 +1,5 @@
+﻿// Approach: Slow/fast pointer technique. When fast reaches end, slow is at middle.
+// Time: O(n) Space: O(1)
 class Node {
     int data;
     Node next;

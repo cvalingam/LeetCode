@@ -1,3 +1,5 @@
+﻿// Approach: Concatenate s1 with itself. Check if s2 is a substring using KMP or contains().
+// Time: O(n) Space: O(n)
 class Solution {
     // Function to check if two strings are rotations of each other or not.
     public static boolean areRotations(String s1, String s2) {

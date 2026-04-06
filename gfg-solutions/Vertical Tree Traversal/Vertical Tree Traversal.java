@@ -1,3 +1,5 @@
+﻿// Approach: BFS/DFS tracking horizontal distance. Group nodes by HD, sort within each group by level then value.
+// Time: O(n log n) Space: O(n)
 import java.util.*;
 
 class Node {

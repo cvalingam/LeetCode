@@ -1,3 +1,5 @@
+﻿// Approach: Recursively build: pre[preStart] is root, pre[preStart+1] is left-child root, find it in post to get sizes.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Node {

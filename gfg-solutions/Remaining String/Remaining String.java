@@ -1,3 +1,5 @@
+﻿// Approach: Count occurrences of character c. Find the position after the k-th occurrence and return suffix.
+// Time: O(n) Space: O(n)
 class Solution {
     public String printString(String s, char ch, int count) {
         StringBuilder result = new StringBuilder();

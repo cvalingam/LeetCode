@@ -1,3 +1,5 @@
+﻿// Approach: Compute how many elements from the given array fall in each query range using binary search.
+// Time: O((n + q) log n) Space: O(1)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Use first row and column as markers. Scan for zeros, mark row/col, then zero out marked rows/cols.
+// Time: O(n*m) Space: O(1)
 class Solution {
     public void setMatrixZeroes(int[][] mat) {
         int n = mat.length;

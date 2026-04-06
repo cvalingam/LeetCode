@@ -1,3 +1,5 @@
+﻿// Approach: Brute force: for all x^i*y^j <= bound, add to set. Return set size.
+// Time: O(log(bound)^2) Space: O(log(bound)^2)
 class Solution {
     public int powerfulInteger(int[][] interval, int k) {
         int max = 0;

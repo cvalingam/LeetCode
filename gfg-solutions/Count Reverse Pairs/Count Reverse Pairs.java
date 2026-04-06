@@ -1,3 +1,5 @@
+﻿// Approach: Modified merge sort. Before merging, count pairs (i,j) where arr[i] > 2*arr[j] with j in right half.
+// Time: O(n log n) Space: O(n)
 class Solution {
     public int countRevPairs(int[] arr) {
         int n = arr.length;

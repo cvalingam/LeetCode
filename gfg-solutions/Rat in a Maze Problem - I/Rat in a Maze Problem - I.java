@@ -1,3 +1,5 @@
+﻿// Approach: Backtracking. Explore all 4 directions from current cell, mark visited, backtrack on dead ends.
+// Time: O(4^(n*m)) Space: O(n*m)
 import java.util.*;
 
 class Solution {

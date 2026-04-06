@@ -1,3 +1,5 @@
+﻿// Approach: Stack-based decoding. Push characters/counts; on ']' pop until '[' and repeat the inner string.
+// Time: O(n * max_k) Space: O(n)
 import java.util.*;
 
 class Solution {

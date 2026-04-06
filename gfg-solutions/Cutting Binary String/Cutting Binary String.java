@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i] = min cuts to partition s[0..i-1] into valid binary segments (no leading zeros, <=target).
+// Time: O(n^2) Space: O(n)
 class Solution {
     private int MAX = Integer.MAX_VALUE;
 

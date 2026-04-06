@@ -1,3 +1,5 @@
+﻿// Approach: Topological sort with cycle detection (BFS Kahn's algorithm). If all nodes processed, no cycle exists.
+// Time: O(V+E) Space: O(V+E)
 
 import java.util.*;
 

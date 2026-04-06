@@ -1,3 +1,5 @@
+﻿// Approach: Stack simulation. Push colored balls; pop when top matches current color, otherwise push.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

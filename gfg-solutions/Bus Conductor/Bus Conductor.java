@@ -1,3 +1,5 @@
+﻿// Approach: Simulate passenger boarding and alighting at each stop. Track current load.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

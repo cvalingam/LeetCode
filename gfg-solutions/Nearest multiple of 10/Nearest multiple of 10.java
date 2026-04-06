@@ -1,3 +1,5 @@
+﻿// Approach: Find floor and ceiling multiples of 10. Return whichever is closer; tie goes to ceiling.
+// Time: O(1) Space: O(1)
 class Solution {
 
     String roundToNearest(String str) {

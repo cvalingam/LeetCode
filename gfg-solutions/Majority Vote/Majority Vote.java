@@ -1,3 +1,5 @@
+﻿// Approach: Boyer-Moore voting. Track candidate and count; candidate appearing > n/2 times is majority.
+// Time: O(n) Space: O(1)
 class Solution {
     // Function to find the majority elements in the array
     public List<Integer> findMajority(List<Integer> nums) {

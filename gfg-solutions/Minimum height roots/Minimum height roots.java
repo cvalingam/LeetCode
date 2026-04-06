@@ -1,3 +1,5 @@
+﻿// Approach: Topologically trim leaves repeatedly until 1 or 2 nodes remain. These are the MHT roots.
+// Time: O(V+E) Space: O(V+E)
 import java.util.*;
 
 class Solution {

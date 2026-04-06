@@ -1,3 +1,5 @@
+﻿// Approach: Binary search for the position, then expand a window of size k to include closest elements.
+// Time: O(log n + k) Space: O(k)
 class Solution {
     int[] printKClosest(int[] arr, int k, int x) {
         int n = arr.length;

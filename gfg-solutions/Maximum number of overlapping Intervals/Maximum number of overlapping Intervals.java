@@ -1,3 +1,5 @@
+﻿// Approach: Event sweep. Mark +1 at start, -1 at end+1. Max prefix sum is max overlap.
+// Time: O(n log n) Space: O(n)
 import java.util.*;
 
 class Solution {

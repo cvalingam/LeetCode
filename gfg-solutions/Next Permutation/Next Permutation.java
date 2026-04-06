@@ -1,3 +1,5 @@
+﻿// Approach: Find rightmost ascent from right, find next larger element right of it, swap, reverse suffix.
+// Time: O(n) Space: O(1)
 class Solution {
     void nextPermutation(int[] arr) {
         int i, n = arr.length;

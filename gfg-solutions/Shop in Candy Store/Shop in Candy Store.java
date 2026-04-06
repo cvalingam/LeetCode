@@ -1,3 +1,5 @@
+﻿// Approach: Sort prices. Greedily: take cheapest free-k items as bought, then most expensive k as gifts.
+// Time: O(n log n) Space: O(1)
 import java.util.*;
 
 class Solution {

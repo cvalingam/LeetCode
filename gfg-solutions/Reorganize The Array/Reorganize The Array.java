@@ -1,3 +1,5 @@
+﻿// Approach: Sort, then split at midpoint and interleave elements from both halves.
+// Time: O(n log n) Space: O(n)
 class Solution {
     public List<Integer> rearrange(List<Integer> arr) {
         int n = arr.size();

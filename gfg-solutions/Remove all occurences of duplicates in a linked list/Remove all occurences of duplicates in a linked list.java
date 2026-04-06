@@ -1,3 +1,5 @@
+﻿// Approach: HashMap to count frequencies. Rebuild list keeping only nodes with frequency 1.
+// Time: O(n) Space: O(n)
 
 class Node {
     int data;

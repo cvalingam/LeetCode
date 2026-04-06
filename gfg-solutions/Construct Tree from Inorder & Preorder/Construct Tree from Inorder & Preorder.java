@@ -1,3 +1,6 @@
+﻿// Approach: Recursively build: preorder[0] is root, find it in inorder to split left/right subtrees.
+// Use a HashMap for O(1) inorder lookup.
+// Time: O(n) Space: O(n)
 class Node {
     int data;
     Node left, right;

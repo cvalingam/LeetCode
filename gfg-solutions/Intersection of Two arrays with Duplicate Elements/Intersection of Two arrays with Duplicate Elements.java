@@ -1,3 +1,5 @@
+﻿// Approach: Sort both arrays or use frequency maps; collect common elements.
+// Time: O(n log n + m log m) Space: O(min(n,m))
 class Solution {
     public ArrayList<Integer> intersectionWithDuplicates(int[] a, int[] b) {
         ArrayList<Integer> li = new ArrayList<>();

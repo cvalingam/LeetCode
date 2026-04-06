@@ -1,3 +1,5 @@
+﻿// Approach: Replace: +1 for a, -1 for b. Find subarrays with sum 0 using prefix sum HashMap.
+// Time: O(n) Space: O(n)
 class Solution {
     
     static int sameOccurrence(int arr[], int x, int y) {

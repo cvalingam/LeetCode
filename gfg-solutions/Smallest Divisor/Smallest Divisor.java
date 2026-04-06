@@ -1,3 +1,5 @@
+﻿// Approach: Binary search on divisor. Count ceiling(arr[i]/d) sum; check if <= threshold.
+// Time: O(n log(max)) Space: O(1)
 import java.util.*;
 
 class Solution {

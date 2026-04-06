@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window with two pointers. Expand right until sum >= target, shrink left when sum > target.
+// Time: O(n) Space: O(1)
 
 class Solution {
     static ArrayList<Integer> subarraySum(int[] arr, int target) {

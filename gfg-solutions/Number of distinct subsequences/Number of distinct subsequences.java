@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i][j] = distinct subsequences of s[0..i-1] that equal t[0..j-1].
+// Time: O(n*m) Space: O(n*m)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: DP/BFS. State = (stone index, last jump size). A frog can reach stone s from stone s-k, s, s+k.
+// Time: O(n^2) Space: O(n^2)
 import java.util.*;
 
 class Solution {

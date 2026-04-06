@@ -1,3 +1,5 @@
+﻿// Approach: BFS level-order with a direction flag. Reverse alternate levels before adding to result.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Node {

@@ -1,3 +1,5 @@
+﻿// Approach: Mathematical DP. J(1) = 0; J(n) = (J(n-1) + k) % n.
+// Time: O(n) Space: O(1)
 class Solution {
     public int josephus(int n, int k) {
         int[] p = new int[n];

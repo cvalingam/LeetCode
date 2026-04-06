@@ -1,3 +1,5 @@
+﻿// Approach: Solve the system: all pairwise sums are given. Derive original elements using algebraic manipulation.
+// Time: O(n^2) Space: O(n)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Simulate binary addition from right to left using two pointers and a carry variable.
+// Time: O(max(n,m)) Space: O(max(n,m))
 class Solution {
     public String addBinary(String s1, String s2) {
         StringBuilder result = new StringBuilder();

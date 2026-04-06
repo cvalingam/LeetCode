@@ -1,3 +1,5 @@
+﻿// Approach: Backtracking. At each position place '0' or '1', recurse; collect complete strings.
+// Time: O(2^n * n) Space: O(n)
 import java.util.*;
 
 class Solution {

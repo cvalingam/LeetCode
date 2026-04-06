@@ -1,3 +1,5 @@
+﻿// Approach: Collect all string values, concatenate, check if the resulting string is a palindrome.
+// Time: O(n * len) Space: O(total len)
 class Node {
     String data;
     Node next;

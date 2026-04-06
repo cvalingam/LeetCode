@@ -1,3 +1,5 @@
+﻿// Approach: Find LIS elements using standard algorithm, then subtract their sum from total sum.
+// Time: O(n log n) Space: O(n)
 class Solution {
     public int nonLisMaxSum(int[] arr) {
         int n = arr.length;

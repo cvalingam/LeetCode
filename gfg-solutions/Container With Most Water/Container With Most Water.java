@@ -1,3 +1,6 @@
+﻿// Approach: Two pointers starting at both ends. Move the pointer with the shorter height inward.
+// Track the maximum area computed at each step.
+// Time: O(n) Space: O(1)
 class Solution {
 
     public int maxWater(int arr[]) {

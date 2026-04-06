@@ -1,3 +1,5 @@
+﻿// Approach: DP. dp[i][d] = sequences of length i starting with digit d. Transition via adjacent keys.
+// Time: O(n * 10) Space: O(10)
 import java.util.*;
 
 class Solution {

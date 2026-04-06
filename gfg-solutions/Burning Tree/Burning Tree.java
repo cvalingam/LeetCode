@@ -1,3 +1,6 @@
+﻿// Approach: BFS from the target node treating the tree as an undirected graph.
+// Build parent pointers first, then multi-source BFS tracking time steps.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

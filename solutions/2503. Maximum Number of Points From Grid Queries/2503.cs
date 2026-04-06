@@ -1,3 +1,7 @@
+// Approach: Process queries in sorted order. Use a min-heap (BFS/Dijkstra-style) starting
+// from (0,0). Expand cells greedily when their value is less than the current query
+// threshold. The count accumulates monotonically since queries are sorted ascending.
+// Time: O((m*n + q) log(m*n)) Space: O(m*n + q)
 public class Solution
 {
     private record T(int i, int j, int val);

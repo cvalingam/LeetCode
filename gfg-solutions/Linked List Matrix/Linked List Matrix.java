@@ -1,3 +1,5 @@
+﻿// Approach: Traverse matrix row by row, left-to-right, top-to-bottom, creating linked list nodes.
+// Time: O(n*m) Space: O(n*m)
 class Node {
     int data;
     Node right, down;

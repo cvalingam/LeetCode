@@ -1,3 +1,5 @@
+﻿// Approach: Sort. For each split point: max of (arr[0]+k, arr[i]+k) and min of (arr[n-1]-k, arr[i+1]-k).
+// Time: O(n log n) Space: O(1)
 import java.util.*;
 
 class Solution {

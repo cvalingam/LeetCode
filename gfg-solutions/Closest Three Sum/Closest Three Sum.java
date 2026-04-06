@@ -1,3 +1,5 @@
+﻿// Approach: Sort array. For each element, use two pointers on the remaining array to find the closest sum to target.
+// Time: O(n^2) Space: O(1)
 import java.util.*;
 
 class Solution {

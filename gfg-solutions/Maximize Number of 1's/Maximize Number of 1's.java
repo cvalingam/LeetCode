@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window. Find longest window of 0s/1s that can have at most one 0 flipped.
+// Time: O(n) Space: O(1)
 class Solution {
     public int maxOnes(int arr[], int k) {
         int left = 0, right = 0;

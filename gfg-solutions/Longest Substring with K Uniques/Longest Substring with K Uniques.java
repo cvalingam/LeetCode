@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window. Maintain frequency map; shrink left when unique count > k.
+// Time: O(n) Space: O(k)
 import java.util.*;
 
 class Solution {

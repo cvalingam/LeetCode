@@ -1,3 +1,5 @@
+﻿// Approach: LCS-based. Min deletions = (len(s1) - LCS) + (len(s2) - LCS).
+// Time: O(n*m) Space: O(n*m)
 class Solution {
     static int minDeletions(String s) {
         int n = s.length();

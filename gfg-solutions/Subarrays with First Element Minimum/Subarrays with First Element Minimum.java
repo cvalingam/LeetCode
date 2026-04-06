@@ -1,3 +1,5 @@
+﻿// Approach: For each element, find previous smaller and next smaller-or-equal. Count subarrays where it's first min.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

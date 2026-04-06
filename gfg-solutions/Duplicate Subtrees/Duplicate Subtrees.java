@@ -1,3 +1,5 @@
+﻿// Approach: Serialize each subtree to a string. Use a HashMap to count; collect subtrees with count >= 2.
+// Time: O(n^2) Space: O(n^2)
 import java.util.*;
 
 class Node {

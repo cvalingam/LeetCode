@@ -1,3 +1,5 @@
+﻿// Approach: BFS level-order traversal. For each level, collect only the first (leftmost) node.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Node {

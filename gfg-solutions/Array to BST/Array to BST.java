@@ -1,3 +1,6 @@
+﻿// Approach: Sort array, then recursively build BST by picking the middle element as root.
+// This guarantees a height-balanced BST.
+// Time: O(n log n) Space: O(n)
 class Node {
     int data;
     Node left, right;

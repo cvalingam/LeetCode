@@ -1,3 +1,7 @@
+// Approach: BFS over candidate subsequences in increasing length order. Only characters
+// appearing ≥ k times in s can appear in the answer. For each candidate, greedily verify
+// if it appears as a subsequence k times in s. Track the longest valid candidate found.
+// Time: O(n * |candidates|) Space: O(|candidates|)
 public class Solution
 {
     public string LongestSubsequenceRepeatedK(string s, int k)

@@ -1,3 +1,5 @@
+﻿// Approach: Greedy with max-heap. Remove the most frequent character k times, minimize distinct remaining.
+// Time: O(n + k log 26) Space: O(26)
 import java.util.*;
 
 class Solution {

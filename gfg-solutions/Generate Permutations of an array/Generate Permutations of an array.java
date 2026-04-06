@@ -1,3 +1,5 @@
+﻿// Approach: Backtracking with swap-in-place. Swap each element to current position and recurse.
+// Time: O(n! * n) Space: O(n)
 import java.util.*;
 
 class Solution {

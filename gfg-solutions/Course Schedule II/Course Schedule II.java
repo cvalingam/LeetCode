@@ -1,3 +1,5 @@
+﻿// Approach: Topological sort (BFS Kahn's). Collect nodes in processing order for the valid course sequence.
+// Time: O(V+E) Space: O(V+E)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Build KMP failure function for pattern. Slide pattern over text using failure links to avoid re-comparisons.
+// Time: O(n+m) Space: O(m)
 class Solution {
 
     ArrayList<Integer> search(String pat, String txt) {

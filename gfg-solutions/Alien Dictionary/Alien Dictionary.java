@@ -1,3 +1,6 @@
+﻿// Approach: Topological sort. Build a directed graph of character ordering from adjacent word pairs.
+// Run BFS/DFS topological sort; if a cycle exists return empty string.
+// Time: O(n * len) Space: O(26)
 import java.util.*;
 
 class Solution {

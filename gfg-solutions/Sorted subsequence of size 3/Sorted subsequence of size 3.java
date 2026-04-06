@@ -1,3 +1,5 @@
+﻿// Approach: Track min from left and max from right. Find middle element where left_min < mid < right_max.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: In-order BST traversal collecting nodes within distance k of target, or BST search + two-pointer.
+// Time: O(n) Space: O(k)
 import java.util.*;
 
 class Node {

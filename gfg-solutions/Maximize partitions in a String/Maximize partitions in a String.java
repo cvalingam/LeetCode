@@ -1,3 +1,5 @@
+﻿// Approach: Greedy. For each character track last occurrence. Extend current partition to cover all seen chars.
+// Time: O(n) Space: O(26)
 import java.util.*;
 
 class Solution {

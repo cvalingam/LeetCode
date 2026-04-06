@@ -1,3 +1,5 @@
+﻿// Approach: Iteratively build next term: scan current term counting consecutive equal digits, append count+digit.
+// Time: O(n * 2^n) in worst Space: O(2^n)
 class Solution {
     public String countAndSay(int n) {
         if (n <= 0)

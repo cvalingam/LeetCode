@@ -1,3 +1,5 @@
+﻿// Approach: Min-heap of size k. Start with (arr1[0]+arr2[0]), expand by incrementing indices.
+// Time: O(k log k) Space: O(k)
 import java.util.*;
 
 class Solution {

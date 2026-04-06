@@ -1,3 +1,6 @@
+﻿// Approach: Sliding window / prefix counts. Track counts of vowels and consonants.
+// Find positions where their ratio meets the target.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

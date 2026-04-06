@@ -1,3 +1,5 @@
+﻿// Approach: DP (unbounded). dp[j] = ways to achieve sum j using array elements with repetition allowed.
+// Time: O(n * sum) Space: O(sum)
 import java.util.*;
 
 class Solution {

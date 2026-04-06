@@ -1,3 +1,5 @@
+﻿// Approach: DFS using recursion or explicit stack. Mark visited nodes to avoid revisiting.
+// Time: O(V+E) Space: O(V)
 import java.util.*;
 
 class Solution {

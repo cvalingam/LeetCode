@@ -1,3 +1,6 @@
+﻿// Approach: DP on intervals. dp[i][j] = min scalar multiplications for matrices i to j.
+// Split at every k: dp[i][j] = min(dp[i][k] + dp[k+1][j] + dims[i-1]*dims[k]*dims[j]).
+// Time: O(n^3) Space: O(n^2)
 class Solution {
     static int matrixMultiplication(int arr[]) {
         int n = arr.length;

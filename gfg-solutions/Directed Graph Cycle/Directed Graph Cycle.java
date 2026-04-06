@@ -1,3 +1,5 @@
+﻿// Approach: DFS with three states: unvisited, in-stack, visited. Cycle exists if DFS reaches an in-stack node.
+// Time: O(V+E) Space: O(V)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,5 @@
+﻿// Approach: Use a HashSet to store all elements. For each element x, check if x - k exists in the set.
+// Time: O(n) Space: O(n)
 class Solution {
     public int getCount(int n, int d) {
         int s = 1; // start

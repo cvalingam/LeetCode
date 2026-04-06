@@ -1,3 +1,5 @@
+﻿// Approach: Two-pointer: keep track of the insertion position for non-zero elements, fill rest with zeros.
+// Time: O(n) Space: O(1)
 class Solution {
     void pushZerosToEnd(int[] arr) {
         int d = 0, count = 0;

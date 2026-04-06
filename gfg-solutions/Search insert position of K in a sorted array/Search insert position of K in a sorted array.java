@@ -1,3 +1,5 @@
+﻿// Approach: Binary search. Return mid if found, or the position where K would be inserted.
+// Time: O(log n) Space: O(1)
 class Solution {
     public int searchInsertK(int arr[], int k) {
         int low = 0, high = arr.length - 1;

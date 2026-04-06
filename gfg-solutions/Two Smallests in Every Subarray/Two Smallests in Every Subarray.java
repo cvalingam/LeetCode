@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window deque tracking two smallest in current window.
+// Time: O(n) Space: O(n)
 class Solution {
     public int pairWithMaxSum(int[] arr) {
         int n = arr.length;

@@ -1,3 +1,5 @@
+﻿// Approach: Count missing letters (ones not in string). A k-pangram needs at most k additional unique letters.
+// Time: O(n) Space: O(26)
 class Solution {
     boolean kPangram(String str, int k) {
         int n = str.length();

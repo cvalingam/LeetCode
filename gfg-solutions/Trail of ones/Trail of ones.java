@@ -1,3 +1,6 @@
+﻿// Approach: DP counting binary strings of length n with no two consecutive 1s.
+// dp[i][0] = dp[i-1][0] + dp[i-1][1]; dp[i][1] = dp[i-1][0].
+// Time: O(n) Space: O(1)
 class Solution {
     public int countConsec(int n) {
         if (n == 2)

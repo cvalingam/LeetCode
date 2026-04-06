@@ -1,3 +1,5 @@
+﻿// Approach: Find middle (slow/fast pointers), recursively sort halves, merge two sorted lists.
+// Time: O(n log n) Space: O(log n)
 class Node {
     int data;
     Node next;

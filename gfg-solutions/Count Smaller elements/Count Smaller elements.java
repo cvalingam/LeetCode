@@ -1,3 +1,5 @@
+﻿// Approach: Merge sort or BIT/Fenwick tree. For each element, count elements to its right that are smaller.
+// Time: O(n log n) Space: O(n)
 class Solution {
     int[] constructLowerArray(int[] arr) {
         // code here

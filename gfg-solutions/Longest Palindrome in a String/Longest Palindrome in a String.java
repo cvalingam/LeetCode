@@ -1,3 +1,5 @@
+﻿// Approach: Expand-around-center for each character and each pair. Track max palindrome found.
+// Time: O(n^2) Space: O(1)
 class Solution {
     static String longestPalindrome(String s) {
         int maxLength = 0;

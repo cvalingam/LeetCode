@@ -1,3 +1,5 @@
+﻿// Approach: Find k-th from start and k-th from end using two-pointer. Swap only the data values.
+// Time: O(n) Space: O(1)
 class Node {
     int data;
     Node next;

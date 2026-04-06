@@ -1,3 +1,5 @@
+﻿// Approach: HashSet approach: for each element check if (target - element) is in set.
+// Time: O(n) Space: O(n)
 
 class Solution {
     boolean twoSum(int arr[], int target) {

@@ -1,3 +1,5 @@
+﻿// Approach: Count 0s, 1s, 2s. Overwrite list values in sorted order.
+// Time: O(n) Space: O(1)
 class Solution {
     // Function to sort a linked list of 0s, 1s and 2s.
     static Node segregate(Node head) {

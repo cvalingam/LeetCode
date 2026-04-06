@@ -1,3 +1,5 @@
+﻿// Approach: Sliding window with frequency map. Find minimum window containing all distinct characters of string.
+// Time: O(n) Space: O(1)
 import java.util.*;
 
 class Solution {

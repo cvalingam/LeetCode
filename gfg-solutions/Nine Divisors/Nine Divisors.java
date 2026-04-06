@@ -1,3 +1,5 @@
+﻿// Approach: Count numbers up to n with exactly 9 divisors: form p^8 or p^2*q^2 (distinct primes).
+// Time: O(sqrt(n) * log log n) Space: O(sqrt(n))
 class Solution {
     public static int countNumbers(int n) {
         int ans = 0;

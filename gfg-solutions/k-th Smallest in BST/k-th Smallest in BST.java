@@ -1,3 +1,5 @@
+﻿// Approach: In-order traversal (left-root-right) yields sorted order. Return the k-th element visited.
+// Time: O(n) Space: O(h)
 import java.util.*;
 
 class Node {

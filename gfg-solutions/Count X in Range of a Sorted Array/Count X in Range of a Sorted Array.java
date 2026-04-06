@@ -1,3 +1,5 @@
+﻿// Approach: Binary search for first and last occurrence of X. Count = lastIndex - firstIndex + 1.
+// Time: O(log n) Space: O(1)
 import java.util.*;
 
 class Solution {

@@ -1,3 +1,6 @@
+﻿// Approach: Two-pass greedy. Left-to-right: give more candy if rating > left neighbor.
+// Right-to-left: ensure right neighbor has more if rating > right neighbor. Sum all.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Solution {

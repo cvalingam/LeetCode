@@ -1,3 +1,6 @@
+﻿// Approach: Brian Kernighan's algorithm: repeatedly flip the lowest set bit (n &= n-1) and count.
+// Alternatively use lookup table for O(1) per block.
+// Time: O(log n) Space: O(1)
 class Solution {
     public static int countSetBits(int n) {
         if (n == 0)

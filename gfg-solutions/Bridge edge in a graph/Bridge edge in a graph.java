@@ -1,3 +1,6 @@
+﻿// Approach: Tarjan's bridge-finding algorithm using DFS discovery times and low values.
+// An edge (u,v) is a bridge if low[v] > disc[u].
+// Time: O(V+E) Space: O(V)
 import java.util.*;
 
 class Solution {

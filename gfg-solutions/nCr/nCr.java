@@ -1,3 +1,5 @@
+﻿// Approach: DP Pascal's triangle or multiplicative formula with modular inverse (for large n).
+// Time: O(n*r) or O(r) Space: O(n*r) or O(r)
 package solutions.nCr;
 
 class Solution {

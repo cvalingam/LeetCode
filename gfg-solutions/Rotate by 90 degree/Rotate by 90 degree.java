@@ -1,3 +1,5 @@
+﻿// Approach: Transpose the matrix, then reverse each row (for clockwise rotation).
+// Time: O(n^2) Space: O(1)
 // Clock wise
 class GFG {
     static void rotate(int arr[][]) {

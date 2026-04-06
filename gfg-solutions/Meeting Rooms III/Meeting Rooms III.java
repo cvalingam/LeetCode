@@ -1,3 +1,6 @@
+﻿// Approach: Two heaps: free rooms (min-heap by index) and occupied (min-heap by end time, then index).
+// Sort meetings by start; for each meeting free ended rooms, assign smallest free room.
+// Time: O(m log n) Space: O(n)
 import java.util.*;
 
 class Solution {

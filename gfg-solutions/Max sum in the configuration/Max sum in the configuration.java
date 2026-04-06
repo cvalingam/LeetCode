@@ -1,3 +1,5 @@
+﻿// Approach: For rotation by k: sum(k) = sum(k-1) + totalSum - n*arr[n-k]. Use prefix sum to compute efficiently.
+// Time: O(n) Space: O(1)
 class Solution {
     int maxSum(int[] arr) {
         int sum = 0;

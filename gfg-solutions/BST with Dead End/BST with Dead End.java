@@ -1,3 +1,5 @@
+﻿// Approach: DFS with [min, max] range for each node. A dead end exists when min+1 == max.
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left, right;

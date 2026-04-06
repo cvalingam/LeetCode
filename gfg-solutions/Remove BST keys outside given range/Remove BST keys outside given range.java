@@ -1,3 +1,5 @@
+﻿// Approach: DFS. If node.val < min return pruned right subtree; if node.val > max return pruned left subtree.
+// Time: O(n) Space: O(h)
 class Node {
     int data;
     Node left;

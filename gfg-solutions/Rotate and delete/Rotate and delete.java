@@ -1,3 +1,5 @@
+﻿// Approach: Simulate the process: rotate array and delete specified element per round.
+// Time: O(n^2) Space: O(n)
 class Solution {
     public static int rotateDelete(ArrayList<Integer> arr) {
         boolean flag = true;

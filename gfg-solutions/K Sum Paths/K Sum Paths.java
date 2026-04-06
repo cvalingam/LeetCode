@@ -1,3 +1,5 @@
+﻿// Approach: DFS with prefix sum HashMap. Count paths ending at current node with sum = k.
+// Time: O(n) Space: O(n)
 import java.util.*;
 
 class Node {

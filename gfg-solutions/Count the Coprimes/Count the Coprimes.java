@@ -1,3 +1,5 @@
+﻿// Approach: For each pair (i,j), compute GCD. Count pairs where GCD == 1 using inclusion-exclusion or sieve.
+// Time: O(n^2 log n) Space: O(1)
 import java.util.*;
 
 class Solution {
