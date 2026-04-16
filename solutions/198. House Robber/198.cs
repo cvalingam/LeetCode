@@ -1,5 +1,8 @@
-// Approach: Top-down DP — at each house choose the max of robbing it
-// (plus the result two houses back) or skipping it; memoize results.
+// Approach: Top-down DP with memoization.
+// At each house i, the best loot is max(rob[i-2] + nums[i], rob[i-1]):
+// either rob this house (gaining nums[i] plus best loot two houses back)
+// or skip it (keeping the best loot from the previous house).
+// Memoization ensures each sub-problem is solved only once, giving O(n) time.
 // Time: O(n) Space: O(n)
 
 public class Solution

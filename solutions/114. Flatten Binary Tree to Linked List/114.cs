@@ -1,5 +1,7 @@
-// Approach: Iterative with a stack — push right then left child, link each
-// node in preorder so the flattened list uses only right pointers.
+// Approach: Iterative pre-order traversal using an explicit stack.
+// Push the right child first, then the left child, so the left is popped (visited) first.
+// For each dequeued node, set node.right to the next item on the stack and node.left to null.
+// This rewires all pointers in-place to form a right-only singly linked list in pre-order.
 // Time: O(n) Space: O(n)
 
 public class TreeNode

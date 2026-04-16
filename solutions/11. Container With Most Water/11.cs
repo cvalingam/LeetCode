@@ -1,5 +1,8 @@
-// Approach: Two pointers from both ends. Move the pointer at the shorter height
-// inward; the area is always limited by the shorter side.
+// Approach: Two pointers starting at both ends of the array.
+// The water volume between two lines equals the shorter height multiplied by the distance between them.
+// Start with left=0 and right=n-1 to maximise the width, then shrink inward.
+// Always advance the pointer at the shorter side — moving the taller side can only decrease area.
+// Track the maximum area seen across all valid pairs.
 // Time: O(n) Space: O(1)
 
 public class Solution

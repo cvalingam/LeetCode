@@ -1,6 +1,9 @@
-// Approach: Traverse the circular array twice while tracking the last seen position of each
-// value. Whenever the same value reappears, update the minimum circular distance for both
-// occurrences. Answer each query from the precomputed minimum-distance array.
+// Approach: Precompute the minimum circular distance to the nearest equal element for every index.
+// Traverse the array twice (2n steps) using i % n to simulate the circular wrap-around.
+// Track the last-seen index for each value in a dictionary.
+// When a value reappears, compute the circular distance min(fwd, n-fwd) and update minDist
+// for both the current and last-seen occurrence.
+// Answer each query in O(1) from the precomputed array; return -1 if no equal neighbour exists.
 // Time: O(n + q) Space: O(n)
 public class Solution
 {

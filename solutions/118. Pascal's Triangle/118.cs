@@ -1,5 +1,8 @@
-// Approach: Build row by row — start and end each row with 1, and every
-// interior element is the sum of the two elements above it.
+// Approach: Build the triangle row by row.
+// Every row starts and ends with 1. Each interior element at position j equals
+// prevRow[j-1] + prevRow[j], the sum of the two elements directly above it.
+// After constructing each row it is appended to the result list.
+// Total elements across all rows is O(n²) so both time and space are O(n²).
 // Time: O(n²) Space: O(n²)
 
 public class Solution

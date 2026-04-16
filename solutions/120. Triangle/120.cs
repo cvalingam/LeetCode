@@ -1,5 +1,8 @@
-// Approach: Bottom-up DP — modify in-place starting from the second-to-last
-// row, adding the minimum of the two adjacent lower cells upward.
+// Approach: Bottom-up DP starting from the second-to-last row and moving upward.
+// For each cell triangle[i][j], add the minimum of triangle[i+1][j] and triangle[i+1][j+1].
+// This transforms each cell into the minimum path sum from that cell to the bottom row.
+// After processing all rows, triangle[0][0] contains the global minimum path sum.
+// Modifying in-place avoids allocating a separate DP array, keeping extra space O(1).
 // Time: O(n²) Space: O(n)
 
 public class Solution

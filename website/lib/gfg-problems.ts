@@ -72,7 +72,7 @@ export function getAllGfgProblems(): GfgProblem[] {
         else break
       }
     }
-    const approach = approachLines.length > 0 ? approachLines.join(' ') : undefined
+    const approach = approachLines.length > 0 ? approachLines.join('\n') : undefined
 
     result.push({
       title: folder,

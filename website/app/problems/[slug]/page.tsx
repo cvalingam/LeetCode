@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const allLabels = [primaryLabel, ...Object.keys(problem.extraCodes ?? {}).map(e => EXT_TO_LABEL[e] ?? e)].join(', ')
   const title = `${problem.number}. ${problem.title}`
   let desc = `LeetCode ${problem.number} ${problem.title} – ${problem.difficulty} ${allLabels} solution`
-  if (problem.approach) desc += `. ${problem.approach}`
+  if (problem.approach) desc += `. ${problem.approach.split('\n')[0]}`
   if (problem.complexity) desc += `. Time: ${problem.complexity.time}, Space: ${problem.complexity.space}.`
   else desc += `.`
 
@@ -183,8 +183,10 @@ export default async function ProblemPage({ params }: Props) {
       {/* Approach */}
       {problem.approach && (
         <div className="mb-8 p-4 rounded-xl bg-slate-50 dark:bg-gray-800/50 border border-slate-100 dark:border-gray-800">
-          <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">Approach</h2>
-          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{problem.approach}</p>
+          <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Explanation</h2>
+          {problem.approach.split('\n').map((para, i) => (
+            <p key={i} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-2 last:mb-0">{para}</p>
+          ))}
         </div>
       )}
 

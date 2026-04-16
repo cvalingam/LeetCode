@@ -100,7 +100,7 @@ export function getAllProblems(): Problem[] {
         else break
       }
     }
-    const approach = approachLines.length > 0 ? approachLines.join(' ') : undefined
+    const approach = approachLines.length > 0 ? approachLines.join('\n') : undefined
 
     // Read remaining language files as extra
     const extraCodes: Record<string, string> = {}
