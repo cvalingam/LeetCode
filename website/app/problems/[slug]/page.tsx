@@ -9,6 +9,7 @@ import LanguageTabs from '@/components/LanguageTabs'
 import DifficultyBadge from '@/components/DifficultyBadge'
 import AdUnit from '@/components/AdUnit'
 import HelpfulWidget from '@/components/HelpfulWidget'
+import explanations from '@/lib/explanations'
 
 const EXT_TO_SHIKI: Record<string, SupportedLang> = {
   cs:   'csharp',
@@ -180,15 +181,88 @@ export default async function ProblemPage({ params }: Props) {
         </div>
       )}
 
-      {/* Approach */}
-      {problem.approach && (
-        <div className="mb-8 p-4 rounded-xl bg-slate-50 dark:bg-gray-800/50 border border-slate-100 dark:border-gray-800">
-          <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Explanation</h2>
-          {problem.approach.split('\n').map((para, i) => (
-            <p key={i} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-2 last:mb-0">{para}</p>
-          ))}
-        </div>
-      )}
+      {/* Rich explanation (structured) or plain approach fallback */}
+      {(() => {
+        const rich = explanations[problem.number]
+        if (rich) {
+          return (
+            <div className="mb-8 space-y-4">
+              {/* Intuition */}
+              <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-100 dark:border-amber-900">
+                <h2 className="flex items-center gap-1.5 text-[11px] font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-2">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                  Intuition
+                </h2>
+                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{rich.intuition}</p>
+              </div>
+
+              {/* Algorithm steps */}
+              <div className="p-4 rounded-xl bg-slate-50 dark:bg-gray-800/50 border border-slate-100 dark:border-gray-800">
+                <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Algorithm</h2>
+                <ol className="space-y-2 list-none">
+                  {rich.algorithm.map((step, i) => (
+                    <li key={i} className="flex gap-3 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                      <span className="flex-shrink-0 w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 text-[10px] font-bold flex items-center justify-center mt-0.5">{i + 1}</span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              {/* Example walkthrough */}
+              {rich.example && (
+                <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900">
+                  <h2 className="flex items-center gap-1.5 text-[11px] font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-2">
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
+                    Example Walkthrough
+                  </h2>
+                  <p className="text-xs font-mono text-blue-800 dark:text-blue-300 bg-blue-100/60 dark:bg-blue-900/40 rounded px-3 py-1.5 mb-3 break-all">Input: {rich.example.input}</p>
+                  <ol className="space-y-1.5 list-none mb-3">
+                    {rich.example.steps.map((step, i) => (
+                      <li key={i} className="flex gap-2.5 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        <span className="flex-shrink-0 text-blue-400 dark:text-blue-500 font-mono text-xs mt-0.5">{i + 1}.</span>
+                        <span>{step}</span>
+                      </li>
+                    ))}
+                  </ol>
+                  <p className="text-xs font-mono text-blue-800 dark:text-blue-300 bg-blue-100/60 dark:bg-blue-900/40 rounded px-3 py-1.5 break-all">Output: {rich.example.output}</p>
+                </div>
+              )}
+
+              {/* Common pitfalls */}
+              {rich.pitfalls && rich.pitfalls.length > 0 && (
+                <div className="p-4 rounded-xl bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900">
+                  <h2 className="flex items-center gap-1.5 text-[11px] font-semibold text-red-600 dark:text-red-400 uppercase tracking-wider mb-3">
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                    Common Pitfalls
+                  </h2>
+                  <ul className="space-y-2">
+                    {rich.pitfalls.map((pitfall, i) => (
+                      <li key={i} className="flex gap-2.5 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        <span className="flex-shrink-0 text-red-400 dark:text-red-500 mt-0.5">•</span>
+                        <span>{pitfall}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )
+        }
+
+        if (problem.approach) {
+          return (
+            <div className="mb-8 p-4 rounded-xl bg-slate-50 dark:bg-gray-800/50 border border-slate-100 dark:border-gray-800">
+              <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Explanation</h2>
+              {problem.approach.split('\n').map((para, i) => (
+                <p key={i} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-2 last:mb-0">{para}</p>
+              ))}
+            </div>
+          )
+        }
+
+        return null
+      })()}
 
       {/* Code */}
       <section className="mb-8">
