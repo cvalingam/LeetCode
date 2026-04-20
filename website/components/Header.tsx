@@ -84,6 +84,7 @@ export default function Header() {
           <NavLink href="/"       active={isLc}                      label="LeetCode" />
           <NavLink href="/gfg"    active={isGfg}                     label="GFG"      activeColor="text-emerald-600 bg-emerald-50" hoverColor="hover:text-emerald-600 hover:bg-emerald-50/60" />
           <NavLink href="/topics" active={pathname.startsWith('/topics')} label="Topics" className="hidden md:inline-flex" />
+          <NavLink href="/study-guide" active={pathname === '/study-guide'} label="Study Guide" className="hidden md:inline-flex" />
           <NavLink href="/about"   active={pathname === '/about'}     label="About"   className="hidden md:inline-flex" />
           <NavLink href="/contact" active={pathname === '/contact'}   label="Contact" className="hidden md:inline-flex" />
           <a

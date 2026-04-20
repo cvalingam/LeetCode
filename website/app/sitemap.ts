@@ -9,7 +9,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/`,               lastModified: new Date('2025-01-01'), changeFrequency: 'weekly',  priority: 1.0 },
-    { url: `${SITE_URL}/about`,          lastModified: new Date('2025-01-01'), changeFrequency: 'monthly', priority: 0.3 },
+    { url: `${SITE_URL}/study-guide`,    lastModified: new Date('2026-04-20'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${SITE_URL}/about`,          lastModified: new Date('2026-04-20'), changeFrequency: 'monthly', priority: 0.3 },
     { url: `${SITE_URL}/privacy-policy`, lastModified: new Date('2025-01-01'), changeFrequency: 'yearly',  priority: 0.2 },
     { url: `${SITE_URL}/contact`,        lastModified: new Date('2025-01-01'), changeFrequency: 'yearly',  priority: 0.2 },
     { url: `${SITE_URL}/terms`,           lastModified: new Date('2026-04-06'), changeFrequency: 'yearly',  priority: 0.2 },
