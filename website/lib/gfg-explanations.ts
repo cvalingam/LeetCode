@@ -3222,6 +3222,252 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Same as LC 310. At most 2 answers (center of tree). Trim leaves layer by layer like BFS.'],
   },
 
+  '2d-difference-array': {
+    intuition: 'Apply range updates on a 2D matrix efficiently. Difference array lets you add value to submatrix in O(1) then reconstruct in O(m*n).',
+    algorithm: [
+      'For update (r1,c1,r2,c2,val): diff[r1][c1]+=val, diff[r1][c2+1]-=val, diff[r2+1][c1]-=val, diff[r2+1][c2+1]+=val.',
+      'Reconstruct: prefix sum row-wise then column-wise.',
+    ],
+    pitfalls: ['2D extension of 1D difference array. Four corners of the rectangle update. O(1) per update, O(m*n) to reconstruct.'],
+  },
+
+  '2d-submatrix-sum-queries': {
+    intuition: 'Answer submatrix sum queries in O(1) using 2D prefix sums.',
+    algorithm: [
+      'prefix[i][j] = sum of matrix[0..i-1][0..j-1]. Query(r1,c1,r2,c2) = prefix[r2+1][c2+1] - prefix[r1][c2+1] - prefix[r2+1][c1] + prefix[r1][c1].',
+    ],
+    pitfalls: ['Inclusion-exclusion principle. Build prefix in O(m*n), each query O(1). Same as LC 304.'],
+  },
+
+  'all-subsets-xor-sum': {
+    intuition: 'Sum of XOR of all subsets equals (bitwise OR of all elements) * 2^(n-1).',
+    algorithm: [
+      'Compute OR of all elements. Multiply by 2^(n-1).',
+    ],
+    pitfalls: ['Mathematical insight: each bit that appears in any element contributes 2^(n-1) to the total XOR sum.'],
+  },
+
+  'alternate-positive-and-negative-numbers': {
+    intuition: 'Rearrange array so positive and negative numbers alternate. Two-pointer or collect and interleave.',
+    algorithm: [
+      'Collect positives and negatives separately. Interleave: place at even/odd indices.',
+      'If counts differ: append remaining at end.',
+    ],
+    pitfalls: ['Maintain relative order if required. If counts differ, extras go at end. O(n) with extra space.'],
+  },
+
+  'alternative-sorting': {
+    intuition: 'Sort such that first element is max, second is min, third is second max, etc. Sort then interleave.',
+    algorithm: [
+      'Sort ascending. Two pointers: left=0 (min side), right=n-1 (max side). Alternately pick from right then left.',
+    ],
+    pitfalls: ['Pick largest first at odd positions, smallest at even positions (or vice versa per problem spec).'],
+  },
+
+  'and-in-range': {
+    intuition: 'Bitwise AND of all numbers from L to R. Common prefix of L and R in binary.',
+    algorithm: [
+      'While L != R: R >>= 1, L >>= 1, count shifts. Answer = L << count.',
+    ],
+    pitfalls: ['Same as LC 201. Shift both right until equal (find common prefix). Shift result back left.'],
+  },
+
+  'assign-mice-holes': {
+    intuition: 'Assign n mice to n holes to minimize maximum distance. Sort both, match greedily.',
+    algorithm: [
+      'Sort mice positions and hole positions. Pair mice[i] with holes[i]. Answer = max(|mice[i]-holes[i]|).',
+    ],
+    pitfalls: ['Greedy: sorted pairing minimizes max distance. Proof by exchange argument.'],
+  },
+
+  'balancing-consonants-and-vowels-ratio': {
+    intuition: 'Find substring where count of vowels equals count of consonants. Prefix count difference + hashmap.',
+    algorithm: [
+      'Track running (vowels - consonants). Use hashmap to find subarrays with difference = 0.',
+    ],
+    pitfalls: ['Reduce to "subarray with sum 0" via encoding vowels as +1 and consonants as -1. Hashmap of first occurrence.'],
+  },
+
+  'brackets-in-matrix-chain-multiplication': {
+    intuition: 'Print the parenthesization of matrix chain multiplication with optimal order. Reconstruct from DP split table.',
+    algorithm: [
+      'Standard MCM DP: dp[i][j] = min operations. split[i][j] = optimal split point k.',
+      'Reconstruct: recursively print (A_i..A_k)(A_{k+1}..A_j) using split table.',
+    ],
+    pitfalls: ['Same DP as matrix chain multiplication but with full parenthesization output. Recursion on split[][].'],
+  },
+
+  'bridge-edge-in-a-graph': {
+    intuition: 'Check if a specific edge (u,v) is a bridge. Remove it, check if v is still reachable from u.',
+    algorithm: [
+      'Remove edge (u,v). BFS/DFS from u. If v not reachable: it is a bridge.',
+    ],
+    pitfalls: ['Simple approach: single DFS after removing edge. Or use Tarjan bridge algorithm for all bridges at once.'],
+  },
+
+  'case-specific-sorting-of-strings': {
+    intuition: 'Sort string keeping uppercase letters at their original positions and lowercase at theirs, but each group sorted independently.',
+    algorithm: [
+      'Extract uppercase chars and sort. Extract lowercase chars and sort.',
+      'Rebuild: place sorted uppercase at original uppercase positions, sorted lowercase at original lowercase positions.',
+    ],
+    pitfalls: ['Do not mix cases. Keep position types fixed; only sort within each type group.'],
+  },
+
+  'check-for-power': {
+    intuition: 'Check if a number is a power of 2 (or given base k). Bit trick for power of 2.',
+    algorithm: [
+      'Power of 2: n > 0 && (n & (n-1)) == 0.',
+      'Power of k: repeatedly divide by k; check remainder is 0 and quotient reaches 1.',
+    ],
+    pitfalls: ['Edge case: n=1 is k^0 for any k. n=0 is never a power. For k=1: only n=1.'],
+  },
+
+  'chocolate-pickup-ii': {
+    intuition: 'Two robots collect chocolates from grid, starting at (0,0) and (0,n-1), moving down each step. 3D DP.',
+    algorithm: [
+      'dp[row][c1][c2] = max chocolates when robot1 at col c1 and robot2 at col c2 on given row.',
+      'Transition: try all 9 combinations of moves (3 choices each). If c1==c2: count once.',
+    ],
+    pitfalls: ['Same as LC 1463. Since both on same row, only track (row, c1, c2). Count shared cell once.'],
+  },
+
+  'coin-piles': {
+    intuition: 'Find maximum coins collectible where you pick coins from adjacent piles with given rules.',
+    algorithm: [
+      'DP or greedy based on problem constraints. If picking alternating: max sum of every other element.',
+    ],
+    pitfalls: ['Read constraints carefully: specific rule about which piles can be combined. Often a DP on sorted piles.'],
+  },
+
+  'consecutive-1s-not-allowed': {
+    intuition: 'Count binary strings of length n with no two consecutive 1s.',
+    algorithm: [
+      'dp[i][0] = strings of length i ending in 0. dp[i][1] = strings ending in 1.',
+      'dp[i][0] = dp[i-1][0] + dp[i-1][1]. dp[i][1] = dp[i-1][0]. Answer = dp[n][0] + dp[n][1].',
+    ],
+    pitfalls: ['Fibonacci-like recurrence. dp[n] = fib(n+2). Answer grows as Fibonacci sequence.'],
+  },
+
+  'construct-an-array-from-its-pair-sum-array': {
+    intuition: 'Given pairSum[i] = arr[i]+arr[i+1], recover original array. Use first two pair sums to find first element.',
+    algorithm: [
+      'arr[0]+arr[1]=pairSum[0], arr[1]+arr[2]=pairSum[1], arr[0]+arr[2]=pairSum[2].',
+      'arr[0] = (pairSum[0]-pairSum[1]+pairSum[2])/2. Derive rest: arr[i+1] = pairSum[i] - arr[i].',
+    ],
+    pitfalls: ['Solve system of equations for first element. All pair sums must be consistent.'],
+  },
+
+  'count-subset-with-target-sum-ii': {
+    intuition: 'Count subsets with given sum where array may have duplicates. DP with proper handling of duplicate elements.',
+    algorithm: [
+      'Sort array. DP similar to 0-1 knapsack: dp[j] = count of subsets with sum j.',
+      'For each num: update dp right-to-left (0-1 knapsack style).',
+    ],
+    pitfalls: ['Same as LC 416 count variant. Handle duplicates: 0-1 knapsack treats each element independently.'],
+  },
+
+  'count-unique-vowel-strings': {
+    intuition: 'Count strings of length n containing all 5 vowels at least once. Inclusion-exclusion on vowel alphabet.',
+    algorithm: [
+      'Total strings with exactly all 5 vowels = inclusion-exclusion: subtract missing one vowel, add back two missing, etc.',
+    ],
+    pitfalls: ['Stars and bars with inclusion-exclusion. Or DP: dp[i][mask] = strings of length i containing vowels in mask.'],
+  },
+
+  'cutting-binary-string': {
+    intuition: 'Minimum cuts to partition binary string into parts each representing a power of 2. DP with precomputed valid substrings.',
+    algorithm: [
+      'Precompute: for each substring, check if it is a power of 2 (no leading zeros, convert and check).',
+      'DP: dp[i] = min cuts for s[0..i-1]. dp[i] = min(dp[j]+1) for all j where s[j..i-1] is power of 2.',
+    ],
+    pitfalls: ['Check power of 2 carefully: no leading zeros. Large binary strings need BigInteger or string comparison.'],
+  },
+
+  'expression-contains-redundant-bracket-or-not': {
+    intuition: 'Check if expression has redundant brackets like ((a+b)). Stack-based: if operator found before closing bracket, brackets are non-redundant.',
+    algorithm: [
+      'Push everything except ")". On ")": pop until "(". If top after "(" pop has no operator: redundant.',
+    ],
+    pitfalls: ['Redundant bracket: closing bracket pops "()" with no operator between them. Track operator presence between brackets.'],
+  },
+
+  'find-h-index': {
+    intuition: 'Find H-index: max h such that researcher has h papers with >= h citations. Sort descending, find crossover.',
+    algorithm: [
+      'Sort citations descending. For each i: if citations[i] >= i+1: h = i+1. Else break.',
+    ],
+    pitfalls: ['Same as LC 274. Sort descending, h-index is the largest i where citations[i] >= i+1 (1-indexed).'],
+  },
+
+  'game-of-xor': {
+    intuition: 'XOR of XOR of all subarrays. Mathematical: element at index i contributes based on count of subarrays containing it.',
+    algorithm: [
+      'Element arr[i] appears in (i+1)*(n-i) subarrays. If this count is odd: XOR it into result.',
+    ],
+    pitfalls: ['Count occurrences: arr[i] is in subarrays starting at 0..i ending at i..n-1. Multiply counts.'],
+  },
+
+  'game-with-string': {
+    intuition: 'Minimize maximum frequency after removing k characters. Priority queue on frequency counts.',
+    algorithm: [
+      'Count frequencies. Max-heap. Remove k characters from highest-frequency chars one by one.',
+      'Actually: greedily reduce top frequencies. Max-heap, pop top, decrement, push back. Repeat k times.',
+    ],
+    pitfalls: ['Greedy: always remove from most frequent. After k removals, answer = top of heap.'],
+  },
+
+  'largest-subarray-of-0s-and-1s': {
+    intuition: 'Find largest subarray with equal count of 0s and 1s. Replace 0 with -1, find max subarray with sum=0.',
+    algorithm: [
+      'Replace 0s with -1. Prefix sum approach: find max (j-i) where prefix[i] == prefix[j].',
+      'HashMap stores first occurrence index of each prefix sum.',
+    ],
+    pitfalls: ['Same as LC 525. Transform then use prefix sum hashmap. Initialize map with {0: -1}.'],
+  },
+
+  'last-moment-before-all-ants-fall-out': {
+    intuition: 'Ants on a plank walk to edges; when they collide they reverse. Key insight: collision = pass-through. Answer = max distance any ant travels.',
+    algorithm: [
+      'Ignore collisions (ants just pass through). Max time = max(max(left_positions), max(n - right_positions)).',
+    ],
+    pitfalls: ['Same as LC 1503. Collision = pass-through trick. Just find the ant that takes longest to reach its end.'],
+  },
+
+  'left-rotate-matrix-k-times': {
+    intuition: 'Left rotate each row of matrix by k positions. Use modulo to handle k > cols.',
+    algorithm: [
+      'For each row: new_row[i] = old_row[(i+k) % n].',
+    ],
+    pitfalls: ['Rotate left by k = rotate right by (n-k). Build new array or use reversal trick.'],
+  },
+
+  'linked-list-matrix': {
+    intuition: 'Construct a linked list from matrix in diagonal order. Traverse diagonals from bottom-left to top-right.',
+    algorithm: [
+      'Collect diagonals (d = row+col is constant per diagonal). Sort diagonals by index.',
+      'Link nodes in order: diagonal 0, then 1, etc.',
+    ],
+    pitfalls: ['Each diagonal has d = row+col. Within diagonal: row decreases as col increases. Build linked list in traversal order.'],
+  },
+
+  'ncr': {
+    intuition: 'Compute nCr (binomial coefficient) mod p. Pascal triangle DP or Fermat little theorem with modular inverse.',
+    algorithm: [
+      'Pascal: dp[i][j] = dp[i-1][j-1] + dp[i-1][j] mod p.',
+      'For large n: precompute factorials and modular inverses. nCr = n! * modinv(r!) * modinv((n-r)!) mod p.',
+    ],
+    pitfalls: ['Pascal for small n. Modular inverse for large n (when p is prime use Fermat: a^(p-2) mod p).'],
+  },
+
+  'number-of-bst-from-array': {
+    intuition: 'Count structurally unique BSTs from given array. Sort array; count depends only on subtree sizes.',
+    algorithm: [
+      'After sorting, this equals Catalan number C(n) = C(2n,n)/(n+1). Or DP: dp[n] = sum(dp[i]*dp[n-1-i]).',
+    ],
+    pitfalls: ['Unique BSTs from n distinct values = nth Catalan number. Same as LC 96.'],
+  },
+
 }
 
 export default gfgExplanations
