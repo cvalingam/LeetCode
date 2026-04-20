@@ -3276,6 +3276,592 @@ const explanations: Record<number, RichExplanation> = {
     pitfalls: ['Unlike sliding window, values can be negative so two-pointer doesn\'t work. The deque maintains increasing prefix sums.'],
   },
 
+  865: {
+    intuition: 'Find the LCA of all deepest nodes. DFS returns (depth, subtree_root). If left and right depths match, LCA is current node. Otherwise return side with greater depth.',
+    algorithm: [
+      'DFS returns (depth, lca_node).',
+      'If left.depth == right.depth: return (left.depth+1, current_node).',
+      'If left.depth > right.depth: return (left.depth+1, left.lca).',
+      'Else: return (right.depth+1, right.lca).',
+    ],
+    pitfalls: ['This is equivalent to finding LCA of all nodes at maximum depth.'],
+  },
+
+  866: {
+    intuition: 'All even-digit palindromes (except 11) are divisible by 11 and thus not prime. Search only odd-length palindromes.',
+    algorithm: [
+      'For each odd length from 1,3,5,...: generate all palindromes of that length.',
+      'For each palindrome >= N: check if prime. If prime, return it.',
+    ],
+    pitfalls: ['Even-digit palindromes except 11 are never prime. Skip even lengths.'],
+  },
+
+  868: {
+    intuition: 'Find maximum distance between consecutive set bits in binary representation.',
+    algorithm: [
+      'Track position of previous set bit.',
+      'Iterate through bits: when set bit found, update max gap with current_pos - prev_pos. Set prev_pos = current_pos.',
+    ],
+    example: { input: 'n=22 (10110)', steps: ['Set bits at positions 1,2,4. Gaps: 1,2. Max=2.'], output: '2' },
+    pitfalls: ['If only one set bit, return 0.'],
+  },
+
+  869: {
+    intuition: 'Check if any permutation of digits of n forms a power of 2. Compare sorted-digit form of n with sorted-digit forms of all powers of 2 up to 10^9.',
+    algorithm: [
+      'Compute digit frequency of n.',
+      'For each power of 2 (1,2,4,...,2^29): compare digit frequencies.',
+      'Return true if any match.',
+    ],
+    pitfalls: ['Compare digit counts not values. Leading zeros are invalid but not a concern since powers of 2 never start with 0.'],
+  },
+
+  873: {
+    intuition: 'DP: dp[j][i] = length of longest Fibonacci subsequence ending with A[j],A[i]. For each pair (j,i), look up if A[i]-A[j] exists earlier.',
+    algorithm: [
+      'Build index map: value to index.',
+      'For each pair i>j: if A[i]-A[j] exists at index k < j: dp[i][j] = dp[j][k]+1 (or 3 if base).',
+      'Return max(dp) if >= 3 else 0.',
+    ],
+    pitfalls: ['Minimum valid Fibonacci length is 3. Return 0 if max dp value is less than 3.'],
+  },
+
+  874: {
+    intuition: 'Simulate robot movement on infinite grid. HashSet for obstacles. Track direction with enum/array. Track max squared distance from origin.',
+    algorithm: [
+      'Encode obstacles as hashable pairs.',
+      'Directions: N,E,S,W. -2: turn right (dir=(dir+1)%4). -1: turn left (dir=(dir+3)%4).',
+      'For moves: step one at a time, stop if next cell is obstacle.',
+    ],
+    pitfalls: ['Track maximum distance, not final distance. Step one cell at a time to detect obstacles properly.'],
+  },
+
+  878: {
+    intuition: 'Binary search on value. Count of magical numbers <= x is floor(x/a)+floor(x/b)-floor(x/lcm(a,b)). Find nth magical number.',
+    algorithm: [
+      'lcm = a*b/gcd(a,b). lo=1, hi=n*min(a,b).',
+      'Binary search: find smallest x where count(x) >= n.',
+      'Return x % (10^9+7).',
+    ],
+    pitfalls: ['Binary search upper bound is n*min(a,b). Return result mod 10^9+7.'],
+  },
+
+  880: {
+    intuition: 'Work backward from total length. When k lands in a repeated block, use modulo. Track lengths without materializing the string.',
+    algorithm: [
+      'Compute length at each step (capped to avoid overflow).',
+      'Walk backward: if char is digit d, k = ((k-1) % size_before) + 1. If char is letter and k == current size: return that letter.',
+    ],
+    pitfalls: ['String can be astronomically large. Only track lengths. Use modulo to reduce k.'],
+  },
+
+  884: {
+    intuition: 'A word is uncommon if it appears exactly once across both sentences combined.',
+    algorithm: [
+      'Split both sentences, combine, count word frequencies.',
+      'Return words with count == 1.',
+    ],
+    pitfalls: ['No need to track which sentence - just global count of 1.'],
+  },
+
+  885: {
+    intuition: 'Simulate spiral traversal: move right 1, down 1, left 2, up 2, right 3... Pattern increases every 2 turns. Add only valid grid cells.',
+    algorithm: [
+      'Directions: E,S,W,N. Step sizes: 1,1,2,2,3,3,4,4,...',
+      'Move in current direction, add valid cells. Change direction, repeat.',
+    ],
+    pitfalls: ['Continue even when outside grid. Only add cells that are within bounds.'],
+  },
+
+  889: {
+    intuition: 'Root is preorder[0]. Left subtree root is preorder[1]. Find it in postorder to determine left subtree size. Recurse.',
+    algorithm: [
+      'Root = preorder[0]. If length 1, return root.',
+      'Left root = preorder[1]. Find in postorder, size = its index + 1.',
+      'Recurse on left and right portions.',
+    ],
+    pitfalls: ['Result not necessarily unique - any valid tree accepted when split is ambiguous.'],
+  },
+
+  892: {
+    intuition: 'Each stack of h cubes: top and bottom faces plus 4 sides minus shared internal faces. Adjacent stacks reduce area by 2*min(h1,h2).',
+    algorithm: [
+      'For each cell with h>0: add 2 + 4*h.',
+      'For each adjacent cell pair: subtract 2*min(h1,h2).',
+    ],
+    pitfalls: ['Count both top and bottom (2), plus 4*h sides, minus internal vertically stacked faces already handled by 4h+2 formula.'],
+  },
+
+  898: {
+    intuition: 'Maintain set of all OR values of subarrays ending at current position. Size bounded by 32 (bits can only be set, not cleared). Union all sets for answer.',
+    algorithm: [
+      'cur = empty set.',
+      'For each A[i]: new_cur = {x|A[i] for x in cur} union {A[i]}.',
+      'Add new_cur elements to result set.',
+      'Return result set size.',
+    ],
+    pitfalls: ['Set size is O(32) per position since ORs are monotonically non-decreasing.'],
+  },
+
+  902: {
+    intuition: 'Digit DP: count numbers up to N using only digits in D. Count by length then by digit-by-digit with tight constraint.',
+    algorithm: [
+      'For lengths < len(N): each position has |D| choices. Sum |D|^1 + ... + |D|^(len-1).',
+      'For same length: iterate digit by digit, count choices less than current digit of N, multiply by |D|^remaining. If current digit in D, continue tight.',
+    ],
+    pitfalls: ['Handle tight constraint carefully. No leading zeros issue since D contains only 1-9.'],
+  },
+
+  904: {
+    intuition: 'Longest subarray with at most 2 distinct values. Sliding window with frequency map.',
+    algorithm: [
+      'Window [l,r] with frequency map.',
+      'Expand r, add fruit type. Shrink l while more than 2 distinct types.',
+      'Track max window size.',
+    ],
+    example: { input: 'fruits=[1,2,1,2,3]', steps: ['[1,2,1,2] size 4. Add 3: shrink to [2,3]. Max=4.'], output: '4' },
+    pitfalls: ['Remove from map only when count reaches 0.'],
+  },
+
+  905: {
+    intuition: 'Two pointers: move evens to front, odds to back.',
+    algorithm: [
+      'lo=0, hi=n-1. While lo<hi: if A[lo] is even, lo++. If A[hi] is odd, hi--. Else swap.',
+    ],
+    pitfalls: ['In-place O(1) space solution.'],
+  },
+
+  908: {
+    intuition: 'Each element can shift by at most k. Minimum possible score = max(0, max-min-2k).',
+    algorithm: ['Return max(0, max(A) - min(A) - 2*k).'],
+    pitfalls: ['Result cannot be negative.'],
+  },
+
+  909: {
+    intuition: 'BFS on positions 1..n^2. Convert position to board coordinates (boustrophedon layout). Minimum dice rolls to reach n^2.',
+    algorithm: [
+      'BFS from position 1. For each pos: try dice 1-6.',
+      'Convert to (row,col): row from bottom, alternating direction per row.',
+      'Follow snakes/ladders. Return level when n^2 reached.',
+    ],
+    pitfalls: ['Row 0 is the bottom row. Even rows from bottom go left-to-right, odd rows right-to-left (or vice versa based on n). Off-by-one is common.'],
+  },
+
+  912: {
+    intuition: 'Implement merge sort or heap sort. QuickSort may TLE on adversarial inputs.',
+    algorithm: [
+      'Merge sort: split at midpoint, recurse, merge two sorted halves.',
+      'Merge: two pointers, pick smaller element.',
+    ],
+    pitfalls: ['Avoid naive QuickSort - use randomized pivot or merge sort.'],
+  },
+
+  916: {
+    intuition: 'Universal word must contain all characters of every word in B. Precompute max-frequency requirement per character across all B words.',
+    algorithm: [
+      'maxFreq[c] = max frequency of c over all words in B.',
+      'For each word in A: check if its freq >= maxFreq for all chars.',
+    ],
+    pitfalls: ['Take MAX frequency per char across B words - one word must satisfy all requirements.'],
+  },
+
+  917: {
+    intuition: 'Two pointers from both ends, skip non-letters, swap letter pairs.',
+    algorithm: [
+      'lo=0, hi=n-1. Skip non-letters at each end. Swap if both letters. Advance both pointers.',
+    ],
+    pitfalls: ['Check lo<hi after skipping to avoid crossing.'],
+  },
+
+  921: {
+    intuition: 'Count unmatched opens and closes. Each needs one addition.',
+    algorithm: [
+      'open=0, close=0.',
+      'For open bracket: open++. For close: if open>0, open-- else close++.',
+      'Return open+close.',
+    ],
+    pitfalls: ['Greedy match close brackets with pending opens first.'],
+  },
+
+  928: {
+    intuition: 'For each non-initial node, find which initial nodes exclusively reach it. Removing that initial node saves this node.',
+    algorithm: [
+      'BFS from each non-initial node through non-initial nodes to find connected initial nodes.',
+      'If exactly one initial node reaches this non-initial node, removing it saves it.',
+      'Return initial node saving the most non-initial nodes (ties broken by index).',
+    ],
+    pitfalls: ['Nodes reachable from multiple initial nodes cannot be saved by removing one.'],
+  },
+
+  944: {
+    intuition: 'Count columns where any adjacent row pair has decreasing characters.',
+    algorithm: [
+      'For each column j: if strs[i][j] > strs[i+1][j] for any i, delete this column.',
+    ],
+    pitfalls: ['Simple per-column check.'],
+  },
+
+  947: {
+    intuition: 'Stones sharing row or column form connected components. Each component of size k allows k-1 removals.',
+    algorithm: [
+      'Union-Find: union stones sharing row, union stones sharing column.',
+      'Answer = total stones - number of components.',
+    ],
+    pitfalls: ['Use row index and col index (offset by max_row) as union targets, or directly union stone indices.'],
+  },
+
+  951: {
+    intuition: 'Two trees are flip-equivalent if one can be made identical to the other by flipping some node children.',
+    algorithm: [
+      'DFS: base cases (both null, one null, different values).',
+      'Return (flipEquiv(l1,l2) && flipEquiv(r1,r2)) || (flipEquiv(l1,r2) && flipEquiv(r1,l2)).',
+    ],
+    pitfalls: ['Check both direct and flipped child combinations.'],
+  },
+
+  955: {
+    intuition: 'Greedy: track which rows are already strictly sorted. A column violates only if it breaks an unsettled row.',
+    algorithm: [
+      'sorted[i] = false initially (row i vs i+1 not yet determined).',
+      'For each column: check if any unsettled row i has strs[i][j] > strs[i+1][j]. If yes, delete column. If no, update sorted for rows where strs[i][j] < strs[i+1][j].',
+    ],
+    pitfalls: ['Only unsettled rows can create violations.'],
+  },
+
+  959: {
+    intuition: 'Scale grid 3x. Slash characters fill specific cells. Count connected components of 0s.',
+    algorithm: [
+      '3n x 3n grid. "/" fills (0,2),(1,1),(2,0) in each cell. "\\" fills (0,0),(1,1),(2,2).',
+      'BFS/DFS to count connected components of 0 cells.',
+    ],
+    pitfalls: ['3x scaling simplifies boundary handling significantly.'],
+  },
+
+  973: {
+    intuition: 'Find k points with smallest Euclidean distance. Max-heap of size k or QuickSelect.',
+    algorithm: [
+      'Max-heap size k: for each point compute x^2+y^2. Push, pop if size > k.',
+      'Remaining points in heap are the k closest.',
+    ],
+    pitfalls: ['Compare squared distances to avoid sqrt. QuickSelect gives O(n) average.'],
+  },
+
+  976: {
+    intuition: 'Sort descending. First consecutive triple satisfying triangle inequality gives maximum perimeter.',
+    algorithm: [
+      'Sort descending.',
+      'For each i: if A[i] < A[i+1]+A[i+2], return sum of three.',
+      'Return 0 if none.',
+    ],
+    pitfalls: ['Largest sides first maximizes perimeter. Only consecutive triples after sorting.'],
+  },
+
+  981: {
+    intuition: 'For each key, store sorted (timestamp, value) list. Binary search for largest timestamp <= t.',
+    algorithm: [
+      'Map<key, list of (timestamp, value)>. Set appends (timestamps are strictly increasing).',
+      'Get: binary search for largest timestamp <= t. Return empty string if not found.',
+    ],
+    pitfalls: ['Timestamps guaranteed increasing on set - no sorting needed.'],
+  },
+
+  983: {
+    intuition: 'DP over days. Non-travel days cost equals previous day. Travel days take minimum of 1-day, 7-day, 30-day pass options.',
+    algorithm: [
+      'Travel day set. dp[d] = min cost through day d.',
+      'Non-travel day: dp[d] = dp[d-1].',
+      'Travel day: dp[d] = min(dp[d-1]+cost[0], dp[max(0,d-7)]+cost[1], dp[max(0,d-30)]+cost[2]).',
+    ],
+    pitfalls: ['Iterate over calendar days (1 to max travel day), not just travel day indices.'],
+  },
+
+  995: {
+    intuition: 'Greedy left-to-right: when current bit is 0, flip window of size k. Use difference array to track running flip count in O(n).',
+    algorithm: [
+      'flipCount running total. delta[] difference array.',
+      'For each i: flipCount += delta[i]. If (nums[i]+flipCount)%2==0: must flip here. If i+k>n: return -1. Increment flipCount, delta[i+k]--.',
+    ],
+    pitfalls: ['Difference array makes tracking O(1) per position. Must flip only when current effective bit is 0.'],
+  },
+
+  998: {
+    intuition: 'Insert val at end of array. Walk right spine: if val > current node, new node becomes root with current node as left child.',
+    algorithm: [
+      'If root is null or val > root.val: return new TreeNode(val, root, null).',
+      'root.right = insertIntoMaxTree(root.right, val). Return root.',
+    ],
+    pitfalls: ['Only the rightmost spine is affected by appending to end of array.'],
+  },
+
+  1000: {
+    intuition: 'Interval DP. Only possible if (n-1)%(k-1)==0. dp[i][j] = min cost to merge stones[i..j] into minimum possible piles.',
+    algorithm: [
+      'If (n-1)%(k-1)!=0: return -1.',
+      'For interval length l from k to n: for each i, j=i+l-1:',
+      'dp[i][j] = min over m (step k-1): dp[i][m]+dp[m+1][j].',
+      'If (j-i)%(k-1)==0: dp[i][j] += prefix[j+1]-prefix[i].',
+    ],
+    pitfalls: ['Merge only k piles at a time. Interval divisibility check prevents invalid merges.'],
+  },
+
+  1006: {
+    intuition: 'Simulate clumsy factorial with operations *, /, +, - cycling. Use stack to handle operator precedence.',
+    algorithm: [
+      'Stack-based evaluation. Current op cycles through *,/,+,- for indices 0,1,2,3,...',
+      'For *: multiply top. For /: divide top. For +: push positive. For -: push negative.',
+      'Sum the stack.',
+    ],
+    pitfalls: ['Integer division truncates toward zero in C#. First operation starts with *.'],
+  },
+
+  1007: {
+    intuition: 'Target value must be A[0] or B[0]. For each candidate, greedily count swaps needed.',
+    algorithm: [
+      'For each candidate (A[0], B[0]): simulate, count swaps. Return min swaps.',
+      'If a position has neither value for a candidate: skip that candidate.',
+    ],
+    pitfalls: ['Only two candidates to try. Return -1 if neither works.'],
+  },
+
+  1009: {
+    intuition: 'XOR with a mask of all 1s matching the bit length of n. Complement flips all bits in the representation.',
+    algorithm: [
+      'If n==0: return 1.',
+      'Find bit length: mask = (1 << bitLength) - 1.',
+      'Return n XOR mask.',
+    ],
+    pitfalls: ['n=0 is a special case. Mask size equals number of bits in n.'],
+  },
+
+  1011: {
+    intuition: 'Binary search on ship capacity. Min = max weight, Max = total weight. Check if capacity allows shipping in D days.',
+    algorithm: [
+      'lo=max(weights), hi=sum(weights).',
+      'Feasibility: greedily pack each day. If days <= D, feasible.',
+      'Find minimum feasible capacity.',
+    ],
+    example: { input: 'weights=[1,2,3,4,5,6,7,8,9,10], D=5', steps: ['lo=10, hi=55. Binary search finds 15.'], output: '15' },
+    pitfalls: ['Must ship in order. lo must be at least max(weights) to fit any single package.'],
+  },
+
+  1014: {
+    intuition: 'Maximize A[i]+A[j]+i-j = (A[i]+i) + (A[j]-j) for i<j. Track max (A[i]+i) scanning left to right.',
+    algorithm: [
+      'maxLeft = A[0]+0.',
+      'For j from 1: ans = max(ans, maxLeft + A[j]-j). Then maxLeft = max(maxLeft, A[j]+j).',
+    ],
+    pitfalls: ['Update maxLeft AFTER computing answer to maintain i<j constraint.'],
+  },
+
+  1015: {
+    intuition: 'Use modular arithmetic. Track set of remainders mod K seen so far. If remainder 0 appears in 1*K..n*K substring, we found it.',
+    algorithm: [
+      'For i from 1 to K: num = num*10+1, if num%K==0 return i. Track seen remainders.',
+      'Actually: try 1, 11, 111, ... up to K such numbers. If remainder 0 found, return length.',
+      'Return -1 if K is even or divisible by 5 (since 111...1 never divisible).',
+    ],
+    pitfalls: ['If K is even or multiple of 5: return -1 (111...1 shares no factors with 2 or 5). Otherwise answer exists within K steps by pigeonhole.'],
+  },
+
+  1018: {
+    intuition: 'Track running binary number mod 5. At each bit: num = (num*2 + bit) % 5.',
+    algorithm: [
+      'num = 0.',
+      'For each bit: num = (num*2 + bit) % 5. Append num==0 to result.',
+    ],
+    pitfalls: ['Mod at every step prevents overflow.'],
+  },
+
+  1022: {
+    intuition: 'DFS tracking current binary value. At leaf: add value to sum. Pass accumulated value down.',
+    algorithm: [
+      'DFS(node, cur): cur = cur*2 + node.val.',
+      'If leaf: sum += cur. Else recurse on children.',
+    ],
+    pitfalls: ['Leaf = both children null. Pass value as parameter.'],
+  },
+
+  1028: {
+    intuition: 'Parse (depth, value) pairs from string. Stack indexed by depth. Each node attaches to parent at depth-1.',
+    algorithm: [
+      'Parse: count dashes for depth, parse digits for value.',
+      'stack[0..n]: stack[depth] = current node at that depth.',
+      'Attach new node as left or right child of stack[depth-1]. Update stack[depth].',
+    ],
+    pitfalls: ['Leftmost child first. Parent is always at depth-1.'],
+  },
+
+  1038: {
+    intuition: 'Reverse in-order (right, node, left) accumulates sum from largest to smallest BST value.',
+    algorithm: [
+      'DFS right first, then visit and add running sum, then left.',
+      'node.val += runningSum; runningSum = node.val.',
+    ],
+    pitfalls: ['Traverse right before left to process larger values first.'],
+  },
+
+  1039: {
+    intuition: 'Interval DP for polygon triangulation. Fix two vertices, choose middle vertex k to minimize total triangle weight product.',
+    algorithm: [
+      'dp[i][j] = min cost to triangulate vertices i..j.',
+      'dp[i][j] = min over k in (i+1..j-1): dp[i][k]+dp[k][j]+values[i]*values[k]*values[j].',
+    ],
+    pitfalls: ['Base: intervals of size < 3 cost 0. Build up from smaller intervals.'],
+  },
+
+  1052: {
+    intuition: 'Base satisfied = sum where grumpy[i]==0. Sliding window of size X for maximum extra customers from grumpy minutes.',
+    algorithm: [
+      'base = sum(customers[i] where grumpy[i]==0).',
+      'Window of size X: extra = sum(customers[i] where grumpy[i]==1) in window.',
+      'Return base + max(extra).',
+    ],
+    pitfalls: ['Only add grumpy-minute customers as extra (non-grumpy already in base).'],
+  },
+
+  1061: {
+    intuition: 'Union-Find: equivalent characters are in same group. Group representative = lexicographically smallest character.',
+    algorithm: [
+      'Union-Find on 26 chars. For each pair: union, make smaller char the root.',
+      'For each char in baseStr: find root and substitute.',
+    ],
+    pitfalls: ['Always make smaller character root during union to ensure lex-smallest representative.'],
+  },
+
+  1072: {
+    intuition: 'Normalize each row: if row[0]==1, flip all bits. Rows with same canonical form can be made all-equal with same column flips.',
+    algorithm: [
+      'For each row: canonical = row itself if row[0]==0, else bitwise complement.',
+      'Count max frequency of any canonical pattern.',
+    ],
+    pitfalls: ['Two complementary rows can both be made uniform by the same flips.'],
+  },
+
+  1079: {
+    intuition: 'Count all distinct non-empty sequences using backtracking. Character frequency map to handle duplicates.',
+    algorithm: [
+      'Count char frequencies.',
+      'Backtrack: for each char with freq > 0: use it (freq--), increment count, recurse, restore.',
+    ],
+    pitfalls: ['Each recursive call represents one valid sequence (non-empty). Count all calls.'],
+  },
+
+  1080: {
+    intuition: 'Post-order prune: remove nodes whose entire subtree paths sum < limit. After pruning children, check if current node becomes an insufficient leaf.',
+    algorithm: [
+      'DFS(node, remaining=limit-node.val).',
+      'Prune left/right children if they return false (no sufficient path).',
+      'If both children null: return node.val >= limit (leaf check).',
+      'Return true if at least one child path is sufficient.',
+    ],
+    pitfalls: ['Prune bottom-up. A node with both children pruned becomes a leaf and must be rechecked.'],
+  },
+
+  1081: {
+    intuition: 'Same as problem 316 (Remove Duplicate Letters). Greedy stack with last-occurrence tracking.',
+    algorithm: [
+      'Count last occurrence index of each char.',
+      'Stack with seen set. For each char: if seen, skip. While top > c and top appears later: pop unseen. Push c, mark seen.',
+    ],
+    pitfalls: ['Only pop if character appears again later. Ensures all characters remain represented.'],
+  },
+
+  1092: {
+    intuition: 'SCS = trace LCS DP table. Characters in LCS appear once; others from their respective strings appear once.',
+    algorithm: [
+      'Build LCS DP table.',
+      'Trace from bottom-right: if equal, take char (from LCS). If from top, take s2 char. If from left, take s1 char.',
+      'Reverse result.',
+    ],
+    pitfalls: ['Trace DP table, not just the LCS string. Append remaining chars from both strings after reaching edge.'],
+  },
+
+  1105: {
+    intuition: 'DP: dp[i] = minimum height for first i books. For each book i, try extending previous shelf by adding books j..i together.',
+    algorithm: [
+      'dp[i] = dp[i-1] + books[i-1].height (new shelf).',
+      'Walk left: while cumulative width fits shelf: dp[i] = min(dp[i], dp[j-1] + max_height_of_books_j_to_i).',
+    ],
+    pitfalls: ['Max height increases as we add more books to the current shelf going leftward.'],
+  },
+
+  1106: {
+    intuition: 'Recursive parser or stack-based. Operators !, &, | applied to comma-separated subexpressions in parentheses.',
+    algorithm: [
+      'Stack: push chars. On closing paren: collect values until open paren, get operator before it. Apply, push result.',
+    ],
+    pitfalls: ['! has exactly one operand. & is all-true. | is any-true. Commas are just separators.'],
+  },
+
+  1110: {
+    intuition: 'Post-order DFS. Deleted nodes add non-null children as forest roots. Original root is a root if not deleted.',
+    algorithm: [
+      'to_delete set. DFS returns node or null.',
+      'Recurse on children. If current node deleted: add non-null children to result. Return null.',
+      'If parent is null (root) or parent is deleted: add to result.',
+    ],
+    pitfalls: ['Handle original root as potential forest root. Post-order ensures children handled before parent.'],
+  },
+
+  1123: {
+    intuition: 'Find LCA of all deepest leaves. Same as problem 865: DFS returning (depth, lca_of_deepest).',
+    algorithm: [
+      'DFS returns (max_depth, lca_node).',
+      'If left.depth == right.depth: return (depth+1, current).',
+      'Return from deeper side.',
+    ],
+    pitfalls: ['If deepest leaves all in one subtree, LCA is not the root.'],
+  },
+
+  1128: {
+    intuition: 'Normalize dominoes (min, max). Count pairs with same normalized form using C(n,2).',
+    algorithm: [
+      'Normalize: (min(a,b), max(a,b)).',
+      'Frequency map. For freq f: add f*(f-1)/2.',
+    ],
+    pitfalls: ['Key: min*10+max works since values 1-9.'],
+  },
+
+  1140: {
+    intuition: 'Game DP. dp[i][m] = max stones current player can get from piles[i..end] with current M. Both play optimally.',
+    algorithm: [
+      'Suffix sums.',
+      'If 2*m >= remaining piles: take all.',
+      'Else: dp[i][m] = suffixSum[i] - min over x=1..2m of dp[i+x][max(m,x)].',
+    ],
+    pitfalls: ['Current player maximizes, so subtract opponent optimal from total suffix sum.'],
+  },
+
+  1161: {
+    intuition: 'BFS level order traversal. Track sum at each level, return 1-indexed level with maximum sum.',
+    algorithm: [
+      'BFS with queue. For each level: sum all node values.',
+      'Track max sum and its level (1-indexed, return smallest if tied).',
+    ],
+    pitfalls: ['Level is 1-indexed. Return first level with max sum if there are ties.'],
+  },
+
+  1190: {
+    intuition: 'Stack-based: on close paren, pop until open paren, reverse, push back. Build result from remaining characters.',
+    algorithm: [
+      'Stack of chars.',
+      'On non-) chars: push.',
+      'On ): pop until (, reverse, push back.',
+      'Build result from stack.',
+    ],
+    pitfalls: ['O(n^2) with this approach. O(n) with wormhole technique using precomputed bracket pairs.'],
+  },
+
+  1200: {
+    intuition: 'Sort array. Minimum difference is always between adjacent elements in sorted order.',
+    algorithm: [
+      'Sort.',
+      'Find min difference from adjacent pairs.',
+      'Collect all pairs with that difference.',
+    ],
+    pitfalls: ['Sort first. Adjacent elements in sorted order give minimum possible difference.'],
+  },
+
 }
 
 export default explanations
