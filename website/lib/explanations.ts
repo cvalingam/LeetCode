@@ -5936,6 +5936,808 @@ const explanations: Record<number, RichExplanation> = {
     pitfalls: ['Total distinct k. Subarrays with all k = n*(n+1)/2 - subarrays with < k distinct. Sliding window.'],
   },
 
+  2807: {
+    intuition: 'Insert greatest common divisors between every pair of adjacent elements. GCD of adjacent pair inserted between them.',
+    algorithm: [
+      'For each adjacent pair (nums[i], nums[i+1]): compute GCD, insert between them.',
+      'Build new array with original elements and inserted GCDs.',
+    ],
+    pitfalls: ['New array has 2n-1 elements. GCD computed for original adjacent pairs only.'],
+  },
+
+  2818: {
+    intuition: 'Apply operations maximizing score. Score = product of chosen elements. Use prime factorization and greedy assignment.',
+    algorithm: [
+      'For each element: factorize. Sort prime factors. Assign each prime to minimize the score loss using binary search.',
+    ],
+    pitfalls: ['Each prime factor contributes independently. Sort and assign greedily for maximum product.'],
+  },
+
+  2825: {
+    intuition: 'Check if string s can become t by rotating t (i.e., t is a rotation of s). Standard rotation check: s == t or s in t+t.',
+    algorithm: [
+      'If s.length != t.length: false. Return (t+t).contains(s).',
+    ],
+    pitfalls: ['Rotation: t is a rotation of s iff s appears in t+t. Length must match.'],
+  },
+
+  2839: {
+    intuition: 'Check if two strings are k-similar (differ in at most k swaps to make equal). BFS on permutation states.',
+    algorithm: [
+      'BFS from s. Each state: find first mismatch, try all valid swaps. Count levels to reach t.',
+    ],
+    pitfalls: ['K-similar problems need BFS with pruning. Greedy: fix leftmost mismatch, try valid positions.'],
+  },
+
+  2840: {
+    intuition: 'Check if array is beautiful: no element equals the last digit of the next element.',
+    algorithm: [
+      'For each i: if nums[i] % 10 == nums[i+1]: return false. Return true.',
+    ],
+    pitfalls: ['Compare last digit of current with value of next. nums[i] % 10 gives last digit.'],
+  },
+
+  2843: {
+    intuition: 'Count symmetric integers (equal digit sums in first and second halves). Only even-digit numbers qualify.',
+    algorithm: [
+      'For each n in [low, high]: if odd digits: skip. Sum first half digits = sum second half digits.',
+    ],
+    pitfalls: ['Only even-length numbers can be symmetric. Convert to string, split halves, compare sums.'],
+  },
+
+  2845: {
+    intuition: 'Count interesting subarrays where count of elements with val%modulo==k satisfies count%modulo==k. Prefix count + hashmap.',
+    algorithm: [
+      'prefix[i] = count of elements in nums[0..i-1] with val%modulo==k.',
+      'For each j: need prefix[j] - prefix[i] satisfies (cnt%modulo==k). Use hashmap of prefix[i]%modulo.',
+    ],
+    pitfalls: ['Standard prefix sum modulo trick. Map prefix_mod -> count. Answer += map[(prefix[j]-k+modulo)%modulo].'],
+  },
+
+  2872: {
+    intuition: 'Maximum sum of at most k subtrees that are non-overlapping. Tree DP with node selection.',
+    algorithm: [
+      'DFS. At each node: collect subtree sums. Greedily pick top-k positive subtree sums.',
+    ],
+    pitfalls: ['Non-overlapping subtrees: if parent selected, children cannot be. Greedy after sorting.'],
+  },
+
+  2873: {
+    intuition: 'Maximum value of ordered triple (i<j<k): nums[i]-nums[j]+nums[k]. Fix j as middle, maximize nums[i] to the left and nums[k] to the right.',
+    algorithm: [
+      'For each j: prefix_max[j] = max of nums[0..j-1]. suffix_max[j] = max of nums[j+1..n-1].',
+      'ans = max over j of (prefix_max[j] - nums[j] + suffix_max[j]).',
+    ],
+    pitfalls: ['Negative contribution at j is fine. Precompute prefix max and suffix max in O(n).'],
+  },
+
+  2874: {
+    intuition: 'Maximize value of ordered triple: same as 2873 but different formula. nums[i]*nums[j]*nums[k] or (nums[i]-nums[k])*nums[j].',
+    algorithm: [
+      'Track max so far (for i), max*(max-num) for (i,j pair). Then add nums[k].',
+      'Single pass: maxVal, maxDiff = max(maxVal - nums[j]), ans = max(maxDiff + nums[k]).',
+    ],
+    pitfalls: ['One-pass greedy updating three values: max element, max (A-B), max (A-B)*C.'],
+  },
+
+  2894: {
+    intuition: 'Divisible and non-divisible sums difference. Sum all nums 1..n minus 2*(sum of multiples of m).',
+    algorithm: [
+      'Total = n*(n+1)/2. Sum of multiples of m up to n: m*(1+2+...+k) where k=floor(n/m). = m*k*(k+1)/2.',
+      'Answer = total - 2 * multiples_sum.',
+    ],
+    pitfalls: ['Answer = (sum of non-divisible) - (sum of divisible). Direct formula.'],
+  },
+
+  2900: {
+    intuition: 'Find longest valid sequence by removing some elements. Subsequence where adjacent difference alternates sign.',
+    algorithm: [
+      'DP: dp[i][0] = longest ending at i where last step was positive. dp[i][1] = negative last step.',
+    ],
+    pitfalls: ['Zigzag subsequence. Similar to longest alternating subsequence DP.'],
+  },
+
+  2901: {
+    intuition: 'Longest unequal adjacent groups subsequence: pick maximum subsequence where adjacent groups differ.',
+    algorithm: [
+      'Greedy: include word[i] if groups[i] != groups[i-1] (or first element). Take all alternating.'],
+    pitfalls: ['Greedy works: always take element when group differs from last taken. O(n) solution.'],
+  },
+
+  2906: {
+    intuition: 'Construct matrix with column-wise prefix OR sums (each row i is OR of first i+1 elements per column).',
+    algorithm: [
+      'For each column j: result[i][j] = OR of matrix[0][j]..matrix[i][j]. Prefix OR column-wise.',
+    ],
+    pitfalls: ['OR is monotonically non-decreasing (bits only get set). Simple prefix accumulation.'],
+  },
+
+  2914: {
+    intuition: 'Minimum string changes to make string good (each character has even count). Count characters with odd frequency.',
+    algorithm: [
+      'Count frequencies. Odd frequency chars must pair up. Min changes = oddCount / 2.',
+    ],
+    pitfalls: ['Each swap can fix two odd-frequency characters. Minimum changes = floor(oddCount/2).'],
+  },
+
+  2924: {
+    intuition: 'Find champion in tournament DAG: node with in-degree 0. Only one team can beat all others.',
+    algorithm: [
+      'Compute in-degrees. Return the single node with in-degree 0. If multiple: return -1.',
+    ],
+    pitfalls: ['Champion has in-degree 0. If multiple nodes have in-degree 0: no unique champion, return -1.'],
+  },
+
+  2929: {
+    intuition: 'Count ways to distribute n candies among 3 children where each gets at least 1 and at most limit. Inclusion-exclusion.',
+    algorithm: [
+      'Total ways (each >= 1, no upper limit): C(n-1, 2) (stars and bars).',
+      'Subtract cases where any child gets > limit: 3 * C(n-limit-2, 2). Add back double-counted: 3 * C(n-2*limit-3, 2).',
+    ],
+    pitfalls: ['Inclusion-exclusion on upper bound violations. C(k,2) = 0 when k < 2.'],
+  },
+
+  2930: {
+    intuition: 'Count strings of length n from alphabet where each char appears an even number of times. Bitmask DP on parity.',
+    algorithm: [
+      'dp[mask] = number of strings where mask represents parity of each char (0=even, 1=odd).',
+      'After all positions: count strings where all parities are even = dp[0].',
+    ],
+    pitfalls: ['State = bitmask of parities. Start with dp[0]=1. For each char of alphabet: XOR its bit into mask.'],
+  },
+
+  2938: {
+    intuition: 'Minimum swaps to group all 0s to left and all 1s to right. Count 1s in left half (should be 0s).',
+    algorithm: [
+      'Count total 1s = k. Sliding window of size k: minimum 0s in window = minimum swaps.',
+    ],
+    pitfalls: ['Swaps needed = 0s in the window of size (total 1s). Sliding window minimum.'],
+  },
+
+  2940: {
+    intuition: 'Find buildings where person can see a sunset. Monotone stack: maintain decreasing stack of heights.',
+    algorithm: [
+      'Traverse from right. Maintain monotone decreasing stack. A building can see sunset if taller than all to its right.',
+    ],
+    pitfalls: ['Scan right to left. Building i is visible if height[i] > max of heights to its right.'],
+  },
+
+  2942: {
+    intuition: 'Find words that contain a given character. Filter words list by checking if character is in each word.',
+    algorithm: [
+      'For each i: if x in words[i]: add i to result.',
+    ],
+    pitfalls: ['Simple containment check. Return indices, not words.'],
+  },
+
+  2943: {
+    intuition: 'Maximize total value of all subarrays after applying operations. Each value can be doubled once. Greedy selection.',
+    algorithm: [
+      'For each element: decide whether to double it. Doubling a[i] increases all subarrays containing i.',
+      'Greedy: double element that contributes most (highest value in smallest subarray context).',
+    ],
+    pitfalls: ['Each element can be doubled at most once. Sort by value, double greedily.'],
+  },
+
+  2946: {
+    intuition: 'Check if string has "beautiful" splits: first part is prefix of second, or second is prefix of third.',
+    algorithm: [
+      'For each split point (i, j): check if s[0..i-1] is prefix of s[i..j-1] OR s[i..j-1] is prefix of s[j..].',
+    ],
+    pitfalls: ['O(n^3) brute force. Optimize with Z-array or KMP prefix function for O(n^2).'],
+  },
+
+  2962: {
+    intuition: 'Count subarrays with exactly k distinct values where each distinct value appears at least k times. Sliding window.',
+    algorithm: [
+      'Count subarrays where max element count >= k. Sliding window: when any element count >= k, count subarrays.',
+    ],
+    pitfalls: ['Count subarrays where maximum frequency >= k. For each right endpoint, binary search or track counts.'],
+  },
+
+  2965: {
+    intuition: 'Find missing and repeated values in grid where each value 1..n^2 appears exactly once except one missing and one extra.',
+    algorithm: [
+      'Count occurrences. Value with count 2 = repeated. Value with count 0 = missing.',
+    ],
+    pitfalls: ['Use frequency array. Or sum + sum of squares formulas for O(1) space.'],
+  },
+
+  2966: {
+    intuition: 'Divide array into groups of 3 where max-min <= 2. Sort, take consecutive groups of 3.',
+    algorithm: [
+      'Sort array. For each i in steps of 3: if nums[i+2]-nums[i] > 2: return [].',
+      'Otherwise group consecutive triples.',
+    ],
+    pitfalls: ['After sorting, optimal grouping is consecutive triples. Any other grouping is worse.'],
+  },
+
+  2975: {
+    intuition: 'Maximum area square subgrid with at most k obstacles inside. Binary search on side length + 2D prefix sums.',
+    algorithm: [
+      'Prefix sum of obstacle grid. Binary search on side length. Check all positions for obstacle count <= k.',
+    ],
+    pitfalls: ['2D prefix sum for O(1) rectangle queries. Binary search on answer.'],
+  },
+
+  2976: {
+    intuition: 'Minimum cost to make all characters of a string the same using keyboard adjacency costs. DP on character sequences.',
+    algorithm: [
+      'Model as shortest path: cost to convert char a to b = min hops on keyboard * time_multiplier.',
+      'Dijkstra or BFS on 26-char graph.',
+    ],
+    pitfalls: ['Build graph from keyboard layout. Dijkstra for all-pairs shortest paths between characters.'],
+  },
+
+  2977: {
+    intuition: 'Minimum cost to convert source string to target with given conversion costs. Floyd-Warshall on character costs.',
+    algorithm: [
+      'Build cost graph: cost[a][b] = min cost to convert a->b. Floyd-Warshall for transitive minimums.',
+      'For each position: if source[i]!=target[i], add cost[source[i]][target[i]].',
+    ],
+    pitfalls: ['Transitive conversions: a->b->c may be cheaper than direct a->c. Floyd-Warshall on 26 nodes.'],
+  },
+
+  2980: {
+    intuition: 'Check if grid has unique values within each column and row. Verify all grid entries are distinct in same row/col.',
+    algorithm: [
+      'For each row: check distinct. For each column: check distinct.',
+    ],
+    pitfalls: ['Simple distinct check per row and per column. HashSet per row/column.'],
+  },
+
+  2981: {
+    intuition: 'Length of longest "nice" substring (has uppercase+lowercase of every letter used). Find longest substring where each letter has both cases.',
+    algorithm: [
+      'Recursive: split at letter missing its case pair. Return longest result.',
+      'For each char in s: if uppercase exists but not lowercase (or vice versa): split and recurse.',
+    ],
+    pitfalls: ['Same approach as LC 1763. Split on missing-case characters, recurse on segments.'],
+  },
+
+  2999: {
+    intuition: 'Count numbers with same digit count and digit sum as n. Group by (digitCount, digitSum).',
+    algorithm: [
+      'Extract digitCount and digitSum of n. Count integers in [1..10^digitCount-1] with same digitSum and same digitCount.',
+    ],
+    pitfalls: ['DP: count k-digit numbers with given digit sum. Subtract n itself if it matches.'],
+  },
+
+  3000: {
+    intuition: 'Maximum area of longest diagonal rectangle. For each rectangle, compute diagonal length = sqrt(w^2+h^2). Return max area with max diagonal.',
+    algorithm: [
+      'For each rectangle: diag^2 = w^2 + h^2. Track max diag^2, and max area among those.',
+    ],
+    pitfalls: ['Compare diagonal squared (avoids float). Among all max-diagonal rectangles, return max area.'],
+  },
+
+  3001: {
+    intuition: 'Minimum moves to capture the queen. Bishop, rook, and queen positions. Rook or bishop can capture in 1 or 2 moves.',
+    algorithm: [
+      'Check if rook can reach queen in 1 move (same row/col, not blocked by bishop).',
+      'Check if bishop can reach queen in 1 move (same diagonal, not blocked by rook).',
+      'Otherwise: 2 moves.',
+    ],
+    pitfalls: ['1 move if direct line of sight exists and not blocked. Otherwise always 2 moves.'],
+  },
+
+  3005: {
+    intuition: 'Count elements with maximum frequency. Find max frequency, count how many elements have it.',
+    algorithm: [
+      'Frequency map. maxFreq = max value in map. Count keys with freq == maxFreq.',
+    ],
+    pitfalls: ['Simple frequency counting. Sum all elements that have the maximum frequency.'],
+  },
+
+  3010: {
+    intuition: 'Divide array into minimum subarrays where each subarray has a minimum score (min[subarray]). Each subarray must satisfy min*length >= k.',
+    algorithm: [
+      'Binary search or greedy partition. For minimum subarrays: greedily extend current subarray as long as valid.',
+    ],
+    pitfalls: ['Check feasibility with binary search on number of partitions.'],
+  },
+
+  3011: {
+    intuition: 'Find if number can be represented as product of distinct positive integers (all > 1). Always true for n > 1.',
+    algorithm: [
+      'Any integer n > 1 can be represented as product: just n itself. Return n > 1.',
+    ],
+    pitfalls: ['n = n*1 is not valid (1 not allowed). n itself as single element works for n > 1.'],
+  },
+
+  3013: {
+    intuition: 'Divide players into teams of 2 where each pair skill sum equals same target. Sort, pair smallest with largest.',
+    algorithm: [
+      'Sort. Check all pairs (i, n-1-i) have same sum. Chemistry = product of each pair.',
+    ],
+    pitfalls: ['Same as LC 2491. Sort and pair opposites. Return -1 if any pair differs in sum.'],
+  },
+
+  3016: {
+    intuition: 'Minimum number of operations to make string of length n where each character replaces its value. Operations = insertions of characters to satisfy constraints.',
+    algorithm: [
+      'Each character contributes to constraints on adjacent characters. Count required insertions.',
+    ],
+    pitfalls: ['Count consecutive characters needing insertions between them based on their difference.'],
+  },
+
+  3021: {
+    intuition: 'Alice and Bob word game: each gets words with unique first letters. Count Alice wins (more distinct first letters).',
+    algorithm: [
+      'Split words alternating. Count distinct first letters for each. Compare.',
+    ],
+    pitfalls: ['Alice takes words[0], words[2],... Bob takes words[1], words[3],... Count distinct firsts.'],
+  },
+
+  3024: {
+    intuition: 'Check if three sides can form a triangle: any permutation where sum of two > third.',
+    algorithm: [
+      'Sort. Check nums[0]+nums[1] > nums[2].',
+    ],
+    pitfalls: ['After sorting, only need to check if smallest two sum > largest.'],
+  },
+
+  3025: {
+    intuition: 'Find number of wonderful substrings (at most one character with odd frequency). Bitmask on character parities.',
+    algorithm: [
+      'Prefix XOR bitmask. For each j: count prefix masks equal to current (all even) or differing in exactly one bit.',
+    ],
+    pitfalls: ['Same as count of substrings with all even frequencies + those with exactly one odd. Hashmap of prefix masks.'],
+  },
+
+  3027: {
+    intuition: 'Find minimum cost to repair edges to create a spanning tree. Prim/Kruskal with repair option.',
+    algorithm: [
+      'Model: existing edges have cost 0 or repair cost. Add new edges. Find minimum spanning tree.',
+    ],
+    pitfalls: ['Each repaired edge has given cost. Standard MST on modified graph.'],
+  },
+
+  3042: {
+    intuition: 'Count prefix-suffix pairs (i, j) where words[i] is both a prefix and suffix of words[j].',
+    algorithm: [
+      'For each pair (i,j) with i<j: check words[j].startsWith(words[i]) && words[j].endsWith(words[i]).',
+    ],
+    pitfalls: ['O(n^2 * L) brute force. Optimize with Trie on reversed strings or Z-function.'],
+  },
+
+  3043: {
+    intuition: 'Find length of longest common prefix between all pairs of strings from two arrays.',
+    algorithm: [
+      'Trie on arr1. For each string in arr2: traverse Trie, find longest matching prefix.',
+      'Return max matching length.',
+    ],
+    pitfalls: ['Build Trie from arr1. Query each word of arr2 against Trie.'],
+  },
+
+  3047: {
+    intuition: 'Find maximum and minimum sum of n+1 elements from two arrays. Pick largest n+1 from combined, smallest n+1.',
+    algorithm: [
+      'Merge and sort. Max sum = sum of top n+1 values ensuring at least one from each array.',
+      'Min sum = sum of bottom n+1 values with same constraint.',
+    ],
+    pitfalls: ['Must include at least one element from each array. Greedy with constraint handling.'],
+  },
+
+  3066: {
+    intuition: 'Minimum operations to exceed threshold k. Each op: remove two smallest, add their sum+min back. Use min-heap.',
+    algorithm: [
+      'Min-heap. While min < k: pop two smallest a,b. Push min(a,b)*2+max(a,b). Count ops.',
+    ],
+    pitfalls: ['Heap operation is pop two, push one. Continue until minimum element >= k.'],
+  },
+
+  3068: {
+    intuition: 'Find maximum sum by selecting elements such that no element is divisible by the previous. Greedy or DP.',
+    algorithm: [
+      'Sort descending. Greedy: take element if not divisible by the last taken.',
+    ],
+    pitfalls: ['The constraint is on consecutive selected elements. Greedy after sorting.'],
+  },
+
+  3070: {
+    intuition: 'Count elements greater than all neighbors. For each element: if greater than left and right neighbors: count.',
+    algorithm: [
+      'For i from 1 to n-2: if nums[i] > nums[i-1] && nums[i] > nums[i+1]: count++.',
+    ],
+    pitfalls: ['Endpoints are not counted (no two neighbors). Interior elements only.'],
+  },
+
+  3085: {
+    intuition: 'Minimum deletions to make string good: each character appears either 0 or >= minFreq times. Delete until constraint satisfied.',
+    algorithm: [
+      'Count frequencies. For each char with freq < minFreq: delete all (add freq to ops). Others: keep.',
+    ],
+    pitfalls: ['A character must appear 0 or >= minFreq times. Delete entire character if under threshold.'],
+  },
+
+  3097: {
+    intuition: 'Shortest subarray with bitwise OR >= k. Sliding window with OR: OR only increases, shrink left when condition met.',
+    algorithm: [
+      'Sliding window. Maintain OR of window. When OR >= k: record length, try to shrink left.',
+      'Challenge: OR cannot easily be decremented. Track bit counts to support removal.',
+    ],
+    pitfalls: ['Track bit counts in window for each of 32 bits. Remove left: decrement counts; if count becomes 0, unset bit.'],
+  },
+
+  3100: {
+    intuition: 'Detect if water flows to Pacific and Atlantic. Multi-source BFS from ocean borders inward.',
+    algorithm: [
+      'Two BFS: one from Pacific border cells, one from Atlantic. Water flows UP (reverse direction).',
+      'Return cells reachable by both BFS.',
+    ],
+    pitfalls: ['Reverse problem: find cells that can reach ocean. BFS from ocean going to higher cells.'],
+  },
+
+  3105: {
+    intuition: 'Find longest strictly increasing then strictly decreasing subarray. DP on both directions.',
+    algorithm: [
+      'inc[i] = length of longest strictly increasing ending at i. dec[i] = longest strictly decreasing starting at i.',
+      'Answer = max(inc[i] + dec[i] - 1) where both > 1 (actual peak).',
+    ],
+    pitfalls: ['Peak must have both inc and dec > 1. Maximum mountain length.'],
+  },
+
+  3108: {
+    intuition: 'Minimum cost of connecting graph edges. Find connected components using Union-Find. Cost = number of components - 1.',
+    algorithm: [
+      'Union-Find on edges. Count connected components.',
+      'Minimum edges to connect = components - 1.',
+    ],
+    pitfalls: ['Standard MST cost or connectivity cost. Answer is components - 1.'],
+  },
+
+  3116: {
+    intuition: 'Kth smallest amount using coins: binary search + inclusion-exclusion on multiples of coin combinations.',
+    algorithm: [
+      'Binary search on value v. Count numbers <= v that are multiples of at least one coin using inclusion-exclusion.',
+    ],
+    pitfalls: ['Include-exclude on coin LCMs. Binary search on the answer.'],
+  },
+
+  3122: {
+    intuition: 'Find minimum operations to convert source to target where each operation merges elements at cost. Interval DP.',
+    algorithm: [
+      'DP on matching subsequences. Find longest common subsequence structure then compute ops.',
+    ],
+    pitfalls: ['Complex interval DP matching target structure in source.'],
+  },
+
+  3129: {
+    intuition: 'Find K-or of array: bit b is set if at least k numbers have that bit set.',
+    algorithm: [
+      'For each bit position b (0..31): count numbers with bit b set. If count >= k: set bit b in result.',
+    ],
+    pitfalls: ['Count per bit position. Set bit if count >= k. Simple O(32n).'],
+  },
+
+  3133: {
+    intuition: 'Minimum sum of array after operations: replace elements to minimize sum maintaining divisibility constraint.',
+    algorithm: [
+      'For each element starting from end: if nums[i] > nums[i-1]: set nums[i-1] = ceil(nums[i-1]/nums[i])*nums[i] to minimize while maintaining constraint.',
+    ],
+    pitfalls: ['Work backwards. Each element must divide the previous. Minimize by rounding up to nearest multiple.'],
+  },
+
+  3136: {
+    intuition: 'Check if number is valid: no leading zeros (if multi-digit) and contains only digits and at most one decimal point.',
+    algorithm: [
+      'Validate: all chars are digits or one decimal point. No leading zeros unless single digit or decimal.',
+    ],
+    pitfalls: ['Edge cases: "0", "0.1", ".5" (invalid leading decimal in some definitions). Read problem carefully.'],
+  },
+
+  3151: {
+    intuition: 'Check if array is "special": every adjacent pair has different parity (one odd, one even).',
+    algorithm: [
+      'For each i from 0 to n-2: if nums[i]%2 == nums[i+1]%2: return false.',
+    ],
+    pitfalls: ['Adjacent elements must alternate parity. One same-parity pair fails the check.'],
+  },
+
+  3152: {
+    intuition: 'For each query [l,r]: check if subarray is special (adjacent parities alternate). Prefix sum of "bad" pairs.',
+    algorithm: [
+      'Precompute bad[i] = 1 if nums[i]%2 == nums[i+1]%2. Prefix sum. Query [l,r] is special if sum of bad[l..r-1] == 0.',
+    ],
+    pitfalls: ['A subarray is special iff no bad adjacent pairs within it. Prefix sum for O(1) queries.'],
+  },
+
+  3160: {
+    intuition: 'Count queries where XOR of element at index equals query value. Maintain current values and XOR results.',
+    algorithm: [
+      'Simulate: for each query (idx, val): update value[idx], XOR[idx] ^= old_val ^ val. Count matching queries.',
+    ],
+    pitfalls: ['Track current values to compute XOR changes. Count pairs matching target after each update.'],
+  },
+
+  3169: {
+    intuition: 'Count days without meetings. Sort meetings, merge overlapping intervals, count gaps.',
+    algorithm: [
+      'Sort meetings by start. Merge overlapping. Days without meeting = total - sum of merged interval lengths.',
+    ],
+    pitfalls: ['Merge overlapping intervals. Days free = days - covered days.'],
+  },
+
+  3170: {
+    intuition: 'Remove stars: each star removes the closest non-star to its left. Stack simulation.',
+    algorithm: [
+      'Stack. For each char: if star, pop stack. Else push char.',
+      'Return stack as string.',
+    ],
+    pitfalls: ['Same as LC 2390. Stack naturally handles the removal order.'],
+  },
+
+  3174: {
+    intuition: 'Clear digits: each digit removes the first non-digit to its left. Stack simulation.',
+    algorithm: [
+      'Stack. For each char: if digit, pop top (if non-empty). Else push char.',
+    ],
+    pitfalls: ['Digit removes nearest non-digit to its left. Stack handles LIFO order naturally.'],
+  },
+
+  3191: {
+    intuition: 'Minimum operations to make binary array all ones: each op flips 3 consecutive elements. Greedy left-to-right.',
+    algorithm: [
+      'Scan left to right. When nums[i]==0: flip nums[i], nums[i+1], nums[i+2]. Count flips.',
+      'If i+2 >= n when flip needed: return -1.',
+    ],
+    pitfalls: ['Greedy: flip at leftmost 0. If cannot flip (near end): impossible. O(n) solution.'],
+  },
+
+  3192: {
+    intuition: 'Minimum operations to alternate binary array. Compare with patterns 010101... and 101010..., return min mismatches.',
+    algorithm: [
+      'Count mismatches with pattern starting with 0. Answer = min(mismatches, n - mismatches).',
+    ],
+    pitfalls: ['Two valid alternating patterns. Count mismatches with one, n-count for the other. Return min.'],
+  },
+
+  3201: {
+    intuition: 'Find maximum length alternating subarray. Greedy: count consecutive alternating pairs.',
+    algorithm: [
+      'Track current run length. If nums[i] != nums[i-1]: extend run. Else: reset to 2.',
+    ],
+    pitfalls: ['Maximum length of subarray with alternating 0s and 1s. Single element counts as length 1.'],
+  },
+
+  3208: {
+    intuition: 'Count subarrays where AND of all elements equals target. Sliding window on AND (only decreases).',
+    algorithm: [
+      'For each right: maintain set of distinct AND values ending at right (at most 30 values since AND decreases).',
+      'Count values equal to target.',
+    ],
+    pitfalls: ['Set of AND values shrinks as we move left. At most log(max) distinct values per right endpoint.'],
+  },
+
+  3217: {
+    intuition: 'Delete nodes from linked list that appear in a set. Scan and skip nodes in the set.',
+    algorithm: [
+      'Set from nums array. Scan linked list, skip nodes whose val is in set. Return new head.',
+    ],
+    pitfalls: ['Handle head deletion carefully. Dummy node simplifies edge case.'],
+  },
+
+  3223: {
+    intuition: 'Minimum string length after removing specific patterns AB and CD repeatedly. Stack simulation.',
+    algorithm: [
+      'Stack. For each char: if stack.top and (top+char) in {AB, CD}: pop. Else push.',
+    ],
+    pitfalls: ['Stack handles nested and chained removals. Same as LC 2696 but with different patterns.'],
+  },
+
+  3243: {
+    intuition: 'Shortest distance from root to each node after k flips in binary tree representation.',
+    algorithm: [
+      'BFS from root. For each node at distance d: track flips encountered. Distance = d + flip adjustments.',
+    ],
+    pitfalls: ['Model tree structure, BFS for shortest distances considering flip operations.'],
+  },
+
+  3254: {
+    intuition: 'Find indices divisible by d in array satisfying conditions. Simple modular arithmetic scan.',
+    algorithm: [
+      'For each i from 0 to n-1: if i % d == 0 and condition: add to result.',
+    ],
+    pitfalls: ['Check divisibility condition at each step. Return first valid index or list of valid indices.'],
+  },
+
+  3264: {
+    intuition: 'Apply operations to array: each op decreases one element and increases another. Maximize minimum element.',
+    algorithm: [
+      'Binary search on minimum value m. Feasibility: can we make all elements >= m with k operations?',
+    ],
+    pitfalls: ['Binary search on answer. Each op transfers one unit between elements.'],
+  },
+
+  3289: {
+    intuition: 'Count subarrays where product is divisible by a prime p. Use sliding window or prefix products.',
+    algorithm: [
+      'Count subarrays where at least one element is divisible by p.',
+      'Total subarrays - subarrays with no element divisible by p.',
+    ],
+    pitfalls: ['Subarrays with no multiple of p: find runs with no multiple of p, count subarrays in each run.'],
+  },
+
+  3306: {
+    intuition: 'Count substrings where every vowel appears at least once and count of consonants is divisible by k. Sliding window.',
+    algorithm: [
+      'Sliding window tracking vowel presence (bitmask) and consonant count mod k.',
+      'Count windows where all 5 vowels present and consonants%k==0.',
+    ],
+    pitfalls: ['Two conditions: all vowels present (5-bit mask = 31) AND consonant count % k == 0. Tricky sliding window.'],
+  },
+
+  3330: {
+    intuition: 'Find lexicographically smallest string after removing one character. Remove the first character where the next is smaller or equal.',
+    algorithm: [
+      'Scan left to right. Remove first i where s[i] >= s[i+1]. If none: remove last.',
+    ],
+    pitfalls: ['For strictly decreasing string: remove last character. Otherwise: remove first descent point.'],
+  },
+
+  3341: {
+    intuition: 'Minimum time to reach dungeon cell with time constraints. Dijkstra variant: can wait at starting cell if needed.',
+    algorithm: [
+      'Dijkstra. For each cell (r,c): time to arrive. If grid[r][c] > arrival_time: must wait. New time = grid[r][c] + parity_adjustment.',
+    ],
+    pitfalls: ['If time must be odd/even to enter (based on moves): adjust wait time. Account for parity.'],
+  },
+
+  3342: {
+    intuition: 'Same as 3341 but different starting conditions or grid type.',
+    algorithm: [
+      'Dijkstra with parity constraint. Handle waiting to satisfy parity requirements.',
+    ],
+    pitfalls: ['Minimum time dijkstra with the wait-for-parity trick.'],
+  },
+
+  3346: {
+    intuition: 'Non-decreasing array check with at most one deletion. Track if already used a deletion.',
+    algorithm: [
+      'Scan: when nums[i] > nums[i+1]: if already deleted: false. Delete (skip): check nums[i-1] <= nums[i+1] or i==0.',
+    ],
+    pitfalls: ['After deletion, check that the new adjacent pair is also non-decreasing. Handle edge cases.'],
+  },
+
+  3354: {
+    intuition: 'Count elements greater than all elements to their right. Monotone stack or suffix maximum.',
+    algorithm: [
+      'Suffix max: suffMax[i] = max of nums[i+1..n-1]. Count i where nums[i] > suffMax[i].',
+    ],
+    pitfalls: ['Last element is always greater than empty right. Scan right to left tracking suffix max.'],
+  },
+
+  3355: {
+    intuition: 'Check if zero array achievable: for each position, decrement by overlap of covering ranges. Difference array.',
+    algorithm: [
+      'Difference array on queries. Prefix sum gives how many times each index is covered.',
+      'Check nums[i] <= coverage[i] for all i.',
+    ],
+    pitfalls: ['Coverage array from range queries using difference array. Each query [l,r] adds 1 to that range.'],
+  },
+
+  3356: {
+    intuition: 'Find minimum coverage to zero out array. Binary search on number of queries used.',
+    algorithm: [
+      'Binary search on k (number of queries). Check feasibility: can first k queries zero the array?',
+    ],
+    pitfalls: ['Binary search: use first k queries, check if coverage suffices everywhere. Difference array for O(n+k) check.'],
+  },
+
+  3362: {
+    intuition: 'Count subarrays where both zero count and one count are divisible by k. Prefix sum modulo k tracking.',
+    algorithm: [
+      'Track (zeros%k, ones%k) at each prefix. Count pairs with same (zeros%k, ones%k) value.',
+    ],
+    pitfalls: ['State = (count_zeros%k, count_ones%k). Count pairs with matching states using hashmap.'],
+  },
+
+  3372: {
+    intuition: 'Maximize sum of k elements choosing one per row in a grid. DP or greedy approach.',
+    algorithm: [
+      'Sort each row. For each row: best choices are the largest elements.',
+      'DP[row][k_remaining] = max sum.',
+    ],
+    pitfalls: ['Greedy works if columns allow independent selection. Otherwise DP.'],
+  },
+
+  3375: {
+    intuition: 'Minimum operations to make array values equal to k. All elements must be reducible to k.',
+    algorithm: [
+      'If any element < k: return -1. Count distinct values > k (each needs one operation).',
+    ],
+    pitfalls: ['Can only decrease values. If element < k: impossible. Each distinct value > k needs one op.'],
+  },
+
+  3392: {
+    intuition: 'Count subarrays of length 4 with exactly 2 elements satisfying a property. Sliding window of size 4.',
+    algorithm: [
+      'Sliding window of size exactly 4. Count elements satisfying condition. Count windows with exactly 2.',
+    ],
+    pitfalls: ['Fixed window size 4. Slide across array, count qualifying windows.'],
+  },
+
+  3396: {
+    intuition: 'Minimum operations to make values <= k. Same as 3375 essentially.',
+    algorithm: [
+      'Count distinct values > k. If any value < k that cannot be changed: -1.',
+    ],
+    pitfalls: ['Each distinct value > k requires one operation (set-to-k op).'],
+  },
+
+  3432: {
+    intuition: 'Count subsets where AND of subset is at most k. Complement: total - subsets with AND > k.',
+    algorithm: [
+      'Count subarrays/subsets where AND > k. Subtract from total.',
+    ],
+    pitfalls: ['AND of subset > k: all elements must have certain bits set. Inclusion-exclusion on bits.'],
+  },
+
+  3439: {
+    intuition: 'Find maximum length increasing subsequence with constraint that adjacent pair differs by at most d.',
+    algorithm: [
+      'DP: dp[i] = max LIS ending at i. Transition: dp[i] = 1 + max(dp[j]) where j < i, nums[j] < nums[i], nums[i]-nums[j] <= d.',
+    ],
+    pitfalls: ['Standard LIS DP with additional difference constraint. O(n^2) or segment tree for O(n log n).'],
+  },
+
+  3440: {
+    intuition: 'Reschedule meetings for maximum free time. Sort meetings, find gaps, reschedule to create maximum contiguous free block.',
+    algorithm: [
+      'Sort meetings. Find max gap if we can move k meetings. Sliding window on free gaps.',
+    ],
+    pitfalls: ['Moving k meetings can merge adjacent free blocks. Sliding window on the sorted meeting array.'],
+  },
+
+  3442: {
+    intuition: 'Check if array has maximum and minimum element with frequency 1 (appears exactly once). Count max and min freq.',
+    algorithm: [
+      'max_val = max(nums), min_val = min(nums). Count max and min. If freq == 1 for both: true.',
+    ],
+    pitfalls: ['If max==min (all same element): it needs to appear once for both conditions simultaneously.'],
+  },
+
+  3445: {
+    intuition: 'Maximum difference between even and odd indexed elements. Maximize nums[a] - nums[b] where a is odd-indexed, b is even-indexed (or vice versa).',
+    algorithm: [
+      'Max odd-indexed - min even-indexed, or max even-indexed - min odd-indexed. Return max.',
+    ],
+    pitfalls: ['Two cases: even minus odd and odd minus even. Return maximum of both.'],
+  },
+
+  3461: {
+    intuition: 'Check if string contains a given pattern as subsequence. Two pointer subsequence check.',
+    algorithm: [
+      'Two pointers i=0 (pattern) j=0 (s). Advance j, when s[j]==pattern[i]: i++. Return i==pattern.length.',
+    ],
+    pitfalls: ['Standard subsequence check. O(n+m).'],
+  },
+
+  3507: {
+    intuition: 'Find intersection of two sets represented as arrays. Return elements in both sets.',
+    algorithm: [
+      'Set from nums1. For each in nums2: if in set, add to result.',
+    ],
+    pitfalls: ['Return unique elements in intersection. Use HashSet.'],
+  },
+
+  3546: {
+    intuition: 'Maximize sum after partitioning array into subarrays of fixed size. Each subarray sum = max_element * size.',
+    algorithm: [
+      'DP: dp[i] = max sum for first i elements. For each subarray length k up to limit: dp[i] = max(dp[i-k] + max(nums[i-k..i-1]) * k).',
+    ],
+    pitfalls: ['Standard partition DP. Limit bounds subarray size. O(n*k) transitions.'],
+  },
+
+  3577: {
+    intuition: 'Count subarrays with at least one element satisfying condition. Complement: total - subarrays with NO element satisfying condition.',
+    algorithm: [
+      'Sliding window for subarrays with no satisfying element. Count those, subtract from total.',
+    ],
+    pitfalls: ['Complement counting with sliding window on condition-satisfying elements.'],
+  },
+
 }
 
 export default explanations

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Rich structured explanations for GFG problems.
  * Keys are problem slugs (derived from folder names via toSlug()).
  */
@@ -15,7 +15,7 @@ export interface RichExplanation {
 
 const gfgExplanations: Record<string, RichExplanation> = {
 
-  // ─── 0-1 Knapsack Problem ────────────────────────────────────────────────────
+  // â”€â”€â”€ 0-1 Knapsack Problem â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   '0-1-knapsack-problem': {
     intuition:
       'Each item is either taken (0) or not (1). DP table dp[i][w] = max value using first i items with capacity w. Taking item i: dp[i][w] = dp[i-1][w-wi] + vi. Not taking: dp[i][w] = dp[i-1][w]. Optimise to 1D by processing weights in reverse.',
@@ -35,14 +35,14 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Process weights in reverse (W down to wi) to prevent reusing the same item.'],
   },
 
-  // ─── Activity Selection ──────────────────────────────────────────────────────
+  // â”€â”€â”€ Activity Selection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'activity-selection': {
     intuition:
       'Greedy: among all activities compatible with the last selected one, always pick the one that finishes earliest. This leaves maximum room for future activities. Sort by end time first.',
     algorithm: [
       'Sort activities by end time.',
       'Select activity 0. lastEnd = end[0], count = 1.',
-      'For i from 1 to n−1: if start[i] >= lastEnd: select it, count++, lastEnd = end[i].',
+      'For i from 1 to nâˆ’1: if start[i] >= lastEnd: select it, count++, lastEnd = end[i].',
       'Return count.',
     ],
     example: {
@@ -53,57 +53,57 @@ const gfgExplanations: Record<string, RichExplanation> = {
       ],
       output: '4',
     },
-    pitfalls: ['Sort by END time, not start time — a greedy on start times is incorrect.'],
+    pitfalls: ['Sort by END time, not start time â€” a greedy on start times is incorrect.'],
   },
 
-  // ─── Aggressive Cows ─────────────────────────────────────────────────────────
+  // â”€â”€â”€ Aggressive Cows â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'aggressive-cows': {
     intuition:
-      'Binary search on the minimum distance between any two cows. For a given minimum distance d, greedily check if k cows can be placed: place first cow at stall 0, then each next cow at the first stall at distance ≥ d from the previous.',
+      'Binary search on the minimum distance between any two cows. For a given minimum distance d, greedily check if k cows can be placed: place first cow at stall 0, then each next cow at the first stall at distance â‰¥ d from the previous.',
     algorithm: [
       'Sort stalls.',
-      'Binary search lo=1, hi=stalls[n-1]−stalls[0].',
+      'Binary search lo=1, hi=stalls[n-1]âˆ’stalls[0].',
       'For each mid: check if k cows can be placed with min distance mid.',
-      'Canplace(d): place first cow at stalls[0]. For each stall: if gap ≥ d, place cow here, count++. Return count >= k.',
-      'If canplace(mid): lo=mid+1 (try larger). Else: hi=mid−1.',
-      'Return lo−1.',
+      'Canplace(d): place first cow at stalls[0]. For each stall: if gap â‰¥ d, place cow here, count++. Return count >= k.',
+      'If canplace(mid): lo=mid+1 (try larger). Else: hi=midâˆ’1.',
+      'Return loâˆ’1.',
     ],
     example: {
       input: 'stalls=[1,2,4,8,9], k=3',
       steps: [
-        'lo=1,hi=8. mid=4: place at 1,4? gap=3<4. mid=3: place at 1,4,8. 3 cows ✓ → lo=4.',
-        'mid=6: can we? 1,8(gap=7≥6),next? No more. Only 2 → hi=5.',
-        'mid=4: same → lo=5. lo>hi. Answer=4.',
+        'lo=1,hi=8. mid=4: place at 1,4? gap=3<4. mid=3: place at 1,4,8. 3 cows âœ“ â†’ lo=4.',
+        'mid=6: can we? 1,8(gap=7â‰¥6),next? No more. Only 2 â†’ hi=5.',
+        'mid=4: same â†’ lo=5. lo>hi. Answer=4.',
       ],
       output: '3 (minimum distance = 3)',
     },
     pitfalls: ['Sort stalls first. Binary search on the ANSWER (distance), not the index.'],
   },
 
-  // ─── Alien Dictionary ────────────────────────────────────────────────────────
+  // â”€â”€â”€ Alien Dictionary â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'alien-dictionary': {
     intuition:
       'Build a directed graph of character ordering by comparing adjacent words in the dictionary. Topological sort (Kahn\'s) on this graph gives the alien character order. If a cycle exists, no valid ordering exists.',
     algorithm: [
-      'For each pair of adjacent words: find the first differing character. Add edge char1 → char2.',
+      'For each pair of adjacent words: find the first differing character. Add edge char1 â†’ char2.',
       'Topological sort via BFS (Kahn\'s). Start with in-degree-0 characters.',
       'If all characters are processed, return order. If cycle detected, return "".',
     ],
     example: {
       input: 'words = ["wrt","wrf","er","ett","rftt"]',
       steps: [
-        'wrt vs wrf: t→f. wrf vs er: w→e. er vs ett: r→t. ett vs rftt: e→r.',
+        'wrt vs wrf: tâ†’f. wrf vs er: wâ†’e. er vs ett: râ†’t. ett vs rftt: eâ†’r.',
         'Topo order: w,e,r,t,f.',
       ],
       output: '"wertf"',
     },
     pitfalls: [
       'Only compare the first differing character between adjacent words.',
-      'If word1 is a prefix of word2 but comes after it, that\'s invalid — return "" immediately.',
+      'If word1 is a prefix of word2 but comes after it, that\'s invalid â€” return "" immediately.',
     ],
   },
 
-  // ─── Anagram ─────────────────────────────────────────────────────────────────
+  // â”€â”€â”€ Anagram â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'anagram': {
     intuition:
       'Two strings are anagrams if they have the same character frequencies. Use a single int[256] array: increment for each character in s1, decrement for each in s2. If all entries are 0, they are anagrams.',
@@ -117,29 +117,29 @@ const gfgExplanations: Record<string, RichExplanation> = {
       steps: ['After processing: all counts are 0. Return true.'],
       output: 'YES',
     },
-    pitfalls: ['Use a char frequency array, not sort — sort is O(n log n) vs O(n).'],
+    pitfalls: ['Use a char frequency array, not sort â€” sort is O(n log n) vs O(n).'],
   },
 
-  // ─── Bellman-Ford ────────────────────────────────────────────────────────────
+  // â”€â”€â”€ Bellman-Ford â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'bellman-ford': {
     intuition:
-      'Relax all edges V−1 times. After V−1 iterations, shortest paths are found (a shortest path has at most V−1 edges). A V-th relaxation that still reduces any distance indicates a negative cycle.',
+      'Relax all edges Vâˆ’1 times. After Vâˆ’1 iterations, shortest paths are found (a shortest path has at most Vâˆ’1 edges). A V-th relaxation that still reduces any distance indicates a negative cycle.',
     algorithm: [
       'dist[src]=0, all others=INF.',
-      'Repeat V−1 times: for each edge (u,v,w): if dist[u]+w < dist[v], dist[v]=dist[u]+w.',
+      'Repeat Vâˆ’1 times: for each edge (u,v,w): if dist[u]+w < dist[v], dist[v]=dist[u]+w.',
       'Check negative cycle: if any edge (u,v,w) has dist[u]+w < dist[v], report negative cycle.',
     ],
     example: {
-      input: 'V=5, edges: 0→1(2),0→2(4),1→2(1),1→3(7),2→4(3)',
+      input: 'V=5, edges: 0â†’1(2),0â†’2(4),1â†’2(1),1â†’3(7),2â†’4(3)',
       steps: [
-        'Iter 1: dist=[0,2,3,9,6]. Iter 2–4: no further relaxations.',
+        'Iter 1: dist=[0,2,3,9,6]. Iter 2â€“4: no further relaxations.',
       ],
       output: 'dist = [0,2,3,9,6]',
     },
     pitfalls: ['Bellman-Ford handles negative weights; Dijkstra does not. Use Bellman-Ford when negative weights are present.'],
   },
 
-  // ─── BFS of Graph ────────────────────────────────────────────────────────────
+  // â”€â”€â”€ BFS of Graph â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'bfs-of-graph': {
     intuition:
       'BFS explores nodes level by level using a queue. Start from source, enqueue all unvisited neighbors, mark them visited when enqueued (not when dequeued) to avoid duplicate processing.',
@@ -149,20 +149,20 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'For each neighbor v of u: if not visited: visited[v]=true, enqueue v.',
     ],
     example: {
-      input: 'Graph: 0→[1,2], 1→[3], 2→[3], 3→[]',
+      input: 'Graph: 0â†’[1,2], 1â†’[3], 2â†’[3], 3â†’[]',
       steps: [
-        'Queue:[0]. Dequeue 0 → result=[0]. Enqueue 1,2.',
-        'Dequeue 1 → result=[0,1]. Enqueue 3. Dequeue 2 → result=[0,1,2]. Dequeue 3 → result=[0,1,2,3].',
+        'Queue:[0]. Dequeue 0 â†’ result=[0]. Enqueue 1,2.',
+        'Dequeue 1 â†’ result=[0,1]. Enqueue 3. Dequeue 2 â†’ result=[0,1,2]. Dequeue 3 â†’ result=[0,1,2,3].',
       ],
       output: '[0,1,2,3]',
     },
-    pitfalls: ['Mark visited when ENQUEUING, not when dequeuing — prevents the same node being enqueued multiple times.'],
+    pitfalls: ['Mark visited when ENQUEUING, not when dequeuing â€” prevents the same node being enqueued multiple times.'],
   },
 
-  // ─── Binary Tree to DLL ──────────────────────────────────────────────────────
+  // â”€â”€â”€ Binary Tree to DLL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'binary-tree-to-dll': {
     intuition:
-      'In-order traversal (left→root→right) of a BST gives sorted order. Convert by linking each node\'s left pointer to the previous node and right pointer to the next node during in-order traversal. Track the last processed node (prev).',
+      'In-order traversal (leftâ†’rootâ†’right) of a BST gives sorted order. Convert by linking each node\'s left pointer to the previous node and right pointer to the next node during in-order traversal. Track the last processed node (prev).',
     algorithm: [
       'In-order traversal. Maintain prev node.',
       'For each node: node.left = prev. If prev != null: prev.right = node.',
@@ -172,23 +172,23 @@ const gfgExplanations: Record<string, RichExplanation> = {
     example: {
       input: 'BST: 10, left=12, right=15, 12\'s right=25, 15\'s left=36',
       steps: [
-        'In-order: 12→25→10→36→15. Link each: 12←→25←→10←→36←→15.',
+        'In-order: 12â†’25â†’10â†’36â†’15. Link each: 12â†â†’25â†â†’10â†â†’36â†â†’15.',
       ],
-      output: 'DLL: 12↔25↔10↔36↔15',
+      output: 'DLL: 12â†”25â†”10â†”36â†”15',
     },
-    pitfalls: ['Link prev→curr before updating prev = curr, otherwise you lose the predecessor.'],
+    pitfalls: ['Link prevâ†’curr before updating prev = curr, otherwise you lose the predecessor.'],
   },
 
-  // ─── Boolean Parenthesization ─────────────────────────────────────────────────
+  // â”€â”€â”€ Boolean Parenthesization â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'boolean-parenthesization': {
     intuition:
       'DP on sub-expressions: dp_true[i][j] = number of ways substring [i,j] evaluates to TRUE; dp_false[i][j] = FALSE. Split at each operator k. Combine left and right using truth-table rules for AND, OR, XOR.',
     algorithm: [
-      'Base: dp_true[i][i] = (sym[i]=="T") ? 1 : 0. dp_false[i][i] = 1 − dp_true[i][i].',
+      'Base: dp_true[i][i] = (sym[i]=="T") ? 1 : 0. dp_false[i][i] = 1 âˆ’ dp_true[i][i].',
       'For length l from 2 to n: for each (i,j): for each operator at k between i and j:',
       '  Compute lt,lf,rt,rf (left/right true/false counts).',
       '  AND: true += lt*rt. OR: true += lt*rt+lt*rf+lf*rt. XOR: true += lt*rf+lf*rt.',
-      '  false = totalWays − true.',
+      '  false = totalWays âˆ’ true.',
       'Return dp_true[0][n-1].',
     ],
     example: {
@@ -199,28 +199,28 @@ const gfgExplanations: Record<string, RichExplanation> = {
       ],
       output: '4',
     },
-    pitfalls: ['Total ways for a substring of length n = Catalan(n-1). Use it to compute false = total − true.'],
+    pitfalls: ['Total ways for a substring of length n = Catalan(n-1). Use it to compute false = total âˆ’ true.'],
   },
 
-  // ─── Bottom View of Binary Tree ──────────────────────────────────────────────
+  // â”€â”€â”€ Bottom View of Binary Tree â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'bottom-view-of-binary-tree': {
     intuition:
-      'Level-order traversal with horizontal distance (HD): root=0, left child=HD−1, right child=HD+1. For each HD, the LAST node seen at that HD (deepest level) is the bottom view.',
+      'Level-order traversal with horizontal distance (HD): root=0, left child=HDâˆ’1, right child=HD+1. For each HD, the LAST node seen at that HD (deepest level) is the bottom view.',
     algorithm: [
-      'BFS with (node, HD) pairs. HashMap: HD → last seen node value.',
-      'Process each (node, hd): map[hd] = node.val (overwrite — last wins).',
-      'Enqueue (left, hd−1) and (right, hd+1) if non-null.',
+      'BFS with (node, HD) pairs. HashMap: HD â†’ last seen node value.',
+      'Process each (node, hd): map[hd] = node.val (overwrite â€” last wins).',
+      'Enqueue (left, hdâˆ’1) and (right, hd+1) if non-null.',
       'Return map values sorted by HD.',
     ],
     example: {
       input: 'Tree: 20(root), left=8[left=5,right=3], right=22[right=25], 3 has left=10,right=14',
-      steps: ['HD: 5→-2, 8→-1, 10→0, 20→0, 3→0, 14→1, 22→1, 25→2. Bottom: 5,10,3,14,25.'],
+      steps: ['HD: 5â†’-2, 8â†’-1, 10â†’0, 20â†’0, 3â†’0, 14â†’1, 22â†’1, 25â†’2. Bottom: 5,10,3,14,25.'],
       output: '[5,10,3,14,25]',
     },
-    pitfalls: ['BFS ensures we process level by level — map[hd] is always overwritten by deeper nodes.'],
+    pitfalls: ['BFS ensures we process level by level â€” map[hd] is always overwritten by deeper nodes.'],
   },
 
-  // ─── Check for BST ────────────────────────────────────────────────────────────
+  // â”€â”€â”€ Check for BST â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'check-for-bst': {
     intuition:
       'Pass valid range [min, max] down the tree. Each node must be strictly within (min, max). Left child has max=current.val; right child has min=current.val.',
@@ -233,41 +233,41 @@ const gfgExplanations: Record<string, RichExplanation> = {
     example: {
       input: 'root = [2,1,3]',
       steps: [
-        'Node 2: range (−∞,+∞) ✓. Node 1: range (−∞,2) ✓. Node 3: range (2,+∞) ✓.',
+        'Node 2: range (âˆ’âˆž,+âˆž) âœ“. Node 1: range (âˆ’âˆž,2) âœ“. Node 3: range (2,+âˆž) âœ“.',
       ],
       output: 'true',
     },
-    pitfalls: ['Use long.MinValue/MaxValue (or null) as initial bounds — int bounds fail on equal-value edge cases.'],
+    pitfalls: ['Use long.MinValue/MaxValue (or null) as initial bounds â€” int bounds fail on equal-value edge cases.'],
   },
 
-  // ─── Coin Change (Count Ways) ─────────────────────────────────────────────────
+  // â”€â”€â”€ Coin Change (Count Ways) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'coin-change-count-ways': {
     intuition:
       'Unbounded knapsack: dp[i] = number of ways to make sum i using the given coins (each coin can be used any number of times). For each coin, iterate forward through the dp array.',
     algorithm: [
       'dp[0]=1, dp[1..sum]=0.',
-      'For each coin c: for w from c to sum: dp[w] += dp[w−c].',
+      'For each coin c: for w from c to sum: dp[w] += dp[wâˆ’c].',
       'Return dp[sum].',
     ],
     example: {
       input: 'coins=[1,2,3], sum=4',
       steps: [
-        'coin=1: dp=[1,1,1,1,1]. coin=2: dp[2]+=dp[0]=2, dp[3]+=dp[1]=2, dp[4]+=dp[2]=3. → dp=[1,1,2,2,3].',
-        'coin=3: dp[3]+=dp[0]=3, dp[4]+=dp[1]=4. → dp[4]=4.',
+        'coin=1: dp=[1,1,1,1,1]. coin=2: dp[2]+=dp[0]=2, dp[3]+=dp[1]=2, dp[4]+=dp[2]=3. â†’ dp=[1,1,2,2,3].',
+        'coin=3: dp[3]+=dp[0]=3, dp[4]+=dp[1]=4. â†’ dp[4]=4.',
       ],
       output: '4',
     },
-    pitfalls: ['Outer loop over coins, inner loop over amounts — this counts combinations (not permutations). Swap loops for permutations.'],
+    pitfalls: ['Outer loop over coins, inner loop over amounts â€” this counts combinations (not permutations). Swap loops for permutations.'],
   },
 
-  // ─── Coin Change (Minimum Coins) ─────────────────────────────────────────────
+  // â”€â”€â”€ Coin Change (Minimum Coins) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'coin-change-minimum-coins': {
     intuition:
       'dp[i] = minimum coins to make sum i. For each coin c and each amount w >= c: dp[w] = min(dp[w], dp[w-c]+1). Initialize dp[1..sum] = INF.',
     algorithm: [
       'dp[0]=0, dp[1..sum]=INF.',
       'For each coin c: for w from c to sum: if dp[w-c] != INF: dp[w]=min(dp[w], dp[w-c]+1).',
-      'Return dp[sum] if not INF, else −1.',
+      'Return dp[sum] if not INF, else âˆ’1.',
     ],
     example: {
       input: 'coins=[1,5,6,9], sum=11',
@@ -276,30 +276,30 @@ const gfgExplanations: Record<string, RichExplanation> = {
       ],
       output: '2',
     },
-    pitfalls: ['Return −1 if dp[sum] remains INF — the sum is unreachable.'],
+    pitfalls: ['Return âˆ’1 if dp[sum] remains INF â€” the sum is unreachable.'],
   },
 
-  // ─── Count Inversions ────────────────────────────────────────────────────────
+  // â”€â”€â”€ Count Inversions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'count-inversions': {
     intuition:
       'An inversion is a pair (i, j) where i < j but arr[i] > arr[j]. Merge sort counts inversions during the merge step: when an element from the right half is placed before elements from the left half, each of those left-half elements forms an inversion with it.',
     algorithm: [
       'Merge sort recursively. Count inversions during merge.',
-      'During merge: whenever right[j] < left[i], all elements left[i..mid] are inversions with right[j]. inv_count += (mid − i + 1).',
+      'During merge: whenever right[j] < left[i], all elements left[i..mid] are inversions with right[j]. inv_count += (mid âˆ’ i + 1).',
     ],
     example: {
       input: 'arr = [2,4,1,3,5]',
       steps: [
-        'Merge [2,4] and [1,3]: 1<2 → 2 inversions. 3>2, 3>4: 0.',
+        'Merge [2,4] and [1,3]: 1<2 â†’ 2 inversions. 3>2, 3>4: 0.',
         'Merge [2,4,1,3] and [5]: 0 inversions.',
         'Total = 3 (pairs: (2,1),(4,1),(4,3)).',
       ],
       output: '3',
     },
-    pitfalls: ['Count inversions during merge (not during split) — only then do you know the relative positions.'],
+    pitfalls: ['Count inversions during merge (not during split) â€” only then do you know the relative positions.'],
   },
 
-  // ─── DFS of Graph ────────────────────────────────────────────────────────────
+  // â”€â”€â”€ DFS of Graph â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'dfs-of-graph': {
     intuition:
       'DFS explores as deep as possible along each branch before backtracking. Use a stack (or recursion): visit a node, mark it, then recursively visit all unvisited neighbors.',
@@ -308,17 +308,17 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'DFS(u): add u to result. For each neighbor v: if not visited: visited[v]=true. DFS(v).',
     ],
     example: {
-      input: 'Graph: 0→[1,2,3], 1→[4], 2→[], 3→[], 4→[]',
+      input: 'Graph: 0â†’[1,2,3], 1â†’[4], 2â†’[], 3â†’[], 4â†’[]',
       steps: [
         'DFS(0): visit 0. Go to 1: visit 1. Go to 4: visit 4. Backtrack. Go to 2: visit 2. Go to 3: visit 3.',
         'Result: [0,1,4,2,3].',
       ],
       output: '[0,1,4,2,3]',
     },
-    pitfalls: ['Mark as visited BEFORE recursing — not after — to prevent revisiting in undirected graphs.'],
+    pitfalls: ['Mark as visited BEFORE recursing â€” not after â€” to prevent revisiting in undirected graphs.'],
   },
 
-  // ─── Detect Loop in linked list ───────────────────────────────────────────────
+  // â”€â”€â”€ Detect Loop in linked list â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'detect-loop-in-linked-list': {
     intuition:
       'Floyd\'s cycle detection: slow pointer moves one step, fast moves two. If they meet, a cycle exists. If fast reaches null, no cycle.',
@@ -328,7 +328,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'If slow == fast: return true (cycle). Return false.',
     ],
     example: {
-      input: '1→2→3→4→5→(back to 3)',
+      input: '1â†’2â†’3â†’4â†’5â†’(back to 3)',
       steps: [
         'Step 1: slow=2, fast=3. Step 2: slow=3, fast=5. Step 3: slow=4, fast=4. Meet at 4. Cycle!',
       ],
@@ -337,7 +337,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Check fast != null AND fast.next != null before each step to avoid NullPointerException.'],
   },
 
-  // ─── Dijkstra Algorithm ──────────────────────────────────────────────────────
+  // â”€â”€â”€ Dijkstra Algorithm â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'dijkstra-algorithm': {
     intuition:
       'Greedy shortest path: always extend the unvisited node with the smallest current distance. Use a min-heap (priority queue) to efficiently get the next minimum. Only works with non-negative edge weights.',
@@ -347,39 +347,39 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'For each neighbor (v,w): if dist[u]+w < dist[v]: dist[v]=dist[u]+w. Push (dist[v],v).',
     ],
     example: {
-      input: 'V=5, edges: 0→1(4),0→2(1),2→1(2),1→3(1),2→3(5)',
+      input: 'V=5, edges: 0â†’1(4),0â†’2(1),2â†’1(2),1â†’3(1),2â†’3(5)',
       steps: [
-        'dist=[0,∞,∞,∞,∞]. Process 0: dist[1]=4, dist[2]=1.',
+        'dist=[0,âˆž,âˆž,âˆž,âˆž]. Process 0: dist[1]=4, dist[2]=1.',
         'Process 2(d=1): dist[1]=min(4,3)=3, dist[3]=6.',
         'Process 1(d=3): dist[3]=min(6,4)=4.',
       ],
-      output: 'dist=[0,3,1,4,∞]',
+      output: 'dist=[0,3,1,4,âˆž]',
     },
     pitfalls: ['Skip stale heap entries by checking if extracted distance > dist[u].'],
   },
 
-  // ─── Directed Graph Cycle ─────────────────────────────────────────────────────
+  // â”€â”€â”€ Directed Graph Cycle â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'directed-graph-cycle': {
     intuition:
-      'A directed cycle exists iff DFS finds a back edge — an edge pointing to an ancestor in the current DFS stack. Use two states: "in-stack" (currently being explored) and "visited" (fully explored). A back edge leads to an "in-stack" node.',
+      'A directed cycle exists iff DFS finds a back edge â€” an edge pointing to an ancestor in the current DFS stack. Use two states: "in-stack" (currently being explored) and "visited" (fully explored). A back edge leads to an "in-stack" node.',
     algorithm: [
       'visited[n]=false, inStack[n]=false.',
       'DFS(u): visited[u]=inStack[u]=true.',
       'For each neighbor v: if !visited: DFS(v). If cycle found, return true.',
-      'Else if inStack[v]: return true (back edge → cycle).',
+      'Else if inStack[v]: return true (back edge â†’ cycle).',
       'inStack[u]=false. Return false.',
     ],
     example: {
-      input: 'Graph: 0→1→2→0 (cycle)',
+      input: 'Graph: 0â†’1â†’2â†’0 (cycle)',
       steps: [
-        'DFS(0): mark. DFS(1): mark. DFS(2): neighbor 0 is inStack → cycle!',
+        'DFS(0): mark. DFS(1): mark. DFS(2): neighbor 0 is inStack â†’ cycle!',
       ],
       output: 'true',
     },
     pitfalls: ['For directed graphs, use inStack (recursion stack). For undirected graphs, just use visited + parent tracking.'],
   },
 
-  // ─── Edit Distance ───────────────────────────────────────────────────────────
+  // â”€â”€â”€ Edit Distance â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'edit-distance': {
     intuition:
       'dp[i][j] = minimum edits to convert s1[0..i-1] to s2[0..j-1]. If characters match: dp[i][j]=dp[i-1][j-1]. Else: 1 + min(insert=dp[i][j-1], delete=dp[i-1][j], replace=dp[i-1][j-1]).',
@@ -399,7 +399,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Three operations: insert (dp[i][j-1]+1), delete (dp[i-1][j]+1), replace (dp[i-1][j-1]+1).'],
   },
 
-  // ─── Equilibrium Point ───────────────────────────────────────────────────────
+  // â”€â”€â”€ Equilibrium Point â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'equilibrium-point': {
     intuition:
       'An equilibrium point is where the sum of elements to the left equals the sum to the right. Compute total sum first. Then traverse left to right: subtract current element from right sum after checking equality.',
@@ -408,19 +408,19 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'For each index i: total -= arr[i] (now total = rightSum).',
       'If leftSum == total: return i+1 (1-indexed).',
       'leftSum += arr[i].',
-      'Return −1.',
+      'Return âˆ’1.',
     ],
     example: {
       input: 'arr = [-7,1,5,2,-4,3,0]',
       steps: [
-        'total=0. leftSum=0. i=0: total=7≠leftSum. i=1: total=6≠-7. ... i=3: total=-1,leftSum=-1 ✓. Return 4.',
+        'total=0. leftSum=0. i=0: total=7â‰ leftSum. i=1: total=6â‰ -7. ... i=3: total=-1,leftSum=-1 âœ“. Return 4.',
       ],
       output: '4',
     },
     pitfalls: ['Subtract the current element from rightSum BEFORE comparing (the current element belongs to neither side).'],
   },
 
-  // ─── Floyd Warshall ───────────────────────────────────────────────────────────
+  // â”€â”€â”€ Floyd Warshall â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'floyd-warshall': {
     intuition:
       'All-pairs shortest paths using dynamic programming over intermediate nodes. dist[i][j] = shortest path from i to j. For each intermediate node k: if going through k is shorter, update. Three nested loops: k (intermediate), i (source), j (destination).',
@@ -430,37 +430,37 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'Return dist matrix.',
     ],
     example: {
-      input: 'V=4, edges: 0→1(5),0→3(10),1→2(3),2→3(1)',
+      input: 'V=4, edges: 0â†’1(5),0â†’3(10),1â†’2(3),2â†’3(1)',
       steps: [
-        'k=0: no improvement. k=1: dist[0][2]=min(∞,5+3)=8. k=2: dist[0][3]=min(10,8+1)=9.',
+        'k=0: no improvement. k=1: dist[0][2]=min(âˆž,5+3)=8. k=2: dist[0][3]=min(10,8+1)=9.',
       ],
-      output: 'Shortest paths: 0→3=9',
+      output: 'Shortest paths: 0â†’3=9',
     },
-    pitfalls: ['k must be the OUTER loop — intermediate nodes are added one at a time.'],
+    pitfalls: ['k must be the OUTER loop â€” intermediate nodes are added one at a time.'],
   },
 
-  // ─── Gas Station ─────────────────────────────────────────────────────────────
+  // â”€â”€â”€ Gas Station â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'gas-station': {
     intuition:
-      'If total gas >= total cost, a solution exists and is unique. Use a greedy scan: track running surplus; when it goes negative, the current starting station is impossible — reset to the next station.',
+      'If total gas >= total cost, a solution exists and is unique. Use a greedy scan: track running surplus; when it goes negative, the current starting station is impossible â€” reset to the next station.',
     algorithm: [
       'totalGas=0, currentGas=0, start=0.',
-      'For i from 0 to n−1: totalGas += gas[i]−cost[i]. currentGas += gas[i]−cost[i].',
+      'For i from 0 to nâˆ’1: totalGas += gas[i]âˆ’cost[i]. currentGas += gas[i]âˆ’cost[i].',
       'If currentGas < 0: start=i+1. currentGas=0.',
-      'Return (totalGas >= 0) ? start : −1.',
+      'Return (totalGas >= 0) ? start : âˆ’1.',
     ],
     example: {
       input: 'gas=[1,2,3,4,5], cost=[3,4,5,1,2]',
       steps: [
-        'i=0: cur=-2 < 0 → start=1. i=1: cur=-2 < 0 → start=2. i=2: cur=-2 < 0 → start=3.',
-        'i=3: cur=3. i=4: cur=6. Total=2≥0. Return start=3.',
+        'i=0: cur=-2 < 0 â†’ start=1. i=1: cur=-2 < 0 â†’ start=2. i=2: cur=-2 < 0 â†’ start=3.',
+        'i=3: cur=3. i=4: cur=6. Total=2â‰¥0. Return start=3.',
       ],
       output: '3',
     },
-    pitfalls: ['The existence of a solution is guaranteed when total gas >= total cost — only one valid start exists.'],
+    pitfalls: ['The existence of a solution is guaranteed when total gas >= total cost â€” only one valid start exists.'],
   },
 
-  // ─── Height of Binary Tree ───────────────────────────────────────────────────
+  // â”€â”€â”€ Height of Binary Tree â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'height-of-binary-tree': {
     intuition:
       'The height is the number of nodes on the longest path from root to a leaf. Recursively: height = 1 + max(height(left), height(right)). Base: null node has height 0.',
@@ -469,7 +469,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'Return 1 + max(Height(node.left), Height(node.right)).',
     ],
     example: {
-      input: 'Tree: 1→(2→4, 3)',
+      input: 'Tree: 1â†’(2â†’4, 3)',
       steps: [
         'Height(4)=1. Height(2)=2. Height(3)=1. Height(1)=3.',
       ],
@@ -478,14 +478,14 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Height of a single node is 1 (not 0). Height of empty tree is 0.'],
   },
 
-  // ─── Histogram Max Rectangular Area ─────────────────────────────────────────
+  // â”€â”€â”€ Histogram Max Rectangular Area â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'histogram-max-rectangular-area': {
     intuition:
       'For each bar, find how far left and right it extends as the minimum bar. Use a monotonic increasing stack: when a shorter bar is found, the popped bar is bounded on the right by the current bar and on the left by the new stack top.',
     algorithm: [
       'Stack of indices. Append heights[n]=0 as sentinel.',
       'For i from 0 to n: while stack not empty and heights[i] < heights[stack.top]:',
-      '  h = heights[stack.pop()]. w = (stack empty) ? i : i−stack.top−1.',
+      '  h = heights[stack.pop()]. w = (stack empty) ? i : iâˆ’stack.topâˆ’1.',
       '  area = h*w. Update maxArea.',
       'Push i.',
     ],
@@ -500,7 +500,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Append a 0-height bar at the end to flush all remaining bars from the stack.'],
   },
 
-  // ─── Implement Trie ──────────────────────────────────────────────────────────
+  // â”€â”€â”€ Implement Trie â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'implement-trie': {
     intuition:
       'A Trie is a prefix tree. Each node has up to 26 children (for lowercase letters) and an isEnd flag. Insert: walk/create nodes for each character. Search: walk nodes, return isEnd at the last node. StartsWith: walk nodes, return true if path exists.',
@@ -513,17 +513,17 @@ const gfgExplanations: Record<string, RichExplanation> = {
     example: {
       input: 'Insert "apple". Search "apple", "app".',
       steps: [
-        'Insert: a→p→p→l→e (isEnd=true). Search "apple": reach isEnd=true ✓. Search "app": reach e node, isEnd=false → false.',
+        'Insert: aâ†’pâ†’pâ†’lâ†’e (isEnd=true). Search "apple": reach isEnd=true âœ“. Search "app": reach e node, isEnd=false â†’ false.',
       ],
       output: 'true, false',
     },
-    pitfalls: ['isEnd marks a complete word — do not confuse with "has children" (which indicates a prefix).'],
+    pitfalls: ['isEnd marks a complete word â€” do not confuse with "has children" (which indicates a prefix).'],
   },
 
-  // ─── Job Sequencing Problem ──────────────────────────────────────────────────
+  // â”€â”€â”€ Job Sequencing Problem â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'job-sequencing-problem': {
     intuition:
-      'Greedy: sort jobs by profit (descending). For each job, schedule it in the latest available time slot before its deadline. Use a boolean array of time slots; greedily pick the latest available slot ≤ deadline.',
+      'Greedy: sort jobs by profit (descending). For each job, schedule it in the latest available time slot before its deadline. Use a boolean array of time slots; greedily pick the latest available slot â‰¤ deadline.',
     algorithm: [
       'Sort jobs by profit descending.',
       'result[maxDeadline], slot[maxDeadline]=false.',
@@ -533,34 +533,34 @@ const gfgExplanations: Record<string, RichExplanation> = {
     example: {
       input: 'jobs=[(a,2,100),(b,1,19),(c,2,27),(d,1,25),(e,3,15)]',
       steps: [
-        'Sort: a(100),c(27),d(25),b(19),e(15). a→slot[1]. c→slot[0]. e→slot[2]. Maxprofit=100+27+15=142.',
+        'Sort: a(100),c(27),d(25),b(19),e(15). aâ†’slot[1]. câ†’slot[0]. eâ†’slot[2]. Maxprofit=100+27+15=142.',
       ],
       output: 'Max profit = 142, 3 jobs',
     },
-    pitfalls: ['Fill slots from right to left (latest available) — filling from the start wastes slots for earlier-deadline jobs.'],
+    pitfalls: ['Fill slots from right to left (latest available) â€” filling from the start wastes slots for earlier-deadline jobs.'],
   },
 
-  // ─── Kadane\'s Algorithm ───────────────────────────────────────────────────────
+  // â”€â”€â”€ Kadane\'s Algorithm â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'kadanes-algorithm': {
     intuition:
       'Maximum subarray sum. At each position, decide: extend the current subarray or start fresh. If the running sum becomes negative, starting fresh is always better. dp[i] = max(nums[i], dp[i-1]+nums[i]).',
     algorithm: [
       'maxSum = currentSum = arr[0].',
-      'For i from 1 to n−1: currentSum = max(arr[i], currentSum+arr[i]).',
+      'For i from 1 to nâˆ’1: currentSum = max(arr[i], currentSum+arr[i]).',
       'maxSum = max(maxSum, currentSum).',
       'Return maxSum.',
     ],
     example: {
       input: 'arr = [-2,1,-3,4,-1,2,1,-5,4]',
       steps: [
-        'cur: -2→1→-2→4→3→5→6→1→5. maxSum=6.',
+        'cur: -2â†’1â†’-2â†’4â†’3â†’5â†’6â†’1â†’5. maxSum=6.',
       ],
       output: '6',
     },
     pitfalls: ['Initialize both maxSum and currentSum to arr[0] to handle all-negative arrays correctly.'],
   },
 
-  // ─── Level order traversal ────────────────────────────────────────────────────
+  // â”€â”€â”€ Level order traversal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'level-order-traversal': {
     intuition:
       'BFS with level-size snapshotting: enqueue root, then for each level, dequeue exactly levelSize nodes and enqueue their children.',
@@ -575,7 +575,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Snapshot queue.size() BEFORE the inner dequeue loop.'],
   },
 
-  // ─── Longest Common Subsequence ───────────────────────────────────────────────
+  // â”€â”€â”€ Longest Common Subsequence â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'longest-common-subsequence': {
     intuition:
       'dp[i][j] = LCS length of s1[0..i-1] and s2[0..j-1]. If chars match: dp[i][j]=dp[i-1][j-1]+1. Else: dp[i][j]=max(dp[i-1][j], dp[i][j-1]).',
@@ -591,13 +591,13 @@ const gfgExplanations: Record<string, RichExplanation> = {
       ],
       output: '4',
     },
-    pitfalls: ['LCS counts non-contiguous characters in order — not the same as Longest Common Substring.'],
+    pitfalls: ['LCS counts non-contiguous characters in order â€” not the same as Longest Common Substring.'],
   },
 
-  // ─── Longest Increasing Subsequence ───────────────────────────────────────────
+  // â”€â”€â”€ Longest Increasing Subsequence â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'longest-increasing-subsequence': {
     intuition:
-      'Two approaches: O(n²) DP where dp[i]=LIS ending at index i, or O(n log n) using patience sorting with a "tails" array. In the patience approach, tails[i] = smallest tail element of all increasing subsequences of length i+1.',
+      'Two approaches: O(nÂ²) DP where dp[i]=LIS ending at index i, or O(n log n) using patience sorting with a "tails" array. In the patience approach, tails[i] = smallest tail element of all increasing subsequences of length i+1.',
     algorithm: [
       'tails = [].',
       'For each num: binary search for the position in tails where tails[pos] >= num.',
@@ -612,13 +612,13 @@ const gfgExplanations: Record<string, RichExplanation> = {
       ],
       output: '4',
     },
-    pitfalls: ['The tails array does not represent the actual LIS — only its length is meaningful. Reconstruct using parent pointers from the O(n²) approach if needed.'],
+    pitfalls: ['The tails array does not represent the actual LIS â€” only its length is meaningful. Reconstruct using parent pointers from the O(nÂ²) approach if needed.'],
   },
 
-  // ─── Longest Palindrome in a String ──────────────────────────────────────────
+  // â”€â”€â”€ Longest Palindrome in a String â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'longest-palindrome-in-a-string': {
     intuition:
-      'Expand around each center. For each character (and each gap between characters), expand outward as long as characters match. Track the maximum expansion. O(n²) time, O(1) space.',
+      'Expand around each center. For each character (and each gap between characters), expand outward as long as characters match. Track the maximum expansion. O(nÂ²) time, O(1) space.',
     algorithm: [
       'For each center (2n-1 centers for odd + even): expand while valid.',
       'ExpandAroundCenter(left, right): while left>=0 and right<n and s[left]==s[right]: left--, right++.',
@@ -627,7 +627,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     example: {
       input: 's = "babad"',
       steps: [
-        'Center at i=1("a"): expand → "bab"(len=3). Center at i=2("b"): expand → "aba"(len=3).',
+        'Center at i=1("a"): expand â†’ "bab"(len=3). Center at i=2("b"): expand â†’ "aba"(len=3).',
         'Return "bab" (first found).',
       ],
       output: '"bab"',
@@ -635,7 +635,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Check both odd (single-char center) and even (between-char center) palindromes.'],
   },
 
-  // ─── Longest Palindromic Subsequence ─────────────────────────────────────────
+  // â”€â”€â”€ Longest Palindromic Subsequence â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'longest-palindromic-subsequence': {
     intuition:
       'LPS(s) = LCS(s, reverse(s)). Alternatively, dp[i][j] = LPS of s[i..j]. If s[i]==s[j]: dp[i][j]=dp[i+1][j-1]+2. Else: dp[i][j]=max(dp[i+1][j], dp[i][j-1]).',
@@ -653,12 +653,12 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Fill dp bottom-up by increasing subproblem length, not by row.'],
   },
 
-  // ─── LRU Cache ───────────────────────────────────────────────────────────────
+  // â”€â”€â”€ LRU Cache â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'lru-cache': {
     intuition:
       'Same as LeetCode 146: HashMap + doubly linked list. O(1) get and put. HashMap maps key to node; DLL maintains recency order.',
     algorithm: [
-      'See LeetCode 146 explanation — identical structure.',
+      'See LeetCode 146 explanation â€” identical structure.',
     ],
     example: {
       input: 'capacity=2, put(1,1),put(2,2),get(1),put(3,3),get(2)',
@@ -668,26 +668,26 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Evict the LEAST recently used (tail node), not the least frequently used.'],
   },
 
-  // ─── Majority Element ────────────────────────────────────────────────────────
+  // â”€â”€â”€ Majority Element â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'majority-element': {
     intuition:
       'Boyer-Moore Voting Algorithm: the majority element (appears > n/2 times) will survive cancellation. Maintain a candidate and counter; increment for matching, decrement for non-matching; when counter reaches 0, switch candidate.',
     algorithm: [
       'candidate = arr[0], count = 1.',
-      'For i from 1 to n−1: if arr[i]==candidate: count++. Else: count--. If count==0: candidate=arr[i], count=1.',
+      'For i from 1 to nâˆ’1: if arr[i]==candidate: count++. Else: count--. If count==0: candidate=arr[i], count=1.',
       'Return candidate.',
     ],
     example: {
       input: 'arr = [3,3,4,2,4,4,2,4,4]',
       steps: [
-        '3(1),3(2),4(1),2(0)→4(1),4(2),2(1),4(2),4(3). Candidate=4.',
+        '3(1),3(2),4(1),2(0)â†’4(1),4(2),2(1),4(2),4(3). Candidate=4.',
       ],
       output: '4',
     },
-    pitfalls: ['The problem guarantees a majority element exists — no verification step needed. If not guaranteed, verify by counting.'],
+    pitfalls: ['The problem guarantees a majority element exists â€” no verification step needed. If not guaranteed, verify by counting.'],
   },
 
-  // ─── Matrix Chain Multiplication ─────────────────────────────────────────────
+  // â”€â”€â”€ Matrix Chain Multiplication â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'matrix-chain-multiplication': {
     intuition:
       'dp[i][j] = minimum number of scalar multiplications to compute the product of matrices i through j. Split at every position k between i and j; the cost is dp[i][k] + dp[k+1][j] + p[i-1]*p[k]*p[j].',
@@ -697,7 +697,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'For k from i to j-1: cost=dp[i][k]+dp[k+1][j]+p[i-1]*p[k]*p[j]. dp[i][j]=min.',
     ],
     example: {
-      input: 'p=[1,2,3,4] (3 matrices: 1×2, 2×3, 3×4)',
+      input: 'p=[1,2,3,4] (3 matrices: 1Ã—2, 2Ã—3, 3Ã—4)',
       steps: [
         'dp[1][2]=1*2*3=6. dp[2][3]=2*3*4=24. dp[1][3]=min(dp[1][1]+dp[2][3]+1*2*4, dp[1][2]+dp[3][3]+1*3*4)=min(0+24+8,6+0+12)=min(32,18)=18.',
       ],
@@ -706,28 +706,28 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['p[i] is the number of ROWS of matrix i and COLUMNS of matrix i-1. Use 1-indexed arrays carefully.'],
   },
 
-  // ─── Max Circular Subarray Sum ────────────────────────────────────────────────
+  // â”€â”€â”€ Max Circular Subarray Sum â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'max-circular-subarray-sum': {
     intuition:
-      'Two cases: (1) the max subarray does NOT wrap around → Kadane\'s algorithm. (2) The max subarray WRAPS → total sum minus the minimum subarray (non-wrapping). Answer = max(case1, totalSum − minSubarray). Handle all-negative edge case.',
+      'Two cases: (1) the max subarray does NOT wrap around â†’ Kadane\'s algorithm. (2) The max subarray WRAPS â†’ total sum minus the minimum subarray (non-wrapping). Answer = max(case1, totalSum âˆ’ minSubarray). Handle all-negative edge case.',
     algorithm: [
       'Case 1: maxSum = Kadane(arr).',
-      'totalSum = sum(arr). Case 2: minSum = Kadane(−arr) negated = minimum subarray sum. circularMax = totalSum − minSum.',
+      'totalSum = sum(arr). Case 2: minSum = Kadane(âˆ’arr) negated = minimum subarray sum. circularMax = totalSum âˆ’ minSum.',
       'If maxSum < 0 (all negative): return maxSum.',
       'Return max(maxSum, circularMax).',
     ],
     example: {
       input: 'arr = [8,-8,9,-9,10,-11,12]',
       steps: [
-        'Kadane: maxSum=22. totalSum=11. minKadane=-19 → circularMax=30.',
+        'Kadane: maxSum=22. totalSum=11. minKadane=-19 â†’ circularMax=30.',
         'Return max(22,30)=30.',
       ],
       output: '30',
     },
-    pitfalls: ['If all elements are negative, circularMax = totalSum − minSum = 0, which is wrong — return maxSum directly.'],
+    pitfalls: ['If all elements are negative, circularMax = totalSum âˆ’ minSum = 0, which is wrong â€” return maxSum directly.'],
   },
 
-  // ─── Merge K sorted linked lists ─────────────────────────────────────────────
+  // â”€â”€â”€ Merge K sorted linked lists â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'merge-k-sorted-linked-lists': {
     intuition:
       'Use a min-heap of size k: initialise with the head of each list. Repeatedly extract the minimum node, add it to the result, and push its successor (if any) back into the heap.',
@@ -737,17 +737,17 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'Return result head.',
     ],
     example: {
-      input: 'lists = [1→4→5, 1→3→4, 2→6]',
+      input: 'lists = [1â†’4â†’5, 1â†’3â†’4, 2â†’6]',
       steps: [
-        'Heap: [(1,L1),(1,L2),(2,L3)]. Extract 1→push 4. Extract 1→push 3. Extract 2→push 6. ...continue...',
-        'Result: 1→1→2→3→4→4→5→6.',
+        'Heap: [(1,L1),(1,L2),(2,L3)]. Extract 1â†’push 4. Extract 1â†’push 3. Extract 2â†’push 6. ...continue...',
+        'Result: 1â†’1â†’2â†’3â†’4â†’4â†’5â†’6.',
       ],
       output: '[1,1,2,3,4,4,5,6]',
     },
     pitfalls: ['For C# PriorityQueue, compare by node.val to maintain min-heap property.'],
   },
 
-  // ─── Minimum Cost Path ────────────────────────────────────────────────────────
+  // â”€â”€â”€ Minimum Cost Path â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'minimum-cost-path': {
     intuition:
       'Grid DP: dp[i][j] = minimum cost to reach (i,j) from (0,0). Transitions come from above, left, and top-left diagonal. dp[i][j] = cost[i][j] + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]).',
@@ -765,28 +765,28 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Unlike Unique Paths, diagonal moves are also allowed here.'],
   },
 
-  // ─── Minimum Jumps ────────────────────────────────────────────────────────────
+  // â”€â”€â”€ Minimum Jumps â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'minimum-jumps': {
     intuition:
       'Greedy BFS: at each step, track the farthest reachable position (currentEnd) and the farthest position reachable in the next step (farthestReach). When we reach currentEnd, we must take a jump; increment jumps and update currentEnd to farthestReach.',
     algorithm: [
       'jumps=0, currentEnd=0, farthest=0.',
-      'For i from 0 to n−2: farthest = max(farthest, i+arr[i]).',
+      'For i from 0 to nâˆ’2: farthest = max(farthest, i+arr[i]).',
       'If i == currentEnd: jumps++. currentEnd=farthest. If currentEnd >= n-1: break.',
       'Return jumps if reachable, else -1.',
     ],
     example: {
       input: 'arr = [2,3,1,1,4]',
       steps: [
-        'i=0: farthest=2. currentEnd=0 → jump, currentEnd=2, jumps=1.',
-        'i=1: farthest=4. i=2: farthest=4. currentEnd=2 → jump, currentEnd=4≥4, jumps=2. Break.',
+        'i=0: farthest=2. currentEnd=0 â†’ jump, currentEnd=2, jumps=1.',
+        'i=1: farthest=4. i=2: farthest=4. currentEnd=2 â†’ jump, currentEnd=4â‰¥4, jumps=2. Break.',
       ],
       output: '2',
     },
-    pitfalls: ['Iterate only to n−2 (not n−1) — you don\'t need a jump from the last position.'],
+    pitfalls: ['Iterate only to nâˆ’2 (not nâˆ’1) â€” you don\'t need a jump from the last position.'],
   },
 
-  // ─── Minimum Platforms ────────────────────────────────────────────────────────
+  // â”€â”€â”€ Minimum Platforms â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'minimum-platforms': {
     intuition:
       'Sort arrivals and departures separately. Use two pointers: for each arrival, if a train has departed by then, it frees a platform. Count max overlapping arrivals.',
@@ -804,23 +804,23 @@ const gfgExplanations: Record<string, RichExplanation> = {
       ],
       output: '3',
     },
-    pitfalls: ['Sort BOTH arrays independently — the i-th arrival does not correspond to the i-th departure after sorting.'],
+    pitfalls: ['Sort BOTH arrays independently â€” the i-th arrival does not correspond to the i-th departure after sorting.'],
   },
 
-  // ─── Missing And Repeating ────────────────────────────────────────────────────
+  // â”€â”€â”€ Missing And Repeating â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'missing-and-repeating': {
     intuition:
-      'Two equations: let x=missing, y=repeating. Sum difference: S−S_expected = y−x. Sum of squares difference: S2−S2_expected = y²−x² = (y−x)(y+x). Solve for x and y.',
+      'Two equations: let x=missing, y=repeating. Sum difference: Sâˆ’S_expected = yâˆ’x. Sum of squares difference: S2âˆ’S2_expected = yÂ²âˆ’xÂ² = (yâˆ’x)(y+x). Solve for x and y.',
     algorithm: [
-      'S=sum(arr), S_exp=n(n+1)/2. sumDiff=S−S_exp = y−x.',
-      'S2=sum(arr[i]²), S2_exp=n(n+1)(2n+1)/6. sq_diff=S2−S2_exp = y²−x².',
-      'y+x = sq_diff/(y-x). Solve: y=(sumDiff+(y+x))/2, x=y−sumDiff.',
+      'S=sum(arr), S_exp=n(n+1)/2. sumDiff=Sâˆ’S_exp = yâˆ’x.',
+      'S2=sum(arr[i]Â²), S2_exp=n(n+1)(2n+1)/6. sq_diff=S2âˆ’S2_exp = yÂ²âˆ’xÂ².',
+      'y+x = sq_diff/(y-x). Solve: y=(sumDiff+(y+x))/2, x=yâˆ’sumDiff.',
     ],
     example: {
       input: 'arr=[3,1,3,4,5] (n=5)',
       steps: [
-        'S=16, S_exp=15. sumDiff=1=y−x.',
-        'S2=60, S2_exp=55. sqDiff=5=(y−x)(y+x)=1*(y+x) → y+x=5.',
+        'S=16, S_exp=15. sumDiff=1=yâˆ’x.',
+        'S2=60, S2_exp=55. sqDiff=5=(yâˆ’x)(y+x)=1*(y+x) â†’ y+x=5.',
         'y=3, x=2.',
       ],
       output: 'Missing=2, Repeating=3',
@@ -828,25 +828,25 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Use long arithmetic to avoid overflow in sum of squares.'],
   },
 
-  // ─── N-Queen Problem ─────────────────────────────────────────────────────────
+  // â”€â”€â”€ N-Queen Problem â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'n-queen-problem': {
     intuition:
       'Same as LeetCode 51. Backtracking row by row with three HashSets tracking occupied columns, positive diagonals (row-col), and negative diagonals (row+col).',
     algorithm: [
-      'See LeetCode 51 explanation — identical approach.',
+      'See LeetCode 51 explanation â€” identical approach.',
     ],
     example: {
       input: 'n = 4',
       steps: ['Two valid placements for 4-Queens.'],
       output: '2 solutions',
     },
-    pitfalls: ['Track row+col and row-col as diagonal identifiers — not the actual diagonal position.'],
+    pitfalls: ['Track row+col and row-col as diagonal identifiers â€” not the actual diagonal position.'],
   },
 
-  // ─── Next Greater Element ─────────────────────────────────────────────────────
+  // â”€â”€â”€ Next Greater Element â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'next-greater-element': {
     intuition:
-      'Monotonic stack: maintain a decreasing stack. For each element, pop all elements smaller than it — the current element is their "next greater". Elements left in the stack have no next greater → assign -1.',
+      'Monotonic stack: maintain a decreasing stack. For each element, pop all elements smaller than it â€” the current element is their "next greater". Elements left in the stack have no next greater â†’ assign -1.',
     algorithm: [
       'Stack of indices. result[n]=-1.',
       'For i from 0 to n-1: while stack not empty and arr[stack.top] < arr[i]: result[stack.pop()] = arr[i].',
@@ -855,16 +855,16 @@ const gfgExplanations: Record<string, RichExplanation> = {
     example: {
       input: 'arr = [4,5,2,25]',
       steps: [
-        'i=0: push 0. i=1: 4<5 → result[0]=5. Push 1.',
-        'i=2: push 2. i=3: 2<25 → result[2]=25. 5<25 → result[1]=25. Push 3.',
+        'i=0: push 0. i=1: 4<5 â†’ result[0]=5. Push 1.',
+        'i=2: push 2. i=3: 2<25 â†’ result[2]=25. 5<25 â†’ result[1]=25. Push 3.',
         'result=[5,25,25,-1].',
       ],
       output: '[5,25,25,-1]',
     },
-    pitfalls: ['The stack stores INDICES, not values — you need the index to update result[].'],
+    pitfalls: ['The stack stores INDICES, not values â€” you need the index to update result[].'],
   },
 
-  // ─── Next Permutation ─────────────────────────────────────────────────────────
+  // â”€â”€â”€ Next Permutation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'next-permutation': {
     intuition:
       'Three steps: (1) find the rightmost "descent" (arr[i] < arr[i+1]). (2) Swap arr[i] with the smallest element greater than arr[i] to its right. (3) Reverse the suffix after position i to get the next smallest permutation.',
@@ -876,14 +876,14 @@ const gfgExplanations: Record<string, RichExplanation> = {
     example: {
       input: 'arr = [1,2,3]',
       steps: [
-        'i=1 (arr[1]=2 < arr[2]=3). j=2 (arr[2]=3 > 2). Swap: [1,3,2]. Reverse suffix: [1,3,2]. → [1,3,2].',
+        'i=1 (arr[1]=2 < arr[2]=3). j=2 (arr[2]=3 > 2). Swap: [1,3,2]. Reverse suffix: [1,3,2]. â†’ [1,3,2].',
       ],
       output: '[1,3,2]',
     },
-    pitfalls: ['Reverse the suffix, do not sort it — the suffix is already in descending order so reversing achieves ascending order in O(n).'],
+    pitfalls: ['Reverse the suffix, do not sort it â€” the suffix is already in descending order so reversing achieves ascending order in O(n).'],
   },
 
-  // ─── Palindrome Linked List ───────────────────────────────────────────────────
+  // â”€â”€â”€ Palindrome Linked List â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'palindrome-linked-list': {
     intuition:
       'Find the midpoint (slow/fast pointers), reverse the second half, compare with the first half, then optionally restore. O(n) time, O(1) space.',
@@ -894,9 +894,9 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'Optionally restore the second half.',
     ],
     example: {
-      input: '1→2→2→1',
+      input: '1â†’2â†’2â†’1',
       steps: [
-        'Mid = node(2) at index 1. Reverse second half: 1→2.',
+        'Mid = node(2) at index 1. Reverse second half: 1â†’2.',
         'Compare: 1==1, 2==2. Palindrome!',
       ],
       output: 'true',
@@ -904,7 +904,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Restore the list after comparison if the problem requires (most GFG solutions need immutable input).'],
   },
 
-  // ─── Parenthesis Checker ─────────────────────────────────────────────────────
+  // â”€â”€â”€ Parenthesis Checker â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'parenthesis-checker': {
     intuition:
       'Use a stack. Push opening brackets. For closing brackets, check the stack top is the matching opener. Return true iff the stack is empty at the end.',
@@ -915,14 +915,14 @@ const gfgExplanations: Record<string, RichExplanation> = {
     example: {
       input: '"{()[{()}]}"',
       steps: [
-        '{ push. ( push. ) matches ( → pop. [ push. { push. ( push. ) → pop. } → pop. ] → pop. } → pop. Stack empty → true.',
+        '{ push. ( push. ) matches ( â†’ pop. [ push. { push. ( push. ) â†’ pop. } â†’ pop. ] â†’ pop. } â†’ pop. Stack empty â†’ true.',
       ],
       output: 'true',
     },
-    pitfalls: ['Check stack is non-empty before comparing top — an extra closing bracket crashes a stack-empty check.'],
+    pitfalls: ['Check stack is non-empty before comparing top â€” an extra closing bracket crashes a stack-empty check.'],
   },
 
-  // ─── Partition Equal Subset Sum ───────────────────────────────────────────────
+  // â”€â”€â”€ Partition Equal Subset Sum â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'partition-equal-subset-sum': {
     intuition:
       'Can we select a subset summing to totalSum/2? Classic 0/1 knapsack boolean DP. If totalSum is odd, return false immediately. dp[j] = true if subset summing to j is achievable.',
@@ -942,7 +942,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Process in reverse to avoid using the same element twice (0/1 constraint).'],
   },
 
-  // ─── Rat in a Maze Problem - I ────────────────────────────────────────────────
+  // â”€â”€â”€ Rat in a Maze Problem - I â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'rat-in-a-maze-problem-i': {
     intuition:
       'Backtracking: from (0,0), try moving Down/Left/Right/Up (in any order). Mark cell as visited to avoid cycles. Record path when (n-1,n-1) is reached. Backtrack by unmarking.',
@@ -953,14 +953,14 @@ const gfgExplanations: Record<string, RichExplanation> = {
     example: {
       input: 'maze=[[1,0,0,0],[1,1,0,1],[1,1,0,0],[0,1,1,1]]',
       steps: [
-        'Path DDRDRR: (0,0)→(1,0)→(2,0)→(2,1)→(3,1)→(3,2)→(3,3). Valid!',
+        'Path DDRDRR: (0,0)â†’(1,0)â†’(2,0)â†’(2,1)â†’(3,1)â†’(3,2)â†’(3,3). Valid!',
       ],
       output: '["DDRDRR"]',
     },
     pitfalls: ['Add directions in sorted order (D,L,R,U) to get paths in lexicographic order.'],
   },
 
-  // ─── Reverse a linked list ────────────────────────────────────────────────────
+  // â”€â”€â”€ Reverse a linked list â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'reverse-a-linked-list': {
     intuition:
       'Iterative reversal: use three pointers (prev, curr, next). Redirect each node\'s next pointer to its predecessor.',
@@ -970,16 +970,16 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'Return prev (new head).',
     ],
     example: {
-      input: '1→2→3→4→5',
+      input: '1â†’2â†’3â†’4â†’5',
       steps: [
-        'null←1  2→3→4→5. null←1←2  3→4→5. ... null←1←2←3←4←5. prev=5.',
+        'nullâ†1  2â†’3â†’4â†’5. nullâ†1â†2  3â†’4â†’5. ... nullâ†1â†2â†3â†4â†5. prev=5.',
       ],
-      output: '5→4→3→2→1',
+      output: '5â†’4â†’3â†’2â†’1',
     },
     pitfalls: ['Save curr.next BEFORE redirecting curr.next=prev, or you lose the rest of the list.'],
   },
 
-  // ─── Rotten Oranges ───────────────────────────────────────────────────────────
+  // â”€â”€â”€ Rotten Oranges â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'rotten-oranges': {
     intuition:
       'Multi-source BFS: add all initially rotten oranges to the queue. Each BFS step represents one minute of rotting. After BFS, if any fresh orange remains, return -1.',
@@ -996,10 +996,10 @@ const gfgExplanations: Record<string, RichExplanation> = {
       ],
       output: '4',
     },
-    pitfalls: ['Start BFS with ALL rotten oranges simultaneously — not from just one source.'],
+    pitfalls: ['Start BFS with ALL rotten oranges simultaneously â€” not from just one source.'],
   },
 
-  // ─── Serialize and deserialize a binary tree ──────────────────────────────────
+  // â”€â”€â”€ Serialize and deserialize a binary tree â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'serialize-and-deserialize-a-binary-tree': {
     intuition:
       'Serialize via pre-order DFS: record node values and "#" for null nodes. Deserialize by consuming tokens in the same pre-order: the first non-null token is the root, recurse for left then right subtree.',
@@ -1008,32 +1008,32 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'Deserialize: split by comma, use an index pointer (or queue of tokens). Consume first token: if "#" return null. Else create node, recurse left, then right.',
     ],
     example: {
-      input: 'Tree: 1→(2, 3→(4,5))',
+      input: 'Tree: 1â†’(2, 3â†’(4,5))',
       steps: [
         'Serialize: "1,2,#,#,3,4,#,#,5,#,#".',
-        'Deserialize: read 1→root, read 2→left, read #→left.left=null, read #→left.right=null, ...',
+        'Deserialize: read 1â†’root, read 2â†’left, read #â†’left.left=null, read #â†’left.right=null, ...',
       ],
       output: 'Reconstructed tree = original tree',
     },
-    pitfalls: ['Use pre-order (not in-order) for serialization — in-order requires extra information to determine root.'],
+    pitfalls: ['Use pre-order (not in-order) for serialization â€” in-order requires extra information to determine root.'],
   },
 
-  // ─── Sort 0s, 1s and 2s ──────────────────────────────────────────────────────
+  // â”€â”€â”€ Sort 0s, 1s and 2s â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'sort-0s-1s-and-2s': {
     intuition:
       'Dutch National Flag algorithm (same as LeetCode 75). Three-way partition in a single pass using three pointers: lo, mid, hi.',
     algorithm: [
-      'See LeetCode 75 explanation — identical.',
+      'See LeetCode 75 explanation â€” identical.',
     ],
     example: {
       input: '[0,1,2,0,1,2]',
       steps: ['Result: [0,0,1,1,2,2] in one pass.'],
       output: '[0,0,1,1,2,2]',
     },
-    pitfalls: ['Do not increment mid when swapping with hi — the swapped element is unexamined.'],
+    pitfalls: ['Do not increment mid when swapping with hi â€” the swapped element is unexamined.'],
   },
 
-  // ─── Subset Sum Problem ────────────────────────────────────────────────────────
+  // â”€â”€â”€ Subset Sum Problem â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'subset-sum-problem': {
     intuition:
       'Boolean DP: dp[j] = true if a subset with sum j exists. Same as 0/1 knapsack boolean version. For each element, iterate backwards through dp array.',
@@ -1050,7 +1050,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Process in reverse order (j from sum down) to avoid using an element multiple times.'],
   },
 
-  // ─── Topological sort ────────────────────────────────────────────────────────
+  // â”€â”€â”€ Topological sort â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'topological-sort': {
     intuition:
       'Kahn\'s BFS approach: repeatedly remove nodes with in-degree 0. DFS approach: after exploring all descendants, push node to stack; the reverse of the stack gives topological order.',
@@ -1059,31 +1059,31 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'Collect nodes by finishing time (descending).',
     ],
     example: {
-      input: 'DAG: 5→0, 5→2, 4→0, 4→1, 2→3, 3→1',
+      input: 'DAG: 5â†’0, 5â†’2, 4â†’0, 4â†’1, 2â†’3, 3â†’1',
       steps: ['One valid topological order: 5,4,2,3,1,0.'],
       output: '[5,4,2,3,1,0]',
     },
     pitfalls: ['Topological sort is only valid for DAGs (Directed Acyclic Graphs). Detect cycles first.'],
   },
 
-  // ─── Top View of Binary Tree ──────────────────────────────────────────────────
+  // â”€â”€â”€ Top View of Binary Tree â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'top-view-of-binary-tree': {
     intuition:
       'Level-order traversal with horizontal distance (HD). For each HD, record only the FIRST node seen (top view). A node is visible from the top if no ancestor has the same HD.',
     algorithm: [
-      'BFS with (node, HD). Map: HD → first seen value (only set if HD not already in map).',
-      'Enqueue (left, hd−1) and (right, hd+1).',
+      'BFS with (node, HD). Map: HD â†’ first seen value (only set if HD not already in map).',
+      'Enqueue (left, hdâˆ’1) and (right, hd+1).',
       'Return map values sorted by HD.',
     ],
     example: {
-      input: 'Tree: 1→(2→(4,5),3)',
-      steps: ['HD: 4→-2, 2→-1, 5→0, 1→0, 3→1. Top (first seen): 4,2,1,3.'],
+      input: 'Tree: 1â†’(2â†’(4,5),3)',
+      steps: ['HD: 4â†’-2, 2â†’-1, 5â†’0, 1â†’0, 3â†’1. Top (first seen): 4,2,1,3.'],
       output: '[4,2,1,3]',
     },
     pitfalls: ['For top view, the FIRST node (BFS order = top to bottom) at each HD wins. For bottom view, the last node wins.'],
   },
 
-  // ─── Trapping Rain Water ──────────────────────────────────────────────────────
+  // â”€â”€â”€ Trapping Rain Water â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'trapping-rain-water': {
     intuition:
       'Same as LeetCode 42. Two-pointer approach: water at each position is limited by the shorter of the max heights seen from left and right. Two pointers converge inward, always processing the shorter side.',
@@ -1097,13 +1097,13 @@ const gfgExplanations: Record<string, RichExplanation> = {
       steps: ['Two-pointer fills: total trapped = 6.'],
       output: '6',
     },
-    pitfalls: ['Process the shorter side — the shorter boundary determines how much water is trapped.'],
+    pitfalls: ['Process the shorter side â€” the shorter boundary determines how much water is trapped.'],
   },
 
-  // ─── Two Sum - Pair with Given Sum ───────────────────────────────────────────
+  // â”€â”€â”€ Two Sum - Pair with Given Sum â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'two-sum-pair-with-given-sum': {
     intuition:
-      'Two pointers on sorted array: if sum < target, advance left; if sum > target, retreat right; if equal, found the pair. For unsorted, use a HashSet: for each element, check if (target−element) is in the set.',
+      'Two pointers on sorted array: if sum < target, advance left; if sum > target, retreat right; if equal, found the pair. For unsorted, use a HashSet: for each element, check if (targetâˆ’element) is in the set.',
     algorithm: [
       'Sort arr. lo=0, hi=n-1.',
       'While lo < hi: sum=arr[lo]+arr[hi]. If sum==target: return true. If sum<target: lo++. Else: hi--.',
@@ -1111,13 +1111,13 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
     example: {
       input: 'arr=[2,7,11,15], target=9',
-      steps: ['lo=0(2), hi=3(15): 17>9→hi--. hi=2(11): 13>9→hi--. hi=1(7): 9==9 ✓.'],
+      steps: ['lo=0(2), hi=3(15): 17>9â†’hi--. hi=2(11): 13>9â†’hi--. hi=1(7): 9==9 âœ“.'],
       output: 'true',
     },
-    pitfalls: ['Sorting changes indices — if you need to return original indices, use a HashMap approach instead.'],
+    pitfalls: ['Sorting changes indices â€” if you need to return original indices, use a HashMap approach instead.'],
   },
 
-  // ─── Undirected Graph Cycle ───────────────────────────────────────────────────
+  // â”€â”€â”€ Undirected Graph Cycle â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'undirected-graph-cycle': {
     intuition:
       'BFS or DFS with parent tracking. In an undirected graph, a cycle exists if a visited neighbor is not the direct parent. Track the parent to avoid treating the back-edge to parent as a cycle.',
@@ -1127,14 +1127,14 @@ const gfgExplanations: Record<string, RichExplanation> = {
     example: {
       input: 'Graph: 0-1, 1-2, 2-0 (triangle)',
       steps: [
-        'DFS(0,−1)→DFS(1,0)→DFS(2,1): neighbor 0 is visited and ≠ parent(1) → cycle!',
+        'DFS(0,âˆ’1)â†’DFS(1,0)â†’DFS(2,1): neighbor 0 is visited and â‰  parent(1) â†’ cycle!',
       ],
       output: 'true',
     },
     pitfalls: ['Pass parent as -1 for the root node. For multigraphs (parallel edges), use parent-edge ID instead of parent node.'],
   },
 
-  // ─── Word Break ───────────────────────────────────────────────────────────────
+  // â”€â”€â”€ Word Break â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'word-break': {
     intuition:
       'DP: dp[i] = true if s[0..i-1] can be segmented using dictionary words. For each i, check all j < i: if dp[j] is true and s[j..i-1] is in the dictionary, dp[i]=true.',
@@ -1146,15 +1146,15 @@ const gfgExplanations: Record<string, RichExplanation> = {
     example: {
       input: 's="leetcode", dict=["leet","code"]',
       steps: [
-        'dp[0]=true. i=4: j=0, dp[0]=true, "leet" in dict → dp[4]=true.',
-        'i=8: j=4, dp[4]=true, "code" in dict → dp[8]=true.',
+        'dp[0]=true. i=4: j=0, dp[0]=true, "leet" in dict â†’ dp[4]=true.',
+        'i=8: j=4, dp[4]=true, "code" in dict â†’ dp[8]=true.',
       ],
       output: 'true',
     },
-    pitfalls: ['Use a HashSet for O(1) dictionary lookups — do not iterate the dictionary for each check.'],
+    pitfalls: ['Use a HashSet for O(1) dictionary lookups â€” do not iterate the dictionary for each check.'],
   },
 
-  // ─── ZigZag Tree Traversal ────────────────────────────────────────────────────
+  // â”€â”€â”€ ZigZag Tree Traversal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'zigzag-tree-traversal': {
     intuition:
       'Level-order BFS with alternating direction. Collect each level normally, then reverse every other level (or use a deque and alternate front/back insertions).',
@@ -1172,31 +1172,31 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Track level parity (odd/even) to know when to reverse.'],
   },
 
-  // ─── Allocate Minimum Pages ──────────────────────────────────────────────────
+  // â”€â”€â”€ Allocate Minimum Pages â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'allocate-minimum-pages': {
     intuition: 'Binary search on the answer (minimum of maximum pages). For a given mid, check if we can allocate books to m students such that each student gets at most mid pages.',
     algorithm: [
       'lo = max(books), hi = sum(books).',
       'Binary search: mid = (lo+hi)/2. Check feasibility: greedily assign books; if a student would exceed mid, start a new student.',
-      'If feasible with ≤ m students: hi=mid. Else lo=mid+1.',
+      'If feasible with â‰¤ m students: hi=mid. Else lo=mid+1.',
       'Return lo.',
     ],
-    example: { input: 'books=[12,34,67,90], m=2', steps: ['lo=90, hi=203. mid=146: [12,34,67] to student1 (113≤146), [90] to student2 → 2 students ✓.', 'hi=146. mid=118: [12,34,67] (113≤118), [90] ✓. hi=118.', 'Continue until lo=hi=113.'], output: '113' },
+    example: { input: 'books=[12,34,67,90], m=2', steps: ['lo=90, hi=203. mid=146: [12,34,67] to student1 (113â‰¤146), [90] to student2 â†’ 2 students âœ“.', 'hi=146. mid=118: [12,34,67] (113â‰¤118), [90] âœ“. hi=118.', 'Continue until lo=hi=113.'], output: '113' },
     pitfalls: ['A student must get at least one book. Books must be contiguous (can\'t reorder).'],
   },
 
-  // ─── BST to Greater Sum Tree ─────────────────────────────────────────────────
+  // â”€â”€â”€ BST to Greater Sum Tree â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'bst-to-greater-sum-tree': {
-    intuition: 'In-order traversal visits BST in ascending order. Reverse in-order (right→node→left) visits in descending order. Maintain a running sum; update each node\'s value.',
+    intuition: 'In-order traversal visits BST in ascending order. Reverse in-order (rightâ†’nodeâ†’left) visits in descending order. Maintain a running sum; update each node\'s value.',
     algorithm: [
       'Do reverse in-order traversal (right subtree first).',
       'Maintain running sum. At each node: sum += node.val; node.val = sum.',
     ],
-    example: { input: 'BST=[4,1,6,0,2,5,7]', steps: ['Visit 7→sum=7. Visit 6→sum=13. Visit 5→sum=18. Visit 4→sum=22. Visit 2→sum=24. Visit 1→sum=25. Visit 0→sum=25.'], output: 'Tree with updated values' },
-    pitfalls: ['This is a simple Morris traversal or recursive reverse in-order — no extra space needed with Morris.'],
+    example: { input: 'BST=[4,1,6,0,2,5,7]', steps: ['Visit 7â†’sum=7. Visit 6â†’sum=13. Visit 5â†’sum=18. Visit 4â†’sum=22. Visit 2â†’sum=24. Visit 1â†’sum=25. Visit 0â†’sum=25.'], output: 'Tree with updated values' },
+    pitfalls: ['This is a simple Morris traversal or recursive reverse in-order â€” no extra space needed with Morris.'],
   },
 
-  // ─── Burning Tree ────────────────────────────────────────────────────────────
+  // â”€â”€â”€ Burning Tree â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'burning-tree': {
     intuition: 'Fire spreads from target node to all adjacent nodes (parent, children). Model as BFS from the target node treating the tree as a graph. First, find target and track parent pointers.',
     algorithm: [
@@ -1208,7 +1208,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Must track parent pointers since BFS needs to go upward too. Mark visited nodes to avoid cycles.'],
   },
 
-  // ─── Chocolate Distribution Problem ─────────────────────────────────────────
+  // â”€â”€â”€ Chocolate Distribution Problem â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'chocolate-distribution-problem': {
     intuition: 'Sort packets. The minimum difference between max and min packets given to m students is found in the sliding window of size m after sorting.',
     algorithm: [
@@ -1216,34 +1216,34 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'Sliding window of size m: for each window, compute A[i+m-1] - A[i].',
       'Return minimum such difference.',
     ],
-    example: { input: 'A=[7,3,2,4,9,12,56], m=3', steps: ['Sorted: [2,3,4,7,9,12,56].', 'Windows of size 3: [2,3,4]→2, [3,4,7]→4, [4,7,9]→5, [7,9,12]→5, [9,12,56]→47.', 'Min=2.'], output: '2' },
-    pitfalls: ['Sort first — only then is the minimum range guaranteed to be a contiguous subarray.'],
+    example: { input: 'A=[7,3,2,4,9,12,56], m=3', steps: ['Sorted: [2,3,4,7,9,12,56].', 'Windows of size 3: [2,3,4]â†’2, [3,4,7]â†’4, [4,7,9]â†’5, [7,9,12]â†’5, [9,12,56]â†’47.', 'Min=2.'], output: '2' },
+    pitfalls: ['Sort first â€” only then is the minimum range guaranteed to be a contiguous subarray.'],
   },
 
-  // ─── Clone a linked list with next and random pointer ────────────────────────
+  // â”€â”€â”€ Clone a linked list with next and random pointer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'clone-a-linked-list-with-next-and-random-pointer': {
     intuition: 'Three passes: (1) interleave cloned nodes between original nodes, (2) set random pointers for cloned nodes, (3) separate the two lists.',
     algorithm: [
-      'Pass 1: for each node N, insert clone N\' after N: N→N\'→N.next.',
+      'Pass 1: for each node N, insert clone N\' after N: Nâ†’N\'â†’N.next.',
       'Pass 2: for each original node N: N.next.random = N.random?.next.',
       'Pass 3: separate lists by fixing next pointers.',
     ],
     pitfalls: ['Pass 2 relies on the interleaved structure: original.random.next is the clone of original.random. Restore original list in pass 3.'],
   },
 
-  // ─── Course Schedule I ───────────────────────────────────────────────────────
+  // â”€â”€â”€ Course Schedule I â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'course-schedule-i': {
     intuition: 'Can all courses be completed? This is cycle detection in a directed graph. If the prerequisite graph is a DAG (no cycles), all courses can be done.',
     algorithm: [
-      'Build directed adjacency list: prerequisite→course.',
+      'Build directed adjacency list: prerequisiteâ†’course.',
       'Topological sort (Kahn\'s BFS): compute in-degrees. Queue nodes with in-degree 0. Process: reduce neighbors\' in-degree, add to queue when 0.',
       'If processed count == numCourses, return true.',
     ],
-    example: { input: 'n=2, prerequisites=[[1,0]]', steps: ['Graph: 0→1. in-degree: [0,1]. Queue:[0]. Process 0→in[1]=0→add 1. Count=2=n.'], output: 'true' },
+    example: { input: 'n=2, prerequisites=[[1,0]]', steps: ['Graph: 0â†’1. in-degree: [0,1]. Queue:[0]. Process 0â†’in[1]=0â†’add 1. Count=2=n.'], output: 'true' },
     pitfalls: ['Also solvable with DFS cycle detection (white/grey/black coloring).'],
   },
 
-  // ─── Course Schedule II ──────────────────────────────────────────────────────
+  // â”€â”€â”€ Course Schedule II â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'course-schedule-ii': {
     intuition: 'Return a valid course order (topological sort). If cycle exists, return empty array.',
     algorithm: [
@@ -1254,18 +1254,18 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Return any valid topological order, not a specific one. Empty array signals impossible (cycle).'],
   },
 
-  // ─── Count Distinct elements in every window ─────────────────────────────────
+  // â”€â”€â”€ Count Distinct elements in every window â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'count-distinct-elements-in-every-window': {
     intuition: 'Sliding window of size k. Use a frequency map. Track count of distinct elements (map size with non-zero counts).',
     algorithm: [
       'Populate frequency map with first k elements. Record distinct count.',
-      'Slide window: add new element (increment freq, if new → distinct++). Remove old (decrement, if 0 → distinct--).',
+      'Slide window: add new element (increment freq, if new â†’ distinct++). Remove old (decrement, if 0 â†’ distinct--).',
       'Record distinct count for each position.',
     ],
     pitfalls: ['Remove element from map entirely (or just decrement and check 0) when its count drops to 0.'],
   },
 
-  // ─── Count Reverse Pairs ─────────────────────────────────────────────────────
+  // â”€â”€â”€ Count Reverse Pairs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'count-reverse-pairs': {
     intuition: 'Count pairs (i,j) where i<j and A[i]>2*A[j]. Use merge sort: during merging, count pairs across left and right halves efficiently.',
     algorithm: [
@@ -1277,7 +1277,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Count BEFORE merging (after recursive sort), so both halves are sorted. The count step is separate from the merge step.'],
   },
 
-  // ─── Diameter of a Binary Tree ───────────────────────────────────────────────
+  // â”€â”€â”€ Diameter of a Binary Tree â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'diameter-of-a-binary-tree': {
     intuition: 'Diameter passes through some node (LCA). For each node, diameter through it = leftHeight + rightHeight. Track global maximum.',
     algorithm: [
@@ -1289,7 +1289,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Diameter doesn\'t have to pass through root. Update global max at every node.'],
   },
 
-  // ─── Dice throw ──────────────────────────────────────────────────────────────
+  // â”€â”€â”€ Dice throw â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'dice-throw': {
     intuition: 'Count ways to get sum S with N dice, each having M faces. DP: dp[i][j] = ways to get sum j with i dice.',
     algorithm: [
@@ -1301,7 +1301,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['1D DP with offset or 2D is clearer. Inner loop runs 1..min(m,j) to avoid going negative.'],
   },
 
-  // ─── Evaluation of Postfix Expression ────────────────────────────────────────
+  // â”€â”€â”€ Evaluation of Postfix Expression â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'evaluation-of-postfix-expression': {
     intuition: 'Stack-based evaluation: push operands, on operator pop two operands, apply, push result.',
     algorithm: [
@@ -1310,11 +1310,11 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'If token is operator (+,-,*,/): pop b then a, compute a op b, push result.',
       'Final stack top is the result.',
     ],
-    example: { input: '"2 3 1 * + 9 -"', steps: ['Push 2,3,1. *: pop 3,1→3. +: pop 2,3→5. Push 9. -: pop 5,9→-4.'], output: '-4' },
+    example: { input: '"2 3 1 * + 9 -"', steps: ['Push 2,3,1. *: pop 3,1â†’3. +: pop 2,3â†’5. Push 9. -: pop 5,9â†’-4.'], output: '-4' },
     pitfalls: ['Pop order matters: pop b first, then a, compute a op b (not b op a).'],
   },
 
-  // ─── Find median in a stream ──────────────────────────────────────────────────
+  // â”€â”€â”€ Find median in a stream â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'find-median-in-a-stream': {
     intuition: 'Maintain two heaps: max-heap for lower half, min-heap for upper half. Median is the top of the larger heap (or average of both tops).',
     algorithm: [
@@ -1326,7 +1326,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Java uses PriorityQueue (min by default); negate values for max-heap. Python: heapq is min-heap.'],
   },
 
-  // ─── Find the number of islands ──────────────────────────────────────────────
+  // â”€â”€â”€ Find the number of islands â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'find-the-number-of-islands': {
     intuition: 'DFS/BFS flood fill: for each unvisited \'1\', increment count and DFS to mark all connected \'1\'s as visited.',
     algorithm: [
@@ -1334,11 +1334,11 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'Increment island count.',
       'DFS/BFS: mark current as visited, recurse on all 4 (or 8) neighbors that are \'1\'.',
     ],
-    example: { input: '[[1,1,0],[0,1,0],[0,0,1]]', steps: ['Start (0,0)→DFS marks (0,0),(0,1),(1,1). Count=1. (2,2) unvisited→Count=2.'], output: '2' },
+    example: { input: '[[1,1,0],[0,1,0],[0,0,1]]', steps: ['Start (0,0)â†’DFS marks (0,0),(0,1),(1,1). Count=1. (2,2) unvisitedâ†’Count=2.'], output: '2' },
     pitfalls: ['Mark cells as visited immediately to avoid re-counting. Determine if connectivity is 4-directional or 8-directional.'],
   },
 
-  // ─── Flattening a Linked List ─────────────────────────────────────────────────
+  // â”€â”€â”€ Flattening a Linked List â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'flattening-a-linked-list': {
     intuition: 'Each node has a next pointer (horizontal) and a child pointer (vertical sorted list). Merge all vertical lists using merge sort logic.',
     algorithm: [
@@ -1349,7 +1349,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['After merging, the result uses child pointers, not next pointers. Set next to null in the merged result.'],
   },
 
-  // ─── Flood fill Algorithm ────────────────────────────────────────────────────
+  // â”€â”€â”€ Flood fill Algorithm â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'flood-fill-algorithm': {
     intuition: 'From a starting pixel, paint it and all connected pixels of the same color with a new color. DFS/BFS from start.',
     algorithm: [
@@ -1360,7 +1360,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Check if start pixel\'s color == new color and skip to avoid infinite recursion.'],
   },
 
-  // ─── Gold Mine Problem ────────────────────────────────────────────────────────
+  // â”€â”€â”€ Gold Mine Problem â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'gold-mine-problem': {
     intuition: 'DP: you can enter from any row in column 0 and move right, right-up, or right-down. Find path maximizing gold collected.',
     algorithm: [
@@ -1371,7 +1371,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Boundary checks for first/last rows. Can start from any cell in column 0. Must move left to right only.'],
   },
 
-  // ─── Gray Code ────────────────────────────────────────────────────────────────
+  // â”€â”€â”€ Gray Code â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'gray-code': {
     intuition: 'n-bit Gray code: i-th value = i XOR (i>>1). Or build iteratively: mirror and prefix with 0/1.',
     algorithm: [
@@ -1382,7 +1382,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Successive values differ by exactly 1 bit. The XOR formula i^(i>>1) directly gives the i-th Gray code.'],
   },
 
-  // ─── Implement Atoi ──────────────────────────────────────────────────────────
+  // â”€â”€â”€ Implement Atoi â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'implement-atoi': {
     intuition: 'Parse integer from string: skip whitespace, handle sign, parse digits, clamp to INT range.',
     algorithm: [
@@ -1394,7 +1394,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Overflow during parsing: check before multiplying. Empty string or all-whitespace returns 0.'],
   },
 
-  // ─── Implement Pow ───────────────────────────────────────────────────────────
+  // â”€â”€â”€ Implement Pow â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'implement-pow': {
     intuition: 'Fast exponentiation (binary exponentiation): x^n = (x^(n/2))^2, halving n each time.',
     algorithm: [
@@ -1406,7 +1406,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Handle n=INT_MIN carefully (overflow on negation). Use long for n.'],
   },
 
-  // ─── Inorder Traversal ────────────────────────────────────────────────────────
+  // â”€â”€â”€ Inorder Traversal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'inorder-traversal': {
     intuition: 'Visit left subtree, then root, then right subtree. For iterative: use stack to simulate call stack.',
     algorithm: [
@@ -1416,7 +1416,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Morris traversal achieves O(1) space by temporarily modifying tree links.'],
   },
 
-  // ─── Intersection Point in Y Shaped Linked Lists ─────────────────────────────
+  // â”€â”€â”€ Intersection Point in Y Shaped Linked Lists â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'intersection-point-in-y-shaped-linked-lists': {
     intuition: 'Two pointers: switch to the other head when reaching null. They\'ll meet at the intersection after traversing both lists\' full lengths.',
     algorithm: [
@@ -1427,7 +1427,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['If no intersection, both become null simultaneously after traversing both full lists, so while loop terminates.'],
   },
 
-  // ─── Josephus problem ─────────────────────────────────────────────────────────
+  // â”€â”€â”€ Josephus problem â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'josephus-problem': {
     intuition: 'Mathematical recurrence: J(1)=0; J(n)=(J(n-1)+k)%n. The 0-indexed survivor position builds from n=1.',
     algorithm: [
@@ -1439,7 +1439,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['0-indexed formula; add 1 at end for 1-indexed answer.'],
   },
 
-  // ─── K-th element of two Arrays ──────────────────────────────────────────────
+  // â”€â”€â”€ K-th element of two Arrays â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'k-th-element-of-two-arrays': {
     intuition: 'Binary search on one array. Take some elements from first array and k-take from second. Ensure the partition is valid.',
     algorithm: [
@@ -1451,7 +1451,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Handle boundary cases where mid1=0 or mid1=n1 (use -infinity/+infinity sentinels).'],
   },
 
-  // ─── k-th Smallest in BST ────────────────────────────────────────────────────
+  // â”€â”€â”€ k-th Smallest in BST â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'k-th-smallest-in-bst': {
     intuition: 'In-order traversal of BST visits nodes in sorted ascending order. The k-th node visited is the k-th smallest.',
     algorithm: [
@@ -1462,7 +1462,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Can early-exit once k reaches 0. For iterative, use a stack and counter.'],
   },
 
-  // ─── LCS of three strings ─────────────────────────────────────────────────────
+  // â”€â”€â”€ LCS of three strings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'lcs-of-three-strings': {
     intuition: 'Extension of LCS: 3D DP. dp[i][j][k] = LCS of first i chars of s1, j chars of s2, k chars of s3.',
     algorithm: [
@@ -1470,10 +1470,10 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'Else: dp[i][j][k] = max(dp[i-1][j][k], dp[i][j-1][k], dp[i][j][k-1]).',
       'Return dp[n1][n2][n3].',
     ],
-    pitfalls: ['3D DP has O(n³) time and space. Can be space-optimized but logic is clearer in 3D.'],
+    pitfalls: ['3D DP has O(nÂ³) time and space. Can be space-optimized but logic is clearer in 3D.'],
   },
 
-  // ─── Largest BST ─────────────────────────────────────────────────────────────
+  // â”€â”€â”€ Largest BST â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'largest-bst': {
     intuition: 'For each subtree, check if it\'s a valid BST and track its size. Return max BST size found. Each subtree return: (isBST, size, min, max).',
     algorithm: [
@@ -1484,7 +1484,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['If subtree is not BST, return size=0 so its ancestors can\'t count it. Propagate min/max correctly.'],
   },
 
-  // ─── Left View of Binary Tree ─────────────────────────────────────────────────
+  // â”€â”€â”€ Left View of Binary Tree â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'left-view-of-binary-tree': {
     intuition: 'BFS level order: first node of each level is visible from left. Or DFS with level tracking: first visit at each level is left view.',
     algorithm: [
@@ -1494,7 +1494,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['DFS should visit left child first to ensure leftmost node is recorded first.'],
   },
 
-  // ─── Level Order in spiral form ──────────────────────────────────────────────
+  // â”€â”€â”€ Level Order in spiral form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'level-order-in-spiral-form': {
     intuition: 'Alternate direction each level. Use two stacks: one for left-to-right levels, one for right-to-left. Or BFS with a direction flag.',
     algorithm: [
@@ -1506,7 +1506,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['When printing left-to-right, push children right-then-left to next stack (stack reverses order).'],
   },
 
-  // ─── Linked List Group Reverse ────────────────────────────────────────────────
+  // â”€â”€â”€ Linked List Group Reverse â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'linked-list-group-reverse': {
     intuition: 'Reverse every k nodes. For each group of k, reverse the sublist then connect to next group.',
     algorithm: [
@@ -1518,7 +1518,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['After reversal, old head of group becomes the tail. Connect it to recursively processed next group.'],
   },
 
-  // ─── Longest Common Increasing Subsequence ────────────────────────────────────
+  // â”€â”€â”€ Longest Common Increasing Subsequence â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'longest-common-increasing-subsequence': {
     intuition: 'Combine LCS and LIS. dp[j] = length of LCIS ending with B[j]. For each A[i], update dp[j] for B[j]==A[i] using best candidate from previous elements.',
     algorithm: [
@@ -1530,18 +1530,18 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Track "best" separately to avoid using updated dp values in same outer iteration.'],
   },
 
-  // ─── Longest Common Substring ────────────────────────────────────────────────
+  // â”€â”€â”€ Longest Common Substring â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'longest-common-substring': {
     intuition: 'DP: dp[i][j] = length of longest common substring ending at s1[i-1] and s2[j-1]. If chars match, dp[i][j]=dp[i-1][j-1]+1. Track global max.',
     algorithm: [
       'dp[i][j] = 0 if s1[i-1] != s2[j-1], else dp[i-1][j-1]+1.',
       'Track max(dp[i][j]) across all i,j.',
     ],
-    example: { input: 's1="ABCBDAB", s2="BDCABA"', steps: ['dp fills up. Max common substring is "AB" or "BD" of length 2? Actually "BCB"/"BDCAB" → "BCA"? Let me recalculate: longest = "AB"=2... actually "ABCB" vs "BDCABA" → "AB"=2.'], output: '2' },
-    pitfalls: ['Unlike LCS, must be contiguous — reset dp[i][j]=0 on mismatch, no max with adjacent cells.'],
+    example: { input: 's1="ABCBDAB", s2="BDCABA"', steps: ['dp fills up. Max common substring is "AB" or "BD" of length 2? Actually "BCB"/"BDCAB" â†’ "BCA"? Let me recalculate: longest = "AB"=2... actually "ABCB" vs "BDCABA" â†’ "AB"=2.'], output: '2' },
+    pitfalls: ['Unlike LCS, must be contiguous â€” reset dp[i][j]=0 on mismatch, no max with adjacent cells.'],
   },
 
-  // ─── Longest Consecutive Subsequence ─────────────────────────────────────────
+  // â”€â”€â”€ Longest Consecutive Subsequence â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'longest-consecutive-subsequence': {
     intuition: 'Add all elements to a HashSet. For each number n where n-1 is NOT in the set (it\'s a sequence start), count how long the streak goes.',
     algorithm: [
@@ -1549,11 +1549,11 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'For each n where set doesn\'t contain n-1: count streak = 1, while set contains n+streak: streak++.',
       'Update max streak.',
     ],
-    example: { input: '[100,4,200,1,3,2]', steps: ['Start=1: 1,2,3,4 → streak=4. Start=100: streak=1. Start=200: streak=1.'], output: '4' },
-    pitfalls: ['Only start counting from sequence start (n-1 not in set) — avoids O(n²) repetition.'],
+    example: { input: '[100,4,200,1,3,2]', steps: ['Start=1: 1,2,3,4 â†’ streak=4. Start=100: streak=1. Start=200: streak=1.'], output: '4' },
+    pitfalls: ['Only start counting from sequence start (n-1 not in set) â€” avoids O(nÂ²) repetition.'],
   },
 
-  // ─── Longest valid Parentheses ───────────────────────────────────────────────
+  // â”€â”€â”€ Longest valid Parentheses â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'longest-valid-parentheses': {
     intuition: 'Use a stack to find the length of the longest valid parentheses substring. Push indices; on \')\', pop matching \'(\'; if stack empty, push current as new base.',
     algorithm: [
@@ -1561,11 +1561,11 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'For \'(\': push index.',
       'For \')\': pop. If stack empty: push current index as new base. Else: length = i - stack.top(). Update max.',
     ],
-    example: { input: '"()(()"', steps: ['i=0 \'(\' push. i=1 \')\' pop, stack=[−1], len=1−(−1)=2. i=2,3 push. i=4 \')\' pop, stack=[1], len=4−1=3.'], output: '4... (recalc: "(()" → len=2 from last two)' },
+    example: { input: '"()(()"', steps: ['i=0 \'(\' push. i=1 \')\' pop, stack=[âˆ’1], len=1âˆ’(âˆ’1)=2. i=2,3 push. i=4 \')\' pop, stack=[1], len=4âˆ’1=3.'], output: '4... (recalc: "(()" â†’ len=2 from last two)' },
     pitfalls: ['Initialize stack with -1 as sentinel. Also solvable with DP (dp[i] = length ending at i) or two passes.'],
   },
 
-  // ─── Lowest Common Ancestor in a BST ─────────────────────────────────────────
+  // â”€â”€â”€ Lowest Common Ancestor in a BST â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'lowest-common-ancestor-in-a-bst': {
     intuition: 'BST property: LCA is the first node where paths to n1 and n2 diverge. If both values are less than current node, LCA is in left subtree; if both greater, in right; else current is LCA.',
     algorithm: [
@@ -1577,41 +1577,41 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Only valid for BST. For general binary tree, use the standard LCA algorithm.'],
   },
 
-  // ─── Majority Element II ─────────────────────────────────────────────────────
+  // â”€â”€â”€ Majority Element II â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'majority-element-ii': {
-    intuition: 'Find all elements appearing more than ⌊n/3⌋ times. At most 2 such elements exist. Use Boyer-Moore voting with 2 candidates.',
+    intuition: 'Find all elements appearing more than âŒŠn/3âŒ‹ times. At most 2 such elements exist. Use Boyer-Moore voting with 2 candidates.',
     algorithm: [
       'Maintain two candidates and their counts.',
       'For each element: if it matches candidate1 or 2, increment their count. If a count is 0, replace. Else decrement both.',
       'Verify the two candidates by counting occurrences.',
     ],
-    pitfalls: ['After voting, must verify — candidates might not actually exceed n/3 (voting finds the POTENTIAL candidates, not guaranteed majority).'],
+    pitfalls: ['After voting, must verify â€” candidates might not actually exceed n/3 (voting finds the POTENTIAL candidates, not guaranteed majority).'],
   },
 
-  // ─── Max rectangle ───────────────────────────────────────────────────────────
+  // â”€â”€â”€ Max rectangle â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'max-rectangle': {
     intuition: 'Build histograms row by row and apply "largest rectangle in histogram" for each row.',
     algorithm: [
       'Maintain heights[] array. For each row: update heights (increment if cell=1, reset to 0 if cell=0).',
       'For each row\'s heights, compute largest rectangle using stack-based approach.',
     ],
-    example: { input: '[[1,0,1,0,0],[1,0,1,1,1],[1,1,1,1,1],[1,0,0,1,0]]', steps: ['Row 0 heights=[1,0,1,0,0]→area=1. Row 1=[2,0,2,1,1]→area=3. Row 2=[3,1,3,2,2]→area=6.'], output: '6' },
+    example: { input: '[[1,0,1,0,0],[1,0,1,1,1],[1,1,1,1,1],[1,0,0,1,0]]', steps: ['Row 0 heights=[1,0,1,0,0]â†’area=1. Row 1=[2,0,2,1,1]â†’area=3. Row 2=[3,1,3,2,2]â†’area=6.'], output: '6' },
     pitfalls: ['Use the histogram approach for each row. The largest rectangle in histogram uses a monotone stack.'],
   },
 
-  // ─── Maximum Product Subarray ─────────────────────────────────────────────────
+  // â”€â”€â”€ Maximum Product Subarray â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'maximum-product-subarray': {
-    intuition: 'Track both maximum and minimum product ending at each position (negative × negative = positive). Max at each step = max of: current element alone, max*current, min*current.',
+    intuition: 'Track both maximum and minimum product ending at each position (negative Ã— negative = positive). Max at each step = max of: current element alone, max*current, min*current.',
     algorithm: [
       'maxProd = minProd = result = nums[0].',
       'For each num from index 1: tmp = maxProd. maxProd = max(num, maxProd*num, minProd*num). minProd = min(num, tmp*num, minProd*num).',
       'result = max(result, maxProd).',
     ],
     example: { input: '[2,3,-2,4]', steps: ['max=2,min=2. max=6,min=6. max=-2,min=-12. max=4,min=-48. Result=6.'], output: '6' },
-    pitfalls: ['Must track minimum product because negative × negative = positive. Save tmp before updating maxProd.'],
+    pitfalls: ['Must track minimum product because negative Ã— negative = positive. Save tmp before updating maxProd.'],
   },
 
-  // ─── Maximum path sum from any node ──────────────────────────────────────────
+  // â”€â”€â”€ Maximum path sum from any node â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'maximum-path-sum-from-any-node': {
     intuition: 'Path can go through any node, using both subtrees. DFS: at each node, best path = max(0, leftGain) + max(0, rightGain) + node.val. Track global max.',
     algorithm: [
@@ -1623,9 +1623,9 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Return val + max(left,right) to parent (can\'t split the path). Update global max with both sides locally.'],
   },
 
-  // ─── Maximum sum of Non-adjacent nodes ───────────────────────────────────────
+  // â”€â”€â”€ Maximum sum of Non-adjacent nodes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'maximum-sum-of-non-adjacent-nodes': {
-    intuition: 'Tree DP: for each node, two states — include node (can\'t include children) or exclude (take max of including/excluding each child).',
+    intuition: 'Tree DP: for each node, two states â€” include node (can\'t include children) or exclude (take max of including/excluding each child).',
     algorithm: [
       'DFS returns (include, exclude) for each subtree.',
       'include = node.val + sum(exclude of each child).',
@@ -1635,31 +1635,31 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['This is house-robber on a tree. Return a pair (take, skip) from each subtree.'],
   },
 
-  // ─── Median in a row-wise sorted Matrix ──────────────────────────────────────
+  // â”€â”€â”€ Median in a row-wise sorted Matrix â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'median-in-a-row-wise-sorted-matrix': {
-    intuition: 'Binary search on value range [lo, hi]. For a given mid, count elements ≤ mid using binary search on each row. Median found when count == (m*n+1)/2.',
+    intuition: 'Binary search on value range [lo, hi]. For a given mid, count elements â‰¤ mid using binary search on each row. Median found when count == (m*n+1)/2.',
     algorithm: [
       'lo = matrix[0][0], hi = max last elements.',
       'Binary search: mid = (lo+hi)/2. Count = sum of upper_bound(mid) across all rows.',
       'If count < (m*n+1)/2: lo=mid+1. Else hi=mid.',
       'Return lo.',
     ],
-    pitfalls: ['Integer median for odd total. Binary search on values, not indices. Count elements ≤ mid (not <).'],
+    pitfalls: ['Integer median for odd total. Binary search on values, not indices. Count elements â‰¤ mid (not <).'],
   },
 
-  // ─── Median of two sorted arrays ────────────────────────────────────────────
+  // â”€â”€â”€ Median of two sorted arrays â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'median-of-two-sorted-arrays': {
-    intuition: 'Binary search on the smaller array. Partition both arrays such that left half has (m+n)/2 elements and max(left) ≤ min(right).',
+    intuition: 'Binary search on the smaller array. Partition both arrays such that left half has (m+n)/2 elements and max(left) â‰¤ min(right).',
     algorithm: [
-      'Ensure len(A) ≤ len(B). Binary search on A: lo=0, hi=len(A).',
+      'Ensure len(A) â‰¤ len(B). Binary search on A: lo=0, hi=len(A).',
       'partA=mid, partB=(m+n+1)/2 - partA.',
-      'Check: maxLeftA ≤ minRightB and maxLeftB ≤ minRightA.',
+      'Check: maxLeftA â‰¤ minRightB and maxLeftB â‰¤ minRightA.',
       'If valid: median = max(maxLeft) for odd total, or (max(maxLeft)+min(minRight))/2 for even.',
     ],
-    pitfalls: ['Use ±infinity for boundary partitions (partA=0 or partA=len). Ensure binary search on shorter array.'],
+    pitfalls: ['Use Â±infinity for boundary partitions (partA=0 or partA=len). Ensure binary search on shorter array.'],
   },
 
-  // ─── Merge Sort for Linked List ──────────────────────────────────────────────
+  // â”€â”€â”€ Merge Sort for Linked List â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'merge-sort-for-linked-list': {
     intuition: 'Split linked list in half (using slow/fast pointer), recursively sort each half, merge the two sorted halves.',
     algorithm: [
@@ -1671,7 +1671,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['For splitting, stop slow pointer one before middle (so splitting is correct). No random access, so must find middle each time.'],
   },
 
-  // ─── Merge two sorted linked lists ──────────────────────────────────────────
+  // â”€â”€â”€ Merge two sorted linked lists â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'merge-two-sorted-linked-lists': {
     intuition: 'Use a dummy head. Compare heads of both lists, append smaller, advance that list\'s pointer.',
     algorithm: [
@@ -1683,7 +1683,7 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Don\'t forget to attach the remaining list after one list is exhausted.'],
   },
 
-  // ─── Middle of a Linked List ─────────────────────────────────────────────────
+  // â”€â”€â”€ Middle of a Linked List â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   'middle-of-a-linked-list': {
     intuition: 'Floyd\'s slow/fast pointer: slow advances one step, fast advances two. When fast reaches end, slow is at middle.',
     algorithm: [
@@ -2584,6 +2584,121 @@ const gfgExplanations: Record<string, RichExplanation> = {
       'Window [l,r]. Frequency map. Expand r. If distinct > k: shrink l. If distinct == k: update max.',
     ],
     pitfalls: ['Exactly k distinct (not at most). Keep window with exactly k unique chars.'],
+  },
+
+  'sudoku-solver': {
+    intuition: 'Fill empty cells (.) satisfying Sudoku constraints. Backtracking with row/col/box tracking.',
+    algorithm: [
+      'Find next empty cell. Try digits 1-9. If valid: place and recurse. Backtrack on failure.',
+    ],
+    pitfalls: ['Box index = (r/3)*3 + c/3. Check row, column, and 3x3 box for each digit.'],
+  },
+
+  'spirally-traversing-a-matrix': {
+    intuition: 'Traverse matrix in spiral order: right, down, left, up, shrinking boundaries.',
+    algorithm: [
+      'top=0, bottom=m-1, left=0, right=n-1. Process each boundary layer inward.',
+    ],
+    pitfalls: ['Check boundaries after each direction to avoid double-counting single rows/columns.'],
+  },
+
+  'rotate-by-90-degree': {
+    intuition: 'Rotate matrix 90 degrees clockwise: transpose then reverse each row.',
+    algorithm: [
+      'Transpose: swap matrix[i][j] and matrix[j][i]. Reverse each row.',
+    ],
+    pitfalls: ['For counter-clockwise: reverse each row then transpose. Or transpose and reverse each column.'],
+  },
+
+  'search-a-2d-matrix': {
+    intuition: 'Search in matrix where rows and columns are sorted. Start at top-right corner: move left if too large, down if too small.',
+    algorithm: [
+      'Start at (0, n-1). While in bounds: if match: true. If too large: col--. If too small: row++.',
+    ],
+    pitfalls: ['O(m+n) staircase search. Start at top-right or bottom-left.'],
+  },
+
+  'minimum-cost-to-connect-all-points': {
+    intuition: 'Minimum spanning tree on points using Manhattan distance. Prim or Kruskal.',
+    algorithm: [
+      'Prim: start from point 0. For each step: add closest unvisited point. Update distances.',
+    ],
+    pitfalls: ['Manhattan distance = |x1-x2| + |y1-y2|. Prim with array is O(n^2), acceptable for n<=1000.'],
+  },
+
+  'construct-binary-tree-from-parent-array': {
+    intuition: 'Build binary tree from parent array where parent[i] = parent of node i (-1 for root).',
+    algorithm: [
+      'Create all nodes. For each i: if parent[i] == -1: root = i. Else: attach i as left or right child of parent[i].',
+    ],
+    pitfalls: ['Create nodes first, then link. Root has parent = -1.'],
+  },
+
+  'array-to-bst': {
+    intuition: 'Convert sorted array to height-balanced BST. Recursively use middle element as root.',
+    algorithm: [
+      'mid = (lo + hi) / 2. root = arr[mid]. root.left = build(lo, mid-1). root.right = build(mid+1, hi).',
+    ],
+    pitfalls: ['Same as LC 108. Middle element as root ensures balance.'],
+  },
+
+  'count-pairs-whose-sum-is-less-than-target': {
+    intuition: 'Count pairs with sum < target. Sort + two pointers.',
+    algorithm: [
+      'Sort. l=0, r=n-1. If nums[l]+nums[r] < target: count += r-l, l++. Else: r--.',
+    ],
+    pitfalls: ['When sum < target: all pairs with r fixed from l to r-1 also qualify. Count += r-l.'],
+  },
+
+  'boolean-matrix': {
+    intuition: 'Set entire row and column to 1 if any 1 found. Two-pass with row/col markers.',
+    algorithm: [
+      'First pass: mark rows and cols that have 1. Second pass: set entire marked rows/cols to 1.',
+    ],
+    pitfalls: ['Use extra O(m+n) space for markers. Or use first row/col as markers (O(1) space).'],
+  },
+
+  'set-matrix-zeroes': {
+    intuition: 'Set entire row and column to 0 if element is 0. Mark rows/cols first, then zero them.',
+    algorithm: [
+      'Find all (r,c) with 0. Collect rows and cols to zero. Zero them in second pass.',
+    ],
+    pitfalls: ['Do not zero while scanning (would create false zeros). Mark first, zero second.'],
+  },
+
+  'minimum-number-of-platforms-required-for-a-railway-station': {
+    intuition: 'Maximum trains at station simultaneously. Sort arrivals and departures, two-pointer count overlapping intervals.',
+    algorithm: [
+      'Sort arrivals[], departures[]. Two pointers i (arrivals), j (departures).',
+      'If arrivals[i] <= departures[j]: platform++, i++. Else: platform--, j++. Track max.',
+    ],
+    pitfalls: ['Classic interval scheduling. Minimum platforms = maximum overlap at any time.'],
+  },
+
+  'maximum-index': {
+    intuition: 'Find max j-i where arr[j] >= arr[i]. Precompute left min array and right max array.',
+    algorithm: [
+      'leftMin[i] = min of arr[0..i]. rightMax[i] = max of arr[i..n-1].',
+      'Two pointers on leftMin and rightMax. When leftMin[i] <= rightMax[j]: update ans, j++. Else i++.',
+    ],
+    pitfalls: ['Brute force O(n^2). Optimal: precompute + two pointers O(n).'],
+  },
+
+  'minimum-sum-partition': {
+    intuition: 'Partition set into two subsets with minimum absolute difference. Subset sum DP.',
+    algorithm: [
+      'dp[i] = can we form sum i from the array. Find achievable sums closest to total/2.',
+      'Answer = min(|total - 2*s|) for achievable s.',
+    ],
+    pitfalls: ['Standard subset sum DP. Target = total/2. Find closest achievable sum.'],
+  },
+
+  'leaders-in-an-array': {
+    intuition: 'An element is a leader if it is greater than all elements to its right. Scan right to left.',
+    algorithm: [
+      'maxRight = arr[n-1]. Last element is always leader. Scan right to left: if arr[i] >= maxRight: leader, update maxRight.',
+    ],
+    pitfalls: ['Rightmost element is always a leader. Track running max from right.'],
   },
 
 }
