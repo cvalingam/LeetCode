@@ -1,5 +1,8 @@
-// Approach: DP tabulation — track the best profit in three states: holding,
-// just sold (cooldown next), and resting; advance one day at a time.
+// Approach: State-machine DP with three states tracked as rolling variables.
+// 'held' = max profit when holding a stock; 'sold' = profit the day we just sold (now in cooldown);
+// 'rest' = profit while not holding and not in cooldown (free to buy).
+// Transitions each day: held = max(held, rest - price); sold = held + price; rest = max(rest, sold).
+// Rolling variables replace an n x 3 table, giving O(1) space.
 // Time: O(n) Space: O(1)
 
 public class Solution

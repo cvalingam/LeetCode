@@ -1,5 +1,10 @@
-// Approach: DFS recursively counting all nodes in the complete binary tree.
-// Time: O(n) Space: O(log n)
+// Approach: Exploit the complete binary tree property to count faster than O(n).
+// Compute left-height (leftmost path) hl and right-height (rightmost path) hr.
+// If hl == hr, the left subtree is a perfect binary tree with 2^hl - 1 nodes; recurse only on the right.
+// If hl != hr, the right subtree is perfect with 2^hr - 1 nodes; recurse only on the left.
+// Each recursive call eliminates exactly half the tree, giving O(log n) levels of recursion.
+// Each level computes two heights in O(log n) time, so the total is O(log^2 n).
+// Time: O(log^2 n) Space: O(log n) for the recursion stack.
 
 public class TreeNode
 {

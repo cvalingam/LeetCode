@@ -1,6 +1,9 @@
-// Approach: Treat each row as the base of a histogram using cumulative heights,
-// then apply largest-rectangle-in-histogram via a monotonic stack.
-// Time: O(m*n) Space: O(n)
+// Approach: Reduce to the classic Largest Rectangle in Histogram problem, applied row by row.
+// Build a heights array: heights[j] = consecutive '1's directly above row i in column j (reset on '0').
+// Each row produces a histogram representing the rectangles ending at that row.
+// Apply the monotonic stack algorithm on each histogram to find the maximum rectangle.
+// Stack stores column indices; when a shorter bar is found, pop and compute the area.
+// Time: O(m x n) — one O(n) histogram pass per row. Space: O(n) for heights and stack.
 
 public class Solution
 {

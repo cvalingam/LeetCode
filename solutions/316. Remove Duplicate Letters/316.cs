@@ -1,6 +1,10 @@
-// Approach: Monotonic stack — pop the stack when the top char is larger than
-// the current and still appears later; mark characters as permanently placed.
-// Time: O(n) Space: O(1)
+// Approach: Greedy monotonic stack to build the lexicographically smallest result.
+// Pre-count character frequencies; use a boolean array to track characters already in the stack.
+// For each character: if already in stack, skip it.
+// Otherwise, pop the stack top while: top > current AND top appears again later (count > 0).
+// Push the current character and mark it as 'in stack'.
+// Decrement count for each character processed regardless of whether it is pushed.
+// Time: O(n) Space: O(1) since the character set is fixed at 26 letters.
 
 public class Solution
 {

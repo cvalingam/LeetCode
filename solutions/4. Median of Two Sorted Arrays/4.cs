@@ -1,5 +1,9 @@
-// Approach: Binary search on the partition point in the smaller array so that
-// the left half of both arrays has at most (m+n)/2 elements and left max ≤ right min.
+// Approach: Binary search on the partition point in the smaller array (nums1).
+// The goal is to split both arrays so the combined left halves have (m+n)/2 elements,
+// and every element on the left is ≤ every element on the right.
+// Binary-search the cut index in nums1; derive the cut in nums2 from it.
+// If left1 > right2, move the cut left; if left2 > right1, move it right.
+// The median is the average of the two middle values (even total) or the larger left value (odd).
 // Time: O(log(min(m,n))) Space: O(1)
 
 public class Solution

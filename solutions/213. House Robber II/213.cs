@@ -1,6 +1,9 @@
-// Approach: Run the linear house-robber DP twice — once excluding the first
-// house and once excluding the last — then take the maximum.
-// Time: O(n) Space: O(1)
+// Approach: The circular layout means the first and last houses cannot both be robbed.
+// Break the circle into two overlapping linear sub-problems: houses [0..n-2] and houses [1..n-1].
+// Apply the standard House Robber DP on each range: dp = max(skip current, take current + dp[i-2]).
+// Use two rolling variables so each linear pass runs in O(1) space.
+// The answer is the maximum result from the two sub-problems.
+// Time: O(n) Space: O(1) using rolling variables.
 
 public class Solution
 {

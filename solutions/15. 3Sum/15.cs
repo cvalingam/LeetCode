@@ -1,6 +1,10 @@
-// Approach: Sort the array, then for each element use two inward-moving pointers
-// to find pairs summing to its negation, skipping duplicate values.
-// Time: O(n²) Space: O(n)
+// Approach: Sort the array so duplicates are adjacent and the two-pointer technique is valid.
+// For each element nums[i], set left = i+1 and right = n-1 and look for pairs summing to -nums[i].
+// If nums[left] + nums[right] == -nums[i], record the triplet and skip all duplicate values on both ends.
+// If the sum is too small, advance left; if too large, retreat right.
+// Skip duplicate values of nums[i] at the outer loop to avoid repeating triplets in the output.
+// Sorting is the key enabler — without it we would need O(n^2) hash-set work with deduplication logic.
+// Time: O(n^2) Space: O(n) for result storage
 
 public class Solution
 {

@@ -1,6 +1,9 @@
-// Approach: Reverse DP from bottom-right to top-left. Each cell stores the
-// minimum health required there; clamp to at least 1.
-// Time: O(m*n) Space: O(m*n)
+// Approach: Reverse DP from the bottom-right princess cell back to the top-left starting cell.
+// dp[i][j] = minimum health the knight needs when entering cell (i,j) to survive to the end.
+// From cell (i,j): the knight can go right or down, so dp[i][j] = min(dp[i+1][j], dp[i][j+1]) - dungeon[i][j].
+// Clamp dp[i][j] to at least 1 (the knight must always have at least 1 HP).
+// Forward DP does not work here because minimum health depends on future choices, not past ones.
+// Time: O(m x n) Space: O(m x n); reducible to O(n) with a rolling row.
 
 public class Solution
 {

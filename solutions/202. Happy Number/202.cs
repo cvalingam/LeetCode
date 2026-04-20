@@ -1,6 +1,9 @@
-// Approach: Floyd’s cycle detection on the digit-square-sum sequence
-// (slow/fast pointers); the number is happy if the cycle ends at 1.
-// Time: O(log n) Space: O(1)
+// Approach: Apply Floyd's cycle-detection (slow/fast pointers) on the digit-square-sum sequence.
+// A non-happy number always enters a cycle that does not include 1.
+// Slow advances one step; fast advances two steps per iteration.
+// If they meet at 1, the number is happy. If they meet at any other value, a cycle exists.
+// This avoids storing the visited set that a hash-based approach would need.
+// Time: O(log n) per step (digit sum computation). Space: O(1).
 
 public class Solution
 {

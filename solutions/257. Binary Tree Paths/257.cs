@@ -1,6 +1,9 @@
-// Approach: DFS with backtracking — build the path string and add it
-// to the results when a leaf node is reached.
-// Time: O(n) Space: O(n)
+// Approach: DFS (preorder) with path tracking using a string builder.
+// At each non-null node, append the node value (and '->' if not a leaf) to the current path.
+// When a leaf node is reached, add the complete path string to the results list.
+// Backtrack by passing the path string as a parameter (immutable strings make backtracking free).
+// Alternatively, use a StringBuilder with explicit Remove calls if performance matters at scale.
+// Time: O(n x L) where L is the average path length. Space: O(h) for the recursion stack.
 
 public class TreeNode
 {

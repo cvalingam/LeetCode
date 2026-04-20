@@ -1,6 +1,10 @@
-// Approach: Two passes — left-to-right assigns extra candy for ascending ratings;
-// right-to-left corrects for descending runs; take the max at each position.
-// Time: O(n) Space: O(n)
+// Approach: Greedy with two passes to independently satisfy left-neighbor and right-neighbor constraints.
+// Initialise every child with 1 candy (the minimum allowed).
+// Left-to-right pass: if ratings[i] > ratings[i-1], set candies[i] = candies[i-1] + 1.
+// Right-to-left pass: if ratings[i] > ratings[i+1], set candies[i] = max(candies[i], candies[i+1] + 1).
+// Taking the max in the right-to-left pass ensures both constraints are satisfied simultaneously.
+// Summing all values gives the minimum total candy required.
+// Time: O(n) Space: O(n) for the candy array.
 
 public class Solution
 {

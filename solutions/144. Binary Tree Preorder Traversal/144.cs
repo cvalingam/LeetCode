@@ -1,6 +1,8 @@
-// Approach: Iterative with a stack — push right child then left child so
-// the left child is processed first, matching preorder.
-// Time: O(n) Space: O(n)
+// Approach: Iterative preorder traversal using an explicit stack (root → left → right).
+// Push the root; on each iteration: pop a node, record its value, then push right child then left child.
+// Pushing right before left ensures left is popped (and processed) first on the next iteration.
+// Iterative approach avoids recursion-stack overhead on large or skewed trees.
+// Time: O(n) Space: O(n) in the worst case for a skewed tree.
 
 public class TreeNode
 {

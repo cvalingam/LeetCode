@@ -1,6 +1,8 @@
-// Approach: Store each value’s most recent index in a HashMap; return true
-// if the gap between the current and previous index is at most k.
-// Time: O(n) Space: O(n)
+// Approach: HashMap stores the most recent index at which each value was seen.
+// For each element nums[i]: if nums[i] already exists in the map and i - map[nums[i]] <= k, return true.
+// Otherwise update the map with the current index.
+// This single-pass approach uses the last seen index, which gives the smallest possible gap.
+// Time: O(n) Space: O(n) for the map.
 
 public class Solution
 {

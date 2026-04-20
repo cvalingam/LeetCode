@@ -1,5 +1,9 @@
-// Approach: Single pass — walk to position left, then iteratively reverse
-// the next (right – left) nodes using pointer manipulation.
+// Approach: Single pass with a dummy node to simplify head manipulation.
+// Walk forward to reach the node just before position 'left' (call it prev).
+// Then perform (right - left) reversals: for each step, detach the node right after prev
+// and insert it immediately after the dummy node's eventual predecessor (prev).
+// This inserts nodes at the front of the reversed segment one by one.
+// The dummy node avoids special-casing when the reversal starts at the head.
 // Time: O(n) Space: O(1)
 
 public class ListNode

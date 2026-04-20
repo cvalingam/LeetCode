@@ -1,8 +1,12 @@
 /* The isBadVersion API is defined in the parent class VersionControl.
       bool IsBadVersion(int version); */
 
-// Approach: Binary search — keep narrowing to the leftmost position where
-// IsBadVersion returns true.
+// Approach: Binary search for the leftmost position where IsBadVersion returns true.
+// Maintain lo = 1 and hi = n; at each step compute mid = lo + (hi - lo) / 2 (avoids overflow).
+// If IsBadVersion(mid) is true, the first bad version is at mid or earlier: set hi = mid.
+// If false, the first bad version is strictly after mid: set lo = mid + 1.
+// When lo == hi, we have found the first bad version.
+// Using hi = mid (not mid - 1) ensures we never skip the answer.
 // Time: O(log n) Space: O(1)
 
 public class Solution : VersionControl

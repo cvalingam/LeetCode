@@ -1,5 +1,8 @@
-// Approach: Two pointers spaced n apart. When fast reaches the end, slow
-// is just before the node to remove; update the next pointer.
+// Approach: Use a dummy node before head to cleanly handle the edge case of removing the head itself.
+// Advance the fast pointer n+1 steps ahead of slow (both starting at dummy).
+// Move both pointers one step at a time until fast reaches null.
+// At that point slow.next is the node to delete; redirect slow.next = slow.next.next.
+// Single pass — no need to know the list length or make a second traversal.
 // Time: O(n) Space: O(1)
 
 public class ListNode

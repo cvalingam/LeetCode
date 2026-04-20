@@ -1,6 +1,10 @@
-// Approach: Divide and conquer — recursively split buildings and merge
-// two skylines by sweeping x-coordinates, always taking the higher elevation.
-// Time: O(n log n) Space: O(n)
+// Approach: Divide and conquer — split the buildings list in half, recursively compute
+// each half's skyline, then merge two skylines into one.
+// Merging two skylines uses a two-pointer sweep over their key points.
+// At each x-coordinate, take the maximum height from both skylines.
+// Only add a key point to the result when the effective maximum height changes.
+// This is analogous to merge-sort and shares the same recurrence T(n) = 2T(n/2) + O(n).
+// Time: O(n log n) Space: O(n) for temporary skyline lists.
 
 public class Solution
 {

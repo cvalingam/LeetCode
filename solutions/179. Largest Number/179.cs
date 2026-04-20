@@ -1,6 +1,9 @@
-// Approach: Sort number-strings with the comparator (b+a).CompareTo(a+b)
-// so they are ordered to form the lexicographically largest concatenation.
-// Time: O(n log n) Space: O(n)
+// Approach: The key insight is that to decide whether string a should precede string b,
+// compare the concatenations a+b and b+a lexicographically — prefer whichever is larger.
+// This custom comparator is transitive, so Array.Sort with it produces a correct total ordering.
+// After sorting, concatenate all strings to form the largest number.
+// Handle the edge case where all values are zero: if the result starts with '0', return "0".
+// Time: O(n log n x L) where L is the average number of digits. Space: O(n) for the string array.
 
 public class Solution
 {

@@ -1,6 +1,9 @@
-// Approach: Sort, then DP where dp[i] = longest subset ending at nums[i];
-// backtrack via a prev-index array to reconstruct the actual subset.
-// Time: O(n²) Space: O(n)
+// Approach: Sort the array so that for any valid pair (a, b) with a < b, b % a == 0.
+// Define dp[i] = length of the largest divisible subset ending at nums[i].
+// For each i, look back at all j < i: if nums[i] % nums[j] == 0, dp[i] = max(dp[i], dp[j] + 1).
+// Also store a prev[i] index for path reconstruction.
+// After filling dp, find the index with maximum dp value and backtrack via prev to recover the subset.
+// Time: O(n^2) Space: O(n) for dp and prev arrays.
 
 public class Solution
 {

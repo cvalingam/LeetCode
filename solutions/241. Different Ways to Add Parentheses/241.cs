@@ -1,6 +1,10 @@
-// Approach: Divide the expression at each operator, recursively compute all
-// results for each side, combine them with the operator, and memoize.
-// Time: O(n·Catalan(n)) Space: O(n·Catalan(n))
+// Approach: Divide and conquer — split the expression at each operator.
+// For each operator at position i, recursively compute all results from the left sub-expression
+// and all results from the right sub-expression, then combine them with that operator.
+// Memoize by expression string to avoid recomputing the same sub-expression multiple times.
+// Base case: if the expression contains no operator, it is a single number.
+// The total number of results equals the Catalan number for the number of operators.
+// Time: O(n x Catalan(n)) Space: O(n x Catalan(n)) for the memo cache.
 
 public class Solution
 {

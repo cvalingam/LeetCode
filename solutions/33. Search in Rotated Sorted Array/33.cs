@@ -1,5 +1,9 @@
-// Approach: Binary search. Determine which half is sorted, then check
-// whether the target lies in that half and narrow accordingly.
+// Approach: Modified binary search that handles the single rotation break in sorted order.
+// At each step, at least one of [lo, mid] or [mid, hi] is guaranteed to be sorted.
+// If nums[lo] <= nums[mid], the left half is sorted: check if target is in [nums[lo], nums[mid]].
+// If yes, search left; otherwise search right. Apply symmetric logic when the right half is sorted.
+// This elegantly handles all rotation offsets, including 0 (no rotation at all).
+// Avoid the pitfall of using strict equality for boundary checks to handle duplicate edge cases.
 // Time: O(log n) Space: O(1)
 
 public class Solution

@@ -1,6 +1,9 @@
-// Approach: Sort candidates, then backtrack skipping duplicate candidates
-// at the same recursion depth to avoid duplicate combinations.
-// Time: O(2^n) Space: O(n)
+// Approach: Sort the candidates array first so duplicates are adjacent.
+// Use backtracking: for each position, iterate from 'start' to end, subtracting candidates from target.
+// Skip duplicate candidates at the same recursion depth (i > start && candidates[i] == candidates[i-1]).
+// This prevents generating duplicate combinations without using a hash set.
+// Stop exploring a branch early if candidates[i] > remaining target (array is sorted, so all further are larger).
+// Time: O(2^n) in the worst case. Space: O(n) for the recursion stack.
 
 public class Solution
 {

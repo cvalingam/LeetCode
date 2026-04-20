@@ -1,5 +1,9 @@
-// Approach: DP with two variables: ways to reach step i equals ways to reach
-// step i-1 plus step i-2 (Fibonacci), no extra array needed.
+// Approach: At each step you can climb 1 or 2 stairs, so the number of ways to reach step n
+// is the sum of ways to reach step n-1 and step n-2 — exactly the Fibonacci recurrence.
+// Use two rolling variables (prev2, prev1) instead of an array to avoid O(n) extra space.
+// Initialize prev2 = 1 (one way to stand at ground) and prev1 = 1 (one way to reach step 1).
+// Iterate from step 2 to n: cur = prev1 + prev2, then shift: prev2 = prev1, prev1 = cur.
+// The sequence is 1, 1, 2, 3, 5, 8, 13 ... identical to Fibonacci numbers.
 // Time: O(n) Space: O(1)
 
 public class Solution

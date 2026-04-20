@@ -1,6 +1,9 @@
-// Approach: Build a trie from all target words. DFS over the board marking
-// cells visited, pruning branches and removing found words from the trie.
-// Time: O(m*n*4^L) Space: O(W*L)
+// Approach: Build a trie from all target words, then run DFS over every board cell.
+// During DFS, traverse the trie simultaneously: if no trie child exists for the current char, prune.
+// Mark cells as visited during DFS (set to '#'), then restore them after backtracking.
+// When a trie node has a non-null word field, record it as found and clear the field to avoid duplicates.
+// Remove trie nodes that have no children after a word is found (trie pruning) to speed up future searches.
+// Time: O(m x n x 4^L) where L = max word length. Space: O(W x L) for the trie.
 
 public class TrieNode
 {

@@ -1,6 +1,9 @@
-// Approach: 2D DP accumulating path counts from top-left;
-// set obstacle cells to zero since they block all paths through them.
-// Time: O(m*n) Space: O(m*n)
+// Approach: 2D DP extending the standard Unique Paths solution to handle obstacles.
+// dp[i][j] = number of distinct paths to reach cell (i,j) from (0,0).
+// If obstacleGrid[i][j] == 1, set dp[i][j] = 0 (no paths through an obstacle).
+// Otherwise dp[i][j] = dp[i-1][j] + dp[i][j-1] (paths from above + paths from left).
+// Initialise the first row and column carefully — any obstacle blocks all cells beyond it.
+// Time: O(m x n) Space: O(m x n); reducible to O(n) with a rolling row.
 
 public class Solution
 {

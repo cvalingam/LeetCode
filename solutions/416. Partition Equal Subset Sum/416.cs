@@ -1,6 +1,10 @@
-// Approach: Subset-sum DP — check if any subset sums to totalSum/2.
-// dp[i][t] = true if the first i elements can form a subset summing to t.
-// Time: O(n*sum) Space: O(n*sum)
+// Approach: 0/1 Knapsack DP — check whether any subset sums to totalSum / 2.
+// If totalSum is odd, partitioning is impossible.
+// Create a boolean dp array of size (target + 1): dp[t] = true if some subset sums to t.
+// Process each number: iterate t from target down to num and set dp[t] |= dp[t - num].
+// Iterating backwards prevents using the same element twice (0/1 knapsack rule).
+// If dp[target] is true at the end, an equal-sum partition exists.
+// Time: O(n x sum) Space: O(sum) using a 1D bit array.
 
 public class Solution
 {

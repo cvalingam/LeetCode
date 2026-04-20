@@ -1,6 +1,10 @@
-// Approach: Monotonic deque of indices — remove out-of-window indices from
-// the front and smaller elements from the back on each step.
-// Time: O(n) Space: O(k)
+// Approach: Monotonic decreasing deque storing indices of candidates for the window maximum.
+// For each new element at index i: remove from the back any indices whose values are <= nums[i].
+// Those elements can never become the maximum for any future window, so they are useless.
+// Remove from the front any index that is no longer inside the current window [i-k+1, i].
+// The front of the deque always holds the index of the current window's maximum — O(1) query.
+// Each index is pushed and popped at most once, so the total work across all windows is O(n).
+// Time: O(n) Space: O(k) for the deque.
 
 public class Solution
 {

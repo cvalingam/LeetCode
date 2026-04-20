@@ -1,6 +1,10 @@
-// Approach: Reverse BFS from Pacific-border cells and from Atlantic-border cells;
-// cells reachable from both queues can flow to both oceans.
-// Time: O(m*n) Space: O(m*n)
+// Approach: Reverse multi-source BFS from each ocean's border inward.
+// Water flows from higher or equal elevation to lower, so reverse this:
+// start BFS from Pacific-border cells and mark all cells reachable going uphill.
+// Repeat from Atlantic-border cells.
+// Any cell marked reachable from BOTH oceans is a valid result — water can flow to both.
+// Two separate boolean matrices track reachability; the intersection is the answer.
+// Time: O(m x n) Space: O(m x n) for the two visited matrices.
 
 public class Solution
 {

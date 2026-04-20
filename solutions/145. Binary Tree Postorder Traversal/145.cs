@@ -1,6 +1,8 @@
-// Approach: Reverse-preorder technique — process root, right, left using
-// a stack, then reverse the collected values for postorder.
-// Time: O(n) Space: O(n)
+// Approach: Reverse-preorder trick for iterative postorder (left → right → root).
+// Perform a modified preorder traversal (root → right → left) using a stack.
+// Collect values into a list, then reverse the list at the end.
+// This avoids the complexity of a true iterative postorder which requires tracking the last visited node.
+// Time: O(n) Space: O(n) for the stack and result list.
 
 public class TreeNode
 {

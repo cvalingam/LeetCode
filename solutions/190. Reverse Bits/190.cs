@@ -1,6 +1,9 @@
-// Approach: Iterate 32 times — shift the result left, extract the LSB of n
-// and append it, then shift n right.
-// Time: O(1) Space: O(1)
+// Approach: Bit-by-bit extraction and reassembly over exactly 32 iterations.
+// At each step: left-shift the result to make room, extract the LSB of n (n & 1), OR it into result.
+// Right-shift n to expose the next bit.
+// After 32 iterations the 32 bits of n appear in reverse order in the result.
+// Using uint avoids sign-extension issues that would occur with int right shifts.
+// Time: O(1) — always exactly 32 iterations. Space: O(1).
 
 public class Solution
 {

@@ -1,5 +1,9 @@
-// Approach: Binary search — move toward the neighbor with the higher value;
-// a peak is guaranteed on that side by the monotonicity property.
+// Approach: Binary search exploiting the virtual boundary rule: nums[-1] = nums[n] = -infinity.
+// At index mid, compare nums[mid] with nums[mid+1].
+// If nums[mid] < nums[mid+1], the right half must contain a peak (it is rising at mid).
+// If nums[mid] > nums[mid+1], the left half (including mid) must contain a peak.
+// At convergence lo == hi, and that index is a valid peak element.
+// Unlike classical binary search, the array does not need to be globally sorted.
 // Time: O(log n) Space: O(1)
 
 public class Solution

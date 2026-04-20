@@ -1,6 +1,9 @@
-// Approach: Prefix sum array — precompute cumulative sums so each range
-// query is answered in O(1) with a single subtraction.
-// Time: O(n) build, O(1) query Space: O(n)
+// Approach: Prefix sum array for O(1) range queries after O(n) preprocessing.
+// preSum[i] stores the sum of nums[0..i-1], with preSum[0] = 0 as a sentinel.
+// Range sum query [left, right] = preSum[right + 1] - preSum[left].
+// The sentinel avoids a boundary check for left == 0.
+// This pattern extends to 2D (304), trees (307 Fenwick tree), and strings.
+// Time: O(n) preprocessing, O(1) per query. Space: O(n) for the prefix array.
 
 public class NumArray
 {

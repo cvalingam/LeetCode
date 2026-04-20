@@ -1,6 +1,10 @@
-// Approach: Three boolean[9][9] arrays for rows, columns, and 3×3 boxes;
-// flag each seen digit and return false on any duplicate.
-// Time: O(1) Space: O(1)
+// Approach: Single pass over the 81 cells using three sets of boolean flags.
+// rowHasNumber[r][d]: whether digit d appears in row r.
+// colHasNumber[c][d]: whether digit d appears in column c.
+// boxHasNumber[b][d]: whether digit d appears in 3x3 box b (box index = (r/3)*3 + c/3).
+// For each non-'.' cell, check all three flags; if any is already set, return false.
+// Otherwise set the three flags and continue.
+// Time: O(1) since the board is always 9x9. Space: O(1) for the fixed-size flag arrays.
 
 public class Solution
 {

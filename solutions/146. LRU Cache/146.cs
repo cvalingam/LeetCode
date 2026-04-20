@@ -1,6 +1,10 @@
-// Approach: Doubly-linked list combined with a HashMap. Move the accessed
-// or inserted node to the front (most-recent) in O(1) per operation.
-// Time: O(1) per get/put Space: O(capacity)
+// Approach: Combine a doubly-linked list with a Dictionary<key, node> for O(1) get and put.
+// The list maintains LRU order: most-recently used node sits at the head, least-recently at the tail.
+// On get: if the key exists, detach the node, move it to the head, and return its value.
+// On put: if the key exists, update and move to head; if new, insert a new node at the head.
+// If inserting exceeds capacity, remove the node at the tail (least recently used) and its map entry.
+// Sentinel head and tail dummy nodes eliminate null-pointer edge cases in all list operations.
+// Time: O(1) per get/put. Space: O(capacity) for the list and map combined.
 
 public class LRUCache
 {

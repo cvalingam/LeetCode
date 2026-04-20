@@ -1,6 +1,9 @@
-// Approach: Rolling hash finds the longest palindromic prefix. Prepend the
-// reverse of the remaining suffix to form the shortest palindrome.
-// Time: O(n) Space: O(n)
+// Approach: Find the longest palindromic prefix of s using KMP / rolling hash.
+// Construct the string s + '#' + reverse(s) and compute the KMP failure function.
+// The last value of the failure function gives the length of the longest palindromic prefix.
+// Prepend the reverse of the remaining suffix (s[prefixLen..]) to s to form the shortest palindrome.
+// Rolling hash implementation: compare hash of prefix from left and from right simultaneously.
+// Time: O(n) Space: O(n) for the reversed string and hash computation.
 
 public class Solution
 {

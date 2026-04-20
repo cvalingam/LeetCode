@@ -1,6 +1,10 @@
-// Approach: Bit-shift doubling — repeatedly double the divisor while it fits,
-// accumulate the quotient, and subtract; use long to avoid overflow.
-// Time: O(log²n) Space: O(1)
+// Approach: Repeated doubling (bit-shift) to avoid the division operator.
+// For each step, find the largest multiple of divisor (= divisor << k) that fits in the remaining dividend.
+// Subtract it, add 2^k to the quotient, and repeat with the remainder.
+// Use long to handle INT_MIN / -1 overflow and sign separately.
+// The outer loop runs O(log n) times; inner doubling also runs O(log n) — total O(log^2 n).
+// Handle edge cases: INT_MIN / -1 = INT_MAX (clamp), INT_MIN / 1 = INT_MIN.
+// Time: O(log^2 n) Space: O(1)
 
 public class Solution
 {

@@ -1,6 +1,10 @@
-// Approach: Sliding window — expand right to cover required characters,
-// shrink left while still covered, tracking the minimum window size.
-// Time: O(n) Space: O(1)
+// Approach: Sliding window with a 128-slot frequency array for ASCII characters.
+// 'required' tracks how many characters from t are still unmet in the current window.
+// Expand right pointer: when a required character is found, decrement 'required'.
+// Once required == 0 (all characters covered), try shrinking the left pointer.
+// Shrink left: when removing a character from t would break coverage, stop and record window size.
+// Using an int array (size 128) instead of a Dictionary gives O(1) per character vs O(1) amortised.
+// Time: O(n + m) where n = |s|, m = |t|. Space: O(1) since the character set is fixed at 128.
 
 public class Solution
 {

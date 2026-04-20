@@ -1,6 +1,10 @@
-// Approach: Inorder traversal locates the two out-of-order adjacent nodes;
-// swapping their values restores the BST property.
-// Time: O(n) Space: O(n)
+// Approach: In a valid BST, inorder traversal produces a strictly increasing sequence.
+// Exactly two nodes are swapped, causing at most two inversions (positions where prev > current).
+// Track the 'previous' node visited during inorder traversal.
+// At the first inversion: record previous as 'first' (misplaced larger node) and current as 'second'.
+// At the second inversion (if it exists): update 'second' to the current node.
+// After the full traversal, swap the values of 'first' and 'second' to fix the BST.
+// Time: O(n) Space: O(h) for the recursion stack.
 
 public class TreeNode
 {
