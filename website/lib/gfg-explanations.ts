@@ -2512,6 +2512,79 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
     pitfalls: ['Use visited map to avoid infinite loops in cyclic graphs.'],
   },
+  'nth-fibonacci-number': {
+    intuition: 'Fibonacci: F(n) = F(n-1) + F(n-2). Use DP or matrix exponentiation for large n.',
+    algorithm: [
+      'Iterative: a=0, b=1. For i in 2..n: c=a+b, a=b, b=c. Return b.',
+    ],
+    pitfalls: ['Large n needs modular arithmetic. Matrix exponentiation gives O(log n).'],
+  },
+
+  'implementing-dijkstra-set-1-adjacency-matrix': {
+    intuition: 'Dijkstra shortest path from source. Min-heap + relaxation.',
+    algorithm: [
+      'dist[] = Infinity. dist[src]=0. Min-heap. Relax edges greedily.',
+    ],
+    pitfalls: ['Works for non-negative weights. Use priority queue for O((V+E) log V).'],
+  },
+
+  'strongly-connected-components': {
+    intuition: "Kosaraju's algorithm: two DFS passes. First on original graph, second on reversed graph in finish order.",
+    algorithm: [
+      'DFS on original, push finish order to stack.',
+      'Transpose graph. DFS in reverse finish order. Each DFS = one SCC.',
+    ],
+    pitfalls: ['Or use Tarjan algorithm (one DFS, low-link values).'],
+  },
+
+  'check-for-balanced-tree': {
+    intuition: 'Height-balanced: for every node, |height(left) - height(right)| <= 1. Post-order DFS returning -1 if unbalanced.',
+    algorithm: [
+      'DFS returns height. If |leftH - rightH| > 1: propagate -1 upward.',
+    ],
+    pitfalls: ['Bottom-up check avoids redundant computation. Return -1 as sentinel for unbalanced.'],
+  },
+
+  'shortest-source-to-destination-path': {
+    intuition: 'BFS on grid from source. First time reaching destination = shortest path.',
+    algorithm: [
+      'BFS from (0,0). Return steps when reaching (n-1,m-1).',
+    ],
+    pitfalls: ['BFS guarantees shortest path in unweighted grid. Return -1 if unreachable.'],
+  },
+
+  'rat-in-a-maze-problem': {
+    intuition: 'Find all paths from (0,0) to (n-1,n-1). Backtracking: try all 4 directions.',
+    algorithm: [
+      'DFS with visited array. At each cell: try D/L/R/U. Add path char. Backtrack if stuck.',
+    ],
+    pitfalls: ['Sort directions for lexicographically smallest paths. Mark visited to avoid cycles.'],
+  },
+
+  'word-boggle': {
+    intuition: 'Find all dictionary words in grid using DFS from each cell. Trie for efficient prefix checking.',
+    algorithm: [
+      'Build Trie from dictionary. DFS from each cell: explore all 8 directions, check Trie prefix.',
+      'When complete word found: add to result.',
+    ],
+    pitfalls: ['Mark visited cells during DFS, unmark on backtrack. Use Trie to prune dead-end prefixes.'],
+  },
+
+  'ways-to-tile-a-floor': {
+    intuition: 'Count ways to tile 2xN floor with 1x2 tiles. Classic DP: dp[n] = dp[n-1] + dp[n-2] (Fibonacci-like).',
+    algorithm: [
+      'dp[0]=1, dp[1]=1. dp[n] = dp[n-1] + dp[n-2].',
+    ],
+    pitfalls: ['Tile horizontally (1 way for last 2 cols) or vertically (1 way for last col). Fibonacci recurrence.'],
+  },
+
+  'longest-k-unique-characters-substring': {
+    intuition: 'Longest substring with exactly k unique characters. Sliding window with character frequency map.',
+    algorithm: [
+      'Window [l,r]. Frequency map. Expand r. If distinct > k: shrink l. If distinct == k: update max.',
+    ],
+    pitfalls: ['Exactly k distinct (not at most). Keep window with exactly k unique chars.'],
+  },
 
 }
 
