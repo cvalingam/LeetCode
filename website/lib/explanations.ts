@@ -2432,6 +2432,850 @@ const explanations: Record<number, RichExplanation> = {
     pitfalls: ['Reverse the comparison: neighbor.height >= current.height (in reverse, water can flow uphill).'],
   },
 
+  // ─── 416. Partition Equal Subset Sum ────────────────────────────────────────
+  416: {
+    intuition: 'Can we find a subset summing to exactly half the total? This is a classic 0/1 knapsack: can we fill a knapsack of capacity sum/2 using each number at most once?',
+    algorithm: [
+      'Compute total. If odd, return false.',
+      'Target = total / 2. Create boolean DP array dp[0..target], dp[0]=true.',
+      'For each number n, iterate j from target down to n: dp[j] |= dp[j-n].',
+      'Return dp[target].',
+    ],
+    example: { input: 'nums=[1,5,11,5]', steps: ['total=22, target=11.', 'After 1: dp[1]=true.', 'After 5: dp[5]=dp[6]=true.', 'After 11: dp[11]=true.'], output: 'true' },
+    pitfalls: ['Iterate j backwards to avoid using same element twice.', 'If total is odd, immediately return false.'],
+  },
+
+  // ─── 429. N-ary Tree Level Order Traversal ───────────────────────────────────
+  429: {
+    intuition: 'BFS level-by-level, same as binary tree but each node can have multiple children.',
+    algorithm: [
+      'Start BFS queue with root.',
+      'For each level: record count of nodes in queue, dequeue that many nodes collecting their values, enqueue all their children.',
+      'Append each level\'s values to result.',
+    ],
+    example: { input: 'root=[1,[3,2,4],[5,6]]', steps: ['Level 0: [1].', 'Level 1: [3,2,4].', 'Level 2: [5,6].'], output: '[[1],[3,2,4],[5,6]]' },
+    pitfalls: ['Snapshot the queue size before processing each level, otherwise newly added children corrupt level count.'],
+  },
+
+  // ─── 432. All O`one Data Structure ──────────────────────────────────────────
+  432: {
+    intuition: 'Support inc/dec/getMaxKey/getMinKey in O(1). Use a doubly-linked list of buckets ordered by count, plus a hashmap from key→bucket.',
+    algorithm: [
+      'Each bucket node holds a count and a set of keys with that count.',
+      'HashMap maps key → its bucket.',
+      'Inc(key): move key to bucket(count+1), creating if needed.',
+      'Dec(key): move key to bucket(count-1), removing key if count becomes 0.',
+      'getMaxKey/getMinKey: return any key from tail/head bucket.',
+    ],
+    pitfalls: ['Remove empty buckets immediately to keep head/tail valid.', 'Handle the boundary case where a key reaches count 0 on dec.'],
+  },
+
+  // ─── 440. K-th Smallest in Lexicographical Order ─────────────────────────────
+  440: {
+    intuition: 'Numbers 1..n in lexicographic order form a 10-ary prefix trie. Count how many numbers fall under a given prefix to decide whether to go deeper or to the next sibling.',
+    algorithm: [
+      'Start at curr=1, steps taken=1.',
+      'While steps < k: count numbers in the subtree rooted at curr (capped at n); if count ≤ k-steps, skip the whole subtree (curr++, steps+=count); else go deeper (curr*=10, steps++).',
+      'Return curr.',
+    ],
+    pitfalls: ['Count uses long arithmetic to avoid overflow when computing prefix boundaries.'],
+  },
+
+  // ─── 460. LFU Cache ──────────────────────────────────────────────────────────
+  460: {
+    intuition: 'Least-Frequently-Used evicts the key with lowest access count (ties broken by LRU). Maintain: key→(value,freq), freq→LinkedHashSet of keys, and a minFreq counter.',
+    algorithm: [
+      'On get(key): if present, increment its freq, move it to the new freq set, update minFreq. Return value.',
+      'On put(key,val): if capacity 0, return. If key exists, update value and call get logic. If at capacity, evict: remove oldest key from freq[minFreq] set. Insert key at freq 1, set minFreq=1.',
+    ],
+    pitfalls: ['Use LinkedHashSet to maintain insertion order within same frequency (for LRU tie-breaking).', 'Reset minFreq to 1 on every new insert.'],
+  },
+
+  // ─── 467. Unique Substrings in Wraparound String ─────────────────────────────
+  467: {
+    intuition: 'Count unique substrings of p that are substrings of the infinite wraparound string "abcdefg...z abcdef...". A substring is valid if it\'s consecutive in wrap-around order.',
+    algorithm: [
+      'Track current run length of valid consecutive characters.',
+      'For each character c, if p[i]-p[i-1]==1 or wraparound (za), extend run; else reset to 1.',
+      'Track max run length ending at each character. Answer = sum of these maxes.',
+    ],
+    example: { input: 'p="zab"', steps: ['z: run=1, max[z]=1.', 'a: z→a is wraparound, run=2, max[a]=2.', 'b: a→b consecutive, run=3, max[b]=3.', 'Total=1+2+3=6.'], output: '6' },
+    pitfalls: ['Count by last character to avoid duplicates: each unique substring ending at character c of max length L contributes L unique substrings.'],
+  },
+
+  // ─── 474. Ones and Zeroes ────────────────────────────────────────────────────
+  474: {
+    intuition: '2D 0/1 knapsack: maximize count of strings selected such that total 0s ≤ m, total 1s ≤ n.',
+    algorithm: [
+      'dp[i][j] = max strings using at most i zeros and j ones.',
+      'For each string with z zeros and o ones, iterate i from m down to z, j from n down to o: dp[i][j] = max(dp[i][j], dp[i-z][j-o]+1).',
+    ],
+    pitfalls: ['Iterate backwards (both dimensions) to ensure each string is counted at most once.'],
+  },
+
+  // ─── 476. Number Complement ──────────────────────────────────────────────────
+  476: {
+    intuition: 'Flip all bits of the number but only up to its highest set bit. Create a mask of all 1s up to that bit length, then XOR.',
+    algorithm: [
+      'Find bit length: len = floor(log2(num)) + 1.',
+      'Create mask = (1 << len) - 1.',
+      'Return num XOR mask.',
+    ],
+    example: { input: 'num=5 (101)', steps: ['len=3, mask=111=7.', '5 XOR 7 = 010 = 2.'], output: '2' },
+    pitfalls: ['Do not flip leading zeros — only bits within the number\'s bit length.'],
+  },
+
+  // ─── 477. Total Hamming Distance ─────────────────────────────────────────────
+  477: {
+    intuition: 'For each bit position, count how many numbers have 0 vs 1. Every pair of (0,1) contributes 1 to Hamming distance. Total contribution = ones * zeros.',
+    algorithm: [
+      'For each of 32 bit positions:',
+      'Count c = numbers with bit set.',
+      'Add c * (n - c) to answer.',
+    ],
+    example: { input: 'nums=[4,14,2]', steps: ['Bit 1: [0,1,1]→ones=2, zeros=1 → 2.', 'Bit 2: [1,1,0]→ones=2, zeros=1 → 2.', 'Bit 3: [0,1,0]→ones=1, zeros=2 → 2.', 'Total=6.'], output: '6' },
+    pitfalls: ['This is O(32n) vs O(n²) naive pairwise.'],
+  },
+
+  // ─── 479. Largest Palindrome Product ─────────────────────────────────────────
+  479: {
+    intuition: 'Find the largest palindrome made from the product of two n-digit numbers. A palindrome can be expressed as upper*10^n + reverse(upper). Iterate upper from largest down.',
+    algorithm: [
+      'For n=1, return 9.',
+      'Max = 10^n - 1 (largest n-digit number).',
+      'For each candidate palindrome (constructed from upper half), check if it has two n-digit factors.',
+      'Return result mod 1337.',
+    ],
+    pitfalls: ['This requires careful construction; use long arithmetic to avoid overflow.'],
+  },
+
+  // ─── 494. Target Sum ─────────────────────────────────────────────────────────
+  494: {
+    intuition: 'Assign + or - to each number. DP: count ways to reach each possible sum. Or reduce to subset sum: let P = positive subset. P - (total-P) = target → P = (total+target)/2.',
+    algorithm: [
+      'If (total+target) is odd or |target| > total, return 0.',
+      'Find count of subsets summing to (total+target)/2.',
+      'Use 1D DP: dp[j] = number of ways to reach sum j.',
+      'For each num: iterate j from target down to num: dp[j] += dp[j-num].',
+    ],
+    example: { input: 'nums=[1,1,1,1,1], target=3', steps: ['total=5, need sum=4.', 'Ways to choose 4 from [1,1,1,1,1] = C(5,4) = 5.'], output: '5' },
+    pitfalls: ['dp[0]=1 (empty subset). Check (total+target)%2 == 0 before proceeding.'],
+  },
+
+  // ─── 498. Diagonal Traverse ──────────────────────────────────────────────────
+  498: {
+    intuition: 'For an m×n matrix, traverse diagonals alternating direction. On even diagonals (d%2==0) go up-right, on odd go down-left.',
+    algorithm: [
+      'For each diagonal d from 0 to m+n-2:',
+      'Determine row range: r from max(0, d-n+1) to min(d, m-1).',
+      'If d is even, iterate r from end to start (up-right). If odd, start to end (down-left).',
+      'Column c = d - r.',
+    ],
+    pitfalls: ['Don\'t simulate step-by-step; compute row/col directly from diagonal number to avoid boundary checks.'],
+  },
+
+  // ─── 500. Keyboard Row ───────────────────────────────────────────────────────
+  500: {
+    intuition: 'Check if all characters of a word are on the same keyboard row.',
+    algorithm: [
+      'Map each letter to its row (0,1,2): row1="qwertyuiop", row2="asdfghjkl", row3="zxcvbnm".',
+      'For each word, get the row of its first character. Check all other chars are on the same row.',
+    ],
+    pitfalls: ['Convert to lowercase before checking.'],
+  },
+
+  // ─── 502. IPO ────────────────────────────────────────────────────────────────
+  502: {
+    intuition: 'Greedily pick the most profitable project you can afford. Use a min-heap for capital requirements and a max-heap for profits of affordable projects.',
+    algorithm: [
+      'Sort projects by capital required.',
+      'Use pointer to track which projects are now affordable as capital grows.',
+      'For each of k rounds: push all newly affordable projects\' profits to max-heap. Pop max profit. Add to capital.',
+    ],
+    pitfalls: ['If max-heap is empty (no affordable projects), break early — can\'t make more money.'],
+  },
+
+  // ─── 508. Most Frequent Subtree Sum ──────────────────────────────────────────
+  508: {
+    intuition: 'Compute subtree sum for every node using post-order DFS, then find the most frequent sum(s).',
+    algorithm: [
+      'DFS returns sum of subtree rooted at each node.',
+      'Store sums in a frequency map.',
+      'Find max frequency; collect all sums with that frequency.',
+    ],
+    pitfalls: ['Multiple sums can tie for max frequency — return all of them.'],
+  },
+
+  // ─── 513. Find Bottom Left Tree Value ────────────────────────────────────────
+  513: {
+    intuition: 'BFS level-order, processing right before left. The last node processed is the bottom-right. Or BFS left-before-right and take the last level\'s first element. Simplest: BFS right-to-left, return last node value.',
+    algorithm: [
+      'BFS with right child before left child.',
+      'The last node dequeued is bottom-left.',
+      'Return its value.',
+    ],
+    pitfalls: ['Using right-before-left BFS means the last element is leftmost. Alternatively, track first element of each level in standard BFS.'],
+  },
+
+  // ─── 515. Find Largest Value in Each Tree Row ────────────────────────────────
+  515: {
+    intuition: 'BFS level by level, tracking the maximum value at each level.',
+    algorithm: [
+      'Standard level-order BFS.',
+      'For each level, track the maximum node value.',
+      'Append max to result for each level.',
+    ],
+    pitfalls: ['Initialize max as Integer.MIN_VALUE, not 0, since values can be negative.'],
+  },
+
+  // ─── 539. Minimum Time Difference ────────────────────────────────────────────
+  539: {
+    intuition: 'Convert times to minutes, sort, check consecutive differences including wraparound (24*60 - last + first).',
+    algorithm: [
+      'Parse each "HH:MM" to total minutes.',
+      'Sort the minutes array.',
+      'Check all consecutive differences. Also check circular difference: 1440 - last + first.',
+      'Return minimum difference.',
+    ],
+    example: { input: '["23:59","00:00"]', steps: ['Convert: [1439, 0]. Sort: [0, 1439].', 'Consecutive diff: 1439. Circular: 1440-1439+0=1.'], output: '1' },
+    pitfalls: ['Don\'t forget the wraparound from last time to first time (adding 24*60).'],
+  },
+
+  // ─── 554. Brick Wall ─────────────────────────────────────────────────────────
+  554: {
+    intuition: 'Find the vertical line that crosses the fewest bricks (most edges). Count edge positions using a hashmap, find max edge count, answer = rows - maxEdges.',
+    algorithm: [
+      'For each row, compute cumulative widths (except last brick).',
+      'Increment edge count for each cumulative position.',
+      'Find max edge count.',
+      'Return totalRows - maxEdgeCount.',
+    ],
+    pitfalls: ['Don\'t count the outer edges (start of row and end of row are not valid crossing points).'],
+  },
+
+  // ─── 558. Logical OR of Two Binary Grids Represented as Quad-Trees ───────────
+  558: {
+    intuition: 'Recursively OR two quad-tree nodes. If either is a leaf of 1, result is 1. If both are leaves of 0, result is 0. Otherwise recurse on all four quadrants.',
+    algorithm: [
+      'If n1 is leaf with val=1 or n2 is leaf with val=1: return leaf(1).',
+      'If n1 is leaf with val=0: return n2. If n2 is leaf with val=0: return n1.',
+      'Recurse on TL, TR, BL, BR.',
+      'If all four children are leaves with same val: collapse to a single leaf.',
+    ],
+    pitfalls: ['After recursing, check if all four children are uniform leaves to compress the tree.'],
+  },
+
+  // ─── 567. Permutation in String ──────────────────────────────────────────────
+  567: {
+    intuition: 'Use a sliding window of size len(s1) over s2. Maintain character frequency counts. The window is a permutation of s1 when counts match.',
+    algorithm: [
+      'Count frequencies of s1 characters.',
+      'Maintain a window in s2 of the same length, tracking character counts.',
+      'Track "matches" (characters where counts are equal).',
+      'Slide the window: add new char, remove old char, update matches. If matches==26, found.',
+    ],
+    example: { input: 's1="ab", s2="eidbaooo"', steps: ['Check windows "ei","id","db","ba","ao" — "ba" matches freq of "ab".'], output: 'true' },
+    pitfalls: ['Track a "matches" counter (number of characters with equal count) for O(1) window validity check.'],
+  },
+
+  // ─── 592. Fraction Addition and Subtraction ──────────────────────────────────
+  592: {
+    intuition: 'Parse fractions, accumulate numerator/denominator step by step, simplify using GCD after each step.',
+    algorithm: [
+      'Parse each fraction (handle + and - signs).',
+      'Maintain running numerator/denominator.',
+      'Add/subtract: (a/b ± c/d) = (a*d ± c*b) / (b*d), then simplify by GCD.',
+      'Format final result.',
+    ],
+    pitfalls: ['Handle leading + signs and negative numerators. Always simplify to keep numbers small.'],
+  },
+
+  // ─── 593. Valid Square ───────────────────────────────────────────────────────
+  593: {
+    intuition: 'Four points form a square if the 6 pairwise distances have exactly 2 distinct values: 4 equal sides and 2 equal diagonals, with diagonal² = 2 × side².',
+    algorithm: [
+      'Compute all 6 pairwise squared distances.',
+      'Sort them. The first 4 should be equal (sides) and last 2 equal (diagonals).',
+      'Verify sides > 0 and diagonals = 2 × sides.',
+    ],
+    pitfalls: ['Use squared distances (int) to avoid floating-point issues. Reject degenerate cases where min distance is 0.'],
+  },
+
+  // ─── 594. Longest Harmonious Subsequence ─────────────────────────────────────
+  594: {
+    intuition: 'A harmonious subsequence uses elements whose max and min differ by exactly 1. For each value v, the subsequence of v and v+1 has length freq[v]+freq[v+1].',
+    algorithm: [
+      'Build frequency map.',
+      'For each key v, if freq[v+1] exists, candidate = freq[v] + freq[v+1].',
+      'Return max candidate.',
+    ],
+    example: { input: '[1,3,2,2,5,2,3,7]', steps: ['freq={1:1,2:3,3:2,5:1,7:1}.', '1+2: 1+3=4. 2+3: 3+2=5.'], output: '5' },
+    pitfalls: ['Only check v+1 (not v-1) to avoid double-counting.'],
+  },
+
+  // ─── 600. Non-negative Integers without Consecutive Ones ─────────────────────
+  600: {
+    intuition: 'Digit DP: count binary numbers up to n with no two consecutive 1s. This relates to Fibonacci — valid k-bit numbers = Fib(k+2).',
+    algorithm: [
+      'Find binary representation of n.',
+      'Use DP with states (position, tight, prev_bit).',
+      'At each bit: if we can place 0 freely; if we can place 1 only if prev_bit is 0.',
+    ],
+    pitfalls: ['Handle the "tight" constraint carefully — when following the exact bits of n vs when we\'re already below n.'],
+  },
+
+  // ─── 605. Can Place Flowers ──────────────────────────────────────────────────
+  605: {
+    intuition: 'Greedily plant flowers: if position i and its neighbors are all 0, plant at i (set flowerbed[i]=1) and continue.',
+    algorithm: [
+      'Iterate through flowerbed.',
+      'At each index i, check flowerbed[i]==0 and (i==0 or flowerbed[i-1]==0) and (i==n-1 or flowerbed[i+1]==0).',
+      'If true, plant: set flowerbed[i]=1, count++.',
+      'Return count >= n.',
+    ],
+    pitfalls: ['Modifying the array in-place (marking 1) prevents us from planting at adjacent positions without extra checks.'],
+  },
+
+  // ─── 611. Valid Triangle Number ──────────────────────────────────────────────
+  611: {
+    intuition: 'Sort, then for each pair (i,j) with j fixed as the largest, find how many i satisfy nums[i]+nums[j-1]>nums[j] using binary search or two pointers.',
+    algorithm: [
+      'Sort the array.',
+      'Fix the largest side c (index k from right): use two pointers l=0, r=k-1.',
+      'If nums[l]+nums[r] > nums[k]: all pairs (l..r-1, r) work → count += r-l, r--. Else l++.',
+    ],
+    pitfalls: ['Triangle inequality only needs the two smaller sides to sum > largest side (since sorted, others are implied).'],
+  },
+
+  // ─── 620. Not Boring Movies ──────────────────────────────────────────────────
+  620: {
+    intuition: 'SQL: filter id%2=1 (odd id) and description not "boring", order by rating descending.',
+    algorithm: [
+      'SELECT * FROM cinema WHERE id % 2 = 1 AND description != "boring" ORDER BY rating DESC.',
+    ],
+    pitfalls: ['Use != or <> for "not boring". ORDER BY rating DESC for descending.'],
+  },
+
+  // ─── 623. Add One Row to Tree ────────────────────────────────────────────────
+  623: {
+    intuition: 'BFS or DFS to find all nodes at depth d-1, then insert new nodes with value v between those nodes and their children.',
+    algorithm: [
+      'Special case: if d==1, create new root with val=v, left=old root.',
+      'BFS to level d-1. For each node at that level:',
+      'Create new_left(v) with new_left.left=node.left, attach to node.left.',
+      'Create new_right(v) with new_right.right=node.right, attach to node.right.',
+    ],
+    pitfalls: ['Handle d=1 separately. Remember new_left.left=old node.left and new_right.right=old node.right.'],
+  },
+
+  // ─── 624. Maximum Distance in Arrays ─────────────────────────────────────────
+  624: {
+    intuition: 'Maximize max[i] - min[j] where i≠j. Greedily track running minimum of first elements and maximum of last elements from previous arrays.',
+    algorithm: [
+      'Initialize min_val = first[0], max_val = last[0].',
+      'For each subsequent array i: ans = max(ans, last[i]-min_val, max_val-first[i]).',
+      'Update min_val, max_val with current array.',
+    ],
+    pitfalls: ['Must update answer BEFORE updating min/max to ensure i≠j constraint.'],
+  },
+
+  // ─── 627. Swap Salary ────────────────────────────────────────────────────────
+  627: {
+    intuition: 'SQL UPDATE using CASE or XOR trick to swap \'m\' and \'f\' values.',
+    algorithm: [
+      'UPDATE Salary SET sex = CASE WHEN sex = "m" THEN "f" ELSE "m" END.',
+      'Or: UPDATE Salary SET sex = IF(sex="m", "f", "m").',
+    ],
+    pitfalls: ['Single UPDATE statement with CASE is most efficient — no need to create temp values.'],
+  },
+
+  // ─── 632. Smallest Range Covering Elements from K Lists ──────────────────────
+  632: {
+    intuition: 'Use a min-heap containing one element from each list. Track global max. Smallest range containing one element from each list = [heap_min, global_max]. Advance the list with the minimum element.',
+    algorithm: [
+      'Initialize: push first element of each list, track max of those elements.',
+      'current range = [min_heap.min, max].',
+      'Pop min, push next from same list, update max.',
+      'Repeat until any list is exhausted. Return smallest range seen.',
+    ],
+    pitfalls: ['When you can\'t advance the list with minimum (exhausted), stop — can\'t shrink further.'],
+  },
+
+  // ─── 633. Sum of Square Numbers ──────────────────────────────────────────────
+  633: {
+    intuition: 'Two-pointer: set lo=0, hi=floor(sqrt(c)). Check lo²+hi²==c, adjust pointers.',
+    algorithm: [
+      'lo = 0, hi = (int)sqrt(c).',
+      'While lo <= hi: compute sum = lo²+hi². If sum==c return true. If sum<c lo++. Else hi--.',
+    ],
+    pitfalls: ['Use long arithmetic to avoid overflow when squaring. lo can equal hi (same number twice).'],
+  },
+
+  // ─── 641. Design Circular Deque ──────────────────────────────────────────────
+  641: {
+    intuition: 'Circular buffer with head and tail pointers. Support front/rear insert and delete in O(1).',
+    algorithm: [
+      'Fixed-size array of capacity k+1 (or k with a count variable).',
+      'head points to front; tail to one past rear.',
+      'InsertFront: head = (head-1+size)%size; arr[head]=val. InsertLast: arr[tail]=val; tail=(tail+1)%size.',
+      'DeleteFront: head=(head+1)%size. DeleteLast: tail=(tail-1+size)%size.',
+    ],
+    pitfalls: ['Use k+1 size to distinguish empty (head==tail) from full ((tail+1)%size==head).'],
+  },
+
+  // ─── 646. Maximum Length of Pair Chain ───────────────────────────────────────
+  646: {
+    intuition: 'Greedy: sort by end value. Greedily select the chain pair whose end is smallest (classic interval scheduling).',
+    algorithm: [
+      'Sort pairs by their end (second) value.',
+      'curr = pairs[0], count = 1.',
+      'For each subsequent pair p: if p.start > curr.end, take it: count++, curr=p.',
+    ],
+    pitfalls: ['Sort by end value, not start value. Strictly greater (not >=) to extend the chain.'],
+  },
+
+  // ─── 650. 2 Keys Keyboard ────────────────────────────────────────────────────
+  650: {
+    intuition: 'The minimum steps to get n \'A\'s is the sum of prime factors of n. Each prime factor p means: copy current and paste (p-1) more times.',
+    algorithm: [
+      'Factor n into primes.',
+      'Sum of all prime factors (with multiplicity) = minimum operations.',
+    ],
+    example: { input: 'n=6', steps: ['6 = 2×3. Start with 1 A. Copy+Paste once → 2A (2 steps). Copy+Paste twice → 6A (3 steps). Total = 5.'], output: '5' },
+    pitfalls: ['n=1 → 0 operations (already have 1 A). Each prime factor p costs p operations.'],
+  },
+
+  // ─── 657. Robot Return to Origin ─────────────────────────────────────────────
+  657: {
+    intuition: 'Track x and y offsets. After all moves, return to origin iff x==0 and y==0.',
+    algorithm: [
+      'Parse each character: L/R → x--, x++; U/D → y++, y--.',
+      'Return x==0 && y==0.',
+    ],
+    pitfalls: ['Simple simulation — no tricks needed.'],
+  },
+
+  // ─── 658. Find K Closest Elements ────────────────────────────────────────────
+  658: {
+    intuition: 'Binary search for the starting position of the window of size k. The optimal window starts where arr[mid] is closer to x than arr[mid+k].',
+    algorithm: [
+      'Binary search: lo=0, hi=len-k.',
+      'While lo < hi: mid = (lo+hi)/2. If x-arr[mid] > arr[mid+k]-x: lo=mid+1. Else hi=mid.',
+      'Return arr[lo..lo+k].',
+    ],
+    pitfalls: ['Comparison: prefer arr[mid+k]-x over x-arr[mid] when equal (left-biased window). Hi = len-k, not len-1.'],
+  },
+
+  // ─── 664. Strange Printer ────────────────────────────────────────────────────
+  664: {
+    intuition: 'Interval DP: dp[i][j] = minimum turns to print s[i..j]. If s[k]==s[i] for some k in (i,j], we can merge those turns.',
+    algorithm: [
+      'dp[i][i] = 1 for all i.',
+      'For length l=2..n, for each i: j=i+l-1. dp[i][j] = dp[i][j-1]+1 (print j separately).',
+      'For each k in [i,j-1] where s[k]==s[j]: dp[i][j] = min(dp[i][j], dp[i][k] + dp[k+1][j-1]).',
+    ],
+    pitfalls: ['When s[k]==s[j], we can extend the print at position k to cover j for free, so subtract one turn.'],
+  },
+
+  // ─── 670. Maximum Swap ───────────────────────────────────────────────────────
+  670: {
+    intuition: 'Swap at most one pair of digits to maximize. For each digit from left to right, find if there\'s a larger digit to its right (rightmost occurrence). Swap with first such opportunity.',
+    algorithm: [
+      'Store last occurrence index of each digit (0-9).',
+      'From left to right, for each digit d: check if there\'s a larger digit (9 down to d+1) whose last occurrence is to the right.',
+      'If found, swap and return.',
+    ],
+    example: { input: 'num=2736', steps: ['Last[6]=3, last[7]=2, last[3]=1, last[2]=0.', 'Index 0: digit=2, check 9..3: 7 at idx 2 > 0 → swap. 7236.'], output: '7236' },
+    pitfalls: ['Use the rightmost occurrence of the larger digit to ensure maximum gain.'],
+  },
+
+  // ─── 678. Valid Parenthesis String ───────────────────────────────────────────
+  678: {
+    intuition: 'Track the range [lo, hi] of possible open bracket counts. \'(\' increases both, \')\' decreases both, \'*\' expands range. If hi<0 at any point, invalid. Return lo==0 at end.',
+    algorithm: [
+      'lo=0, hi=0.',
+      'For each char: if \'(\': lo++,hi++. If \')\': lo--,hi--. If \'*\': lo--,hi++.',
+      'lo = max(lo, 0) (can\'t have negative open count).',
+      'If hi < 0: return false.',
+      'Return lo == 0.',
+    ],
+    example: { input: '"(*)"', steps: ['(: lo=1,hi=1. *: lo=0,hi=2. ): lo=-1→0, hi=1. End lo=0 ✓.'], output: 'true' },
+    pitfalls: ['Clamp lo to 0 after each step. If hi goes negative, it\'s impossible.'],
+  },
+
+  // ─── 684. Redundant Connection ───────────────────────────────────────────────
+  684: {
+    intuition: 'Find the edge that creates a cycle in an undirected graph (tree + 1 extra edge). Use Union-Find: the edge whose two endpoints are already connected is the answer.',
+    algorithm: [
+      'Initialize Union-Find with n nodes.',
+      'For each edge (u,v): if find(u)==find(v), return this edge (creates a cycle). Else union(u,v).',
+    ],
+    pitfalls: ['Return the LAST such edge if multiple exist. Process in order and return the first edge that unites two already-connected nodes.'],
+  },
+
+  // ─── 689. Maximum Sum of 3 Non-Overlapping Subarrays ─────────────────────────
+  689: {
+    intuition: 'Three non-overlapping subarrays of size k. Precompute sliding window sums. For each middle window j, find the best left (max in [0..j-k]) and best right (max in [j+k..n-k]).',
+    algorithm: [
+      'Compute sums[] of all k-length windows.',
+      'left[i] = index of max window in sums[0..i].',
+      'right[i] = index of max window in sums[i..n-k].',
+      'Iterate j from k to n-2k: try left[j-k], j, right[j+k]; update best.',
+    ],
+    pitfalls: ['For ties, prefer leftmost (build left L to R, right R to L with strict greater).'],
+  },
+
+  // ─── 693. Binary Number with Alternating Bits ────────────────────────────────
+  693: {
+    intuition: 'Check if binary representation alternates 0s and 1s. n XOR (n>>1) should be all 1s (2^k - 1 for some k).',
+    algorithm: [
+      'Compute m = n XOR (n >> 1).',
+      'Check if m is of form 2^k - 1 (all 1s in binary): (m & (m+1)) == 0.',
+    ],
+    example: { input: 'n=5 (101)', steps: ['5 XOR 2 = 7 (111).', '7 & 8 = 0 ✓.'], output: 'true' },
+    pitfalls: ['This works because alternating bits XOR with their neighbor (shift right) produces all 1s.'],
+  },
+
+  // ─── 696. Count Binary Substrings ────────────────────────────────────────────
+  696: {
+    intuition: 'Count substrings with equal consecutive 0s and 1s. Group consecutive same characters. For adjacent groups of sizes a and b, min(a,b) valid substrings.',
+    algorithm: [
+      'Group characters into run-length encoding (consecutive same chars).',
+      'For each pair of adjacent groups with sizes a and b: add min(a,b) to answer.',
+    ],
+    example: { input: '"00110011"', steps: ['Groups: [2,2,2,2]. Adjacent pairs: min(2,2)=2 each. Total=6.'], output: '6' },
+    pitfalls: ['Only need to track previous group size, not all groups.'],
+  },
+
+  // ─── 700. Search in a Binary Search Tree ─────────────────────────────────────
+  700: {
+    intuition: 'BST property: if val < node.val, go left; if val > node.val, go right; if equal, found.',
+    algorithm: [
+      'While node != null: if val==node.val return node. If val<node.val, node=node.left. Else node=node.right.',
+      'Return null if not found.',
+    ],
+    pitfalls: ['Simple BST search — O(h) time. For balanced BST, O(log n).'],
+  },
+
+  // ─── 703. Kth Largest Element in a Stream ────────────────────────────────────
+  703: {
+    intuition: 'Maintain a min-heap of size k. The kth largest is always the heap minimum.',
+    algorithm: [
+      'Constructor: add all initial elements, keeping heap size ≤ k.',
+      'Add(val): push val. If heap size > k, pop minimum. Return heap top.',
+    ],
+    pitfalls: ['Initialize by adding all elements and trimming to k, not just inserting first k.'],
+  },
+
+  // ─── 706. Design HashMap ─────────────────────────────────────────────────────
+  706: {
+    intuition: 'Array of buckets with chaining. Use modulo hashing. Each bucket is a list of (key,value) pairs.',
+    algorithm: [
+      'SIZE=1000 buckets. Hash = key % SIZE.',
+      'put(k,v): find bucket, search for key; update if found, append if not.',
+      'get(k): find bucket, search for key.',
+      'remove(k): find bucket, remove matching entry.',
+    ],
+    pitfalls: ['Avoid using Java\'s built-in HashMap — implement from scratch. Use LinkedList or ArrayList per bucket.'],
+  },
+
+  // ─── 707. Design Linked List ─────────────────────────────────────────────────
+  707: {
+    intuition: 'Implement singly or doubly linked list with a dummy head for easier insertions/deletions.',
+    algorithm: [
+      'Maintain dummy head node and size.',
+      'get(index): traverse from head to index.',
+      'addAtHead/addAtTail: special cases of addAtIndex.',
+      'addAtIndex(i,val): traverse to node before i, insert.',
+      'deleteAtIndex(i): traverse to node before i, skip the target.',
+    ],
+    pitfalls: ['Always validate index bounds. Doubly linked list makes deleteAtIndex and addAtTail O(1) with tail pointer.'],
+  },
+
+  // ─── 709. To Lower Case ──────────────────────────────────────────────────────
+  709: {
+    intuition: 'For each character, if it\'s uppercase (A-Z), convert to lowercase by adding 32 (or OR with 32).',
+    algorithm: [
+      'For each char c: if c is between A and Z, result += (char)(c + 32). Else result += c.',
+    ],
+    pitfalls: ['Or simply use String.toLowerCase(). For manual: uppercase letters are ASCII 65-90, lowercase 97-122.'],
+  },
+
+  // ─── 712. Minimum ASCII Delete Sum for Two Strings ───────────────────────────
+  712: {
+    intuition: 'DP similar to LCS but minimizing deleted ASCII sum. dp[i][j] = min delete cost to make s1[0..i] == s2[0..j].',
+    algorithm: [
+      'dp[0][0]=0. dp[i][0]=dp[i-1][0]+s1[i-1] (delete s1 chars). dp[0][j]=dp[0][j-1]+s2[j-1].',
+      'If s1[i-1]==s2[j-1]: dp[i][j]=dp[i-1][j-1].',
+      'Else: dp[i][j]=min(dp[i-1][j]+s1[i-1], dp[i][j-1]+s2[j-1]).',
+    ],
+    pitfalls: ['Unlike LCS (maximize), here we minimize deletion cost. ASCII value is used, not count 1.'],
+  },
+
+  // ─── 725. Split Linked List in Parts ─────────────────────────────────────────
+  725: {
+    intuition: 'Divide linked list of length n into k parts as evenly as possible. First (n%k) parts get one extra node.',
+    algorithm: [
+      'Count length n. base = n/k, extra = n%k.',
+      'For each part i: size = base + (i < extra ? 1 : 0). Extract that many nodes, break the link.',
+    ],
+    pitfalls: ['Store the next node before breaking the link. Handle n < k (some parts will be null).'],
+  },
+
+  // ─── 726. Number of Atoms ────────────────────────────────────────────────────
+  726: {
+    intuition: 'Parse chemical formula recursively. Use a stack to handle nested parentheses. Each (...) multiplied by following number.',
+    algorithm: [
+      'Use stack of Maps. Push new map on \'(\'. On \')\': pop map, multiply counts by following number, merge into top of stack.',
+      'On element: parse name and count, add to current top map.',
+      'Sort resulting map and format output.',
+    ],
+    pitfalls: ['Element names start with uppercase, followed by lowercase letters. Numbers default to 1 if absent.'],
+  },
+
+  // ─── 729. My Calendar I ──────────────────────────────────────────────────────
+  729: {
+    intuition: 'Maintain a sorted list of booked intervals. On book(s,e), check for overlap with neighbors.',
+    algorithm: [
+      'Use TreeMap with start→end entries.',
+      'Find floorKey(start) → check if that booking\'s end > start (overlap).',
+      'Find ceilingKey(start) → check if that booking\'s start < end (overlap).',
+      'If no overlap, insert.',
+    ],
+    pitfalls: ['Check both floor (booking that starts before) and ceiling (booking that starts after) for overlaps.'],
+  },
+
+  // ─── 731. My Calendar II ─────────────────────────────────────────────────────
+  731: {
+    intuition: 'Allow double booking but not triple. Track single and double bookings as sorted interval lists.',
+    algorithm: [
+      'Maintain list of double-booked and single-booked intervals.',
+      'On book(s,e): check if new interval overlaps with any double-booked interval → reject.',
+      'Add overlaps of new interval with single-booked intervals to double-booked.',
+      'Add new interval to single-booked.',
+    ],
+    pitfalls: ['Order matters: check double first. Overlap = max(s1,s2) < min(e1,e2).'],
+  },
+
+  // ─── 744. Find Smallest Letter Greater Than Target ───────────────────────────
+  744: {
+    intuition: 'Binary search for the smallest letter in the (circular) sorted array that is strictly greater than target.',
+    algorithm: [
+      'Binary search: find first letter > target.',
+      'If no such letter exists, wrap around and return letters[0].',
+    ],
+    pitfalls: ['Wraparound: if all letters ≤ target, return letters[0] (circular).'],
+  },
+
+  // ─── 752. Open the Lock ──────────────────────────────────────────────────────
+  752: {
+    intuition: 'BFS on the state space of 4-digit combinations. Each state has 8 neighbors (turn each of 4 wheels ±1). Find shortest path from "0000" to target.',
+    algorithm: [
+      'Add deadends to visited set.',
+      'BFS from "0000": generate 8 neighbors (wheel±1 mod 10).',
+      'Skip visited and deadends.',
+      'Return steps when target is reached.',
+    ],
+    example: { input: 'deadends=["0201","0101","0102","1212","2002"], target="0202"', steps: ['BFS explores states, avoiding deadends, finds shortest path.'], output: '6' },
+    pitfalls: ['If "0000" is in deadends, return -1 immediately. Use bidirectional BFS for speed.'],
+  },
+
+  // ─── 763. Partition Labels ───────────────────────────────────────────────────
+  763: {
+    intuition: 'Each character can only appear in one partition. Greedy: extend the current partition\'s end to the last occurrence of each character seen.',
+    algorithm: [
+      'Precompute last occurrence of each character.',
+      'Scan left to right: track current partition end = max of last occurrences of chars seen.',
+      'When i == current end, finalize partition.',
+    ],
+    example: { input: '"ababcbacadefegdehijhklij"', steps: ['a last=8, b last=5, c last=7 → first partition ends at 8.', 'd last=14, e last=15 → second partition ends at 15.', 'Third partition is rest.'], output: '[9,7,8]' },
+    pitfalls: ['One pass suffices: track end = max(end, last[c]) as you scan.'],
+  },
+
+  // ─── 769. Max Chunks To Make Sorted ──────────────────────────────────────────
+  769: {
+    intuition: 'The array is a permutation of 0..n-1. We can cut after index i if max(arr[0..i]) == i, meaning all elements up to i are in their correct range.',
+    algorithm: [
+      'Track running maximum.',
+      'At each index i: if max == i, we can make a cut here, increment chunk count.',
+      'Return chunk count.',
+    ],
+    example: { input: '[1,0,2,3,4]', steps: ['i=0: max=1≠0. i=1: max=1=1 → chunk. i=2: max=2=2 → chunk. i=3,4 → chunks. Total=4.'], output: '4' },
+    pitfalls: ['Only works for permutation of 0..n-1 (no duplicates). Different approach needed for 769 vs 768.'],
+  },
+
+  // ─── 778. Swim in Rising Water ───────────────────────────────────────────────
+  778: {
+    intuition: 'Find path from (0,0) to (n-1,n-1) minimizing the maximum elevation encountered. Use modified Dijkstra with min-heap, or binary search + BFS.',
+    algorithm: [
+      'Min-heap with (elevation, row, col). Start with (grid[0][0], 0, 0).',
+      'Pop minimum elevation node. If reached destination, return current time.',
+      'Push unvisited neighbors; time for each = max(current_time, grid[r][c]).',
+    ],
+    pitfalls: ['Track maximum elevation along the path (not sum). Use modified Dijkstra where distance is max, not sum.'],
+  },
+
+  // ─── 781. Rabbits in Forest ──────────────────────────────────────────────────
+  781: {
+    intuition: 'Rabbit says "x others have my color" → group of x+1 same-colored rabbits. Greedily pack rabbits into groups of size x+1.',
+    algorithm: [
+      'Frequency count: freq[x] = how many rabbits said x.',
+      'For each x: groups = ceil(freq[x] / (x+1)). Add groups*(x+1) to answer.',
+    ],
+    example: { input: '[1,1,2]', steps: ['x=1: freq=2, groups=ceil(2/2)=1 → 2 rabbits. x=2: freq=1, groups=ceil(1/3)=1 → 3 rabbits. Total=5.'], output: '5' },
+    pitfalls: ['Use ceiling division: (freq[x] + x) / (x+1).'],
+  },
+
+  // ─── 784. Letter Case Permutation ────────────────────────────────────────────
+  784: {
+    intuition: 'Backtracking: for each character, if it\'s a letter, branch into lowercase and uppercase versions.',
+    algorithm: [
+      'Recursive DFS: at each position, if digit add as-is. If letter, recurse with lower and upper case.',
+      'Base case: position == length → add to results.',
+    ],
+    pitfalls: ['Digits are added without branching. Converting between cases: XOR with 32.'],
+  },
+
+  // ─── 788. Rotated Digits ─────────────────────────────────────────────────────
+  788: {
+    intuition: 'A number is "good" if it\'s valid when rotated (all digits are 0,1,2,5,6,8,9) AND different from original (has at least one 2,5,6,9).',
+    algorithm: [
+      'For each n from 1 to N: check if all digits are in {0,1,2,5,6,8,9} and at least one digit is in {2,5,6,9}.',
+    ],
+    pitfalls: ['Digits 3,4,7 make a number invalid. Must also have 2,5,6, or 9 to ensure rotated != original.'],
+  },
+
+  // ─── 796. Rotate String ──────────────────────────────────────────────────────
+  796: {
+    intuition: 'A is a rotation of B iff A is a substring of B+B.',
+    algorithm: ['Return len(A)==len(B) && (B+B).contains(A).'],
+    pitfalls: ['Check length first. Using KMP or indexOf both work.'],
+  },
+
+  // ─── 799. Champagne Tower ────────────────────────────────────────────────────
+  799: {
+    intuition: 'Simulate champagne flow: excess liquid from cup (r,c) splits equally to (r+1,c) and (r+1,c+1). Track amount in each cup; amount in any cup is capped at 1 when queried.',
+    algorithm: [
+      'dp[r][c] = amount poured into cup.',
+      'For each row r, for each cup c: overflow = max(0, dp[r][c]-1). dp[r+1][c] += overflow/2; dp[r+1][c+1] += overflow/2.',
+      'Return min(1, dp[query_row][query_glass]).',
+    ],
+    pitfalls: ['Cups overflow when > 1, not >= 1. Return min(1, amount) for partial fill.'],
+  },
+
+  // ─── 802. Find Eventual Safe States ──────────────────────────────────────────
+  802: {
+    intuition: 'A node is safe if it\'s not part of a cycle and can\'t reach a cycle. Use DFS with states: unvisited, in-progress, safe, unsafe.',
+    algorithm: [
+      'For each unvisited node, DFS to detect cycles.',
+      'Mark node as in-progress. Recurse on neighbors. If any neighbor is in-progress → cycle → unsafe.',
+      'After all neighbors processed without cycle: mark safe.',
+      'Return all safe nodes sorted.',
+    ],
+    pitfalls: ['Memoize: once a node is marked safe/unsafe, don\'t re-visit. Terminal nodes (out-degree 0) are automatically safe.'],
+  },
+
+  // ─── 807. Max Increase to Keep City Skyline ──────────────────────────────────
+  807: {
+    intuition: 'Each building can be increased to min(rowMax, colMax) without changing the skyline from either direction.',
+    algorithm: [
+      'Compute rowMax[i] = max of row i, colMax[j] = max of col j.',
+      'For each (i,j): allowed = min(rowMax[i], colMax[j]). Increase = allowed - grid[i][j].',
+      'Sum all increases.',
+    ],
+    pitfalls: ['Limit is the minimum of the two maximums (most restrictive constraint).'],
+  },
+
+  // ─── 820. Short Encoding of Words ────────────────────────────────────────────
+  820: {
+    intuition: 'Build a trie of reversed words. A word needs its own entry only if it\'s not a suffix of another word. Count total characters for words that are trie leaves.',
+    algorithm: [
+      'Build suffix trie (insert reversed words).',
+      'Leaves of the trie are words not suffixed by others.',
+      'Sum up length+1 for each leaf.',
+      'Alternative: put all words in a set; for each word\'s suffix, if it\'s also in set, remove it.',
+    ],
+    pitfalls: ['Two words sharing a suffix share a trie path. Only leaves contribute to the encoded length.'],
+  },
+
+  // ─── 821. Shortest Distance to a Character ───────────────────────────────────
+  821: {
+    intuition: 'Two-pass: first scan left-to-right tracking last seen c position; then right-to-left. Take minimum.',
+    algorithm: [
+      'Pass 1 (L→R): for each i, distance[i] = i - last_c_position (∞ if not seen yet).',
+      'Pass 2 (R→L): for each i from right, distance[i] = min(distance[i], next_c_position - i).',
+    ],
+    pitfalls: ['Initialize last_c_position as -infinity (or a very negative number) in pass 1 to handle positions before the first c.'],
+  },
+
+  // ─── 825. Friends Of Appropriate Ages ────────────────────────────────────────
+  825: {
+    intuition: 'For a person A to friend B: age[B] ≤ 0.5*age[A]+7 must be false, age[B] > age[A] must be false, age[B] > 100 and age[A] < 100 must be false. Count valid pairs.',
+    algorithm: [
+      'Sort ages. For each pair (A,B) with A!=B, check the 3 conditions.',
+      'Or: use frequency count by age (1-120). For each age pair (a,b), count[a]*count[b] pairs (minus if a==b, subtract count[a] for self-friending).',
+    ],
+    pitfalls: ['The condition simplifies to: age[B] > 0.5*age[A]+7 AND age[B] ≤ age[A]. Persons don\'t friend themselves.'],
+  },
+
+  // ─── 832. Flipping an Image ──────────────────────────────────────────────────
+  832: {
+    intuition: 'Reverse each row then flip each bit. Optimize: process two pointers from ends; if they\'re the same, flip both; if different, no-op (they\'re already flipped-inverted).',
+    algorithm: [
+      'For each row, use two pointers l and r. While l <= r: if A[l]==A[r], flip both (XOR with 1). If different, leave as-is (reverse+invert cancel out).',
+    ],
+    example: { input: '[[1,1,0],[1,0,1],[0,0,0]]', steps: ['Row 0: [0,0,1]. Row 1: [0,1,0]. Row 2: [1,1,1].'], output: '[[0,0,1],[0,1,0],[1,1,1]]' },
+    pitfalls: ['The combined reverse-then-flip can be done in one pass. If outer pair equal, they become (1-val, 1-val). If different, they become (1,0) from (0,1) or (0,1) from (1,0) — unchanged.'],
+  },
+
+  // ─── 838. Push Dominoes ──────────────────────────────────────────────────────
+  838: {
+    intuition: 'Simulate forces: propagate R forces rightward and L forces leftward. Each position gets (rightForce, leftForce); compare to determine final state.',
+    algorithm: [
+      'Compute forces[i] from left: R pushes positive force rightward, L resets to 0, L itself gets -INF.',
+      'Compute from right: L pushes negative force leftward.',
+      'Combine: if forces[i]>0 → R, <0 → L, ==0 → \'.\' (or if R+L, they cancel).',
+    ],
+    pitfalls: ['Forces decay: each step away from the domino, force decreases by 1. Or use two-pass approach treating forces as distances.'],
+  },
+
+  // ─── 856. Score of Parentheses ───────────────────────────────────────────────
+  856: {
+    intuition: 'Use a stack to track running scores. \'(\' pushes 0 (new context). \')\' pops: if top was 0, contribute 1; else double the popped value. Add to new top.',
+    algorithm: [
+      'Initialize stack with [0].',
+      'For \'(\': push 0.',
+      'For \')\': v = pop(). top += v == 0 ? 1 : 2*v.',
+      'Return stack[0].',
+    ],
+    example: { input: '"(()(()))"', steps: ['Push(0)(0)→pop 0→top+=1→[0,1]. Push(0)→pop 0→top+=1→[0,2]. Pop 2→top+=4→[4].'], output: '6' },
+    pitfalls: ['Empty pairs "()" score 1. Non-empty "(X)" score 2*score(X). The stack approach handles arbitrary nesting.'],
+  },
+
+  // ─── 860. Lemonade Change ────────────────────────────────────────────────────
+  860: {
+    intuition: 'Greedy: maintain counts of $5 and $10 bills. When customer pays $10, give $5 change. When customer pays $20, prefer $10+$5 over three $5s.',
+    algorithm: [
+      'Count five and ten dollar bills.',
+      '$5 → five++.',
+      '$10 → if five==0 return false; five--, ten++.',
+      '$20 → if ten>0 and five>0: ten--, five--; else if five>=3: five-=3; else return false.',
+    ],
+    pitfalls: ['For $20, prefer using $10+$5 change over three $5 bills to preserve $5 for future $10 customers.'],
+  },
+
+  // ─── 862. Shortest Subarray with Sum at Least K ──────────────────────────────
+  862: {
+    intuition: 'Prefix sums + monotone deque. For each index j, find the largest i < j where prefix[j]-prefix[i] >= k and j-i is minimized.',
+    algorithm: [
+      'Compute prefix sums.',
+      'Use monotone increasing deque of indices.',
+      'For each j: while deque front satisfies prefix[j]-prefix[front] >= k: update answer with j-front, pop front.',
+      'While deque back has prefix[back] >= prefix[j]: pop back (useless). Push j.',
+    ],
+    pitfalls: ['Unlike sliding window, values can be negative so two-pointer doesn\'t work. The deque maintains increasing prefix sums.'],
+  },
+
 }
 
 export default explanations

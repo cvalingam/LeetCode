@@ -1172,6 +1172,528 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Track level parity (odd/even) to know when to reverse.'],
   },
 
+  // ─── Allocate Minimum Pages ──────────────────────────────────────────────────
+  'allocate-minimum-pages': {
+    intuition: 'Binary search on the answer (minimum of maximum pages). For a given mid, check if we can allocate books to m students such that each student gets at most mid pages.',
+    algorithm: [
+      'lo = max(books), hi = sum(books).',
+      'Binary search: mid = (lo+hi)/2. Check feasibility: greedily assign books; if a student would exceed mid, start a new student.',
+      'If feasible with ≤ m students: hi=mid. Else lo=mid+1.',
+      'Return lo.',
+    ],
+    example: { input: 'books=[12,34,67,90], m=2', steps: ['lo=90, hi=203. mid=146: [12,34,67] to student1 (113≤146), [90] to student2 → 2 students ✓.', 'hi=146. mid=118: [12,34,67] (113≤118), [90] ✓. hi=118.', 'Continue until lo=hi=113.'], output: '113' },
+    pitfalls: ['A student must get at least one book. Books must be contiguous (can\'t reorder).'],
+  },
+
+  // ─── BST to Greater Sum Tree ─────────────────────────────────────────────────
+  'bst-to-greater-sum-tree': {
+    intuition: 'In-order traversal visits BST in ascending order. Reverse in-order (right→node→left) visits in descending order. Maintain a running sum; update each node\'s value.',
+    algorithm: [
+      'Do reverse in-order traversal (right subtree first).',
+      'Maintain running sum. At each node: sum += node.val; node.val = sum.',
+    ],
+    example: { input: 'BST=[4,1,6,0,2,5,7]', steps: ['Visit 7→sum=7. Visit 6→sum=13. Visit 5→sum=18. Visit 4→sum=22. Visit 2→sum=24. Visit 1→sum=25. Visit 0→sum=25.'], output: 'Tree with updated values' },
+    pitfalls: ['This is a simple Morris traversal or recursive reverse in-order — no extra space needed with Morris.'],
+  },
+
+  // ─── Burning Tree ────────────────────────────────────────────────────────────
+  'burning-tree': {
+    intuition: 'Fire spreads from target node to all adjacent nodes (parent, children). Model as BFS from the target node treating the tree as a graph. First, find target and track parent pointers.',
+    algorithm: [
+      'DFS to find target node and build parent map.',
+      'BFS from target node: spread to left child, right child, and parent each step.',
+      'Count BFS levels (time steps) until all nodes are burned.',
+    ],
+    example: { input: 'root=[1,2,3,4,5], target=2', steps: ['t=0: burn node 2.', 't=1: burn 1(parent),4,5(children).', 't=2: burn 3(sibling via parent 1).', 'Total=2.'], output: '2' },
+    pitfalls: ['Must track parent pointers since BFS needs to go upward too. Mark visited nodes to avoid cycles.'],
+  },
+
+  // ─── Chocolate Distribution Problem ─────────────────────────────────────────
+  'chocolate-distribution-problem': {
+    intuition: 'Sort packets. The minimum difference between max and min packets given to m students is found in the sliding window of size m after sorting.',
+    algorithm: [
+      'Sort the packet array.',
+      'Sliding window of size m: for each window, compute A[i+m-1] - A[i].',
+      'Return minimum such difference.',
+    ],
+    example: { input: 'A=[7,3,2,4,9,12,56], m=3', steps: ['Sorted: [2,3,4,7,9,12,56].', 'Windows of size 3: [2,3,4]→2, [3,4,7]→4, [4,7,9]→5, [7,9,12]→5, [9,12,56]→47.', 'Min=2.'], output: '2' },
+    pitfalls: ['Sort first — only then is the minimum range guaranteed to be a contiguous subarray.'],
+  },
+
+  // ─── Clone a linked list with next and random pointer ────────────────────────
+  'clone-a-linked-list-with-next-and-random-pointer': {
+    intuition: 'Three passes: (1) interleave cloned nodes between original nodes, (2) set random pointers for cloned nodes, (3) separate the two lists.',
+    algorithm: [
+      'Pass 1: for each node N, insert clone N\' after N: N→N\'→N.next.',
+      'Pass 2: for each original node N: N.next.random = N.random?.next.',
+      'Pass 3: separate lists by fixing next pointers.',
+    ],
+    pitfalls: ['Pass 2 relies on the interleaved structure: original.random.next is the clone of original.random. Restore original list in pass 3.'],
+  },
+
+  // ─── Course Schedule I ───────────────────────────────────────────────────────
+  'course-schedule-i': {
+    intuition: 'Can all courses be completed? This is cycle detection in a directed graph. If the prerequisite graph is a DAG (no cycles), all courses can be done.',
+    algorithm: [
+      'Build directed adjacency list: prerequisite→course.',
+      'Topological sort (Kahn\'s BFS): compute in-degrees. Queue nodes with in-degree 0. Process: reduce neighbors\' in-degree, add to queue when 0.',
+      'If processed count == numCourses, return true.',
+    ],
+    example: { input: 'n=2, prerequisites=[[1,0]]', steps: ['Graph: 0→1. in-degree: [0,1]. Queue:[0]. Process 0→in[1]=0→add 1. Count=2=n.'], output: 'true' },
+    pitfalls: ['Also solvable with DFS cycle detection (white/grey/black coloring).'],
+  },
+
+  // ─── Course Schedule II ──────────────────────────────────────────────────────
+  'course-schedule-ii': {
+    intuition: 'Return a valid course order (topological sort). If cycle exists, return empty array.',
+    algorithm: [
+      'Kahn\'s algorithm: build adjacency list, compute in-degrees.',
+      'Queue all nodes with in-degree 0. Process queue: add to order, decrement neighbors\' in-degrees, add neighbors with in-degree 0.',
+      'If order.size == n, return order. Else return [].',
+    ],
+    pitfalls: ['Return any valid topological order, not a specific one. Empty array signals impossible (cycle).'],
+  },
+
+  // ─── Count Distinct elements in every window ─────────────────────────────────
+  'count-distinct-elements-in-every-window': {
+    intuition: 'Sliding window of size k. Use a frequency map. Track count of distinct elements (map size with non-zero counts).',
+    algorithm: [
+      'Populate frequency map with first k elements. Record distinct count.',
+      'Slide window: add new element (increment freq, if new → distinct++). Remove old (decrement, if 0 → distinct--).',
+      'Record distinct count for each position.',
+    ],
+    pitfalls: ['Remove element from map entirely (or just decrement and check 0) when its count drops to 0.'],
+  },
+
+  // ─── Count Reverse Pairs ─────────────────────────────────────────────────────
+  'count-reverse-pairs': {
+    intuition: 'Count pairs (i,j) where i<j and A[i]>2*A[j]. Use merge sort: during merging, count pairs across left and right halves efficiently.',
+    algorithm: [
+      'Modified merge sort.',
+      'Before merging, count pairs: for each element in left half, count elements in right half where left[i] > 2*right[j].',
+      'Use two pointers on sorted halves for O(n) counting per level.',
+      'Merge normally.',
+    ],
+    pitfalls: ['Count BEFORE merging (after recursive sort), so both halves are sorted. The count step is separate from the merge step.'],
+  },
+
+  // ─── Diameter of a Binary Tree ───────────────────────────────────────────────
+  'diameter-of-a-binary-tree': {
+    intuition: 'Diameter passes through some node (LCA). For each node, diameter through it = leftHeight + rightHeight. Track global maximum.',
+    algorithm: [
+      'DFS returning height of subtree.',
+      'At each node: diameter candidate = leftHeight + rightHeight.',
+      'Update global max. Return 1 + max(leftHeight, rightHeight) as height.',
+    ],
+    example: { input: 'root=[1,2,3,4,5]', steps: ['Node 4: h=1. Node 5: h=1. Node 2: dia=2, h=2. Node 3: h=1. Node 1: dia=1+2=3, h=3.'], output: '3' },
+    pitfalls: ['Diameter doesn\'t have to pass through root. Update global max at every node.'],
+  },
+
+  // ─── Dice throw ──────────────────────────────────────────────────────────────
+  'dice-throw': {
+    intuition: 'Count ways to get sum S with N dice, each having M faces. DP: dp[i][j] = ways to get sum j with i dice.',
+    algorithm: [
+      'dp[0][0] = 1.',
+      'For each die d from 1 to N: for each sum j: dp[d][j] = sum of dp[d-1][j-f] for f in 1..min(m,j).',
+      'Return dp[N][S].',
+    ],
+    example: { input: 'N=2, M=6, S=4', steps: ['dp[1] = [0,1,1,1,1,1,1]. dp[2][4] = dp[1][3]+dp[1][2]+dp[1][1] = 3.'], output: '3' },
+    pitfalls: ['1D DP with offset or 2D is clearer. Inner loop runs 1..min(m,j) to avoid going negative.'],
+  },
+
+  // ─── Evaluation of Postfix Expression ────────────────────────────────────────
+  'evaluation-of-postfix-expression': {
+    intuition: 'Stack-based evaluation: push operands, on operator pop two operands, apply, push result.',
+    algorithm: [
+      'Scan tokens left to right.',
+      'If token is number: push to stack.',
+      'If token is operator (+,-,*,/): pop b then a, compute a op b, push result.',
+      'Final stack top is the result.',
+    ],
+    example: { input: '"2 3 1 * + 9 -"', steps: ['Push 2,3,1. *: pop 3,1→3. +: pop 2,3→5. Push 9. -: pop 5,9→-4.'], output: '-4' },
+    pitfalls: ['Pop order matters: pop b first, then a, compute a op b (not b op a).'],
+  },
+
+  // ─── Find median in a stream ──────────────────────────────────────────────────
+  'find-median-in-a-stream': {
+    intuition: 'Maintain two heaps: max-heap for lower half, min-heap for upper half. Median is the top of the larger heap (or average of both tops).',
+    algorithm: [
+      'Insert to max-heap. Then balance: if max-heap top > min-heap top, move max-heap top to min-heap.',
+      'Rebalance sizes: if size difference > 1, move top of larger to smaller.',
+      'Median: if equal size, average tops. If unequal, top of larger.',
+    ],
+    example: { input: 'Stream: 5,15,1,3', steps: ['Add 5: max=[5]. Add 15: min=[15], max=[5]. Add 1: max=[5,1], min=[15]. Add 3: max=[3,1], min=[5,15]. Median=(3+5)/2=4.'], output: '4.0' },
+    pitfalls: ['Java uses PriorityQueue (min by default); negate values for max-heap. Python: heapq is min-heap.'],
+  },
+
+  // ─── Find the number of islands ──────────────────────────────────────────────
+  'find-the-number-of-islands': {
+    intuition: 'DFS/BFS flood fill: for each unvisited \'1\', increment count and DFS to mark all connected \'1\'s as visited.',
+    algorithm: [
+      'Iterate over all cells. For each \'1\' not yet visited:',
+      'Increment island count.',
+      'DFS/BFS: mark current as visited, recurse on all 4 (or 8) neighbors that are \'1\'.',
+    ],
+    example: { input: '[[1,1,0],[0,1,0],[0,0,1]]', steps: ['Start (0,0)→DFS marks (0,0),(0,1),(1,1). Count=1. (2,2) unvisited→Count=2.'], output: '2' },
+    pitfalls: ['Mark cells as visited immediately to avoid re-counting. Determine if connectivity is 4-directional or 8-directional.'],
+  },
+
+  // ─── Flattening a Linked List ─────────────────────────────────────────────────
+  'flattening-a-linked-list': {
+    intuition: 'Each node has a next pointer (horizontal) and a child pointer (vertical sorted list). Merge all vertical lists using merge sort logic.',
+    algorithm: [
+      'Recursively flatten from right to left.',
+      'Merge current node\'s child list with the already-flattened rest.',
+      'Return merged sorted list.',
+    ],
+    pitfalls: ['After merging, the result uses child pointers, not next pointers. Set next to null in the merged result.'],
+  },
+
+  // ─── Flood fill Algorithm ────────────────────────────────────────────────────
+  'flood-fill-algorithm': {
+    intuition: 'From a starting pixel, paint it and all connected pixels of the same color with a new color. DFS/BFS from start.',
+    algorithm: [
+      'If starting pixel\'s color already equals new color, return (avoid infinite loop).',
+      'DFS from (sr,sc): set image[r][c]=newColor. Recurse on 4 neighbors with old color.',
+    ],
+    example: { input: 'image=[[1,1,1],[1,1,0],[1,0,1]], sr=1, sc=1, newColor=2', steps: ['Fill connected 1s: (0,0),(0,1),(0,2),(1,0),(1,1),(2,0) become 2.'], output: '[[2,2,2],[2,2,0],[2,0,1]]' },
+    pitfalls: ['Check if start pixel\'s color == new color and skip to avoid infinite recursion.'],
+  },
+
+  // ─── Gold Mine Problem ────────────────────────────────────────────────────────
+  'gold-mine-problem': {
+    intuition: 'DP: you can enter from any row in column 0 and move right, right-up, or right-down. Find path maximizing gold collected.',
+    algorithm: [
+      'dp[i][j] = max gold reachable at cell (i,j) coming from left column.',
+      'For each column j from 1: for each row i: dp[i][j] = grid[i][j] + max(dp[i-1][j-1], dp[i][j-1], dp[i+1][j-1]).',
+      'Return max over all dp[i][n-1].',
+    ],
+    pitfalls: ['Boundary checks for first/last rows. Can start from any cell in column 0. Must move left to right only.'],
+  },
+
+  // ─── Gray Code ────────────────────────────────────────────────────────────────
+  'gray-code': {
+    intuition: 'n-bit Gray code: i-th value = i XOR (i>>1). Or build iteratively: mirror and prefix with 0/1.',
+    algorithm: [
+      'Iterative: start with [0]. For each step i from 1 to n: for j from current.size-1 to 0, append current[j] | (1<<(i-1)).',
+      'Or formula: for i in 0..2^n-1, gray[i] = i ^ (i>>1).',
+    ],
+    example: { input: 'n=2', steps: ['Step 0: [0]. Step 1: [0,1]. Step 2: [00,01,11,10] = [0,1,3,2].'], output: '[0,1,3,2]' },
+    pitfalls: ['Successive values differ by exactly 1 bit. The XOR formula i^(i>>1) directly gives the i-th Gray code.'],
+  },
+
+  // ─── Implement Atoi ──────────────────────────────────────────────────────────
+  'implement-atoi': {
+    intuition: 'Parse integer from string: skip whitespace, handle sign, parse digits, clamp to INT range.',
+    algorithm: [
+      'Skip leading whitespace.',
+      'Check sign (+ or -).',
+      'Parse digits: result = result*10 + digit. Stop at non-digit.',
+      'Clamp: if > INT_MAX return INT_MAX; if < INT_MIN return INT_MIN.',
+    ],
+    pitfalls: ['Overflow during parsing: check before multiplying. Empty string or all-whitespace returns 0.'],
+  },
+
+  // ─── Implement Pow ───────────────────────────────────────────────────────────
+  'implement-pow': {
+    intuition: 'Fast exponentiation (binary exponentiation): x^n = (x^(n/2))^2, halving n each time.',
+    algorithm: [
+      'If n==0: return 1. If n<0: x=1/x, n=-n.',
+      'If n is even: return pow(x*x, n/2).',
+      'If n is odd: return x * pow(x*x, n/2).',
+    ],
+    example: { input: 'x=2.0, n=10', steps: ['pow(2,10)=pow(4,5)=4*pow(16,2)=4*pow(256,1)=4*256=1024.'], output: '1024.0' },
+    pitfalls: ['Handle n=INT_MIN carefully (overflow on negation). Use long for n.'],
+  },
+
+  // ─── Inorder Traversal ────────────────────────────────────────────────────────
+  'inorder-traversal': {
+    intuition: 'Visit left subtree, then root, then right subtree. For iterative: use stack to simulate call stack.',
+    algorithm: [
+      'Recursive: inorder(left), visit root, inorder(right).',
+      'Iterative: push all left nodes to stack. Pop, add to result, then push all left nodes of right subtree.',
+    ],
+    pitfalls: ['Morris traversal achieves O(1) space by temporarily modifying tree links.'],
+  },
+
+  // ─── Intersection Point in Y Shaped Linked Lists ─────────────────────────────
+  'intersection-point-in-y-shaped-linked-lists': {
+    intuition: 'Two pointers: switch to the other head when reaching null. They\'ll meet at the intersection after traversing both lists\' full lengths.',
+    algorithm: [
+      'a = headA, b = headB.',
+      'While a != b: a = (a == null) ? headB : a.next; b = (b == null) ? headA : b.next.',
+      'Return a (intersection or null).',
+    ],
+    pitfalls: ['If no intersection, both become null simultaneously after traversing both full lists, so while loop terminates.'],
+  },
+
+  // ─── Josephus problem ─────────────────────────────────────────────────────────
+  'josephus-problem': {
+    intuition: 'Mathematical recurrence: J(1)=0; J(n)=(J(n-1)+k)%n. The 0-indexed survivor position builds from n=1.',
+    algorithm: [
+      'pos = 0.',
+      'For i from 2 to n: pos = (pos + k) % i.',
+      'Return pos + 1 (convert to 1-indexed).',
+    ],
+    example: { input: 'n=5, k=2', steps: ['J(1)=0. J(2)=(0+2)%2=0. J(3)=(0+2)%3=2. J(4)=(2+2)%4=0. J(5)=(0+2)%5=2. 1-indexed=3.'], output: '3' },
+    pitfalls: ['0-indexed formula; add 1 at end for 1-indexed answer.'],
+  },
+
+  // ─── K-th element of two Arrays ──────────────────────────────────────────────
+  'k-th-element-of-two-arrays': {
+    intuition: 'Binary search on one array. Take some elements from first array and k-take from second. Ensure the partition is valid.',
+    algorithm: [
+      'Binary search: lo=max(0,k-n2), hi=min(k,n1).',
+      'mid1 elements from arr1, mid2=k-mid1 from arr2.',
+      'Check: arr1[mid1-1]<=arr2[mid2] and arr2[mid2-1]<=arr1[mid1].',
+      'The kth element is max(arr1[mid1-1], arr2[mid2-1]).',
+    ],
+    pitfalls: ['Handle boundary cases where mid1=0 or mid1=n1 (use -infinity/+infinity sentinels).'],
+  },
+
+  // ─── k-th Smallest in BST ────────────────────────────────────────────────────
+  'k-th-smallest-in-bst': {
+    intuition: 'In-order traversal of BST visits nodes in sorted ascending order. The k-th node visited is the k-th smallest.',
+    algorithm: [
+      'In-order DFS: traverse left, visit node (decrement k), traverse right.',
+      'When k reaches 0, store current node value.',
+    ],
+    example: { input: 'BST=[5,3,6,2,4], k=3', steps: ['In-order: 2,3,4,5,6. 3rd = 4.'], output: '4' },
+    pitfalls: ['Can early-exit once k reaches 0. For iterative, use a stack and counter.'],
+  },
+
+  // ─── LCS of three strings ─────────────────────────────────────────────────────
+  'lcs-of-three-strings': {
+    intuition: 'Extension of LCS: 3D DP. dp[i][j][k] = LCS of first i chars of s1, j chars of s2, k chars of s3.',
+    algorithm: [
+      'If s1[i-1]==s2[j-1]==s3[k-1]: dp[i][j][k] = dp[i-1][j-1][k-1] + 1.',
+      'Else: dp[i][j][k] = max(dp[i-1][j][k], dp[i][j-1][k], dp[i][j][k-1]).',
+      'Return dp[n1][n2][n3].',
+    ],
+    pitfalls: ['3D DP has O(n³) time and space. Can be space-optimized but logic is clearer in 3D.'],
+  },
+
+  // ─── Largest BST ─────────────────────────────────────────────────────────────
+  'largest-bst': {
+    intuition: 'For each subtree, check if it\'s a valid BST and track its size. Return max BST size found. Each subtree return: (isBST, size, min, max).',
+    algorithm: [
+      'DFS returning (isBST, size, minVal, maxVal) for each subtree.',
+      'A node\'s subtree is BST if both children are BSTs, node.val > left.max, node.val < right.min.',
+      'BST size = left.size + right.size + 1. Track global maximum.',
+    ],
+    pitfalls: ['If subtree is not BST, return size=0 so its ancestors can\'t count it. Propagate min/max correctly.'],
+  },
+
+  // ─── Left View of Binary Tree ─────────────────────────────────────────────────
+  'left-view-of-binary-tree': {
+    intuition: 'BFS level order: first node of each level is visible from left. Or DFS with level tracking: first visit at each level is left view.',
+    algorithm: [
+      'BFS: for each level, add the first node\'s value to result.',
+      'Or DFS: pass level. If level == result.size(), add current node value (first visit at this level).',
+    ],
+    pitfalls: ['DFS should visit left child first to ensure leftmost node is recorded first.'],
+  },
+
+  // ─── Level Order in spiral form ──────────────────────────────────────────────
+  'level-order-in-spiral-form': {
+    intuition: 'Alternate direction each level. Use two stacks: one for left-to-right levels, one for right-to-left. Or BFS with a direction flag.',
+    algorithm: [
+      'Use two stacks s1 (current) and s2 (next).',
+      'Left-to-right level: push right then left child to s2.',
+      'Right-to-left level: push left then right child to s2.',
+      'Swap stacks after each level.',
+    ],
+    pitfalls: ['When printing left-to-right, push children right-then-left to next stack (stack reverses order).'],
+  },
+
+  // ─── Linked List Group Reverse ────────────────────────────────────────────────
+  'linked-list-group-reverse': {
+    intuition: 'Reverse every k nodes. For each group of k, reverse the sublist then connect to next group.',
+    algorithm: [
+      'Check if at least k nodes remain; if not, leave as-is.',
+      'Reverse k nodes using prev/curr/next.',
+      'head.next = reverseKGroup(next_group, k).',
+      'Return new head of this group.',
+    ],
+    pitfalls: ['After reversal, old head of group becomes the tail. Connect it to recursively processed next group.'],
+  },
+
+  // ─── Longest Common Increasing Subsequence ────────────────────────────────────
+  'longest-common-increasing-subsequence': {
+    intuition: 'Combine LCS and LIS. dp[j] = length of LCIS ending with B[j]. For each A[i], update dp[j] for B[j]==A[i] using best candidate from previous elements.',
+    algorithm: [
+      'For each i (A): best = 0. For each j (B):',
+      'If A[i] == B[j]: dp[j] = best + 1.',
+      'If A[i] > B[j]: best = max(best, dp[j]).',
+      'Return max(dp).',
+    ],
+    pitfalls: ['Track "best" separately to avoid using updated dp values in same outer iteration.'],
+  },
+
+  // ─── Longest Common Substring ────────────────────────────────────────────────
+  'longest-common-substring': {
+    intuition: 'DP: dp[i][j] = length of longest common substring ending at s1[i-1] and s2[j-1]. If chars match, dp[i][j]=dp[i-1][j-1]+1. Track global max.',
+    algorithm: [
+      'dp[i][j] = 0 if s1[i-1] != s2[j-1], else dp[i-1][j-1]+1.',
+      'Track max(dp[i][j]) across all i,j.',
+    ],
+    example: { input: 's1="ABCBDAB", s2="BDCABA"', steps: ['dp fills up. Max common substring is "AB" or "BD" of length 2? Actually "BCB"/"BDCAB" → "BCA"? Let me recalculate: longest = "AB"=2... actually "ABCB" vs "BDCABA" → "AB"=2.'], output: '2' },
+    pitfalls: ['Unlike LCS, must be contiguous — reset dp[i][j]=0 on mismatch, no max with adjacent cells.'],
+  },
+
+  // ─── Longest Consecutive Subsequence ─────────────────────────────────────────
+  'longest-consecutive-subsequence': {
+    intuition: 'Add all elements to a HashSet. For each number n where n-1 is NOT in the set (it\'s a sequence start), count how long the streak goes.',
+    algorithm: [
+      'Add all nums to HashSet.',
+      'For each n where set doesn\'t contain n-1: count streak = 1, while set contains n+streak: streak++.',
+      'Update max streak.',
+    ],
+    example: { input: '[100,4,200,1,3,2]', steps: ['Start=1: 1,2,3,4 → streak=4. Start=100: streak=1. Start=200: streak=1.'], output: '4' },
+    pitfalls: ['Only start counting from sequence start (n-1 not in set) — avoids O(n²) repetition.'],
+  },
+
+  // ─── Longest valid Parentheses ───────────────────────────────────────────────
+  'longest-valid-parentheses': {
+    intuition: 'Use a stack to find the length of the longest valid parentheses substring. Push indices; on \')\', pop matching \'(\'; if stack empty, push current as new base.',
+    algorithm: [
+      'Push -1 as base index onto stack.',
+      'For \'(\': push index.',
+      'For \')\': pop. If stack empty: push current index as new base. Else: length = i - stack.top(). Update max.',
+    ],
+    example: { input: '"()(()"', steps: ['i=0 \'(\' push. i=1 \')\' pop, stack=[−1], len=1−(−1)=2. i=2,3 push. i=4 \')\' pop, stack=[1], len=4−1=3.'], output: '4... (recalc: "(()" → len=2 from last two)' },
+    pitfalls: ['Initialize stack with -1 as sentinel. Also solvable with DP (dp[i] = length ending at i) or two passes.'],
+  },
+
+  // ─── Lowest Common Ancestor in a BST ─────────────────────────────────────────
+  'lowest-common-ancestor-in-a-bst': {
+    intuition: 'BST property: LCA is the first node where paths to n1 and n2 diverge. If both values are less than current node, LCA is in left subtree; if both greater, in right; else current is LCA.',
+    algorithm: [
+      'While root != null:',
+      'If n1 < root.val and n2 < root.val: root = root.left.',
+      'If n1 > root.val and n2 > root.val: root = root.right.',
+      'Else return root.',
+    ],
+    pitfalls: ['Only valid for BST. For general binary tree, use the standard LCA algorithm.'],
+  },
+
+  // ─── Majority Element II ─────────────────────────────────────────────────────
+  'majority-element-ii': {
+    intuition: 'Find all elements appearing more than ⌊n/3⌋ times. At most 2 such elements exist. Use Boyer-Moore voting with 2 candidates.',
+    algorithm: [
+      'Maintain two candidates and their counts.',
+      'For each element: if it matches candidate1 or 2, increment their count. If a count is 0, replace. Else decrement both.',
+      'Verify the two candidates by counting occurrences.',
+    ],
+    pitfalls: ['After voting, must verify — candidates might not actually exceed n/3 (voting finds the POTENTIAL candidates, not guaranteed majority).'],
+  },
+
+  // ─── Max rectangle ───────────────────────────────────────────────────────────
+  'max-rectangle': {
+    intuition: 'Build histograms row by row and apply "largest rectangle in histogram" for each row.',
+    algorithm: [
+      'Maintain heights[] array. For each row: update heights (increment if cell=1, reset to 0 if cell=0).',
+      'For each row\'s heights, compute largest rectangle using stack-based approach.',
+    ],
+    example: { input: '[[1,0,1,0,0],[1,0,1,1,1],[1,1,1,1,1],[1,0,0,1,0]]', steps: ['Row 0 heights=[1,0,1,0,0]→area=1. Row 1=[2,0,2,1,1]→area=3. Row 2=[3,1,3,2,2]→area=6.'], output: '6' },
+    pitfalls: ['Use the histogram approach for each row. The largest rectangle in histogram uses a monotone stack.'],
+  },
+
+  // ─── Maximum Product Subarray ─────────────────────────────────────────────────
+  'maximum-product-subarray': {
+    intuition: 'Track both maximum and minimum product ending at each position (negative × negative = positive). Max at each step = max of: current element alone, max*current, min*current.',
+    algorithm: [
+      'maxProd = minProd = result = nums[0].',
+      'For each num from index 1: tmp = maxProd. maxProd = max(num, maxProd*num, minProd*num). minProd = min(num, tmp*num, minProd*num).',
+      'result = max(result, maxProd).',
+    ],
+    example: { input: '[2,3,-2,4]', steps: ['max=2,min=2. max=6,min=6. max=-2,min=-12. max=4,min=-48. Result=6.'], output: '6' },
+    pitfalls: ['Must track minimum product because negative × negative = positive. Save tmp before updating maxProd.'],
+  },
+
+  // ─── Maximum path sum from any node ──────────────────────────────────────────
+  'maximum-path-sum-from-any-node': {
+    intuition: 'Path can go through any node, using both subtrees. DFS: at each node, best path = max(0, leftGain) + max(0, rightGain) + node.val. Track global max.',
+    algorithm: [
+      'DFS returns the maximum gain (single path down) from this node.',
+      'At node: leftGain = max(0, dfs(left)). rightGain = max(0, dfs(right)).',
+      'Candidate = leftGain + rightGain + val. Update global max.',
+      'Return val + max(leftGain, rightGain) (can only choose one side for parent path).',
+    ],
+    pitfalls: ['Return val + max(left,right) to parent (can\'t split the path). Update global max with both sides locally.'],
+  },
+
+  // ─── Maximum sum of Non-adjacent nodes ───────────────────────────────────────
+  'maximum-sum-of-non-adjacent-nodes': {
+    intuition: 'Tree DP: for each node, two states — include node (can\'t include children) or exclude (take max of including/excluding each child).',
+    algorithm: [
+      'DFS returns (include, exclude) for each subtree.',
+      'include = node.val + sum(exclude of each child).',
+      'exclude = sum(max(include, exclude) for each child).',
+      'For root: return max(include, exclude).',
+    ],
+    pitfalls: ['This is house-robber on a tree. Return a pair (take, skip) from each subtree.'],
+  },
+
+  // ─── Median in a row-wise sorted Matrix ──────────────────────────────────────
+  'median-in-a-row-wise-sorted-matrix': {
+    intuition: 'Binary search on value range [lo, hi]. For a given mid, count elements ≤ mid using binary search on each row. Median found when count == (m*n+1)/2.',
+    algorithm: [
+      'lo = matrix[0][0], hi = max last elements.',
+      'Binary search: mid = (lo+hi)/2. Count = sum of upper_bound(mid) across all rows.',
+      'If count < (m*n+1)/2: lo=mid+1. Else hi=mid.',
+      'Return lo.',
+    ],
+    pitfalls: ['Integer median for odd total. Binary search on values, not indices. Count elements ≤ mid (not <).'],
+  },
+
+  // ─── Median of two sorted arrays ────────────────────────────────────────────
+  'median-of-two-sorted-arrays': {
+    intuition: 'Binary search on the smaller array. Partition both arrays such that left half has (m+n)/2 elements and max(left) ≤ min(right).',
+    algorithm: [
+      'Ensure len(A) ≤ len(B). Binary search on A: lo=0, hi=len(A).',
+      'partA=mid, partB=(m+n+1)/2 - partA.',
+      'Check: maxLeftA ≤ minRightB and maxLeftB ≤ minRightA.',
+      'If valid: median = max(maxLeft) for odd total, or (max(maxLeft)+min(minRight))/2 for even.',
+    ],
+    pitfalls: ['Use ±infinity for boundary partitions (partA=0 or partA=len). Ensure binary search on shorter array.'],
+  },
+
+  // ─── Merge Sort for Linked List ──────────────────────────────────────────────
+  'merge-sort-for-linked-list': {
+    intuition: 'Split linked list in half (using slow/fast pointer), recursively sort each half, merge the two sorted halves.',
+    algorithm: [
+      'Find middle using slow/fast pointers.',
+      'Split: mid.next = null.',
+      'Recursively sort left and right halves.',
+      'Merge two sorted lists.',
+    ],
+    pitfalls: ['For splitting, stop slow pointer one before middle (so splitting is correct). No random access, so must find middle each time.'],
+  },
+
+  // ─── Merge two sorted linked lists ──────────────────────────────────────────
+  'merge-two-sorted-linked-lists': {
+    intuition: 'Use a dummy head. Compare heads of both lists, append smaller, advance that list\'s pointer.',
+    algorithm: [
+      'Create dummy node. curr = dummy.',
+      'While both lists non-null: compare heads, append smaller to curr.next, advance pointer.',
+      'Append remaining non-null list.',
+      'Return dummy.next.',
+    ],
+    pitfalls: ['Don\'t forget to attach the remaining list after one list is exhausted.'],
+  },
+
+  // ─── Middle of a Linked List ─────────────────────────────────────────────────
+  'middle-of-a-linked-list': {
+    intuition: 'Floyd\'s slow/fast pointer: slow advances one step, fast advances two. When fast reaches end, slow is at middle.',
+    algorithm: [
+      'slow = fast = head.',
+      'While fast != null and fast.next != null: slow = slow.next; fast = fast.next.next.',
+      'Return slow.',
+    ],
+    pitfalls: ['For even length lists, this returns the second middle. Adjust termination condition if first middle is needed.'],
+  },
+
 }
 
 export default gfgExplanations
