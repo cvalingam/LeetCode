@@ -2009,6 +2009,336 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Ignore duplicates during cyclic sort (check arr[i]!=arr[arr[i]-1] before swap). Answer in range [1,n+1].'],
   },
 
+  'longest-subarray-with-sum-k': {
+    intuition: 'Find longest subarray with sum exactly k. Use prefix sum hash map: if prefix[i]-k seen before, subarray from that index+1 to i has sum k.',
+    algorithm: [
+      'Map: prefix_sum -> first index. Initialize {0: -1}.',
+      'For each i: if (prefix[i]-k) in map: candidate length = i - map[prefix[i]-k]. Update max.',
+      'If prefix[i] not in map: map[prefix[i]] = i.',
+    ],
+    pitfalls: ['Store first occurrence of each prefix sum (don\'t overwrite). Works for both positive and negative integers.'],
+  },
+
+  'next-greater-element-in-circular-array': {
+    intuition: 'Extend the array conceptually by doubling it. Use monotone stack. For circular array, simulate double traversal.',
+    algorithm: [
+      'Traverse array twice (0 to 2n-1) using index % n.',
+      'Monotone stack. For i in second pass: pop stack elements smaller than current, assign result.',
+      'First pass builds stack; second pass resolves remaining.',
+    ],
+    pitfalls: ['Only assign result on first n elements. Traverse 2n times to handle circular wrap.'],
+  },
+
+  'stock-buy-and-sell-max-one-transaction-allowed': {
+    intuition: 'Track minimum price seen so far. At each day, profit = price - min_so_far. Track maximum profit.',
+    algorithm: [
+      'min_price = prices[0], max_profit = 0.',
+      'For each price: max_profit = max(max_profit, price - min_price). min_price = min(min_price, price).',
+    ],
+    pitfalls: ['Must buy before selling. Update min_price at the end (or in same step since profit uses current price).'],
+  },
+
+  'stock-buy-and-sell-max-2-transactions-allowed': {
+    intuition: 'DP with states. Track best profit with at most 2 transactions. Two passes: forward for best single transaction up to day i, backward for best single transaction from day i.',
+    algorithm: [
+      'Forward pass: best1[i] = max profit from single transaction in prices[0..i].',
+      'Backward pass: best2[i] = max profit from single transaction in prices[i..n-1].',
+      'Answer = max(best1[i] + best2[i+1]) for all i.',
+    ],
+    pitfalls: ['Two transactions can share a day boundary. DP states: buy1, sell1, buy2, sell2.'],
+  },
+
+  'stock-buy-and-sell-with-cooldown': {
+    intuition: 'DP: after selling, must wait one day. States: held (own stock), sold (just sold today), rest (cooldown passed).',
+    algorithm: [
+      'held = -infinity, sold = 0, rest = 0.',
+      'For each price: new_held = max(held, rest - price). new_sold = held + price. new_rest = max(rest, sold).',
+      'Return max(sold, rest) at end.',
+    ],
+    pitfalls: ['After selling (sold state), next day must be rest (cannot buy). After rest, can buy or rest.'],
+  },
+
+  'stock-span-problem': {
+    intuition: 'Span = number of consecutive days <= current price ending at today. Use monotone stack of (price, span) pairs.',
+    algorithm: [
+      'Stack of (price, span). For each price p: span = 1. While stack not empty and stack.top.price <= p: span += stack.top.span. Pop.',
+      'Push (p, span). Record span.',
+    ],
+    pitfalls: ['Store span in stack entry to avoid recomputing. Each element is processed at most twice.'],
+  },
+
+  'optimal-strategy-for-a-game': {
+    intuition: 'DP: both players play optimally. dp[i][j] = max coins first player can collect from coins[i..j].',
+    algorithm: [
+      'dp[i][j]: if player takes coins[i], opponent plays optimally on [i+1,j]: dp[i+1][j] gives opponent max, player gets sum[i..j]-dp[i+1][j].',
+      'If player takes coins[j]: similarly dp[i][j-1].',
+      'dp[i][j] = max(coins[i] + sum[i+1][j] - dp[i+1][j], coins[j] + sum[i][j-1] - dp[i][j-1]).',
+    ],
+    pitfalls: ['dp[i][j] = what first player gets. Use range sum to compute what remains. Both pick optimally.'],
+  },
+
+  'wildcard-pattern-matching': {
+    intuition: 'DP: dp[i][j] = true if pattern[0..i-1] matches string[0..j-1]. Handle * (matches any sequence) and ? (matches single char).',
+    algorithm: [
+      'dp[0][0] = true. dp[i][0] = dp[i-1][0] && pattern[i-1]==\'*\'.',
+      'If pattern[i-1] is \'?\' or equal: dp[i][j] = dp[i-1][j-1].',
+      'If pattern[i-1] is \'*\': dp[i][j] = dp[i-1][j] (match 0 chars) || dp[i][j-1] (match more chars).',
+    ],
+    pitfalls: ['\'*\' can match empty string. dp[i-1][j] = * matches empty. dp[i][j-1] = * absorbs one more char.'],
+  },
+
+  'shortest-path-in-weighted-undirected-graph': {
+    intuition: 'Dijkstra on weighted undirected graph. Standard shortest path from source to all vertices.',
+    algorithm: [
+      'Min-heap with (dist, node). dist[] = infinity. dist[src] = 0.',
+      'Process: pop min, relax all neighbors. Update dist if shorter path found.',
+    ],
+    pitfalls: ['Mark visited or check if dist[u] > current dist when popping to avoid redundant processing.'],
+  },
+
+  'safe-states': {
+    intuition: 'A node is safe if all paths from it eventually lead to a terminal node (no cycle reachable). Use reverse graph + topological sort or DFS coloring.',
+    algorithm: [
+      'DFS with colors: white(0), gray(in-progress), black(safe).',
+      'If node is gray when revisited: cycle → not safe. If black: safe.',
+      'Color each node after DFS as black (safe) if no cycle found.',
+    ],
+    pitfalls: ['A node is safe if it\'s not on a cycle and doesn\'t lead to a cycle. Coloring: gray=visiting, black=confirmed safe.'],
+  },
+
+  'longest-substring-with-distinct-characters': {
+    intuition: 'Sliding window with at most k distinct characters (or all distinct). HashSet tracks current window characters.',
+    algorithm: [
+      'Window [l,r] with set of characters.',
+      'Expand r. If duplicate: shrink l until unique.',
+      'Track max window size.',
+    ],
+    pitfalls: ['Set vs frequency map: set suffices if all distinct; map needed for generic k distinct.'],
+  },
+
+  'koko-eating-bananas': {
+    intuition: 'Binary search on eating speed k. At speed k, hours needed = sum(ceil(pile/k)). Find minimum k where hours <= H.',
+    algorithm: [
+      'lo=1, hi=max(piles).',
+      'Feasibility(k): sum(ceil(pile/k)) <= H.',
+      'Return minimum feasible k.',
+    ],
+    pitfalls: ['ceil(pile/k) = (pile+k-1)/k in integer arithmetic. Binary search on speed, not on hours.'],
+  },
+
+  'path-with-minimum-effort': {
+    intuition: 'Binary search on maximum effort. Or Dijkstra where edge weight = abs(height difference) and we minimize the maximum edge on the path.',
+    algorithm: [
+      'Dijkstra with effort[i][j] = min effort to reach (i,j). effort = max(current_effort, abs(height diff)).',
+      'Min-heap by effort. Return effort[m-1][n-1].',
+    ],
+    pitfalls: ['Minimize the maximum difference, not sum of differences. Use modified Dijkstra with max as combination operator.'],
+  },
+
+  'split-array-largest-sum': {
+    intuition: 'Binary search on the largest sum. Check if we can split array into at most k subarrays where each sum <= mid.',
+    algorithm: [
+      'lo=max(nums), hi=sum(nums).',
+      'Feasibility(mid): greedily fill subarrays, count splits. If splits <= k, feasible.',
+      'Return minimum feasible mid.',
+    ],
+    pitfalls: ['Greedy: keep adding to current subarray until exceeds mid, then start new subarray. Count total subarrays needed.'],
+  },
+
+  'minimum-cost-of-ropes': {
+    intuition: 'Greedy: always merge two smallest ropes. Use a min-heap. Total cost = sum of all intermediate merge costs.',
+    algorithm: [
+      'Add all lengths to min-heap.',
+      'While heap size > 1: pop two smallest, merge cost = sum, push back. Add cost to total.',
+    ],
+    pitfalls: ['Same as Huffman encoding / minimum cost to combine. Greedy with min-heap gives optimal solution.'],
+  },
+
+  'target-sum': {
+    intuition: 'Assign + or - to each number to reach target. DP on subset sums. Let P = set with +, total - P = negative set. Then 2P - total = target → P = (target+total)/2.',
+    algorithm: [
+      'If (target+total) is odd or |target| > total: return 0.',
+      'Count subsets with sum = (target+total)/2.',
+    ],
+    pitfalls: ['Transform to subset count problem. (target+total) must be even. Handle negative target by taking absolute value check.'],
+  },
+
+  'the-celebrity-problem': {
+    intuition: 'A celebrity knows nobody but everyone knows them. Find such a person in O(n). Eliminate non-celebrities using two-pointer.',
+    algorithm: [
+      'Start with candidate=0. For each i from 1 to n-1: if knows(candidate, i), candidate=i.',
+      'Verify: candidate knows no one (except self) and everyone knows candidate.',
+    ],
+    pitfalls: ['One pass to find candidate, one pass to verify. Candidate can only be the person who was never "known by no one".'],
+  },
+
+  'travelling-salesman-problem': {
+    intuition: 'TSP: find minimum cost Hamiltonian cycle. DP with bitmask states: dp[mask][i] = min cost to visit exactly the nodes in mask, ending at node i.',
+    algorithm: [
+      'dp[1][0] = 0 (starting at node 0, visited only node 0).',
+      'For each mask, for each node i in mask: for each j not in mask: dp[mask|(1<<j)][j] = min(dp[mask][j], dp[mask][i] + dist[i][j]).',
+      'Answer = min(dp[(1<<n)-1][i] + dist[i][0]) for all i.',
+    ],
+    pitfalls: ['Time O(2^n * n^2). Feasible only for n <= 20. Final step: return to start node.'],
+  },
+
+  'unique-paths-in-a-grid': {
+    intuition: 'Count paths from top-left to bottom-right in a grid with obstacles. DP: dp[i][j] = paths to reach (i,j).',
+    algorithm: [
+      'dp[0][0]=1 if not obstacle. dp[i][j] = dp[i-1][j] + dp[i][j-1] if not obstacle, else 0.',
+    ],
+    pitfalls: ['If start or end is obstacle: return 0. Check cell is open before adding paths.'],
+  },
+
+  'ways-to-reach-the-nth-stair': {
+    intuition: 'Climb 1 or 2 stairs at a time. dp[n] = dp[n-1] + dp[n-2]. Fibonacci sequence with dp[1]=1, dp[2]=2.',
+    algorithm: [
+      'dp[0]=1, dp[1]=1. dp[i] = dp[i-1] + dp[i-2].',
+    ],
+    pitfalls: ['Base cases: 0 stairs = 1 way (empty), 1 stair = 1 way, 2 stairs = 2 ways. Can also generalize to k steps.'],
+  },
+
+  'print-anagrams-together': {
+    intuition: 'Group strings that are anagrams of each other. Use sorted string as key.',
+    algorithm: [
+      'For each string: sort its characters to get key.',
+      'Group by key using a map. Return groups.',
+    ],
+    pitfalls: ['Maintain insertion order for group stability. Sort each string O(L*logL) where L is max length.'],
+  },
+
+  'huffman-encoding': {
+    intuition: 'Build optimal prefix-free code using a min-heap. Combine two least frequent symbols repeatedly.',
+    algorithm: [
+      'Min-heap of (frequency, node). While size > 1: pop two, create parent with sum frequency, push back.',
+      'Assign codes by traversing tree: left=0, right=1.',
+    ],
+    pitfalls: ['Huffman tree can be non-unique if frequencies are equal. Output the codes for each character.'],
+  },
+
+  'construct-tree-from-inorder-preorder': {
+    intuition: 'Preorder[0] is root. Find it in inorder to split left and right subtrees. Recurse.',
+    algorithm: [
+      'Root = preorder[0]. Index in inorder = k. Left subtree size = k.',
+      'Recurse: left = (preorder[1..k], inorder[0..k-1]). Right = (preorder[k+1..], inorder[k+1..]).',
+    ],
+    pitfalls: ['Use a hash map for O(1) inorder lookups. Pass index ranges instead of slices.'],
+  },
+
+  'row-with-max-1s': {
+    intuition: 'Find row with maximum 1s in a binary matrix where each row is sorted. Start from top-right corner, move left (1s) or down (0s).',
+    algorithm: [
+      'Start at (0, n-1). If cell is 1: move left (col--), update max row. If 0: move down (row++).',
+    ],
+    pitfalls: ['O(m+n) algorithm. Since rows are sorted, once you find a 1, all elements to the left are also 1.'],
+  },
+
+  'peak-element': {
+    intuition: 'Binary search. A peak exists where arr[mid] > arr[mid-1] and arr[mid+1]. If arr[mid] < arr[mid+1]: peak is on right. Else: peak is on left or at mid.',
+    algorithm: [
+      'lo=0, hi=n-1.',
+      'If arr[mid] < arr[mid+1]: lo=mid+1 (ascending, peak on right).',
+      'Else: hi=mid (peak at mid or left).',
+      'Return lo.',
+    ],
+    pitfalls: ['Assume arr[-1]=arr[n]=-infinity. A peak always exists. Binary search converges to a peak.'],
+  },
+
+  'count-subarrays-with-given-xor': {
+    intuition: 'Prefix XOR. If prefix[r] XOR prefix[l-1] = k, then XOR of subarray [l,r] = k. Count pairs.',
+    algorithm: [
+      'Map from prefix_xor -> count. Initialize {0: 1}.',
+      'For each element: prefix_xor ^= element. Count += map[prefix_xor ^ k]. Map[prefix_xor]++.',
+    ],
+    pitfalls: ['Initialize map with {0:1} for empty prefix. For each position, check if (current_xor ^ k) was seen before.'],
+  },
+
+  'longest-alternating-subsequence': {
+    intuition: 'Greedy: count transitions between increases and decreases. Track last direction.',
+    algorithm: [
+      'If n==0: return 0. result=1, dir=0 (none yet).',
+      'For each consecutive pair: if up and dir!=up: result++, dir=up. If down and dir!=down: result++, dir=down.',
+    ],
+    pitfalls: ['Just count direction changes. Equal elements don\'t contribute. DP also works: up[i] and down[i] arrays.'],
+  },
+
+  'permutations-of-a-string': {
+    intuition: 'Backtracking: fix each character at the current position, recurse for remaining. Use swap-based or selection approach.',
+    algorithm: [
+      'For each index i from current to end: swap str[i] with str[current]. Recurse on current+1. Swap back.',
+      'When current == end: add to result.',
+    ],
+    pitfalls: ['For distinct permutations: use a set to avoid duplicates, or sort and skip duplicates.'],
+  },
+
+  'weighted-job-scheduling': {
+    intuition: 'DP on jobs sorted by end time. dp[i] = max profit using jobs from 1..i. Either take job i (binary search for last compatible job) or skip.',
+    algorithm: [
+      'Sort jobs by end time.',
+      'dp[i] = max(dp[i-1], profit[i] + dp[last_compatible_job]).',
+      'Binary search for last job ending <= start[i].',
+    ],
+    pitfalls: ['Job i is compatible with job j if end[j] <= start[i]. Binary search on sorted end times.'],
+  },
+
+  'find-all-triplets-with-zero-sum': {
+    intuition: 'Sort array. For each element, use two pointers to find pairs summing to negation of that element.',
+    algorithm: [
+      'Sort. For each i from 0 to n-3: lo=i+1, hi=n-1.',
+      'While lo<hi: if sum==0 record, lo++, hi--. Skip duplicates. If sum<0: lo++. If sum>0: hi--.',
+    ],
+    pitfalls: ['Skip duplicates to avoid repeated triplets. Same as 3Sum (LC 15).'],
+  },
+
+  'the-painters-partition-problemii': {
+    intuition: 'Same as Capacity to Ship / Split Array Largest Sum. Binary search on maximum length any one painter paints.',
+    algorithm: [
+      'lo=max(boards), hi=sum(boards).',
+      'Feasibility(mid): greedily assign boards, count painters needed <= k.',
+      'Return minimum feasible mid.',
+    ],
+    pitfalls: ['Greedy: fill each painter as much as possible without exceeding mid. Count total painters needed.'],
+  },
+
+  'shortest-common-supersequence': {
+    intuition: 'Build SCS from LCS DP table. LCS characters appear once; non-LCS characters from both strings each appear once.',
+    algorithm: [
+      'Build LCS DP table. Trace from (m,n) to (0,0).',
+      'If s1[i]==s2[j]: take char, go diagonal. If from top: take s2[j]. If from left: take s1[i].',
+      'Append remaining chars. Reverse.',
+    ],
+    pitfalls: ['Trace DP table carefully. Characters not in LCS must still appear in SCS.'],
+  },
+
+  'minimum-days-to-make-m-bouquets': {
+    intuition: 'Binary search on number of days. At d days, count bouquets possible = sum of floor(consecutive_bloomed / k). Find minimum d.',
+    algorithm: [
+      'lo=min(bloomDay), hi=max(bloomDay).',
+      'Feasibility(d): count bouquets. If >= m: feasible.',
+    ],
+    pitfalls: ['If n < m*k: impossible, return -1. Reset streak when flower not yet bloomed.'],
+  },
+
+  'nonoverlapping-intervals': {
+    intuition: 'Minimum removals = n - max non-overlapping intervals. Greedy: sort by end time. Keep intervals with earliest end that don\'t overlap.',
+    algorithm: [
+      'Sort by end time. Track last end.',
+      'If start >= last_end: keep it, update last_end.',
+      'Else: remove it (count removal).',
+    ],
+    pitfalls: ['Sort by END time for greedy. This maximizes kept intervals, minimizing removals.'],
+  },
+
+  'number-of-distinct-subsequences': {
+    intuition: 'DP: dp[i][j] = distinct subsequences of t[0..j-1] in s[0..i-1].',
+    algorithm: [
+      'dp[i][0] = 1 (empty subsequence). dp[0][j] = 0 for j>0.',
+      'If s[i-1]==t[j-1]: dp[i][j] = dp[i-1][j-1] + dp[i-1][j].',
+      'Else: dp[i][j] = dp[i-1][j].',
+    ],
+    pitfalls: ['Can match with current char or skip it. Optimize to O(n) space with 1D array.'],
+  },
+
 }
 
 export default gfgExplanations

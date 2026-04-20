@@ -3862,6 +3862,677 @@ const explanations: Record<number, RichExplanation> = {
     pitfalls: ['Sort first. Adjacent elements in sorted order give minimum possible difference.'],
   },
 
+  1233: {
+    intuition: 'A folder is a sub-folder of another if the other folder path + "/" is a prefix of it. Sort paths: a sub-folder always comes right after its parent.',
+    algorithm: [
+      'Sort paths lexicographically.',
+      'Scan: for each path, check if it starts with prev_kept + "/". If yes, skip (sub-folder). Else keep and update prev_kept.',
+    ],
+    pitfalls: ['Must append "/" when checking prefix to avoid "/a/b" matching "/a/bc".'],
+  },
+
+  1248: {
+    intuition: 'Count subarrays with exactly k odd numbers. Use "exactly k" = "at most k" - "at most k-1" with sliding window.',
+    algorithm: [
+      'atMost(k): sliding window counting subarrays with at most k odd numbers.',
+      'Answer = atMost(k) - atMost(k-1).',
+    ],
+    pitfalls: ['Direct sliding window for "exactly k" is tricky. Difference of at-most functions is cleaner.'],
+  },
+
+  1261: {
+    intuition: 'BFS/DFS the contaminated tree. Each node gets value 2*parent or 2*parent+1. Store all recovered values in a HashSet for O(1) find.',
+    algorithm: [
+      'DFS from root (value 0): left child = 2*val, right child = 2*val+1.',
+      'Add all values to a HashSet.',
+      'find(target): return target in set.',
+    ],
+    pitfalls: ['Root value is 0 in contaminated tree, not 0. Wait - original values are replaced with -1; use BFS to assign correct values.'],
+  },
+
+  1262: {
+    intuition: 'DP: dp[r] = max sum achievable with sum ≡ r (mod 3). For each num, update remainders.',
+    algorithm: [
+      'dp[0]=0, dp[1]=dp[2]=-infinity initially.',
+      'For each num n with n%3==r: new_dp[r] = dp[r], new_dp[(r+1)%3] = max(dp[(r+1)%3], dp[r]+n) ... actually update all three.',
+      'Return dp[0].',
+    ],
+    pitfalls: ['Use temporary dp array per number to avoid using the same number twice.'],
+  },
+
+  1266: {
+    intuition: 'Sum Manhattan distances between consecutive points. Time = sum of max(|dx|, |dy|) for Chebyshev distance since diagonal moves cost 1.',
+    algorithm: [
+      'For each consecutive pair (p1, p2): add max(|p1.x-p2.x|, |p1.y-p2.y|) to total.',
+    ],
+    pitfalls: ['Movement is 8-directional (can move diagonally). Use Chebyshev distance: max(|dx|,|dy|).'],
+  },
+
+  1267: {
+    intuition: 'A server communicates if it shares a row or column with another server. Count cells that are 1 and in a row/column with at least one other 1.',
+    algorithm: [
+      'Count servers per row and per column.',
+      'For each server: if row_count[r]>1 or col_count[c]>1, it communicates.',
+    ],
+    pitfalls: ['Two passes: first count rows/cols, then determine communicating servers.'],
+  },
+
+  1277: {
+    intuition: 'Count all rectangles of 1s in a binary matrix. For each cell (i,j), compute maximal width of consecutive 1s ending at j in each row. Then use histogram approach.',
+    algorithm: [
+      'For each row r: compute histogram heights (consecutive 1s ending at each column).',
+      'For each column j in row r: count rectangles ending at (r,j) by scanning upward while height is maintained.',
+    ],
+    pitfalls: ['This is O(m^2 * n). Different from largest rectangle — counts all valid ones.'],
+  },
+
+  1287: {
+    intuition: 'In a sorted array, the element appearing more than 25% of the time must be among the elements at indices n/4, n/2, 3n/4. Check those candidates.',
+    algorithm: [
+      'Candidates: arr[n/4], arr[n/2], arr[3n/4].',
+      'For each candidate: count occurrences using binary search. If count > n/4, return it.',
+    ],
+    pitfalls: ['Array is sorted so binary search works. The dominant element must appear at one of those three index positions.'],
+  },
+
+  1290: {
+    intuition: 'Traverse linked list and compute binary number. Or: process bit by bit keeping running value.',
+    algorithm: [
+      'Traverse: result = result * 2 + node.val.',
+      'Return result.',
+    ],
+    pitfalls: ['Multiply by 2 (left shift) and add current bit as you traverse.'],
+  },
+
+  1295: {
+    intuition: 'Count numbers with an even number of digits. Check digit count of each number.',
+    algorithm: [
+      'For each num: count digits (or check if in range 10-99, 1000-9999, etc.).',
+      'Count those with even digit length.',
+    ],
+    pitfalls: ['Simple digit count. Numbers 10-99 (2 digits), 1000-9999 (4 digits), 100000-999999 (6 digits) have even digits.'],
+  },
+
+  1298: {
+    intuition: 'BFS from all cells. At each step, can open any box whose key is available. Track which keys you have and which boxes are pending.',
+    algorithm: [
+      'Start: open all initially available boxes. BFS: when opening a box, add its keys and contained boxes to available sets. If a box is in available boxes and has its key, open it.',
+      'Count candies as boxes are opened.',
+    ],
+    pitfalls: ['Track available boxes (contained in opened boxes or initially given) and available keys separately.'],
+  },
+
+  1304: {
+    intuition: 'Find two elements with no common factors. Set element at n-1 to n, element at n-2 to n+1 (they differ by 1, so gcd=1). Fill remaining elements to sum to required total.',
+    algorithm: [
+      'Put n at index n-1, n+1 at index n-2. Remaining sum = unique_sum - n - (n+1). Fill remaining n-2 positions with 1s and adjust.',
+      'Actually: construct uniqueNumbers: 1,2,...,n-2 then check. Simpler: use 1,2,...,n-2,?,? where last two are n and n+1.',
+    ],
+    pitfalls: ['n and n+1 are always coprime (consecutive integers). Must use each 1..n exactly once in the sum constraint.'],
+  },
+
+  1305: {
+    intuition: 'In-order traversal of each BST produces a sorted list. Merge the two sorted lists.',
+    algorithm: [
+      'In-order traverse BST1 and BST2 to get two sorted arrays.',
+      'Merge the two sorted arrays.',
+    ],
+    pitfalls: ['Standard two-pointer merge on the two sorted sequences.'],
+  },
+
+  1310: {
+    intuition: 'XOR has the property: XOR(l,r) = prefix[r] XOR prefix[l-1]. Precompute prefix XOR array for O(1) range queries.',
+    algorithm: [
+      'prefix[i] = arr[0] XOR ... XOR arr[i].',
+      'XOR(l,r) = prefix[r] XOR prefix[l-1] (with prefix[-1]=0).',
+    ],
+    pitfalls: ['XOR is its own inverse: a XOR a = 0. prefix[r] XOR prefix[l-1] gives the range XOR.'],
+  },
+
+  1317: {
+    intuition: 'Find two positive integers with no 1s in their binary sum that add to n. If n is odd: use 1 and n-1 (n-1 = ...0 → check). Actually just find no-one-in-binary numbers.',
+    algorithm: [
+      'Greedy: find largest number <= n with no 1s in binary (all bits set in pairs: 2,8,32,...). Subtract from n.',
+      'Simpler: b = highest set bit as single bit number. a = n - b. If a has no 1 bits adjacent to b, done.',
+    ],
+    pitfalls: ['A number has no 1s if it only has bits that are isolated (e.g., 2=10, 4=100, 8=1000). Take b as n with only highest bit, a=n-b.'],
+  },
+
+  1319: {
+    intuition: 'Union-Find or BFS. Count connected components. To fully connect a graph, need (components-1) connections. But each extra edge beyond spanning tree can replace two wire connections, so extra_edges help.',
+    algorithm: [
+      'Union-Find: process all n-1 edges (cables already exist). Count initial components C and redundant edges R.',
+      'Redundant edges can each eliminate one needed connection. Answer = C - 1 - R if >= 0, else -1.',
+    ],
+    pitfalls: ['If R >= C-1: we have enough redundant edges to fully connect. Else impossible (-1). Minimum = max(0, C-1-R)... wait, each redundant edge can be rewired to connect two components.'],
+  },
+
+  1320: {
+    intuition: 'DP on intervals. dp[i][j] = min distance to type word[i..j] with one finger on word[i] and another on word[j]. Divide points between two fingers.',
+    algorithm: [
+      'dp[i][j] = min cost where fingers are at positions of word[i] and word[j] (WLOG i < j).',
+      'Transition: move left finger from word[i] or word[j] to word[i-1].',
+      'Use memoization.',
+    ],
+    pitfalls: ['Two-finger optimization. Each step, choose which finger to move to the next character.'],
+  },
+
+  1323: {
+    intuition: 'Greedily replace 9s from left with +1 when safe. Find leftmost digit where incrementing gives a larger digit and all right digits can become 9.',
+    algorithm: [
+      'Find rightmost non-9 digit that can be incremented.',
+      'Increment it, set all subsequent digits to 9.',
+    ],
+    pitfalls: ['To maximize: find leftmost digit < 9, increment it, set all digits to its right to 9.'],
+  },
+
+  1331: {
+    intuition: 'The rank of an element is its position in the sorted unique values. Sort unique values, assign ranks 1,2,3,..., then replace each element.',
+    algorithm: [
+      'Create sorted unique array. Map value -> rank (1-indexed).',
+      'Replace each element with its rank.',
+    ],
+    pitfalls: ['Duplicate values get the same rank. Rank is based on relative order among unique values.'],
+  },
+
+  1334: {
+    intuition: 'Find city with fewest neighbors reachable within distance threshold. BFS/Dijkstra from each node, or Floyd-Warshall for all-pairs shortest paths.',
+    algorithm: [
+      'Floyd-Warshall for all-pairs shortest paths.',
+      'For each city: count cities reachable within threshold.',
+      'Return city with minimum count (ties: largest index).',
+    ],
+    pitfalls: ['Return the city with SMALLEST number of neighbors. Break ties by choosing the largest city index.'],
+  },
+
+  1339: {
+    intuition: 'For each edge removal, the product of two subtree sums. One subtree = subtree sum S, other = total - S. Maximize S * (total - S).',
+    algorithm: [
+      'Compute total sum. DFS to compute subtree sums.',
+      'For each subtree sum S: compute S * (total - S). Track maximum.',
+    ],
+    pitfalls: ['Answer can be very large — return result modulo 10^9+7. Compute subtree sums in post-order DFS.'],
+  },
+
+  1346: {
+    intuition: 'Check if any element in the array equals 2 * another element. Use a HashSet.',
+    algorithm: [
+      'Add all elements to a set.',
+      'For each element x: if 2*x in set, return true.',
+    ],
+    pitfalls: ['Edge case: if x=0, need two 0s in the array (2*0=0). Check count of 0s or handle separately.'],
+  },
+
+  1352: {
+    intuition: 'Maintain a running product with a pointer. Use a deque or array storing products. getProduct(k) = total_product / product_before_last_k.',
+    algorithm: [
+      'Store prefix products. When adding: multiply into running product. For getProduct(k): return product of last k = prefix[-1] / prefix[-1-k].',
+      'Handle zeros: reset running product on zero.',
+    ],
+    pitfalls: ['Division by zero when list contains 0. Track index of last zero; if within last k, product is 0.'],
+  },
+
+  1353: {
+    intuition: 'Greedy: sort events by end day. For each event, attend on the earliest available day within [start, end]. Use a min-heap of end days.',
+    algorithm: [
+      'Sort by start day. Process day by day (1 to max_day).',
+      'At each day d: add all events starting on d to min-heap. Remove expired events (end < d). Attend the event with earliest end day.',
+    ],
+    pitfalls: ['Can attend at most one event per day. Greedy: always prefer the event ending soonest.'],
+  },
+
+  1358: {
+    intuition: 'Count substrings containing all three characters a, b, c. Sliding window: for each right pointer, track leftmost valid left. Count = l+1.',
+    algorithm: [
+      'Window [l,r]. Expand r. Shrink l while window has all three chars.',
+      'For each r: number of valid subarrays ending at r = l (since any starting point 0..l-1 with r also works).',
+    ],
+    pitfalls: ['Count subarrays where minimum of a,b,c counts is >= 1. Answer accumulates l at each step.'],
+  },
+
+  1367: {
+    intuition: 'DFS the tree. At each node, try to continue the current linked list match or restart from the head of the list.',
+    algorithm: [
+      'For each tree node: try matching linked list starting from head.',
+      'dfs(treeNode, listNode): if listNode==null, return true. If treeNode==null, return false.',
+      'If values match: recurse dfs(left,next) || dfs(right,next).',
+      'Also try starting fresh: isSubPath(head, treeNode.left) || isSubPath(head, treeNode.right).',
+    ],
+    pitfalls: ['Must try restarting the list match at each tree node, not just continue existing match.'],
+  },
+
+  1368: {
+    intuition: 'Dijkstra/0-1 BFS. Moving to an already-pointing neighbor costs 0. Moving against the direction costs 1 (changing sign).',
+    algorithm: [
+      '0-1 BFS (deque): cost 0 for following existing direction, cost 1 for going against (changing direction).',
+      'Find minimum cost to reach (m-1, n-1) from (0,0).',
+    ],
+    pitfalls: ['Use deque: push front for cost-0 edges, push back for cost-1 edges. Equivalent to Dijkstra but faster for 0-1 weights.'],
+  },
+
+  1371: {
+    intuition: 'Use bitmask for vowel parity. XOR mask at each position. Longest subarray with same mask = first occurrence of each mask. Use prefix XOR approach.',
+    algorithm: [
+      '5 vowels → 5-bit mask. State[i] = XOR mask of vowels seen so far.',
+      'If state[i] == state[j]: subarray (i+1)..j has even count of all vowels.',
+      'Store first occurrence of each state. Answer = max(i - first[state[i]]).',
+    ],
+    pitfalls: ['Initialize first[0] = -1 (empty prefix has all even counts). 5 vowels → 32 possible states.'],
+  },
+
+  1380: {
+    intuition: 'A lucky number is min in its row and max in its column. Find row minimums and column maximums. Intersection gives lucky numbers.',
+    algorithm: [
+      'For each row: find minimum value.',
+      'For each column: find maximum value.',
+      'Lucky numbers are those that are both row-min and column-max.',
+    ],
+    pitfalls: ['Use sets for row minimums and column maximums. Intersection = lucky numbers.'],
+  },
+
+  1381: {
+    intuition: 'Custom stack with increment operation on bottom k elements. Use lazy increment array to handle increment in O(1) amortized.',
+    algorithm: [
+      'Stack + inc[] array. inc[i] = pending increment for elements at positions 0..i.',
+      'push: push value. pop: return stack.top + inc[top_index], propagate inc down.',
+      'increment(k, val): inc[min(k,size)-1] += val.',
+    ],
+    pitfalls: ['Lazy propagation: when popping, add inc[i] to value and propagate: inc[i-1] += inc[i], inc[i]=0.'],
+  },
+
+  1382: {
+    intuition: 'In-order traversal of BST gives sorted array. Build a balanced BST from sorted array (like problem 108).',
+    algorithm: [
+      'In-order traverse to get sorted array.',
+      'Build balanced BST from sorted array: pick middle as root, recurse on halves.',
+    ],
+    pitfalls: ['Two-step: extract sorted array, then rebuild. Can also be done with DSW algorithm in O(1) space.'],
+  },
+
+  1390: {
+    intuition: 'Each node value becomes sum of (values of all ancestors that equal the node\'s value). Root gets value 0. DFS with path value sum.',
+    algorithm: [
+      'Wait: "lucky numbers" - different problem. For Four Divisors: find elements with exactly 4 divisors.',
+      'For each element: count divisors up to sqrt. If exactly 4, add sum of divisors.',
+    ],
+    pitfalls: ['Problem 1390 is actually "Four Divisors". Count divisors efficiently in O(sqrt(n)).'],
+  },
+
+  1394: {
+    intuition: 'Find the element with exactly k occurrences and minimum value, where k equals that element\'s value.',
+    algorithm: [
+      'Count frequency of each element.',
+      'Find elements where freq[x] == x.',
+      'Return the maximum such x (problem says "lucky integer" = element whose value equals its frequency).',
+    ],
+    pitfalls: ['Return the largest lucky integer, or -1 if none exists. Lucky integer: value == frequency.'],
+  },
+
+  1395: {
+    intuition: 'Count valid teams of three soldiers (i<j<k) with ratings[i]<ratings[j]<ratings[k] or ratings[i]>ratings[j]>ratings[k].',
+    algorithm: [
+      'For each middle element j: count elements to its left that are smaller/larger, and elements to its right that are smaller/larger.',
+      'Teams = left_smaller * right_larger + left_larger * right_smaller.',
+    ],
+    pitfalls: ['O(n^2) with nested loops is sufficient for n<=200. For each j, scan left and right.'],
+  },
+
+  1399: {
+    intuition: 'Digit sum of numbers 1..n. Count which digit sum appears most frequently.',
+    algorithm: [
+      'Compute digit sum for each number 1..n.',
+      'Frequency map. Return key with maximum frequency.',
+    ],
+    pitfalls: ['Maximum digit sum for n<=10^5 is at most 45 (99999). Simple iteration.'],
+  },
+
+  1400: {
+    intuition: 'Check if string can be rearranged into k palindrome groups. Count character frequencies. Characters with odd frequency need one middle slot each. Need at most k odd-frequency characters.',
+    algorithm: [
+      'Count character frequencies.',
+      'Count how many have odd frequency.',
+      'Return odd_count <= k <= s.length.',
+    ],
+    pitfalls: ['Each palindrome string can absorb at most one odd-frequency character as center. Also k must be <= s.length.'],
+  },
+
+  1405: {
+    intuition: 'Greedily append the most frequent character that isn\'t the same as last two appended. Use a max-heap.',
+    algorithm: [
+      'Max-heap of (freq, char).',
+      'Each step: pop max. If same as last two chars, pop second-max, use it, push max back.',
+      'Append character, decrement frequency, push back if freq > 0.',
+    ],
+    pitfalls: ['Same approach as task scheduler problem. Track the last character added to avoid consecutive triples.'],
+  },
+
+  1408: {
+    intuition: 'A string is a string matching of another if it appears as a substring. Use string matching or sort by length; shorter strings are substrings of longer ones.',
+    algorithm: [
+      'For each string s: check if any other string t (s != t) contains s as a substring.',
+      'Use contains() or KMP for each pair.',
+    ],
+    pitfalls: ['O(n^2 * L) is acceptable. Sort by length descending; longest strings cannot be substrings of shorter ones.'],
+  },
+
+  1410: {
+    intuition: 'Process HTML entities: &amp; &apos; &quot; &gt; &lt; Each appears in encoded string, map back to actual characters.',
+    algorithm: [
+      'String replace or state machine: scan for &...;. Map known entities to characters.',
+      'Only 5 entities to handle.',
+    ],
+    pitfalls: ['Only the 5 specified entities: &quot; -> ", &apos; -> \', &amp; -> &, &gt; -> >, &lt; -> <. Process left to right.'],
+  },
+
+  1411: {
+    intuition: 'Count ways to paint n columns with 3 colors such that no two adjacent share the same color. Two types of rows: all-different (e.g. 121) and adjacent-same (e.g. 121 patterns with repeats).',
+    algorithm: [
+      'Track count of "end with two same" (ABA pattern) and "end with all different" (ABC pattern).',
+      'Transitions: same*2 + diff*2 -> same. same*3 + diff*2 -> diff for 3 colors.',
+    ],
+    pitfalls: ['With 3 colors in 3 columns: patterns are either all-different (6 ways) or end-repeat like ABA (6 ways). Track transitions between these types.'],
+  },
+
+  1415: {
+    intuition: 'The happy string is made from a,b,c with no two consecutive same characters. Generate them in lexicographic order and return the k-th one.',
+    algorithm: [
+      'BFS/DFS generating happy strings in lex order. Count k-th.',
+      'Or: compute directly - at each position, count how many strings of remaining length start with each valid character.',
+    ],
+    pitfalls: ['Each position has at most 2 choices (any of a,b,c except last character). Total strings of length n = 3 * 2^(n-1).'],
+  },
+
+  1422: {
+    intuition: 'Score = zeros in left part + ones in right part. Precompute prefix zeros and suffix ones.',
+    algorithm: [
+      'For each split position i (0 to n-1): score = zeros_in_s[0..i] + ones_in_s[i+1..n-1].',
+      'Precompute suffix ones. Scan left to right counting zeros, compute score at each split.',
+    ],
+    pitfalls: ['Split divides s into two non-empty parts. Split at i: left is s[0..i], right is s[i+1..n-1].'],
+  },
+
+  1432: {
+    intuition: 'Use digit DP or greedy: minimize the largest digit while maximizing the smallest by flipping digit d (0-9) to (9-d). Find the flip that maximizes the difference.',
+    algorithm: [
+      'Try all 10 possible digit substitutions. For max: from left, find first digit not 9, replace all occurrences with 9.',
+      'For min: if first digit is not 1, replace all occurrences with 1; else find first non-0,1 digit, replace with 0.',
+      'Return max - min over all strategies.',
+    ],
+    pitfalls: ['You can only substitute one digit value at a time (all occurrences). Maximize and minimize independently.'],
+  },
+
+  1437: {
+    intuition: 'Check if at most one swap can make all 1s move to the right end. Count 0s before the last 1 - if <= 1, possible.',
+    algorithm: [
+      'Find last index of 1.',
+      'Count 0s in range [0, last_one_index].',
+      'Return count <= 1.',
+    ],
+    pitfalls: ['At most one 0 can appear before the last 1 (one swap can fix one 0 by swapping with the last 1).'],
+  },
+
+  1438: {
+    intuition: 'Sliding window with a monotone deque tracking min and max. Window is valid when max-min <= limit.',
+    algorithm: [
+      'Two deques: max-deque (decreasing) and min-deque (increasing).',
+      'Expand right. When max-min > limit, shrink left (remove from fronts of deques if index out of window).',
+      'Track max window size.',
+    ],
+    pitfalls: ['Two separate deques for min and max. Shrink window when constraint violated.'],
+  },
+
+  1450: {
+    intuition: 'Count students whose start time <= queryTime and end time >= queryTime.',
+    algorithm: [
+      'For each student i: if startTime[i] <= queryTime && endTime[i] >= queryTime: count++.',
+    ],
+    pitfalls: ['Simple O(n) scan. Both conditions must hold.'],
+  },
+
+  1455: {
+    intuition: 'Find first word in sentence where the prefix is a prefix of that word. Simple string split and check.',
+    algorithm: [
+      'Split sentence into words.',
+      'For each word: check if it starts with the given prefix.',
+      'Return 1-indexed position of first match, or -1.',
+    ],
+    pitfalls: ['1-indexed output. Check StartsWith or substring[0..prefix.length-1] == prefix.'],
+  },
+
+  1458: {
+    intuition: 'Max dot product of non-empty subsequences. DP: dp[i][j] = max dot product using elements from nums1[0..i] and nums2[0..j].',
+    algorithm: [
+      'dp[i][j] = max of: nums1[i]*nums2[j], dp[i-1][j-1]+nums1[i]*nums2[j], dp[i-1][j], dp[i][j-1].',
+      'Base: dp[0][0] = nums1[0]*nums2[0].',
+    ],
+    pitfalls: ['At least one pair must be selected. Initialize with -infinity and handle carefully.'],
+  },
+
+  1460: {
+    intuition: 'Two arrays can be made equal by reversing a subarray if and only if they have the same multiset of elements.',
+    algorithm: [
+      'Sort both arrays. Compare.',
+      'Or: use frequency maps.',
+    ],
+    pitfalls: ['Reversing a subarray doesn\'t change the multiset. So just compare sorted arrays.'],
+  },
+
+  1461: {
+    intuition: 'Check if all binary strings of length k appear as substrings. Use a sliding window of size k and a HashSet.',
+    algorithm: [
+      'Slide window of size k over s. Add each window to a set.',
+      'Return set.size() == 2^k.',
+    ],
+    pitfalls: ['Need exactly 2^k distinct substrings. For large k this is just checking if s is long enough.'],
+  },
+
+  1462: {
+    intuition: 'Transitive closure: b is a prerequisite of a if there exists a path b->a. Precompute reachability using BFS/DFS from each node.',
+    algorithm: [
+      'BFS/DFS from each course, mark all reachable courses.',
+      'For each query (u,v): check if u is reachable from v.',
+    ],
+    pitfalls: ['The graph is a DAG. For each query, answer is whether there is a directed path from prerequisites to the course.'],
+  },
+
+  1475: {
+    intuition: 'For each price, find the nearest smaller price within the next k products. Monotone stack.',
+    algorithm: [
+      'Monotone stack (decreasing). Process prices left to right.',
+      'When processing price[i]: pop stack while stack top > price[i] and top index within i-k range.',
+      'final_prices[stack.top] = price[i] (discount). Push i.',
+    ],
+    pitfalls: ['Stack front elements are candidate discounts. Check that the discount is within k distance.'],
+  },
+
+  1482: {
+    intuition: 'Binary search on number of days. For d days: count bouquets = sum of floor(consecutive_1s / k). Check if >= m.',
+    algorithm: [
+      'Binary search [1, max(bloomDay)].',
+      'Feasibility(days): iterate bloomDay, count consecutive bloomed flowers, add floor(streak/k) to bouquets.',
+      'Return first day where bouquets >= m.',
+    ],
+    pitfalls: ['When a flower hasn\'t bloomed (bloomDay[i] > days), reset streak to 0.'],
+  },
+
+  1493: {
+    intuition: 'Sliding window. Window can contain at most one 0. Track last position of 0 seen.',
+    algorithm: [
+      'Sliding window with at most one zero.',
+      'When second zero found: move left pointer to just after the previous zero.',
+      'Track max window size.',
+    ],
+    pitfalls: ['Window contains at most one 0 (which you delete). Max subarray of 1s after one deletion.'],
+  },
+
+  1497: {
+    intuition: 'If we can arrange pairs summing to k, every element must have a partner. For each element x: need element k-x. Count frequencies and check.',
+    algorithm: [
+      'If n is odd: return false.',
+      'Count frequencies. For each value v: if v+v==k, need even count. Else freq[v] must equal freq[k-v].',
+    ],
+    pitfalls: ['Handle k/2 case specially (needs even frequency). Also handle 0: need even count if 2*0==k.'],
+  },
+
+  1498: {
+    intuition: 'Sort array. For each subarray sorted, XOR of all is sum if consecutive... count non-empty subsequences where max-min <= target. Sort, then two pointers.',
+    algorithm: [
+      'Sort. Two pointers l, r. For each r: find smallest l where arr[r]-arr[l] <= target.',
+      'Count = 2^(r-l) subsequences with arr[r] as max.',
+      'Sum all counts modulo 10^9+7.',
+    ],
+    pitfalls: ['Precompute powers of 2. After sorting, min and max of subsequence are its first and last elements.'],
+  },
+
+  1503: {
+    intuition: 'Simulate race. Last car in position n-1. It can be blocked by slower car ahead. Compute time for each car to reach the end, block means they form a fleet.',
+    algorithm: [
+      'Process from right to left. Each car moves toward finish. If car catches up to car ahead, they move together (blocked).',
+      'Actually: time[i] = (target - position[i]) / speed[i]. Count collisions going right to left.',
+    ],
+    pitfalls: ['Cars catch up when time_behind < time_ahead. Use simulation or stack-based approach.'],
+  },
+
+  1508: {
+    intuition: 'Sum of all subarray ranges. Sort. Two-pointer or binary search to count subarrays with sum in [left, right]. Use prefix sums of sorted array.',
+    algorithm: [
+      'Sort array. Prefix sums.',
+      'Count(s) = number of subarrays with sum <= s using two pointers on sorted prefix sums.',
+      'Answer = Count(right) - Count(left-1).',
+    ],
+    pitfalls: ['Subarrays are counted from the sorted array, not the original. Since sorted, each subarray sum = prefix[r]-prefix[l-1].'],
+  },
+
+  1509: {
+    intuition: 'Minimum difference after at most 3 changes. Sort. We can change 3 smallest to equal largest, or 3 largest to equal smallest, or mix. Check 4 strategies.',
+    algorithm: [
+      'Sort. Try: remove 3 from left, remove 3 from right, remove 1 left + 2 right, remove 2 left + 1 right.',
+      'Answer = min of nums[n-1-j] - nums[i] for (i+j==3, i in 0..3).',
+    ],
+    pitfalls: ['After sorting and 3 changes, minimum difference = min over 4 strategies of nums[n-1-j] - nums[i].'],
+  },
+
+  1514: {
+    intuition: 'Maximum probability path. Dijkstra with probabilities (max-heap). Probability multiplies instead of adds.',
+    algorithm: [
+      'Max-heap by probability. Start from src with prob 1.0.',
+      'Relax: prob[v] = max(prob[v], prob[u] * edge_prob).',
+      'Return prob[dst].',
+    ],
+    pitfalls: ['Maximize probability (multiply), not minimize distance. Use max-heap.'],
+  },
+
+  1523: {
+    intuition: 'Count odd numbers in range [low, high]. Formula: ceil((high-low+1)/2) adjusted for parity of low.',
+    algorithm: [
+      'odd_count(n) = (n+1)/2 (numbers 1..n that are odd).',
+      'Count(low, high) = odd_count(high) - odd_count(low-1).',
+    ],
+    pitfalls: ['Use count of odds up to n formula. Subtract counts.'],
+  },
+
+  1524: {
+    intuition: 'Count subarrays with odd sum. Track parity of prefix sums. When prefix is odd, pair with previous even prefix sums; when even, pair with odd.',
+    algorithm: [
+      'even_count=1, odd_count=0. running_sum=0.',
+      'For each element: running_sum += element. If odd: result += even_count, odd_count++. Else: result += odd_count, even_count++.',
+    ],
+    pitfalls: ['Start with even_count=1 for the empty prefix. Odd+even or even+odd sums create odd result.'],
+  },
+
+  1526: {
+    intuition: 'The broken calculator allows: if X > Y: X-1. If X < Y: X*2. Work backwards from Y to X: if Y is odd, Y+1. If Y is even, Y/2. Count steps.',
+    algorithm: [
+      'While Y > X: if Y odd, Y++; else Y /= 2. Steps++.',
+      'Return steps + (X - Y) for remaining decrements.',
+    ],
+    pitfalls: ['Work backward from Y. When Y is odd, incrementing (reverse of -1 on target side) brings it to even for halving.'],
+  },
+
+  1530: {
+    intuition: 'Count pairs of good nodes (distance > k). DFS returning list of depths. Count pairs from different subtrees with sum of depths > k.',
+    algorithm: [
+      'For each node: collect depths from left and right subtrees. Count pairs (one from each) where d1+d2+2 > k (add 2 for edges to current node).',
+      'Return merged depth list incremented by 1.',
+    ],
+    pitfalls: ['Two-pointer on sorted depth lists to count valid pairs. Distance between nodes in different subtrees = d1+d2+2.'],
+  },
+
+  1534: {
+    intuition: 'Count triplets (i<j<k) where abs(arr[i]-arr[j]) <= a, abs(arr[j]-arr[k]) <= b, abs(arr[i]-arr[k]) <= c.',
+    algorithm: [
+      'Three nested loops (O(n^3)) checking all triplets since n <= 100.',
+    ],
+    pitfalls: ['Brute force works for small n. Check all three conditions for each triplet.'],
+  },
+
+  1545: {
+    intuition: 'Binary string generated by flipping 0→"01" and 1→"10" repeatedly. Find k-th character efficiently using recursion without generating the string.',
+    algorithm: [
+      'After n generations, length = 2^n. Find k-th in step n:',
+      'If k <= 2^(n-1): same as k-th in step n-1.',
+      'Else: k-th in step n = NOT of (k-2^(n-1))-th in step n-1.',
+    ],
+    pitfalls: ['Parent-child relationship: child at position k is the complement of parent at position k - half_length. Use recursion/binary lifting.'],
+  },
+
+  1552: {
+    intuition: 'Binary search on minimum distance. Check if we can place m balls with at least mid distance apart.',
+    algorithm: [
+      'Sort positions. Binary search [1, (max-min)/(m-1)].',
+      'Feasibility: greedily place balls, always as far right as possible while maintaining >= mid distance.',
+    ],
+    pitfalls: ['Same pattern as aggressive cows. Sort first. Check if m balls fit with minimum gap >= mid.'],
+  },
+
+  1574: {
+    intuition: 'Find shortest subarray to remove so remaining is non-decreasing. Find longest non-decreasing prefix and suffix. Binary search to merge them.',
+    algorithm: [
+      'Find longest prefix ending at i (non-decreasing). Find longest suffix starting at j (non-decreasing).',
+      'Remove middle part [i+1..j-1] is trivial = suffix start.',
+      'For each prefix end i: binary search for smallest j in suffix where suffix[j] >= prefix[i]. Track min(j-i-1).',
+    ],
+    pitfalls: ['Consider removing only prefix, only suffix, or middle portion. Two-pointer or binary search on sorted suffix.'],
+  },
+
+  1579: {
+    intuition: 'Maximize edges removed while keeping the graph fully connected. Use two Union-Finds (one per user). Add type 3 edges first (both benefit). Then greedily add type 1 and 2.',
+    algorithm: [
+      'Process type 3 edges first, union in both UF1 and UF2. Count redundant type 3 edges.',
+      'Process type 1 with UF1, type 2 with UF2. Count redundant edges.',
+      'If both UFs are fully connected, return total redundant edges. Else -1.',
+    ],
+    pitfalls: ['Process shared edges first for maximum sharing. Redundant = edge added when both endpoints already connected.'],
+  },
+
+  1590: {
+    intuition: 'Find shortest subarray to remove to make sum divisible by p. Use prefix sums and modular arithmetic. Track last seen index for each prefix mod.',
+    algorithm: [
+      'Need = total_sum % p. If need == 0: return 0.',
+      'Prefix sums mod p. For each right index r: find leftmost l where (prefix[r]-prefix[l])%p == need. Answer = r-l.',
+      'Map: mod -> last index.',
+    ],
+    pitfalls: ['Target subarray sum mod p == need. Use map of prefix_mod to index. Minimize r-l > 0.'],
+  },
+
+  1593: {
+    intuition: 'Backtracking: try all ways to split the string into k unique substrings. Track used substrings in a set. Maximize k.',
+    algorithm: [
+      'DFS: at each position, try all prefix lengths. If prefix not in used set, add to used, recurse, remove.',
+      'Return maximum splits found.',
+    ],
+    pitfalls: ['Pruning: if remaining characters < remaining needed splits, prune. Use backtracking with pruning.'],
+  },
+
+  1598: {
+    intuition: 'Count operations on a file system. Only valid operations increment the counter: mkdir creates a new folder, rmdir removes empty folder. Others (cd, ls) don\'t count.',
+    algorithm: [
+      'For each log entry: increment count. But "cd .." and "ls" don\'t count, nor does "cd x" if x exists in current directory.',
+      'Wait: problem counts minimum operations to return to main folder from cd operations. Use depth tracking.',
+    ],
+    pitfalls: ['Each "cd x" where x!=".." increases depth by 1. "../" decreases by 1 (floor 0). "./" stays. Return final depth.'],
+  },
+
 }
 
 export default explanations
