@@ -2701,7 +2701,272 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Rightmost element is always a leader. Track running max from right.'],
   },
 
+  'add-binary-strings': {
+    intuition: 'Add two binary strings. Simulate binary addition with carry, right to left.',
+    algorithm: [
+      'Traverse both strings from right. Add digits + carry. Append result%2, carry = result/2.',
+      'If lengths differ, continue with remaining digits. Append final carry if non-zero.',
+    ],
+    pitfalls: ['Use character arithmetic: digit = char - 48. Reverse result at end.'],
+  },
+
+  'ancestors-in-binary-tree': {
+    intuition: 'Print all ancestors of a given node in binary tree. DFS that returns true when target found; nodes on return path are ancestors.',
+    algorithm: [
+      'Recursive DFS. If found in left or right subtree: print current node and return true.',
+    ],
+    pitfalls: ['Post-order DFS. Print node only after confirming target is in its subtree.'],
+  },
+
+  'array-duplicates': {
+    intuition: 'Find all duplicates in an array of integers 1..n. Mark visited by negating at index nums[i]-1.',
+    algorithm: [
+      'For each num: idx = abs(num)-1. If nums[idx] < 0: it is a duplicate. Else: negate nums[idx].',
+    ],
+    pitfalls: ['Classic O(n) time O(1) space using sign-flip trick. Restore if needed after.'],
+  },
+
+  'articulation-point-ii': {
+    intuition: 'Find all articulation points (cut vertices) in undirected graph. DFS with disc/low arrays.',
+    algorithm: [
+      'DFS tracking discovery time disc[] and low[] (earliest reachable ancestor).',
+      'Node u is AP if: (1) root with 2+ children, or (2) non-root with child v where low[v] >= disc[u].',
+    ],
+    pitfalls: ['Root special case: it is AP iff it has 2+ DFS children. Track parent to avoid parent edge as back edge.'],
+  },
+
+  'bitonic-point': {
+    intuition: 'Find the peak element in a bitonic (first increasing then decreasing) array. Binary search.',
+    algorithm: [
+      'Binary search: if arr[mid] > arr[mid+1]: peak in left half (inclusive). Else: in right half.',
+    ],
+    pitfalls: ['Guaranteed single peak. Binary search on the inflection point. Edge: first or last element.'],
+  },
+
+  'bst-with-dead-end': {
+    intuition: 'Check if BST has a dead end: a leaf node where we cannot insert any new node. Track valid insertion range at each node.',
+    algorithm: [
+      'DFS passing [minVal, maxVal] range. At leaf: dead end if maxVal - minVal == 1.',
+    ],
+    pitfalls: ['Start range [1, INF] (positive integers only). Dead end when no integer fits between min and max.'],
+  },
+
+  'candy': {
+    intuition: 'Distribute minimum candies so each child gets at least 1 and children with higher rating than neighbor get more. Two-pass greedy.',
+    algorithm: [
+      'Left pass: if ratings[i] > ratings[i-1]: candies[i] = candies[i-1]+1. Else: candies[i]=1.',
+      'Right pass: if ratings[i] > ratings[i+1]: candies[i] = max(candies[i], candies[i+1]+1).',
+    ],
+    pitfalls: ['Same as LC 135. Two passes (left-to-right then right-to-left). Answer = sum of candies array.'],
+  },
+
+  'circle-of-strings': {
+    intuition: 'Check if strings can be chained in a circle (each string starts with last char of previous). Eulerian circuit in directed graph.',
+    algorithm: [
+      'Build directed graph: edge from first char to last char of each string.',
+      'Check: (1) all nodes with non-zero degree are connected (ignore zero-degree), (2) in-degree == out-degree for all nodes.',
+    ],
+    pitfalls: ['Eulerian circuit exists iff graph is connected (among used nodes) and all in-degrees equal out-degrees.'],
+  },
+
+  'count-set-bits': {
+    intuition: 'Count total set bits from 1 to n. Use pattern: bits in range [0, 2^k-1] = k * 2^(k-1).',
+    algorithm: [
+      'Find highest bit k. Count contribution of each bit position separately.',
+      'For bit i: count = (n/(2^(i+1))) * 2^i + max(0, n%(2^(i+1)) - 2^i + 1).',
+    ],
+    pitfalls: ['O(log n) solution. Or Brian Kernighan per number: O(n log n). Use mathematical approach for large n.'],
+  },
+
+  'count-the-number-of-possible-triangles': {
+    intuition: 'Count triplets forming valid triangles. Sort + two pointers: for each largest side, count valid pairs.',
+    algorithm: [
+      'Sort array. For each k (largest side) from n-1 down to 2: two pointers i=0, j=k-1.',
+      'If arr[i]+arr[j] > arr[k]: all pairs (i, i+1..j-1, k) valid, count += j-i, j--. Else i++.',
+    ],
+    pitfalls: ['Triangle inequality: sum of two smaller sides > largest. Sort first; largest side is arr[k].'],
+  },
+
+  'decode-the-string': {
+    intuition: 'Decode run-length encoded string like "3[b2[ca]]". Stack-based decoding for nested encodings.',
+    algorithm: [
+      'Use two stacks: one for strings, one for numbers.',
+      'On digit: build number. On "[": push current string and number. On "]": repeat top string by top number, append to previous.',
+    ],
+    pitfalls: ['Same as LC 394. Handle multi-digit numbers. Build current string char by char between brackets.'],
+  },
+
+  'frog-jump': {
+    intuition: 'Frog jumps on stones; can jump k-1, k, or k+1 from current position. DP to check if last stone reachable.',
+    algorithm: [
+      'HashMap: stone -> set of valid jump sizes to reach it.',
+      'For each jump k from current stone: if stone+k-1, stone+k, stone+k+1 exist: add to their sets.',
+    ],
+    pitfalls: ['Same as LC 403. Use HashMap<stone, Set<jump>>. Only works if first jump is exactly 1.'],
+  },
+
+  'generate-ip-addresses': {
+    intuition: 'Generate all valid IPv4 addresses from a string of digits. Backtracking with 4 parts.',
+    algorithm: [
+      'Backtrack: place 3 dots. Each segment must be valid (0-255, no leading zeros except "0" itself).',
+    ],
+    pitfalls: ['Same as LC 93. Prune: segment > 255 or has leading zero. Exactly 4 segments, all digits used.'],
+  },
+
+  'get-min-from-stack': {
+    intuition: 'Stack that supports getMin() in O(1). Maintain auxiliary min stack.',
+    algorithm: [
+      'Push: push to main stack; push min(val, minStack.top()) to minStack.',
+      'Pop: pop both stacks. GetMin: return minStack.top().',
+    ],
+    pitfalls: ['Same as LC 155. Min stack always has current minimum at top. Both stacks stay in sync.'],
+  },
+
+  'k-closest-points-to-origin': {
+    intuition: 'Find k closest points to origin by Euclidean distance. Max-heap of size k, or quickselect.',
+    algorithm: [
+      'Max-heap of size k on distance. For each point: if heap.size < k or dist < heap.top: add, pop if > k.',
+      'Or quickselect: partial sort to find k smallest.',
+    ],
+    pitfalls: ['Compare dist^2 to avoid sqrt. Same as LC 973. O(n log k) with heap, O(n) with quickselect.'],
+  },
+
+  'k-largest-elements': {
+    intuition: 'Find k largest elements in an array. Min-heap of size k.',
+    algorithm: [
+      'Maintain min-heap of size k. For each element: if > heap.top or heap.size < k: add, pop if > k.',
+      'Result = heap contents.',
+    ],
+    pitfalls: ['Min-heap (not max-heap) for efficiency. O(n log k). Or sort descending, take first k.'],
+  },
+
+  'kth-smallest': {
+    intuition: 'Find kth smallest element in unsorted array. Quickselect or min-heap.',
+    algorithm: [
+      'Quickselect: partition around pivot. If pivot index == k-1: return. Else recurse left or right.',
+    ],
+    pitfalls: ['Quickselect O(n) average, O(n^2) worst. For guaranteed O(n log k): use max-heap of size k.'],
+  },
+
+  'largest-divisible-subset': {
+    intuition: 'Find largest subset where every pair (i,j) satisfies subset[i] % subset[j] == 0 or vice versa. Sort + LIS-style DP.',
+    algorithm: [
+      'Sort array. dp[i] = length of largest divisible subset ending at i.',
+      'dp[i] = max(dp[j]+1) for all j < i where nums[i] % nums[j] == 0. Track parent pointers to reconstruct.',
+    ],
+    pitfalls: ['Same as LC 368. Sort first so divisibility is transitive downward. O(n^2) DP.'],
+  },
+
+  'largest-number-in-one-swap': {
+    intuition: 'Make the largest number by performing at most one swap of two digits.',
+    algorithm: [
+      'From right to left: track the max digit seen so far and its position.',
+      'From left to right: find first digit smaller than max digit to its right. Swap. Return result.',
+    ],
+    pitfalls: ['Same as LC 670. Scan right-to-left for max. Then left-to-right for first improvement opportunity.'],
+  },
+
+  'max-sum-increasing-subsequence': {
+    intuition: 'Find maximum sum of increasing subsequence. LIS-style DP on sums.',
+    algorithm: [
+      'dp[i] = max sum of increasing subsequence ending at i.',
+      'dp[i] = max(dp[j] + nums[i]) for all j < i where nums[j] < nums[i]. Base: dp[i] = nums[i].',
+    ],
+    pitfalls: ['Track sum, not length. O(n^2) DP. Answer = max(dp[]).'],
+  },
+
+  'missing-in-array': {
+    intuition: 'Find missing number in array of 1..n. XOR approach: XOR all 1..n with all array elements.',
+    algorithm: [
+      'XOR all elements from 1 to n, then XOR all array elements. Result is the missing number.',
+    ],
+    pitfalls: ['Alternative: sum = n*(n+1)/2 - sum(array). XOR approach avoids overflow.'],
+  },
+
+  'non-repeating-character': {
+    intuition: 'Find first non-repeating character in a string. Frequency array + second pass.',
+    algorithm: [
+      'Count frequency of each character. Scan string left to right: return first char with freq == 1.',
+    ],
+    pitfalls: ['Two passes: first count, then find. O(n) time. Return -1 if all repeat.'],
+  },
+
+  'number-of-occurrence': {
+    intuition: 'Count occurrences of a target in sorted array. Binary search for leftmost and rightmost positions.',
+    algorithm: [
+      'Find first occurrence (lower_bound). Find last occurrence (upper_bound - 1).',
+      'Count = last - first + 1 if first <= last.',
+    ],
+    pitfalls: ['Two binary searches. Same as LC 34. Check if target exists before computing count.'],
+  },
+
+  'palindrome-sentence': {
+    intuition: 'Check if a sentence is a palindrome ignoring non-alphanumeric characters and case.',
+    algorithm: [
+      'Two pointers l=0, r=len-1. Skip non-alphanumeric. Compare lowercased. If mismatch: false.',
+    ],
+    pitfalls: ['Same as LC 125. Filter and compare. toLowerCase for case-insensitive check.'],
+  },
+
+  'pascal-triangle': {
+    intuition: 'Generate Pascal triangle up to n rows. Each element = sum of two above.',
+    algorithm: [
+      'row[0] = row[end] = 1. For i in 1..end-1: row[i] = prevRow[i-1] + prevRow[i].',
+    ],
+    pitfalls: ['Same as LC 118. Build row by row. Each row has one more element than previous.'],
+  },
+
+  'predecessor-and-successor': {
+    intuition: 'Find in-order predecessor and successor of a key in BST.',
+    algorithm: [
+      'BST search: if key < root: successor = root, recurse left. If key > root: predecessor = root, recurse right.',
+      'If key == root: predecessor = rightmost of left subtree; successor = leftmost of right subtree.',
+    ],
+    pitfalls: ['Track predecessor and successor during BST traversal, not just at exact match.'],
+  },
+
+  'product-array-puzzle': {
+    intuition: 'For each index i, product of all elements except nums[i]. No division, O(1) extra space.',
+    algorithm: [
+      'Left pass: result[i] = product of all elements left of i.',
+      'Right pass: multiply result[i] by running product of all elements right of i.',
+    ],
+    pitfalls: ['Same as LC 238. Two passes. result[0]=1 (no elements left), result[n-1]=1 (no elements right).'],
+  },
+
+  'pythagorean-triplet': {
+    intuition: 'Check if array contains a Pythagorean triplet (a^2 + b^2 = c^2). Square elements, sort, two-pointer.',
+    algorithm: [
+      'Square all elements and sort. For each c (largest), two pointers a=0, b=c-1.',
+      'If a^2 + b^2 == c^2: true. If <: a++. If >: b--.',
+    ],
+    pitfalls: ['After squaring, problem reduces to: find triplet where largest = sum of other two. Standard two-pointer.'],
+  },
+
+  'queue-reversal': {
+    intuition: 'Reverse a queue using a stack. Push all elements to stack, then pop back to queue.',
+    algorithm: [
+      'Dequeue all into stack. Then pop from stack back into queue.',
+    ],
+    pitfalls: ['Stack reverses order. Alternative: recursive approach using call stack.'],
+  },
+
+  'reverse-words': {
+    intuition: 'Reverse the words in a sentence. Split by spaces, reverse word list, join.',
+    algorithm: [
+      'Split on whitespace. Reverse array of words. Join with single space.',
+    ],
+    pitfalls: ['Handle multiple spaces and leading/trailing spaces. Same as LC 151.'],
+  },
+
+  'root-to-leaf-paths': {
+    intuition: 'Print all root-to-leaf paths in a binary tree. DFS tracking current path.',
+    algorithm: [
+      'DFS. Append current node to path. At leaf: print/store path. Backtrack by removing last node.',
+    ],
+    pitfalls: ['Use list to track path. Backtrack: remove last element after both recursive calls return.'],
+  },
+
 }
 
 export default gfgExplanations
-
