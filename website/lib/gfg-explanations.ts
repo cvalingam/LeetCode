@@ -2967,6 +2967,261 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Use list to track path. Backtrack: remove last element after both recursive calls return.'],
   },
 
+  'stickler-thief': {
+    intuition: 'Maximum sum of non-adjacent elements (house robber). DP: include or skip each element.',
+    algorithm: [
+      'dp[i] = max(dp[i-1], dp[i-2] + arr[i]). Base: dp[0]=arr[0], dp[1]=max(arr[0],arr[1]).',
+    ],
+    pitfalls: ['Same as LC 198. Cannot pick two consecutive elements. O(n) time, O(1) space with two variables.'],
+  },
+
+  'stickler-thief-ii': {
+    intuition: 'Circular house robber: houses arranged in circle so first and last are adjacent. Run linear robber twice.',
+    algorithm: [
+      'Case 1: rob houses 0..n-2. Case 2: rob houses 1..n-1. Answer = max of both cases.',
+    ],
+    pitfalls: ['Same as LC 213. Cannot rob both first and last. Solve two linear sub-problems.'],
+  },
+
+  'second-largest': {
+    intuition: 'Find second largest element in array without sorting. Single pass tracking max and second max.',
+    algorithm: [
+      'max1 = max2 = INT_MIN. For each num: if num > max1: max2=max1, max1=num. Else if num > max2 and num != max1: max2=num.',
+    ],
+    pitfalls: ['Handle duplicates: second largest must be strictly less than largest. Return -1 if no second largest exists.'],
+  },
+
+  'segregate-0s-and-1s': {
+    intuition: 'Move all 0s to left and 1s to right in one pass. Dutch national flag with two values.',
+    algorithm: [
+      'Two pointers: left=0, right=n-1. While left < right: skip 0s from left, skip 1s from right. Swap and advance both.',
+    ],
+    pitfalls: ['O(n) single pass. No auxiliary space. Similar to partition step in quicksort.'],
+  },
+
+  'single-number': {
+    intuition: 'Find element that appears once when all others appear twice. XOR of all elements cancels pairs.',
+    algorithm: [
+      'result = 0. For each num: result ^= num. Return result.',
+    ],
+    pitfalls: ['XOR is self-inverse: a^a=0, a^0=a. Same as LC 136. O(n) time, O(1) space.'],
+  },
+
+  'square-root-of-a-number': {
+    intuition: 'Integer square root (floor). Binary search in range [1, n].',
+    algorithm: [
+      'Binary search: if mid*mid == n: return mid. If mid*mid < n: ans=mid, lo=mid+1. Else hi=mid-1.',
+    ],
+    pitfalls: ['Use long to avoid overflow in mid*mid. Same as LC 69. Return floor value.'],
+  },
+
+  'symmetric-tree': {
+    intuition: 'Check if binary tree is a mirror of itself. Recursive pair comparison.',
+    algorithm: [
+      'isMirror(left, right): both null=true; one null=false; values differ=false; recurse: isMirror(left.left,right.right) && isMirror(left.right,right.left).',
+    ],
+    pitfalls: ['Same as LC 101. Compare outer pair and inner pair simultaneously.'],
+  },
+
+  'toeplitz-matrix': {
+    intuition: 'Check if matrix is Toeplitz: every diagonal from top-left to bottom-right has same value.',
+    algorithm: [
+      'For each cell (i,j) not in first row/col: check matrix[i][j] == matrix[i-1][j-1].',
+    ],
+    pitfalls: ['Same as LC 766. Only check non-boundary cells. O(m*n) time.'],
+  },
+
+  'top-k-frequent-in-array': {
+    intuition: 'Find k most frequent elements. HashMap frequency count + min-heap of size k.',
+    algorithm: [
+      'Count frequencies. Min-heap of size k on frequency. For each element: add to heap, pop if size > k.',
+      'Result = heap contents.',
+    ],
+    pitfalls: ['Same as LC 347. Min-heap keeps top-k most frequent. Bucket sort gives O(n) alternative.'],
+  },
+
+  'total-decoding-messages': {
+    intuition: 'Count ways to decode digit string (1=A..26=Z). DP with one and two digit choices.',
+    algorithm: [
+      'dp[i] = ways to decode s[0..i-1]. dp[i] += dp[i-1] if s[i-1] valid single. dp[i] += dp[i-2] if s[i-2..i-1] in 10..26.',
+    ],
+    pitfalls: ['Same as LC 91. Handle leading zeros: "0" alone is invalid. "10","20" are valid two-digit decodings.'],
+  },
+
+  'transpose-of-matrix': {
+    intuition: 'Transpose: swap matrix[i][j] and matrix[j][i] for all i < j.',
+    algorithm: [
+      'For i in 0..n-1: for j in i+1..n-1: swap(matrix[i][j], matrix[j][i]).',
+    ],
+    pitfalls: ['Only swap upper triangle to avoid double-swapping. For non-square: create new matrix.'],
+  },
+
+  'validate-an-ip-address': {
+    intuition: 'Validate IPv4: four octets 0-255 separated by dots, no leading zeros.',
+    algorithm: [
+      'Split on ".". Must have exactly 4 parts. Each part: numeric, no leading zero, value 0-255.',
+    ],
+    pitfalls: ['Empty parts, leading zeros (except "0" itself), non-numeric chars are all invalid. Same as LC 468.'],
+  },
+
+  'missing-element-of-ap': {
+    intuition: 'Find missing element in arithmetic progression. Binary search on expected vs actual difference.',
+    algorithm: [
+      'Common diff d = (arr[n-1] - arr[0]) / n. Binary search: if arr[mid] == arr[0]+mid*d: missing in right half. Else left half.',
+    ],
+    pitfalls: ['Exactly one element is missing. Compute d carefully. Binary search on index deviation.'],
+  },
+
+  'move-all-zeroes-to-end': {
+    intuition: 'Move all zeros to end while maintaining relative order of non-zeros. Two-pointer in-place.',
+    algorithm: [
+      'pos=0. For each num: if non-zero: arr[pos++]=num. Fill arr[pos..n-1] with 0.',
+    ],
+    pitfalls: ['Same as LC 283. Single pass for non-zeros, then fill zeros. No extra space needed.'],
+  },
+
+  'multiply-two-strings': {
+    intuition: 'Multiply two large numbers represented as strings. Grade school multiplication.',
+    algorithm: [
+      'Result has at most m+n digits. For each pair (i,j): result[i+j+1] += (s1[i]-48)*(s2[j]-48).',
+      'Propagate carry right to left. Strip leading zeros.',
+    ],
+    pitfalls: ['Same as LC 43. Use int array of size m+n. Handle carry propagation. Check for "0" inputs.'],
+  },
+
+  'n-meetings-in-one-room': {
+    intuition: 'Maximum meetings in one room (activity selection). Greedy: sort by end time, greedily pick non-overlapping.',
+    algorithm: [
+      'Sort by end time. Track last end. For each meeting: if start > last end: select, update last end.',
+    ],
+    pitfalls: ['Classic interval scheduling. Sort by end, not start. O(n log n). Same as LC 435 complement.'],
+  },
+
+  'next-smallest-palindrome': {
+    intuition: 'Find the smallest palindrome larger than given number. Mirror the left half; if not larger, increment middle.',
+    algorithm: [
+      'Copy left half to right half (mirrored). If result <= original: increment middle digit and propagate carry, re-mirror.',
+      'Handle all-9s edge case: result is 10...01.',
+    ],
+    pitfalls: ['Three cases: direct mirror works, mirror < original (increment mid), all nines. Careful carry handling.'],
+  },
+
+  'pairs-with-difference-k': {
+    intuition: 'Count pairs with difference exactly k. Sort + binary search, or hashset.',
+    algorithm: [
+      'For each element x: check if x+k exists in set. Avoid double counting.',
+    ],
+    pitfalls: ['k=0: count pairs of equal elements. k>0: check each element for x+k. Use set for O(n) lookup.'],
+  },
+
+  'police-and-thieves': {
+    intuition: 'Maximum number of police-thief pairs where each can catch within k distance. Two-pointer on sorted positions.',
+    algorithm: [
+      'Collect positions of police and thieves. Sort both. Two pointers: match if |p-t| <= k.',
+    ],
+    pitfalls: ['If not matched (distance too large): advance the pointer with smaller position. Count successful matches.'],
+  },
+
+  'rotate-array': {
+    intuition: 'Rotate array to the right by k steps. Three-reversal trick.',
+    algorithm: [
+      'k = k % n. Reverse all. Reverse first k. Reverse rest.',
+    ],
+    pitfalls: ['Same as LC 189. Handle k >= n with modulo. Three reversals = O(n) in-place.'],
+  },
+
+  'search-in-a-sorted-matrix': {
+    intuition: 'Search in matrix where each row is sorted and first element of row > last of previous. Binary search treating as 1D.',
+    algorithm: [
+      'Treat m x n matrix as sorted array of m*n elements. Binary search with index mapping: row=mid/n, col=mid%n.',
+    ],
+    pitfalls: ['Same as LC 74. 1D binary search with 2D index conversion. O(log(m*n)).'],
+  },
+
+  'sorted-subsequence-of-size-3': {
+    intuition: 'Find any three indices i<j<k where arr[i]<arr[j]<arr[k]. Track prefix minimum and suffix maximum.',
+    algorithm: [
+      'leftMin[i] = min of arr[0..i]. rightMax[i] = max of arr[i..n-1].',
+      'For each j: if leftMin[j] < arr[j] < rightMax[j]: found.',
+    ],
+    pitfalls: ['Similar to LC 334 (increasing triplet subsequence). O(n) with two auxiliary arrays.'],
+  },
+
+  'sorting-elements-of-an-array-by-frequency': {
+    intuition: 'Sort elements by frequency (descending). For equal frequency, sort by value (ascending or first occurrence).',
+    algorithm: [
+      'Count frequencies. Sort with custom comparator: primary=freq desc, secondary=value asc.',
+    ],
+    pitfalls: ['Stable sort ensures consistent ordering for equal frequencies. Use HashMap for frequencies.'],
+  },
+
+  'sum-pair-closest-to-target': {
+    intuition: 'Find pair with sum closest to target. Sort + two pointers tracking minimum difference.',
+    algorithm: [
+      'Sort. l=0, r=n-1. Track minDiff and best pair. If sum < target: l++. If sum > target: r--. If equal: return.',
+    ],
+    pitfalls: ['Same as LC 1679 variant. Sort first. Update best when |sum - target| < minDiff.'],
+  },
+
+  'strings-rotations-of-each-other': {
+    intuition: 'Check if two strings are rotations of each other. If s2 is in s1+s1, they are rotations.',
+    algorithm: [
+      'If lengths differ: false. Else: check if s2 is substring of (s1+s1).',
+    ],
+    pitfalls: ['Same as LC 796. KMP or indexOf on concatenated string. O(n) with KMP, O(n^2) with naive substring.'],
+  },
+
+  'maximum-connected-group': {
+    intuition: 'Find maximum 1s after flipping one 0 in binary matrix. For each 0: sum of neighboring component sizes + 1.',
+    algorithm: [
+      'Union-Find to label connected components and their sizes.',
+      'For each 0: collect unique neighboring component roots. Sum their sizes + 1.',
+    ],
+    pitfalls: ['Same as LC 827. Union-Find tracks component sizes. Avoid double-counting same component neighbors.'],
+  },
+
+  'minimum-deletions': {
+    intuition: 'Minimum deletions to make string have distinct character frequencies. Sort frequencies, greedily decrement.',
+    algorithm: [
+      'Count frequencies. Sort descending. For each freq: if already used: decrement until unique or 0.',
+    ],
+    pitfalls: ['Same as LC 1647. Use a set of used frequencies. Greedy: reduce until you find unused frequency or 0.'],
+  },
+
+  'meeting-rooms': {
+    intuition: 'Check if a person can attend all meetings (no overlaps). Sort by start, check for overlaps.',
+    algorithm: [
+      'Sort intervals by start. For i in 1..n-1: if intervals[i].start < intervals[i-1].end: overlap, return false.',
+    ],
+    pitfalls: ['Same as LC 252. Sort by start time. Overlap if next start < previous end.'],
+  },
+
+  'meeting-rooms-iii': {
+    intuition: 'Find the room holding the most meetings when n rooms available. Assign to earliest-free room, track counts.',
+    algorithm: [
+      'Sort meetings by start. Min-heap of (end_time, room_id) for busy rooms; sorted set of free rooms.',
+      'For each meeting: free rooms whose end <= start. Assign to lowest-indexed free room. Track count per room.',
+    ],
+    pitfalls: ['Same as LC 2402. Two priority queues: free rooms (sorted by id) and busy rooms (sorted by end time).'],
+  },
+
+  'minimum-weight-cycle': {
+    intuition: 'Find minimum weight cycle in undirected weighted graph. For each edge, find shortest path between its endpoints without using that edge.',
+    algorithm: [
+      'For each edge (u,v,w): remove edge, run Dijkstra from u to v. Cycle weight = dist(u,v) + w.',
+      'Return minimum such weight.',
+    ],
+    pitfalls: ['O(E * (V+E) log V). Alternatively: shortest cycle via modified BFS/Dijkstra from each node.'],
+  },
+
+  'minimum-height-roots': {
+    intuition: 'Find root(s) of tree that minimize height (minimum height trees). Topological leaf-trimming.',
+    algorithm: [
+      'Repeatedly remove leaf nodes (degree 1) until 1 or 2 nodes remain. Those are the MHT roots.',
+    ],
+    pitfalls: ['Same as LC 310. At most 2 answers (center of tree). Trim leaves layer by layer like BFS.'],
+  },
+
 }
 
 export default gfgExplanations
