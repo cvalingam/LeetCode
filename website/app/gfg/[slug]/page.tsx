@@ -6,6 +6,7 @@ import { toLeetCodeSlug, SITE_URL } from '@/lib/constants'
 import CodeBlockWithHeader from '@/components/CodeBlockWithHeader'
 import AdUnit from '@/components/AdUnit'
 import HelpfulWidget from '@/components/HelpfulWidget'
+import gfgExplanations from '@/lib/gfg-explanations'
 
 interface Props {
   params: { slug: string }
@@ -116,15 +117,69 @@ export default async function GfgProblemPage({ params }: Props) {
         </a>
       </div>
 
-      {/* Approach */}
-      {problem.approach && (
-        <div className="mb-8 p-4 rounded-xl bg-slate-50 dark:bg-gray-800/50 border border-slate-100 dark:border-gray-800">
-          <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Explanation</h2>
-          {problem.approach.split('\n').map((para, i) => (
-            <p key={i} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-2 last:mb-0">{para}</p>
-          ))}
-        </div>
-      )}
+      {/* Explanation — rich cards or plain fallback */}
+      {(() => {
+        const rich = gfgExplanations[problem.slug]
+        if (rich) {
+          return (
+            <div className="mb-8 space-y-4">
+              <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-100 dark:border-amber-900/50">
+                <h2 className="text-[11px] font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-2">&#x1F4A1; Intuition</h2>
+                <p className="text-sm text-amber-900 dark:text-amber-200 leading-relaxed">{rich.intuition}</p>
+              </div>
+              <div className="p-4 rounded-xl bg-slate-50 dark:bg-gray-800/50 border border-slate-100 dark:border-gray-800">
+                <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Algorithm</h2>
+                <ol className="space-y-2">
+                  {rich.algorithm.map((step, i) => (
+                    <li key={i} className="flex gap-3 text-sm text-gray-700 dark:text-gray-300">
+                      <span className="flex-shrink-0 w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 text-xs font-bold flex items-center justify-center mt-0.5">{i + 1}</span>
+                      <span className="leading-relaxed">{step}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              {rich.example && (
+                <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/50">
+                  <h2 className="text-[11px] font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-3">Example Walkthrough</h2>
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="text-xs font-mono bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 px-2 py-0.5 rounded">Input: {rich.example.input}</span>
+                  </div>
+                  <ul className="space-y-1 mb-3">
+                    {rich.example.steps.map((step, i) => (
+                      <li key={i} className="text-sm text-blue-900 dark:text-blue-200 leading-relaxed pl-3 border-l-2 border-blue-200 dark:border-blue-700">{step}</li>
+                    ))}
+                  </ul>
+                  <span className="text-xs font-mono bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 px-2 py-0.5 rounded">Output: {rich.example.output}</span>
+                </div>
+              )}
+              {rich.pitfalls && rich.pitfalls.length > 0 && (
+                <div className="p-4 rounded-xl bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/50">
+                  <h2 className="text-[11px] font-semibold text-red-600 dark:text-red-400 uppercase tracking-wider mb-3">&#x26A0;&#xFE0F; Common Pitfalls</h2>
+                  <ul className="space-y-2">
+                    {rich.pitfalls.map((p, i) => (
+                      <li key={i} className="flex gap-2 text-sm text-red-900 dark:text-red-200">
+                        <span className="text-red-400 mt-0.5">&bull;</span>
+                        <span className="leading-relaxed">{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )
+        }
+        if (problem.approach) {
+          return (
+            <div className="mb-8 p-4 rounded-xl bg-slate-50 dark:bg-gray-800/50 border border-slate-100 dark:border-gray-800">
+              <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Explanation</h2>
+              {problem.approach.split('\n').map((para, i) => (
+                <p key={i} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-2 last:mb-0">{para}</p>
+              ))}
+            </div>
+          )
+        }
+        return null
+      })()}
 
       {/* Complexity */}
       {problem.complexity && (
