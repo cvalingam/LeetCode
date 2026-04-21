@@ -36,8 +36,14 @@ export default function TopicsPage() {
       <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-2">
         Topics
       </h1>
-      <p className="text-gray-500 dark:text-gray-400 mb-8 text-sm">
+      <p className="text-gray-500 dark:text-gray-400 mb-3 text-sm">
         {tags.length} topics across {tags.reduce((s, t) => s + t.count, 0)} tagged problems
+      </p>
+      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-2xl">
+        Browse LeetCode C# solutions organised by algorithmic pattern. Each topic page lists all
+        problems for that pattern along with a short editorial explaining when and how to apply the
+        technique. Mastering these patterns — rather than memorising individual solutions — is the
+        most transferable skill for technical interviews.
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">

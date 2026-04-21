@@ -37,7 +37,7 @@ export default function PrivacyPolicyPage() {
           This site uses Google AdSense to display advertisements. Google, as a third-party vendor,
           uses cookies to serve ads based on your prior visits to this and other websites. You can
           opt out of personalised advertising by visiting{' '}
-          <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+          <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-indigo-600 dark:text-indigo-400 hover:underline">
             Google Ads Settings
           </a>.
         </p>
@@ -48,7 +48,7 @@ export default function PrivacyPolicyPage() {
           This site uses Google Analytics 4, loaded via Google Tag Manager, to collect anonymised
           usage data such as pages visited, session duration, and geographic region. No personally
           identifiable information is collected. You can opt out via{' '}
-          <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+          <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" className="text-indigo-600 dark:text-indigo-400 hover:underline">
             Google Analytics Opt-out
           </a>.
         </p>
@@ -57,11 +57,11 @@ export default function PrivacyPolicyPage() {
       <Section title="Analytics (Microsoft Clarity)">
         <p>
           This site uses{' '}
-          <a href="https://clarity.microsoft.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Microsoft Clarity</a>
+          <a href="https://clarity.microsoft.com" target="_blank" rel="noopener noreferrer" className="text-indigo-600 dark:text-indigo-400 hover:underline">Microsoft Clarity</a>
           {' '}(loaded via Google Tag Manager) to understand how visitors interact with the site.
           Clarity may collect session recordings, heatmaps, click maps, and aggregated usage data.
           This data does not personally identify you. You can learn more in{' '}
-          <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+          <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer" className="text-indigo-600 dark:text-indigo-400 hover:underline">
             Microsoft&apos;s Privacy Statement
           </a>.
         </p>
@@ -99,12 +99,15 @@ export default function PrivacyPolicyPage() {
       <Section title="Contact">
         <p>
           If you have questions about this policy, please use the{' '}
-          <Link href="/contact" className="text-blue-600 hover:underline">Contact page</Link>.
+          <Link href="/contact" className="text-indigo-600 dark:text-indigo-400 hover:underline">Contact page</Link>.
         </p>
       </Section>
 
       <div className="mt-10">
-        <Link href="/" className="text-blue-600 hover:underline text-sm">← Back to all problems</Link>
+        <Link href="/" className="inline-flex items-center gap-1 text-sm text-indigo-600 dark:text-indigo-400 hover:underline">
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+          Back to all problems
+        </Link>
       </div>
     </div>
   )

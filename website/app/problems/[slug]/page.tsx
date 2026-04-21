@@ -262,7 +262,27 @@ export default async function ProblemPage({ params }: Props) {
           )
         }
 
-        return null
+        // Generated description for problems that have no hand-written explanation yet
+        {
+          const tagNames = problem.tags.map(t => TAG_LABELS[t] ?? t)
+          const tagPhrase = tagNames.length > 0
+            ? ` covering the ${tagNames.slice(0, 3).join(', ')} pattern${tagNames.length > 1 ? 's' : ''}`
+            : ''
+          const complexityPhrase = problem.complexity
+            ? ` The solution runs in ${problem.complexity.time} time and uses ${problem.complexity.space} extra space.`
+            : ''
+          const langLabel = EXT_TO_LABEL[problem.primaryExt] ?? problem.primaryExt.toUpperCase()
+          return (
+            <div className="mb-8 p-4 rounded-xl bg-slate-50 dark:bg-gray-800/50 border border-slate-100 dark:border-gray-800">
+              <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">About this solution</h2>
+              <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                {problem.title} is a {problem.difficulty.toLowerCase()}-difficulty LeetCode problem{tagPhrase}.
+                The {langLabel} solution below uses an idiomatic approach that is clean, readable, and directly submittable on LeetCode.{complexityPhrase}{' '}
+                Study the logic carefully — recognising the underlying pattern is the key skill that transfers to similar problems in interviews.
+              </p>
+            </div>
+          )
+        }
       })()}
 
       {/* Code */}
