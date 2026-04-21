@@ -209,7 +209,21 @@ export default async function GfgProblemPage({ params }: Props) {
             </div>
           )
         }
-        return null
+
+        // Generated description for problems that have no hand-written explanation yet
+        const complexityPhrase = problem.complexity
+          ? ` The solution runs in ${problem.complexity.time} time and uses ${problem.complexity.space} extra space.`
+          : ''
+        return (
+          <div className="mb-8 p-4 rounded-xl bg-slate-50 dark:bg-gray-800/50 border border-slate-100 dark:border-gray-800">
+            <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">About this solution</h2>
+            <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+              {problem.title} is a GFG Problem of the Day.
+              The Java solution below uses an idiomatic approach that is clean, readable, and directly submittable on GeeksforGeeks.{complexityPhrase}{' '}
+              Study the logic carefully — recognising the underlying pattern is the key skill that transfers to similar problems in interviews.
+            </p>
+          </div>
+        )
       })()}
 
       {/* complexity already rendered above */}
