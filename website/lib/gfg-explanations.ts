@@ -3942,6 +3942,1835 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Reduce to "longest subarray with sum 0" by encoding as +1/-1 per array and tracking difference.'],
   },
 
+  'add-number-linked-lists': {
+    intuition: 'Add two numbers stored as linked lists (digits in order). Reverse both, add with carry, reverse result.',
+    algorithm: [
+      'Reverse both lists. Add digit by digit with carry. If carry remains: add new node. Reverse result list.',
+    ],
+    pitfalls: ['Same as LC 2 but digits may be stored in forward order. Handle different lengths with zero-padding.'],
+  },
+
+  'all-unique-permutations-of-an-array': {
+    intuition: 'Generate all unique permutations of array with duplicates. Sort + backtrack with skip-duplicates logic.',
+    algorithm: [
+      'Sort array. Backtrack: for each position, skip if arr[i]==arr[i-1] and i-1 not used. Swap and recurse.',
+    ],
+    pitfalls: ['Same as LC 47. Must sort first. Skip duplicate choices at same recursion level to avoid repeat permutations.'],
+  },
+
+  'bellmanford': {
+    intuition: 'Single-source shortest paths in graph with negative weights. Relax all edges V-1 times.',
+    algorithm: [
+      'Initialize dist[src]=0, rest=INF. Repeat V-1 times: for each edge (u,v,w): if dist[u]+w < dist[v]: update.',
+      'Run one more pass: if any update possible, negative cycle exists.',
+    ],
+    pitfalls: ['O(VE) time. Works with negative weights unlike Dijkstra. Detect negative cycles in V-th pass.'],
+  },
+
+  'bus-conductor': {
+    intuition: 'Simulate bus ticketing: given boarding and alighting stops, compute passengers at each stop.',
+    algorithm: [
+      'For each passenger: increment count at boarding stop, decrement at alighting. Prefix sum gives occupancy.',
+    ],
+    pitfalls: ['Difference array technique. O(n+m) where m = number of stops. Process boarding/alighting events.'],
+  },
+
+  'bus-ticket-change': {
+    intuition: 'Check if conductor can give change for all passengers given ticket prices and available coins.',
+    algorithm: [
+      'Simulate: for each passenger fare, check if exact change can be made from current coins. Update coin counts.',
+    ],
+    pitfalls: ['Greedy: always use largest denomination first when giving change. Track available coin counts.'],
+  },
+
+  'buy-stock-with-transaction-fee': {
+    intuition: 'Maximize profit from unlimited stock transactions with a transaction fee. DP: hold/not-hold states.',
+    algorithm: [
+      'dp: cash = max(cash, hold+price-fee). hold = max(hold, cash-price). Answer is cash.',
+    ],
+    pitfalls: ['Same as LC 714. Fee charged once per complete transaction. Two-state DP is O(n) time O(1) space.'],
+  },
+
+  'casespecific-sorting-of-strings': {
+    intuition: 'Sort string keeping uppercase in their positions and lowercase in their positions separately.',
+    algorithm: [
+      'Extract uppercase letters and positions, extract lowercase letters and positions. Sort each group. Re-place.',
+    ],
+    pitfalls: ['Two separate sorted sequences. Map back to original case-specific positions. O(n log n).'],
+  },
+
+  'check-if-a-string-is-subsequence-of-other': {
+    intuition: 'Check if string A is a subsequence of string B. Two-pointer scan.',
+    algorithm: [
+      'i=0 (pointer in A), j=0 (pointer in B). If B[j]==A[i]: i++. j++ always. If i reaches len(A): true.',
+    ],
+    pitfalls: ['Same as LC 392. O(n) greedy scan. A is subsequence of B if all chars of A found in order in B.'],
+  },
+
+  'check-if-frequencies-can-be-equal': {
+    intuition: 'Check if all characters can have equal frequency by removing exactly one character occurrence.',
+    algorithm: [
+      'Count frequencies. If all equal: valid. If one frequency is 1 more than others and occurs once: remove it.',
+      'Special cases: only one distinct char, or all same frequency, or (n-1)/k = uniform after one removal.',
+    ],
+    pitfalls: ['Multiple edge cases. Valid conditions: 1) all same freq, 2) removing one occurrence makes all equal, 3) one char with freq 1 can be fully removed.'],
+  },
+
+  'check-if-two-line-segments-intersect': {
+    intuition: 'Check if two line segments intersect using cross product orientation test.',
+    algorithm: [
+      'Compute orientation of triplets (p1,q1,p2), (p1,q1,q2), (p2,q2,p1), (p2,q2,q1).',
+      'General case: segments intersect if orientations differ. Special case: collinear overlap.',
+    ],
+    pitfalls: ['Use cross product sign for orientation. Handle collinear case with on-segment bounding box check.'],
+  },
+
+  'chocolates-pickup': {
+    intuition: 'Two people traverse grid from top to bottom simultaneously, maximize total chocolate picked. 3D DP.',
+    algorithm: [
+      'DP state: (row, col1, col2). Both move down, each can go left/diagonal/right. Sum chocolates (avoid double-counting same cell).',
+    ],
+    pitfalls: ['Same as LC 1463 (Cherry Pickup II). DP[r][c1][c2]. O(n*m^2) with memoization.'],
+  },
+
+  'clone-list-with-next-and-random': {
+    intuition: 'Deep clone linked list with next and random pointers. Interleave cloned nodes then separate.',
+    algorithm: [
+      'Step 1: insert clone after each node. Step 2: set random pointers for clones. Step 3: separate lists.',
+    ],
+    pitfalls: ['Same as LC 138. O(n) time O(1) extra space using interleaving approach. Avoid using hashmap if O(1) space required.'],
+  },
+
+  'closest-neighbour-in-bst': {
+    intuition: 'Find value in BST closest to a given target. BST traversal updating minimum difference.',
+    algorithm: [
+      'Traverse BST. Update closest when |node.val - target| < current min diff. Go left if target < node, else right.',
+    ],
+    pitfalls: ['BST property guides traversal. Track closest seen so far. O(h) time where h = tree height.'],
+  },
+
+  'compare-two-fractions': {
+    intuition: 'Compare two fractions a/b and c/d without floating point. Cross multiply: a*d vs c*b.',
+    algorithm: [
+      'If a*d > b*c: first fraction is larger. If equal: fractions are equal. Else second is larger.',
+    ],
+    pitfalls: ['Use long multiplication to avoid overflow. Do not divide to decimal — loss of precision.'],
+  },
+
+  'construct-an-array-from-its-pairsum-array': {
+    intuition: 'Given n*(n-1)/2 pair sums, reconstruct original array. Use first three pair sums to find first three elements.',
+    algorithm: [
+      'For n>=2: pairSums[0]+pairSums[1]-pairSums[n-1] = 2*arr[0]. Derive arr[0], then arr[i] = pairSum[i-1] - arr[0].',
+    ],
+    pitfalls: ['Tricky construction: sum of all elements can be found, then individual elements derived. Handle even/odd n carefully.'],
+  },
+
+  'construct-tree-from-preorder-postorder': {
+    intuition: 'Construct binary tree from preorder and postorder traversals. preorder[0] is root, preorder[1] is left subtree root.',
+    algorithm: [
+      'Root = preorder[0]. Left root = preorder[1]. Find preorder[1] in postorder to determine left subtree size. Recurse.',
+    ],
+    pitfalls: ['May not be unique if tree can have nodes with one child. Assume full binary tree for unique solution.'],
+  },
+
+  'count-elements-less-than-or-equal-to-k-in-a-sorted-rotated-array': {
+    intuition: 'Count elements <= k in sorted rotated array. Binary search to handle rotation.',
+    algorithm: [
+      'Find rotation pivot. Two binary searches on two sorted halves. Count elements <= k in each half.',
+    ],
+    pitfalls: ['Sorted rotated array splits into two sorted runs. Apply upper_bound on each half and sum counts.'],
+  },
+
+  'count-linked-list-nodes': {
+    intuition: 'Count total number of nodes in a linked list.',
+    algorithm: [
+      'Traverse from head, increment counter at each node until null.',
+    ],
+    pitfalls: ['Simple O(n) traversal. Edge case: empty list returns 0.'],
+  },
+
+  'count-numbers-containing-specific-digits': {
+    intuition: 'Count numbers in range [1, n] that contain at least one of the given specific digits.',
+    algorithm: [
+      'Digit DP: count numbers with all digits NOT in the set, subtract from total n.',
+    ],
+    pitfalls: ['Complement counting is easier. Count numbers with no forbidden digits using digit DP or combinatorics.'],
+  },
+
+  'count-of-distinct-substrings': {
+    intuition: 'Count number of distinct substrings of a string. Suffix array + LCP array.',
+    algorithm: [
+      'Build suffix array. Count = n*(n+1)/2 - sum(LCP array).',
+    ],
+    pitfalls: ['Total substrings minus duplicates identified by LCP. O(n log n) suffix array. Alternatively: Trie approach.'],
+  },
+
+  'count-pairs-with-given-sum': {
+    intuition: 'Count pairs in array with given sum. HashMap frequency count.',
+    algorithm: [
+      'For each element x: count += freq[target-x]. Then freq[x]++.',
+    ],
+    pitfalls: ['Same as LC 1. Count pairs not elements. Process in one pass: check first, then add to map to avoid counting element with itself.'],
+  },
+
+  'count-smaller-elements': {
+    intuition: 'For each element, count how many elements to its right are smaller. Merge sort or BIT.',
+    algorithm: [
+      'BIT/Fenwick tree: process right to left. For each element: query(val-1) gives count of smaller elements seen so far. Update BIT.',
+    ],
+    pitfalls: ['Same as LC 315. Coordinate compress if values are large. Merge sort approach also O(n log n).'],
+  },
+
+  'count-subarray-with-k-odds': {
+    intuition: 'Count subarrays with exactly k odd numbers. Prefix sum with at-most-k trick.',
+    algorithm: [
+      'Count(exactly k) = Count(at most k) - Count(at most k-1). Count at most k: sliding window.',
+    ],
+    pitfalls: ['Same as LC 1248. Sliding window counts at-most-k. Subtract to get exactly-k. O(n).'],
+  },
+
+  'count-the-paths': {
+    intuition: 'Count paths in a grid from top-left to bottom-right with obstacles. Standard DP.',
+    algorithm: [
+      'dp[i][j] = dp[i-1][j] + dp[i][j-1] if not obstacle, else 0.',
+    ],
+    pitfalls: ['Same as LC 62/63. Handle first row and column initialization. Obstacle sets dp to 0.'],
+  },
+
+  'counting-elements-in-two-arrays': {
+    intuition: 'For each element in array A, count elements in array B that are less than or equal to it.',
+    algorithm: [
+      'Sort B. For each element in A: binary search upper_bound in B gives count.',
+    ],
+    pitfalls: ['Sort B once, then O(log n) per query. Total O((m+n) log n). Output count array.'],
+  },
+
+  'expression-add-operators': {
+    intuition: 'Add +, -, * operators between digits to make expression equal to target. DFS/backtracking.',
+    algorithm: [
+      'DFS: try each split point. Track current value and last multiplication term for correct order-of-operations.',
+      'When multiplying: current = current - last + last*next.',
+    ],
+    pitfalls: ['Same as LC 282. Must track last operand to handle * correctly. No leading zeros for multi-digit numbers.'],
+  },
+
+  'find-all-possible-palindromic-partitions-of-a-string': {
+    intuition: 'Find all ways to partition string so every substring is a palindrome. Backtracking + palindrome precompute.',
+    algorithm: [
+      'Precompute isPalin[i][j] with DP. Backtrack: at each position, try all palindromic substrings starting here.',
+    ],
+    pitfalls: ['Same as LC 131. Precompute palindrome table in O(n^2). Backtrack with O(n) palindrome check or use the table.'],
+  },
+
+  'find-hindex': {
+    intuition: 'Find H-index: maximum h such that researcher has h papers each cited at least h times.',
+    algorithm: [
+      'Sort citations descending. Find largest h where citations[h-1] >= h.',
+    ],
+    pitfalls: ['Same as LC 274. Binary search on sorted array or linear scan. H-index is the knee of the citation curve.'],
+  },
+
+  'find-k-smallest-sum-pairs': {
+    intuition: 'Find k pairs (one from each sorted array) with smallest sums. Min-heap.',
+    algorithm: [
+      'Push (arr1[0]+arr2[j], 0, j) for j=0..k-1 into min-heap. Pop k times, each time push (arr1[i+1]+arr2[j], i+1, j).',
+    ],
+    pitfalls: ['Same as LC 373. Initial seeds from first element of arr1 with all of arr2. Pop and expand.'],
+  },
+
+  'find-length-of-loop': {
+    intuition: 'Find length of cycle in linked list. Floyd detection then count cycle length.',
+    algorithm: [
+      'Floyd slow/fast: detect cycle. From meeting point, advance one pointer until it returns. Count steps.',
+    ],
+    pitfalls: ['After cycle detected: keep one pointer at meeting point, advance other until it loops back. O(n).'],
+  },
+
+  'find-maximum-volume-of-a-cuboid': {
+    intuition: 'Given constraint sum of dimensions = k, maximize volume l*w*h. By AM-GM inequality, cube maximizes volume.',
+    algorithm: [
+      'For integer dimensions: floor(k/3)^2 * ceil(k/3) adjusted for remainder. Try (q,q,q), (q,q,q+1), (q,q+1,q+1).',
+    ],
+    pitfalls: ['AM-GM: equal dimensions maximize product. For integer constraints: check two or three candidate triples.'],
+  },
+
+  'find-only-repetitive-element-from-1-to-n1': {
+    intuition: 'Array of size n with values 1 to n-1, one repeated. Find it using XOR or sum formula.',
+    algorithm: [
+      'Sum formula: ans = sum(arr) - n*(n-1)/2.',
+      'XOR: XOR all elements with 1..n-1. Result is the duplicate.',
+    ],
+    pitfalls: ['Sum overflow: use long. XOR method is O(n) O(1) with no overflow risk.'],
+  },
+
+  'find-the-closest-pair-from-two-arrays': {
+    intuition: 'Find pair (one from each sorted array) with sum closest to a target.',
+    algorithm: [
+      'Two pointers: i starts at end of arr1, j starts at beginning of arr2. Move based on sum vs target.',
+    ],
+    pitfalls: ['Similar to two-sum on two sorted arrays. O(m+n) after sorting. Track minimum |sum-target|.'],
+  },
+
+  'find-the-first-node-of-loop-in-linked-list': {
+    intuition: 'Find the node where the cycle begins in linked list. Floyd then entry-point trick.',
+    algorithm: [
+      'Detect cycle with Floyd. Reset slow to head. Advance both slow and fast one step at a time. They meet at cycle start.',
+    ],
+    pitfalls: ['Same as LC 142. Mathematical proof: distance from head to cycle entry = distance from meeting point to cycle entry.'],
+  },
+
+  'find-the-longest-string': {
+    intuition: 'Find longest string in array that is a subsequence of all other strings (or similar constraint).',
+    algorithm: [
+      'Sort by length. For each string: check if it is subsequence of others. Return longest valid one.',
+    ],
+    pitfalls: ['Check each candidate string as subsequence of target string. O(n*m) total.'],
+  },
+
+  'find-the-sum-of-last-n-nodes-of-the-linked-list': {
+    intuition: 'Sum last n nodes of linked list. Two-pointer with gap n, or recursive.',
+    algorithm: [
+      'Two pointers: advance first pointer n steps. Then advance both until first reaches end. Sum from second pointer.',
+    ],
+    pitfalls: ['Classic sliding window for linked list. Or convert to array, sum last n elements. O(n).'],
+  },
+
+  'indexes-of-subarray-sum': {
+    intuition: 'Find starting and ending index of first subarray with sum equal to target (non-negative array). Sliding window.',
+    algorithm: [
+      'Sliding window: expand right, contract left when sum > target. When sum == target: return [left+1, right+1] (1-indexed).',
+    ],
+    pitfalls: ['Works for non-negative elements only. For negative elements: prefix sum + hashmap. Return 1-indexed result.'],
+  },
+
+  'kpangrams': {
+    intuition: 'Check if string can be made a pangram (all 26 letters present) by adding at most k characters.',
+    algorithm: [
+      'Count distinct letters in string. Missing = 26 - distinct. If missing <= k: yes.',
+    ],
+    pitfalls: ['Count unique letters using set or frequency array. Simple O(n) scan.'],
+  },
+
+  'kth-element-of-two-arrays': {
+    intuition: 'Find kth element in the merged sorted sequence of two sorted arrays. Binary search.',
+    algorithm: [
+      'Binary search: partition arr1 to have i elements and arr2 to have k-i elements. Adjust based on boundary comparisons.',
+    ],
+    pitfalls: ['Same idea as LC 4 (median of two sorted arrays). O(log(min(m,n))). Handle edge cases for array boundaries.'],
+  },
+
+  'kth-largest-sum-contiguous-subarray': {
+    intuition: 'Find kth largest sum among all contiguous subarrays. Min-heap of size k.',
+    algorithm: [
+      'Compute all prefix sums. For each pair (i,j): subarray sum = prefix[j]-prefix[i-1]. Use min-heap of size k.',
+    ],
+    pitfalls: ['O(n^2 log k) with heap. For large arrays: more advanced approaches needed. All O(n^2) subarray sums considered.'],
+  },
+
+  'kth-smallest-in-bst': {
+    intuition: 'Find kth smallest element in BST. In-order traversal (left-root-right) yields sorted order.',
+    algorithm: [
+      'In-order traversal with counter. When counter reaches k: return current node value.',
+    ],
+    pitfalls: ['Same as LC 230. Iterative in-order with stack or Morris traversal for O(1) space.'],
+  },
+
+  'largest-pair-sum': {
+    intuition: 'Find the largest sum of any two elements in the array. Linear scan for max and second max.',
+    algorithm: [
+      'Single pass: track max1 and max2. Answer = max1 + max2.',
+    ],
+    pitfalls: ['O(n) linear scan. If array can have negatives, simply sort and take last two elements.'],
+  },
+
+  'longest-boundeddifference-subarray': {
+    intuition: 'Find longest subarray where max - min <= 1 (or some bound). Sliding window with two deques.',
+    algorithm: [
+      'Two monotonic deques for running max and min. If max-min > limit: advance left pointer.',
+    ],
+    pitfalls: ['Similar to LC 1438. The bound here is typically 1 (any two elements differ by at most 1). O(n) sliding window.'],
+  },
+
+  'longest-string-chain': {
+    intuition: 'Longest chain of words where each word adds one letter to the previous. DP with sorted lengths.',
+    algorithm: [
+      'Sort by length. dp[word] = max(dp[pred]+1) for all predecessors obtained by removing one char.',
+    ],
+    pitfalls: ['Same as LC 1048. Try removing each character from current word to find predecessor. O(n*L^2) where L = max word length.'],
+  },
+
+  'longest-subarray-length': {
+    intuition: 'Find length of longest subarray with equal number of 0s and 1s. Prefix sum + hashmap.',
+    algorithm: [
+      'Encode 0 as -1. Find longest subarray with sum 0 using prefix sum and first-occurrence hashmap.',
+    ],
+    pitfalls: ['Same as LC 525. Map prefix sum to first index. When same prefix sum seen again: span is a valid subarray.'],
+  },
+
+  'longest-subarray-with-atmost-two-distinct-integers': {
+    intuition: 'Sliding window: maintain window with at most 2 distinct values.',
+    algorithm: [
+      'HashMap counts. When distinct count > 2: shrink from left. Track max window size.',
+    ],
+    pitfalls: ['Same as LC 159. Generalized to k distinct: LC 340. O(n) sliding window.'],
+  },
+
+  'longest-subarray-with-majority-greater-than-k': {
+    intuition: 'Find longest subarray where more than half of elements are greater than k.',
+    algorithm: [
+      'Encode: +1 if arr[i]>k, -1 otherwise. Find longest subarray with positive prefix sum.',
+    ],
+    pitfalls: ['Majority means > n/2 elements. +1/-1 encoding + prefix sum with first-occurrence tracking gives O(n).'],
+  },
+
+  'longest-substring-with-k-uniques': {
+    intuition: 'Find longest substring with exactly k unique characters. Sliding window.',
+    algorithm: [
+      'Sliding window with frequency map. Expand right. When distinct > k: shrink left. Track max when distinct == k.',
+    ],
+    pitfalls: ['Same as LC 395 variant. Exactly k: use at-most-k minus at-most-(k-1). Or direct sliding window.'],
+  },
+
+  'look-and-say-pattern': {
+    intuition: 'Generate nth term of look-and-say sequence. Iteratively scan and encode runs.',
+    algorithm: [
+      'Start with "1". Each step: scan runs of same digit, encode as count+digit.',
+    ],
+    pitfalls: ['Same as LC 38. Build string iteratively n-1 times. Each pass is O(L) where L is current string length.'],
+  },
+
+  'make-array-elements-unique': {
+    intuition: 'Minimum increment operations to make all array elements distinct. Sort then fix conflicts.',
+    algorithm: [
+      'Sort array. If arr[i] <= arr[i-1]: set arr[i] = arr[i-1]+1, count the difference as operations.',
+    ],
+    pitfalls: ['Same as LC 945. Sort, then greedily increment. O(n log n). Track total increments applied.'],
+  },
+
+  'make-binary-tree-from-linked-list': {
+    intuition: 'Construct complete binary tree from linked list (level-order). BFS with queue.',
+    algorithm: [
+      'Use queue. Root = first node. For each dequeued node: next list node becomes left child, next becomes right child. Enqueue children.',
+    ],
+    pitfalls: ['Level-order construction. O(n). Queue always contains the node whose children are to be set.'],
+  },
+
+  'make-matrix-beautiful': {
+    intuition: 'Make all rows and columns have same sum with minimum increment operations.',
+    algorithm: [
+      'Target = max of all row sums and column sums. For each row: increment elements to reach target. Adjust columns accordingly.',
+    ],
+    pitfalls: ['Target is max(maxRowSum, maxColSum). Fill row by row; recalculate column sums. Total ops = n*target - sum(all elements).'],
+  },
+
+  'make-strings-equal': {
+    intuition: 'Check if string S can be made equal to string T using minimum operations (swap characters).',
+    algorithm: [
+      'Count mismatches. If both strings differ only in swappable positions: compute minimum swaps needed.',
+    ],
+    pitfalls: ['Count 01 mismatches and 10 mismatches. Pairs of same-type mismatches need 1 swap each; cross-type mismatches need 2.'],
+  },
+
+  'max-dag-edges': {
+    intuition: 'Maximum edges that can be added to a DAG without creating a cycle. Count edges in complete DAG minus existing.',
+    algorithm: [
+      'Complete DAG on n nodes has n*(n-1)/2 edges. Subtract existing edges count.',
+    ],
+    pitfalls: ['In a DAG with n nodes, maximum edges = n*(n-1)/2 (one direction for each pair). Just subtract current edge count.'],
+  },
+
+  'max-distance-between-same-elements': {
+    intuition: 'For each value, find maximum distance between first and last occurrence.',
+    algorithm: [
+      'HashMap: store first occurrence index. For each element: if seen, update max distance = i - firstIndex[val].',
+    ],
+    pitfalls: ['Only store first occurrence. At each re-occurrence update answer. O(n) single pass.'],
+  },
+
+  'max-min-height': {
+    intuition: 'Maximize the minimum height in a histogram/array after given operations. Binary search on answer.',
+    algorithm: [
+      'Binary search on the minimum height h. Check feasibility: can we achieve minimum h with given operations?',
+    ],
+    pitfalls: ['Binary search + greedy feasibility check. O(n log maxVal).'],
+  },
+
+  'max-of-min-for-every-window-size': {
+    intuition: 'For each window size k (1..n), find the maximum of the minimum values in all windows of size k.',
+    algorithm: [
+      'For each element: find the nearest smaller to left (L[i]) and right (R[i]) using monotonic stack.',
+      'Element arr[i] is min for windows of size 1..R[i]-L[i]-1. Use this to fill answer array, then propagate max backwards.',
+    ],
+    pitfalls: ['Same as "Maximum of minimums of every window size". O(n) with two monotonic stack passes + backward propagation.'],
+  },
+
+  'max-score-from-subarray-mins': {
+    intuition: 'Maximize score = min(arr[i], arr[j]) * (i+j) over all pairs i < j. Greedy or sorted pairs.',
+    algorithm: [
+      'For adjacent pairs, min is more predictable. Consider all adjacent pairs: score = min(arr[i], arr[i+1]) * (i+i+1).',
+    ],
+    pitfalls: ['Adjacent elements maximize score because non-adjacent pairs have smaller min. O(n) scan of adjacent pairs.'],
+  },
+
+  'max-sum-in-the-configuration': {
+    intuition: 'Maximize sum of i*arr[i] over all rotations. Derive from initial sum using formula.',
+    algorithm: [
+      'Compute initial sum S0. For rotation r+1: Sr+1 = Sr + totalSum - n*arr[n-1-r].',
+      'Track maximum over all rotations.',
+    ],
+    pitfalls: ['O(n) by deriving each rotation sum from previous. Initial O(n) setup then O(n) iterations.'],
+  },
+
+  'max-sum-path-in-two-arrays': {
+    intuition: 'Two sorted arrays with common elements. Find path (switch between arrays at common elements) with maximum sum.',
+    algorithm: [
+      'Two pointers. Accumulate sums between common elements. At each common element: take max of both accumulated sums, add common element value.',
+    ],
+    pitfalls: ['O(m+n) merge-like scan. Key insight: switch paths only at common elements when it is beneficial.'],
+  },
+
+  'max-sum-subarray-of-size-k': {
+    intuition: 'Find maximum sum subarray of exactly size k. Sliding window.',
+    algorithm: [
+      'Compute sum of first k elements. Slide: add next, remove leftmost. Track maximum.',
+    ],
+    pitfalls: ['Classic fixed-size sliding window. O(n). Initial window sum then slide.'],
+  },
+
+  'max-xor-subarray-of-size-k': {
+    intuition: 'Find maximum XOR of any subarray of size exactly k. Sliding window XOR.',
+    algorithm: [
+      'Compute XOR of first k elements. Slide: XOR with new element and XOR out oldest. Track maximum XOR.',
+    ],
+    pitfalls: ['XOR of window: sliding XOR. XOR(arr[i..i+k-1]) = prefix[i+k] XOR prefix[i]. O(n).'],
+  },
+
+  'maximise-string-score': {
+    intuition: 'Maximize score by splitting string into left and right parts. Score = distinct in left + distinct in right.',
+    algorithm: [
+      'Precompute suffix distinct counts. Iterate split points: prefix distinct + suffix distinct. Track max.',
+    ],
+    pitfalls: ['Same as LC 1422 variant. Precompute suffix sets. Iterate split with running prefix set. O(n) with bitset.'],
+  },
+
+  'maximize-array-value-after-rearrangement': {
+    intuition: 'Rearrange array to maximize sum of |arr[i]-arr[i-1]|. Sort and interleave min/max pattern.',
+    algorithm: [
+      'Sort. Place first half in even positions, second half in odd positions (or interleave min/max alternately).',
+    ],
+    pitfalls: ['Maximum sum of absolute differences: sort then rearrange in valley-peak pattern. Final sum = 2*(max_half - min_half).'],
+  },
+
+  'maximize-median-after-doing-k-addition-operation': {
+    intuition: 'Maximize median of array after adding 1 to k elements. Binary search on answer.',
+    algorithm: [
+      'Binary search on target median value m. Greedy: count how many elements need incrementing to be >= m. If <= k: feasible.',
+    ],
+    pitfalls: ['Binary search on answer. Sort array. Count elements < m and determine if k additions suffice to bring median >= m.'],
+  },
+
+  'maximize-number-of-1s': {
+    intuition: 'Maximize 1s in binary array row by flipping at most one segment. Kadane-style DP.',
+    algorithm: [
+      'Encode: 0->+1 (gain from flip), 1->-1 (would lose by flipping). Find max subarray sum, add to original 1-count.',
+    ],
+    pitfalls: ['Flipping a 0 to 1 gains +1, flipping a 1 to 0 costs -1. Kadane on this encoding gives optimal segment to flip.'],
+  },
+
+  'maximize-partitions-in-a-string': {
+    intuition: 'Split string into maximum partitions where each character appears in only one partition.',
+    algorithm: [
+      'Track last occurrence of each character. Greedily extend current partition to include all characters in it. Cut when all resolved.',
+    ],
+    pitfalls: ['Same as LC 763. Track rightmost boundary for current partition. When i == boundary: partition complete.'],
+  },
+
+  'maximize-the-cut-segments': {
+    intuition: 'Cut rope of length n into maximum pieces of lengths x, y, or z. Unbounded knapsack DP.',
+    algorithm: [
+      'dp[i] = max(dp[i-x], dp[i-y], dp[i-z]) + 1. Base dp[0]=0. If dp[n] == -INF: return 0.',
+    ],
+    pitfalls: ['Initialize dp with -INF (not -1 to distinguish impossible). Max cuts is unbounded knapsack count variant.'],
+  },
+
+  'maximize-the-minimum-difference-between-k-elements': {
+    intuition: 'Select k elements to maximize the minimum gap between consecutive selected elements. Binary search + greedy.',
+    algorithm: [
+      'Sort. Binary search on minimum gap d. Greedy: greedily pick elements with at least d gap. If can pick k: d is feasible.',
+    ],
+    pitfalls: ['Same as LC 1870 / allocation problems. Sort, then binary search on gap, greedy feasibility check.'],
+  },
+
+  'maximum-difference': {
+    intuition: 'Find maximum difference arr[j] - arr[i] where j > i. Track running minimum from left.',
+    algorithm: [
+      'Scan left to right: maintain minSoFar. maxDiff = max(maxDiff, arr[j] - minSoFar).',
+    ],
+    pitfalls: ['Same as LC 121. O(n) single pass. Answer must be positive (j > i and arr[j] > arr[i]).'],
+  },
+
+  'maximum-nonadjacent-nodes-sum': {
+    intuition: 'Maximum sum of non-adjacent nodes in binary tree. Each node: choose include or exclude.',
+    algorithm: [
+      'For each node: included = node.val + sum of grandchildren sums. Excluded = max children sums. Return max.',
+    ],
+    pitfalls: ['Same as LC 337 (House Robber III). Pair return: (includeMax, excludeMax). O(n) post-order traversal.'],
+  },
+
+  'maximum-nonoverlapping-odd-palindrome-sum': {
+    intuition: 'Find maximum sum of non-overlapping odd-length palindromic substrings.',
+    algorithm: [
+      'DP: for each center, expand palindrome and compute value. DP[i] = max(DP[i-1], DP[j-1] + palindrome_value) where j is start.',
+    ],
+    pitfalls: ['Combine palindrome detection (Manacher) with non-overlapping interval DP. Consider all odd-length palindromes.'],
+  },
+
+  'maximum-number-of-overlapping-intervals': {
+    intuition: 'Find maximum number of intervals that overlap at any single point. Sweep line.',
+    algorithm: [
+      'Events: +1 at start, -1 at end+1. Sort events, process in order, track running sum maximum.',
+    ],
+    pitfalls: ['Sweep line with events. Sort starts/ends separately or together. Running counter max gives answer.'],
+  },
+
+  'maximum-of-minimum-for-every-window-size': {
+    intuition: 'For each window size k, find maximum of all window minimums. Monotonic stack for each element span.',
+    algorithm: [
+      'Use monotonic stack to find previous smaller (L) and next smaller (R) for each element.',
+      'Element arr[i] is the minimum for window sizes up to R[i]-L[i]-1. Build answer array then propagate backward.',
+    ],
+    pitfalls: ['O(n) approach. For each element, it is the minimum of all windows it spans. Fill answer array, then max-propagate from small to large window sizes.'],
+  },
+
+  'maximum-path-sum': {
+    intuition: 'Find maximum path sum in binary tree. Path can start and end at any node.',
+    algorithm: [
+      'Post-order DFS. For each node: left gain = max(0, dfs(left)), right gain = max(0, dfs(right)). Update global max with node+left+right. Return node + max(left, right).',
+    ],
+    pitfalls: ['Same as LC 124. Track global max separately. Return only the best single path for parent use.'],
+  },
+
+  'maximum-people-visible-in-a-line': {
+    intuition: 'Count people visible from position 0 facing right, given heights. Taller people block shorter ones behind.',
+    algorithm: [
+      'Scan from right. Monotonic stack of heights. For each person: count shorter people before next taller one.',
+    ],
+    pitfalls: ['Stack-based simulation. Each person can see all shorter consecutive people plus the first taller one. O(n).'],
+  },
+
+  'maximum-product-subset-of-an-array': {
+    intuition: 'Find maximum product of any subset. Handle negatives and zeros carefully.',
+    algorithm: [
+      'Count negatives and zeros. If all zeros: return 0. Remove zeros. If odd number of negatives: remove the negative closest to 0.',
+      'Multiply remaining elements.',
+    ],
+    pitfalls: ['Handle: all zeros, single element, odd count of negatives. Sort to easily identify smallest-magnitude negative.'],
+  },
+
+  'maximum-stone-removal': {
+    intuition: 'Remove maximum stones such that each row and column keeps at least one stone. Union-Find on shared rows/columns.',
+    algorithm: [
+      'Connect stones sharing same row or column using Union-Find. For each component of size s: can remove s-1 stones.',
+    ],
+    pitfalls: ['Same as LC 947. Each connected component can have all-but-one stone removed. Union-Find or DFS to find components.'],
+  },
+
+  'maximum-subarray-sum-2': {
+    intuition: 'Find maximum sum of any non-empty contiguous subarray. Kadane algorithm.',
+    algorithm: [
+      'Kadane: maxEndHere = max(arr[i], maxEndHere + arr[i]). maxSoFar = max(maxSoFar, maxEndHere).',
+    ],
+    pitfalls: ['Standard Kadane. O(n) O(1). Must handle all-negative arrays (answer is the largest single element).'],
+  },
+
+  'maximum-sum-of-elements-not-part-of-lis': {
+    intuition: 'Find maximum sum of elements NOT in any LIS. Total sum minus minimum sum of elements in some LIS.',
+    algorithm: [
+      'Find minimum weight LIS (LIS weighted by value, minimizing sum). Answer = totalSum - minLIS_sum.',
+    ],
+    pitfalls: ['Tricky: minimize sum of LIS, then subtract from total. DP with patience sorting variant to minimize sum.'],
+  },
+
+  'maximum-sum-of-nonadjacent-nodes': {
+    intuition: 'Maximum sum path in binary tree where no two adjacent (parent-child) nodes are both selected.',
+    algorithm: [
+      'Same as House Robber on tree. DFS returning (include, exclude) pairs. Parent = max(include grandchildren + node, max children).',
+    ],
+    pitfalls: ['Same as LC 337. Post-order DP. Two values per node: max sum including it, max sum excluding it.'],
+  },
+
+  'maximum-xor-of-two-numbers-in-an-array': {
+    intuition: 'Find maximum XOR of any two elements. Trie of binary representations.',
+    algorithm: [
+      'Build trie of all numbers. For each number, greedily choose the opposite bit at each trie level.',
+    ],
+    pitfalls: ['Same as LC 421. Trie approach O(32n). Alternative: linear algebra over GF(2) for basis.'],
+  },
+
+  'median-in-a-rowwise-sorted-matrix': {
+    intuition: 'Find median of matrix where each row is sorted. Binary search on value, count elements <= mid.',
+    algorithm: [
+      'Binary search on value range [min, max]. Count elements <= mid using binary search on each row. Find smallest value with count > m*n/2.',
+    ],
+    pitfalls: ['O(r * log(max-min) * log(c)). Counting elements <= x across sorted rows uses binary search per row.'],
+  },
+
+  'median-of-bst': {
+    intuition: 'Find median of BST. In-order traversal gives sorted sequence; pick middle element(s).',
+    algorithm: [
+      'Count total nodes n. In-order traversal: when counter reaches (n+1)/2 (and n/2 if even): record values.',
+    ],
+    pitfalls: ['Two-pass: count nodes, then in-order to find median. Or Morris traversal for O(1) space.'],
+  },
+
+  'merge-two-bst-s': {
+    intuition: 'Merge two BSTs into one balanced BST. In-order both to get sorted arrays, merge, build balanced BST.',
+    algorithm: [
+      'In-order traverse both BSTs to get sorted arrays. Merge two sorted arrays. Build balanced BST from sorted array.',
+    ],
+    pitfalls: ['Three steps: in-order (O(n)), merge (O(m+n)), build balanced BST (O(m+n)). Total O(m+n).'],
+  },
+
+  'min-add-to-make-parentheses-valid': {
+    intuition: 'Minimum additions to make parenthesis string valid. Track open count and close needed.',
+    algorithm: [
+      'Scan: open++ for (, open-- for ) if open>0 else close++. Answer = open + close.',
+    ],
+    pitfalls: ['Same as LC 921. Track unmatched ( and unmatched ). At end: both counts added give minimum additions.'],
+  },
+
+  'min-chars-to-add-for-palindrome': {
+    intuition: 'Minimum characters to add at front to make string a palindrome. KMP on s + reverse(s).',
+    algorithm: [
+      'Form string: s + "#" + reverse(s). Compute KMP failure function. Answer = n - lps[last].',
+    ],
+    pitfalls: ['LPS (longest palindromic suffix) = LPS of s = LCS(s, reverse(s)) starting from beginning. KMP gives this efficiently.'],
+  },
+
+  'min-cost-climbing-stairs': {
+    intuition: 'Minimum cost to reach top of stairs where you can climb 1 or 2 steps. DP.',
+    algorithm: [
+      'dp[i] = cost[i] + min(dp[i-1], dp[i-2]). Answer = min(dp[n-1], dp[n-2]).',
+    ],
+    pitfalls: ['Same as LC 746. Can start from step 0 or step 1. DP is O(n) O(1) with two variables.'],
+  },
+
+  'minimal-cost': {
+    intuition: 'Minimum cost to make at most k jumps from first to last stone. Greedy or DP.',
+    algorithm: [
+      'Sort heights. With k jumps allowed: skip the k-1 largest gaps between consecutive stones.',
+    ],
+    pitfalls: ['Key insight: if you can make k jumps, you skip k-1 intermediate stones choosing the largest height differences.'],
+  },
+
+  'minimize-the-heights-i': {
+    intuition: 'Minimize difference between max and min tower heights by adding or subtracting k exactly once from each.',
+    algorithm: [
+      'Sort. For each split point: left towers get +k, right towers get -k. New range = max(arr[i-1]+k, arr[n-1]-k) - min(arr[0]+k, arr[i]-k).',
+    ],
+    pitfalls: ['Sort, try each split. Must add OR subtract exactly k (not choosing per tower). Check all n split points.'],
+  },
+
+  'minimize-the-heights-ii': {
+    intuition: 'Same as minimize-the-heights-i but can choose to add OR subtract k for each tower independently.',
+    algorithm: [
+      'Sort. For each index i: left half gets +k, right half gets -k (or some combination). Try all splits.',
+    ],
+    pitfalls: ['Sort, iterate split points. At split i: minVal=min(arr[0]+k, arr[i]-k), maxVal=max(arr[i-1]+k, arr[n-1]-k). Track minimum range.'],
+  },
+
+  'minimum-cost-to-connect-all-houses-in-a-city': {
+    intuition: 'Minimum spanning tree of houses with given edge costs. Prim or Kruskal.',
+    algorithm: [
+      'Build adjacency list of house connections. Run Prim or Kruskal to find MST. Sum MST edge weights.',
+    ],
+    pitfalls: ['Standard MST problem. Kruskal: sort edges, union-find. Prim: priority queue. O(E log E) or O(E log V).'],
+  },
+
+  'minimum-cost-to-cut-a-board-into-squares': {
+    intuition: 'Cut board with minimum cost. Greedy: always make the most expensive cut first.',
+    algorithm: [
+      'Sort horizontal and vertical cuts descending. Greedily pick most expensive cut. Multiply by current segment count.',
+    ],
+    pitfalls: ['Greedy works: sort cuts descending. Track h_count (horizontal segments) and v_count. At each step multiply cut cost by segment count on perpendicular axis.'],
+  },
+
+  'minimum-cost-to-cut-a-stick-of-length-n': {
+    intuition: 'Minimum cost to cut a stick at given positions. Interval DP.',
+    algorithm: [
+      'Add 0 and n as boundaries. dp[i][j] = min cost to cut stick between positions[i] and positions[j].',
+      'dp[i][j] = min over all k in (i,j): dp[i][k] + dp[k][j] + positions[j]-positions[i].',
+    ],
+    pitfalls: ['Same as LC 1547. Interval DP on sorted cut positions. O(m^3) where m = number of cuts.'],
+  },
+
+  'minimum-cost-to-merge-stones': {
+    intuition: 'Merge stones with minimum cost where k adjacent stones merge at once. Interval DP.',
+    algorithm: [
+      'dp[i][j] = min cost to merge all stones from i to j. Merges possible when (j-i) % (k-1) == 0.',
+    ],
+    pitfalls: ['Same as LC 1000. Interval DP with step k-1. Add prefix sum for fast range sum computation.'],
+  },
+
+  'minimum-k-consecutive-bit-flips': {
+    intuition: 'Minimum number of k-bit flips to make all bits 1. Greedy sliding window.',
+    algorithm: [
+      'Sliding window: track flips in current window with a difference array. Flip at position i if current bit is 0 (accounting for flips).',
+    ],
+    pitfalls: ['Same as LC 995. Use flip difference array to track effect in O(1). O(n) overall.'],
+  },
+
+  'minimum-number-of-deletions-and-insertions': {
+    intuition: 'Minimum operations (delete from S1, insert into S1) to convert S1 to S2. LCS based.',
+    algorithm: [
+      'LCS length = L. Deletions = len(S1) - L. Insertions = len(S2) - L. Total = len(S1)+len(S2) - 2*L.',
+    ],
+    pitfalls: ['Equivalent to edit distance with only insert/delete. LCS gives common subsequence; remaining chars must be deleted/inserted.'],
+  },
+
+  'minimum-number-of-workers': {
+    intuition: 'Minimum workers to finish all tasks given constraints on task/worker assignments. Bipartite matching or greedy.',
+    algorithm: [
+      'Sort tasks and workers. Greedy assignment: assign each task to any qualified worker. Binary search for optimal grouping.',
+    ],
+    pitfalls: ['Problem-specific constraints vary. Common approach: sort and greedy assign with feasibility check.'],
+  },
+
+  'minimum-operations-to-connect-hospitals': {
+    intuition: 'Minimum edges to add to connect all hospital nodes in a graph. Count connected components, need components-1 edges.',
+    algorithm: [
+      'Build graph of hospitals. BFS/DFS or Union-Find to count connected components C. Answer = C - 1.',
+    ],
+    pitfalls: ['Standard connected components problem. MST adds exactly C-1 edges to connect C components.'],
+  },
+
+  'minimum-repeat-to-make-substring': {
+    intuition: 'Find minimum repetitions of string A to make B a substring. KMP or brute force.',
+    algorithm: [
+      'Minimum repeats = ceil(len(B)/len(A)). Try this many and one more repetition. Use KMP to check if B is substring.',
+    ],
+    pitfalls: ['Same as LC 686. Try repeating A exactly ceil(|B|/|A|) and ceil(|B|/|A|)+1 times. KMP search.'],
+  },
+
+  'minimum-steps-to-halve-sum': {
+    intuition: 'Minimum operations to reduce array sum by half, each operation halves one element. Max-heap greedy.',
+    algorithm: [
+      'Max-heap. Repeatedly halve the largest element. Count operations until totalReduced >= initialSum/2.',
+    ],
+    pitfalls: ['Same as LC 2208. Greedy: always halve the largest. Use max-heap with floating point values. O(n log n).'],
+  },
+
+  'minimum-sum': {
+    intuition: 'Given digits of two numbers, form two numbers with minimum possible sum. Sort digits, alternate assignment.',
+    algorithm: [
+      'Sort digits. Assign alternately: even-indexed digits to num1, odd-indexed to num2. Sum both.',
+    ],
+    pitfalls: ['Same as LC 2160. Sorting and alternating gives minimum sum of two numbers. Build numbers digit by digit.'],
+  },
+
+  'mirror-tree': {
+    intuition: 'Check if binary tree is mirror of itself (symmetric). Recursive left-right comparison.',
+    algorithm: [
+      'isMirror(left, right): both null -> true. One null -> false. left.val==right.val and isMirror(left.left,right.right) and isMirror(left.right,right.left).',
+    ],
+    pitfalls: ['Same as LC 101. Recursive or iterative with queue checking pairs. O(n).'],
+  },
+
+  'missing-element-in-range': {
+    intuition: 'Find elements in range [low, high] missing from array. Hashing or sort + scan.',
+    algorithm: [
+      'Store all array elements in a set. Iterate range [low, high]: collect elements not in set.',
+    ],
+    pitfalls: ['O(n + range). Use hashset for O(1) lookups. Output all missing elements in range.'],
+  },
+
+  'modify-the-array': {
+    intuition: 'Modify array such that no two adjacent elements are equal. If equal, increment one.',
+    algorithm: [
+      'Scan left to right: if arr[i] == arr[i-1]: arr[i] = arr[i-1]+1.',
+    ],
+    pitfalls: ['Greedy: resolve conflicts left to right. Each fix may chain, so process sequentially.'],
+  },
+
+  'multiply-two-linked-lists': {
+    intuition: 'Multiply two numbers represented as linked lists. Build numbers modulo 10^9+7.',
+    algorithm: [
+      'Traverse each list: num = (num*10 + digit) % MOD. Multiply both modular values.',
+    ],
+    pitfalls: ['Use modular arithmetic throughout to avoid overflow. Result = (num1 * num2) % MOD.'],
+  },
+
+  'nqueen-problem': {
+    intuition: 'Place N queens on NxN board so no two attack each other. Backtracking with column/diagonal conflict tracking.',
+    algorithm: [
+      'Row by row: place queen in valid column. Track used columns, main diagonals (r-c), anti-diagonals (r+c). Backtrack if stuck.',
+    ],
+    pitfalls: ['Same as LC 51. Sets for O(1) conflict checks. Total solutions = N! / average branching. Return all valid boards.'],
+  },
+
+  'nearest-multiple-of-10': {
+    intuition: 'Round a number string to nearest multiple of 10. Check last digit and round up or down.',
+    algorithm: [
+      'If last digit < 5: set to 0. If >= 5: set to 0 and carry +1 through preceding digits.',
+    ],
+    pitfalls: ['Handle carry propagation. Edge case: all 9s become "100...0". String arithmetic.'],
+  },
+
+  'nearly-sorted': {
+    intuition: 'Sort a nearly sorted array where each element is at most k positions away from its correct position. Modified insertion sort or min-heap of size k+1.',
+    algorithm: [
+      'Min-heap of size k+1. Push elements one by one; when heap size > k: pop minimum to output.',
+    ],
+    pitfalls: ['O(n log k). Same as sorting with bounded disorder. Heap always contains candidates for current minimum.'],
+  },
+
+  'next-element-with-greater-frequency': {
+    intuition: 'For each element, find the next element to the right with strictly greater frequency.',
+    algorithm: [
+      'Precompute frequencies. Use monotonic stack: pop when freq[arr[top]] < freq[arr[i]]. Record answer.',
+    ],
+    pitfalls: ['Two-pass: frequency count, then monotonic stack scan. O(n) total.'],
+  },
+
+  'nine-divisors': {
+    intuition: 'Count numbers up to n that have exactly 9 divisors. Numbers of form p^8 or p^2*q^2.',
+    algorithm: [
+      'Sieve primes up to sqrt(n). Count: p^8 <= n gives one form. p^2*q^2 <= n where p!=q gives another. Combine.',
+    ],
+    pitfalls: ['Exactly 9 divisors: n=p^8 (divisors 1,p,...,p^8) or n=p^2*q^2 (divisors: 3*3=9). Use sieve.'],
+  },
+
+  'not-a-subset-sum': {
+    intuition: 'Find smallest positive number that cannot be represented as sum of any subset of array.',
+    algorithm: [
+      'Sort array. Maintain reach=0. For each element: if arr[i] <= reach+1: reach += arr[i]. Else break. Answer = reach+1.',
+    ],
+    pitfalls: ['Greedy: if sorted arr[i] <= reach+1, then all values 1..reach+arr[i] are reachable. O(n log n).'],
+  },
+
+  'nth-natural-number': {
+    intuition: 'Find nth natural number that does not contain digit 9. Treat remaining digits 0-8 as base-9 number system.',
+    algorithm: [
+      'Convert n to base 9. Map each digit 0-8 to digits 0-8 (no 9). That gives the nth number.',
+    ],
+    pitfalls: ['Base-9 conversion: digits 0,1,2,...,8 map directly. Digit 9 is never used. n in base 9 gives the answer.'],
+  },
+
+  'number-of-pairs': {
+    intuition: 'Count pairs (i,j) where i < j. If array values can repeat, count using arithmetic or hashmap.',
+    algorithm: [
+      'For distinct pairs: n*(n-1)/2. For pairs with constraint (like arr[i] < arr[j]): sort + binary search or BIT.',
+    ],
+    pitfalls: ['Problem-specific. For all pairs i<j: n*(n-1)/2. For pairs with value constraint: count inversions or use BIT.'],
+  },
+
+  'number-of-paths-in-a-matrix-with-k-coins': {
+    intuition: 'Count paths from top-left to bottom-right collecting exactly k coins. 3D DP.',
+    algorithm: [
+      'dp[i][j][c] = number of paths to reach (i,j) with exactly c coins collected.',
+    ],
+    pitfalls: ['O(m*n*k) DP. Transitions: dp[i][j][c] += dp[i-1][j][c-mat[i][j]] + dp[i][j-1][c-mat[i][j]].'],
+  },
+
+  'number-of-rectangles-in-a-circle': {
+    intuition: 'Count axis-aligned rectangles that fit inside a circle of radius r. Enumerate half-widths and compute valid half-heights.',
+    algorithm: [
+      'For each half-width w from 1 to r: max half-height h = floor(sqrt(r^2 - w^2)). Count += h * 4 (all combinations of signs and w/h swap if distinct).',
+    ],
+    pitfalls: ['Count ordered pairs (w,h) with w^2+h^2 <= r^2, w,h >= 1. Each gives distinct rectangle size. Multiply by 4 for all sign combinations.'],
+  },
+
+  'occurence-of-an-integer-in-a-linked-list': {
+    intuition: 'Count occurrences of a target value in linked list. Linear scan.',
+    algorithm: [
+      'Traverse list, increment counter each time node.val == target.',
+    ],
+    pitfalls: ['Simple O(n) traversal. Handle empty list (return 0).'],
+  },
+
+  'overlapping-intervals': {
+    intuition: 'Find maximum overlap of intervals at any point. Sweep line or sort by start.',
+    algorithm: [
+      'Sort starts and ends separately. Two pointer sweep: increment count on start, decrement on end. Track max.',
+    ],
+    pitfalls: ['Same as "meeting rooms II" (LC 253). Sort starts and ends. O(n log n).'],
+  },
+
+  'pair-sum-in-bst': {
+    intuition: 'Find if BST contains a pair with given sum. Two-pointer using in-order (ascending) and reverse in-order (descending).',
+    algorithm: [
+      'Two stacks for in-order and reverse in-order iteration. Two-pointer approach: sum < target advance left, else advance right.',
+    ],
+    pitfalls: ['Same as LC 653. Can also convert to sorted array via in-order, then two-pointer. O(n) time O(h) space.'],
+  },
+
+  'pair-with-given-sum-in-a-sorted-array': {
+    intuition: 'Check if sorted array has pair summing to target. Two pointers.',
+    algorithm: [
+      'Left=0, right=n-1. If sum==target: found. If sum<target: left++. If sum>target: right--.',
+    ],
+    pitfalls: ['Classic two-pointer on sorted array. O(n). Same as LC 167.'],
+  },
+
+  'palindrome-substrings': {
+    intuition: 'Count all palindromic substrings in a string. Expand around center or Manacher.',
+    algorithm: [
+      'For each center (n odd + n-1 even centers): expand while palindrome. Count each valid palindrome.',
+    ],
+    pitfalls: ['Same as LC 647. O(n^2) expand-around-center. O(n) with Manacher algorithm.'],
+  },
+
+  'partitions-with-given-difference': {
+    intuition: 'Count ways to partition array into two subsets with difference equal to d. Count subsets with sum = (total+d)/2.',
+    algorithm: [
+      'If (total+d) % 2 != 0: 0. Else target = (total+d)/2. Count subsets summing to target (like 0-1 knapsack count).',
+    ],
+    pitfalls: ['Same as LC 494 (Target Sum). Transform: S1-S2=d, S1+S2=total => S1=(total+d)/2. Standard subset count DP.'],
+  },
+
+  'populate-inorder-successor-for-all-nodes': {
+    intuition: 'Set "next" pointer of each BST node to its in-order successor.',
+    algorithm: [
+      'Reverse in-order (right-root-left). Maintain prev pointer. Set curr.next = prev. Update prev = curr.',
+    ],
+    pitfalls: ['Reverse in-order sets successors correctly. Or: standard in-order, track previous node and set its next to current.'],
+  },
+
+  'possible-words-from-phone-digits': {
+    intuition: 'Generate all possible words from phone keypad digit sequence. Backtracking (letter combinations).',
+    algorithm: [
+      'Map each digit to its letters. Backtrack: for current digit append each letter, recurse for next digit.',
+    ],
+    pitfalls: ['Same as LC 17. Recursion depth = length of digit string. Total combinations = product of letter counts.'],
+  },
+
+  'postfix-evaluation': {
+    intuition: 'Evaluate postfix (Reverse Polish Notation) expression. Stack-based evaluation.',
+    algorithm: [
+      'For each token: if operand push to stack. If operator: pop two operands, apply operator, push result.',
+    ],
+    pitfalls: ['Same as LC 150. Handle negative numbers. Division should truncate toward zero.'],
+  },
+
+  'power-of-k-in-factorial-of-n': {
+    intuition: 'Find largest power of k that divides n!. Legendre formula for prime k; factorize k for composite.',
+    algorithm: [
+      'If k is prime: sum = floor(n/k) + floor(n/k^2) + ...',
+      'If k is composite: factorize k = p1^a1 * ... Find min(power_of_pi_in_n! / ai) over all prime factors.',
+    ],
+    pitfalls: ['Legendre formula for prime powers. For composite k: take minimum ratio across prime factors of k.'],
+  },
+
+  'powerful-integer': {
+    intuition: 'Find all unique powerful integers: x^i + y^j <= bound for i,j >= 0.',
+    algorithm: [
+      'Iterate i starting from 0 while x^i <= bound. Iterate j while x^i+y^j <= bound. Collect unique values.',
+    ],
+    pitfalls: ['Same as LC 970. Handle x=1 or y=1 specially (loop at most once). Use set for uniqueness.'],
+  },
+
+  'prime-list': {
+    intuition: 'Linked list where each node value is replaced by nearest prime. For each value find closest prime.',
+    algorithm: [
+      'For each node value: find nearest prime (check prev and next values using primality test).',
+    ],
+    pitfalls: ['Simple primality test (trial division) for values in range. Walk left and right from each value to find nearest prime.'],
+  },
+
+  'prime-pair-with-target-sum': {
+    intuition: 'Find all pairs of primes that sum to a given target (Goldbach-style). Sieve + pair finding.',
+    algorithm: [
+      'Sieve of Eratosthenes up to target. For each prime p <= target/2: if target-p is also prime: output pair.',
+    ],
+    pitfalls: ['Two primes summing to even number: one must be 2 or both odd. Sieve to target then linear scan.'],
+  },
+
+  'print-bracket-number': {
+    intuition: 'Number each bracket pair: opening bracket gets number, closing bracket gets matching number. Stack.',
+    algorithm: [
+      'counter=0, stack. On open bracket: push ++counter, print counter. On close: print top, pop.',
+    ],
+    pitfalls: ['Simple stack simulation. O(n). Track counter for numbering and stack for matching.'],
+  },
+
+  'print-diagonally': {
+    intuition: 'Print matrix elements diagonally (anti-diagonal order). Group elements by i+j sum.',
+    algorithm: [
+      'Elements with same i+j are on same anti-diagonal. Iterate diagonal index 0 to m+n-2. Print elements in each diagonal.',
+    ],
+    pitfalls: ['Index trick: diagonal d contains elements where row+col=d. Bounds: row in [max(0,d-n+1), min(d,m-1)].'],
+  },
+
+  'print-leaf-nodes-from-preorder-traversal-of-bst': {
+    intuition: 'Given preorder traversal, identify and print leaf nodes of the BST without constructing the tree.',
+    algorithm: [
+      'Simulate BST insertion using stack. A node is a leaf if no subsequent node falls in its value range as left/right child.',
+    ],
+    pitfalls: ['Use stack to track valid range at each position. A preorder element with no children in both directions is a leaf.'],
+  },
+
+  'quick-sort-on-linked-list': {
+    intuition: 'Apply quicksort to a linked list. Choose pivot, partition, recursively sort sub-lists.',
+    algorithm: [
+      'Choose last element as pivot. Partition: rearrange elements. Recursively sort left and right parts.',
+    ],
+    pitfalls: ['Linked list partition requires relinking nodes. Use tail as pivot. O(n log n) average, O(n^2) worst case.'],
+  },
+
+  'rat-in-a-maze': {
+    intuition: 'Find all paths from top-left to bottom-right in a binary maze. Backtracking with DFS.',
+    algorithm: [
+      'DFS with visited array. From each cell try all 4 directions. On reaching destination: record path. Backtrack.',
+    ],
+    pitfalls: ['Same as LC maze problems. Mark visited to avoid cycles. Collect all valid paths.'],
+  },
+
+  'remaining-string': {
+    intuition: 'Given string, remove all occurrences of a character and return remaining string after kth removal.',
+    algorithm: [
+      'Count positions of target character. If fewer than k occurrences: return original. Remove first k occurrences.',
+    ],
+    pitfalls: ['Build result by skipping the kth occurrence (1-indexed). Simple O(n) scan.'],
+  },
+
+  'remove-all-occurences-of-duplicates-in-a-linked-list': {
+    intuition: 'Remove all nodes that have duplicate values in a linked list.',
+    algorithm: [
+      'Frequency map: count occurrences. Rebuild list keeping only nodes with count == 1. Or dummy head + skip runs.',
+    ],
+    pitfalls: ['Same as LC 82. Use dummy head. Skip entire runs of same value. O(n).'],
+  },
+
+  'remove-bst-keys-outside-given-range': {
+    intuition: 'Remove all BST nodes with values outside [min, max] range.',
+    algorithm: [
+      'Post-order: if node.val < min return trimBST(node.right, min, max). If > max return trimBST(node.left, min, max). Else recurse both sides.',
+    ],
+    pitfalls: ['Same as LC 669. Recursive trim: out-of-range nodes are replaced by their subtree that might be in range.'],
+  },
+
+  'remove-duplicates': {
+    intuition: 'Remove duplicate elements from sorted array in-place.',
+    algorithm: [
+      'Two pointers: write pointer w=0. For each element arr[i]: if arr[i] != arr[w]: arr[++w] = arr[i]. Return w+1.',
+    ],
+    pitfalls: ['Same as LC 26. O(n) O(1). Works only on sorted arrays. For unsorted: use hashset.'],
+  },
+
+  'remove-duplicates-in-array': {
+    intuition: 'Remove duplicates from unsorted array. HashSet approach.',
+    algorithm: [
+      'Iterate array. Add to set if not seen. Build result from elements first seen.',
+    ],
+    pitfalls: ['For sorted: two-pointer. For unsorted: hashset maintaining insertion order. O(n).'],
+  },
+
+  'remove-half-nodes': {
+    intuition: 'Remove all half nodes (nodes with only one child) from binary tree.',
+    algorithm: [
+      'Post-order: process children first. If node has only left child: return left child. If only right: return right child. Else return node.',
+    ],
+    pitfalls: ['Half node has exactly one child. Post-order replacement. O(n). Leaf nodes and full nodes are kept.'],
+  },
+
+  'remove-spaces': {
+    intuition: 'Remove leading, trailing, and extra spaces from string, keeping single space between words.',
+    algorithm: [
+      'Split by spaces, filter empty tokens, rejoin with single space.',
+    ],
+    pitfalls: ['Same as LC 151. Or manual two-pointer scan. Handle multiple consecutive spaces and leading/trailing.'],
+  },
+
+  'remove-the-balls': {
+    intuition: 'Remove balls in pairs of same color, count remaining. Stack-based simulation.',
+    algorithm: [
+      'Stack: push ball. If top equals current: pop (they cancel). Count remaining stack size.',
+    ],
+    pitfalls: ['Similar to LC 1047 (remove all adjacent duplicates). Stack simulation O(n). Final stack size is answer.'],
+  },
+
+  'reorganize-the-array': {
+    intuition: 'Rearrange array so all negative elements appear before positive. Maintain relative order (stable).',
+    algorithm: [
+      'Two passes: collect negatives maintaining order, then positives. Concatenate.',
+    ],
+    pitfalls: ['Stable partition. O(n) with extra space. In-place stable partition is O(n log n).'],
+  },
+
+  'replace-os-with-xs': {
+    intuition: 'Replace all Os in a matrix that are completely surrounded by Xs with Xs. BFS/DFS from border.',
+    algorithm: [
+      'Mark all Os connected to border as safe (BFS from border). Replace remaining Os with X. Restore safe Os.',
+    ],
+    pitfalls: ['Same as LC 130. Border-connected Os are safe. Interior-only Os get replaced. O(m*n).'],
+  },
+
+  'reverse-an-array': {
+    intuition: 'Reverse an array in-place. Two-pointer swap from both ends.',
+    algorithm: [
+      'Left=0, right=n-1. While left < right: swap, left++, right--.',
+    ],
+    pitfalls: ['O(n) O(1). Fundamental operation. Same as LC 344 for strings.'],
+  },
+
+  'roman-number-to-integer': {
+    intuition: 'Convert Roman numeral to integer. Scan right to left; subtract if current < next, else add.',
+    algorithm: [
+      'Map each symbol to value. Scan from right. If val < prevVal: subtract. Else add. Track prevVal.',
+    ],
+    pitfalls: ['Same as LC 13. Subtractive notation: IV=4, IX=9 etc. Right-to-left scan handles this naturally.'],
+  },
+
+  'roof-top': {
+    intuition: 'Find maximum number of consecutive steps that can be climbed going uphill (arr[i+1] > arr[i]).',
+    algorithm: [
+      'Track current run of increasing steps. Reset on decrease. Track maximum run.',
+    ],
+    pitfalls: ['Simple linear scan. Reset counter when arr[i] >= arr[i+1]. Maximum consecutive increasing steps.'],
+  },
+
+  'root-to-leaf-path-sum': {
+    intuition: 'Check if there exists a root-to-leaf path with sum equal to target.',
+    algorithm: [
+      'DFS: subtract node value from target. At leaf: check if target == 0.',
+    ],
+    pitfalls: ['Same as LC 112. Recurse with remaining sum. Leaf condition: no children. O(n).'],
+  },
+
+  'root-to-leaf-paths-sum': {
+    intuition: 'Sum of numbers formed by root-to-leaf paths (each path represents a number).',
+    algorithm: [
+      'DFS: pass current number = prev * 10 + node.val. At leaf: add to total sum.',
+    ],
+    pitfalls: ['Same as LC 129. Accumulate number at each level. Sum all leaf values.'],
+  },
+
+  'rotate-a-linked-list': {
+    intuition: 'Rotate linked list to the right by k positions. Find new tail, relink.',
+    algorithm: [
+      'Find length n. Normalize k = k%n. If k==0: return head. Find node at position n-k-1 (new tail). New head = new tail.next. Connect old tail to head.',
+    ],
+    pitfalls: ['Same as LC 61. Handle k >= n with modulo. Make circular then break at right position.'],
+  },
+
+  'rotate-and-delete': {
+    intuition: 'Alternating operations: rotate array and delete specific element. Simulate rounds.',
+    algorithm: [
+      'In each round i: rotate right by 1, delete element at position n-i (1-indexed). Repeat until one remains.',
+    ],
+    pitfalls: ['Simulate O(n^2). Use deque for efficient rotation and deletion.'],
+  },
+
+  'rotate-deque-by-k': {
+    intuition: 'Rotate a deque by k positions. Pop from front, push to back k times.',
+    algorithm: [
+      'For clockwise k rotation: move last k elements to front. Or rotate(deque, k) using deque operations.',
+    ],
+    pitfalls: ['Normalize k = k % size. Deque rotation in O(k) or O(n-k) depending on direction.'],
+  },
+
+  'search-in-a-rowcolumn-sorted-matrix': {
+    intuition: 'Search in matrix where each row and column is sorted. Start from top-right corner.',
+    algorithm: [
+      'Start at (0, n-1). If target == mat[r][c]: found. If target < mat[r][c]: c--. If target > mat[r][c]: r++.',
+    ],
+    pitfalls: ['Same as LC 240. O(m+n) staircase search. Each step eliminates a row or column.'],
+  },
+
+  'search-in-a-rowwise-sorted-matrix': {
+    intuition: 'Search in matrix where each row is sorted independently. Binary search on each row.',
+    algorithm: [
+      'For each row: binary search for target. Return true if found in any row.',
+    ],
+    pitfalls: ['O(m log n). If rows are also connected (end of row < start of next): treat as flat sorted array and binary search O(log mn).'],
+  },
+
+  'search-in-an-almost-sorted-array': {
+    intuition: 'Search in array where each element may be off by at most 1 position. Modified binary search.',
+    algorithm: [
+      'Binary search: check mid, mid-1, mid+1. If found: return. If arr[mid-1] > target: hi=mid-2. Else lo=mid+2.',
+    ],
+    pitfalls: ['Must check three positions at each step. O(log n) with slightly larger constant.'],
+  },
+
+  'search-in-fully-rotated-sorted-2d-matrix': {
+    intuition: 'Search in fully rotated sorted matrix where element may be anywhere. Check each row or flatten.',
+    algorithm: [
+      'Since rotation breaks the staircase property, binary search each row independently.',
+    ],
+    pitfalls: ['Cannot use staircase search on fully rotated matrix. O(m log n) by binary searching each row.'],
+  },
+
+  'search-in-rotated-sorted-array': {
+    intuition: 'Search in sorted array rotated at an unknown pivot. Modified binary search.',
+    algorithm: [
+      'Find which half is sorted. If target in sorted half: search there. Else search other half.',
+    ],
+    pitfalls: ['Same as LC 33. One half is always sorted. Determine which using arr[lo] vs arr[mid]. O(log n).'],
+  },
+
+  'search-insert-position-of-k-in-a-sorted-array': {
+    intuition: 'Find index to insert k in sorted array (or return existing index). Binary search lower_bound.',
+    algorithm: [
+      'Binary search: find first position where arr[pos] >= k.',
+    ],
+    pitfalls: ['Same as LC 35. Binary search lower bound. O(log n).'],
+  },
+
+  'search-pattern-rabinkarp-algorithm': {
+    intuition: 'Find pattern in text using Rabin-Karp rolling hash algorithm.',
+    algorithm: [
+      'Compute hash of pattern. Slide window over text: rolling hash. If hash matches: verify character by character.',
+    ],
+    pitfalls: ['Handle hash collisions with verification. O(n+m) average, O(nm) worst case. Choose large prime and base.'],
+  },
+
+  'second-best-minimum-spanning-tree': {
+    intuition: 'Find MST with second minimum total weight. Find MST first, then for each non-tree edge try swapping with max tree edge on path.',
+    algorithm: [
+      'Build MST. For each non-MST edge (u,v,w): second MST cost = MST cost - maxEdge(u,v in MST) + w.',
+      'Track max edge on path between any two MST nodes using DFS/LCA preprocessing.',
+    ],
+    pitfalls: ['Precompute max edge on every tree path with O(n^2) or O(n log n) with LCA. Then check each non-tree edge.'],
+  },
+
+  'set-matrix-zeros': {
+    intuition: 'Set entire row and column to 0 if any element is 0. In-place O(1) space using first row/col as markers.',
+    algorithm: [
+      'First pass: mark which rows and columns need zeroing using first row and col. Second pass: zero marked rows/cols.',
+    ],
+    pitfalls: ['Same as LC 73. Track if first row/col themselves contain zero separately. O(mn) time O(1) space.'],
+  },
+
+  'shop-in-candy-store': {
+    intuition: 'Buy k candies, for each bought candy get some free. Find min and max cost. Sort + greedy.',
+    algorithm: [
+      'Sort. Min cost: buy cheapest, get k freebies from most expensive. Max cost: buy most expensive, get freebies from cheapest.',
+    ],
+    pitfalls: ['Two greedy strategies. Min: pick from front, get free from back. Max: pick from back, get free from front.'],
+  },
+
+  'shortest-cycle': {
+    intuition: 'Find length of shortest cycle in an undirected graph. BFS from each node.',
+    algorithm: [
+      'For each node: BFS tracking distances. When back edge found to already-visited node: cycle length = dist[u]+dist[v]+1.',
+    ],
+    pitfalls: ['O(V*(V+E)). BFS-based cycle detection. Shortest cycle = girth of graph.'],
+  },
+
+  'shortest-path-using-atmost-one-curved-edge': {
+    intuition: 'Shortest path where one edge can use a curved (alternative) weight. Dijkstra with extra state.',
+    algorithm: [
+      'State: (node, curved_used). Dijkstra with two layers: one for curved not used, one for curved used.',
+    ],
+    pitfalls: ['Modified Dijkstra with boolean state for curved edge used. O((V+E) log V).'],
+  },
+
+  'smallest-divisor': {
+    intuition: 'Find smallest divisor such that sum of ceiling(arr[i]/divisor) <= threshold. Binary search.',
+    algorithm: [
+      'Binary search on divisor in [1, max(arr)]. For each divisor d: check if sum of ceil(arr[i]/d) <= threshold.',
+    ],
+    pitfalls: ['Same as LC 1283. Binary search on answer. Ceiling division: (a+b-1)/b or math.ceil. O(n log max).'],
+  },
+
+  'smallest-number': {
+    intuition: 'Form smallest number from given digits. Sort digits ascending; handle leading zeros.',
+    algorithm: [
+      'Sort digits ascending. If all zeros: return "0". If first digit is 0: find first non-zero, put it first.',
+    ],
+    pitfalls: ['For single-digit constraint: just sort and concatenate. Avoid leading zeros (edge case with multiple zeros).'],
+  },
+
+  'smallest-positive-missing-number': {
+    intuition: 'Find smallest positive integer not in array. Cyclic sort / index marking.',
+    algorithm: [
+      'Cyclic sort: place each positive integer x at index x-1 (if 1<=x<=n). Then scan for first position where arr[i]!=i+1.',
+    ],
+    pitfalls: ['Same as LC 41. O(n) time O(1) space. Cyclic sort variant or mark visited by negating.'],
+  },
+
+  'smallest-range-in-k-lists': {
+    intuition: 'Find smallest range containing at least one element from each of k sorted lists. Min-heap.',
+    algorithm: [
+      'Push first element of each list into min-heap, track max. Pop min, push next from same list, update max. Range = max-min. Track minimum range.',
+    ],
+    pitfalls: ['Same as LC 632. O(n log k) where n = total elements. Always maintain one element from each list in heap.'],
+  },
+
+  'smallest-window-containing-all-characters': {
+    intuition: 'Smallest window in string containing all characters of pattern. Sliding window with frequency map.',
+    algorithm: [
+      'Need map for pattern. Expand right until all covered. Contract left while still valid. Track min window.',
+    ],
+    pitfalls: ['Same as LC 76. Two frequency maps or difference tracking. O(n).'],
+  },
+
+  'smallest-window-in-a-string-containing-all-the-characters-of-another-string': {
+    intuition: 'Same as minimum window substring. Sliding window approach.',
+    algorithm: [
+      'Frequency map of pattern. Two pointers. Expand right: update counts. When all covered: contract left. Update answer.',
+    ],
+    pitfalls: ['Identical to LC 76. The longer problem name is the same problem.'],
+  },
+
+  'solve-the-sudoku': {
+    intuition: 'Solve a 9x9 Sudoku puzzle using backtracking.',
+    algorithm: [
+      'For each empty cell: try digits 1-9. Check row, col, 3x3 box conflict. Recurse. Backtrack if stuck.',
+    ],
+    pitfalls: ['Same as LC 37. Use bitmasks for fast conflict checks. Worst case O(9^81) but pruning makes it fast.'],
+  },
+
+  'sort-a-k-sorted-doubly-linked-list': {
+    intuition: 'Sort doubly linked list where each element is at most k positions from its correct position. Min-heap of size k+1.',
+    algorithm: [
+      'Add first k+1 nodes to min-heap. Pop minimum to result, add next node from list. Repeat.',
+    ],
+    pitfalls: ['O(n log k). Same as nearly sorted array but on DLL. Maintain k+1 size heap while traversing.'],
+  },
+
+  'sort-a-linked-list-of-0s-1s-and-2s': {
+    intuition: 'Sort linked list of 0s, 1s, and 2s. Count and reconstruct, or Dutch National Flag on nodes.',
+    algorithm: [
+      'Count 0s, 1s, 2s. Overwrite nodes: first count0 nodes get 0, next count1 get 1, rest get 2.',
+    ],
+    pitfalls: ['Two passes: count then overwrite values. O(n). Alternative: maintain 3 separate lists and merge.'],
+  },
+
+  'sort-by-absolute-difference': {
+    intuition: 'Sort array by absolute difference from a given value.',
+    algorithm: [
+      'Custom sort: compare |arr[i]-x| vs |arr[j]-x|. Sort ascending by absolute difference.',
+    ],
+    pitfalls: ['Standard sort with custom comparator. O(n log n). Stable sort to handle ties.'],
+  },
+
+  'sort-in-specific-order': {
+    intuition: 'Sort array where odd numbers come first (sorted descending) then even numbers (sorted ascending).',
+    algorithm: [
+      'Separate odd and even. Sort odds descending, evens ascending. Concatenate odds + evens.',
+    ],
+    pitfalls: ['Partition then sort each group. O(n log n). Specific ordering depends on problem variant.'],
+  },
+
+  'sort-the-given-array-after-applying-the-given-equation': {
+    intuition: 'Sort array after applying f(x) = ax^2 + bx + c transformation. Two-pointer from sorted ends.',
+    algorithm: [
+      'If a >= 0: parabola opens up, min at vertex, max at ends. Two pointers fill result from ends.',
+      'If a < 0: max at vertex, fill from middle.',
+    ],
+    pitfalls: ['Same as LC 360. O(n) two-pointer after O(n log n) sort. Direction depends on sign of a.'],
+  },
+
+  'sorted-and-rotated-minimum': {
+    intuition: 'Find minimum in sorted and rotated array. Binary search.',
+    algorithm: [
+      'If arr[mid] > arr[right]: min is in right half. Else min is in left half (including mid).',
+    ],
+    pitfalls: ['Same as LC 153. O(log n). When no rotation: arr[0] is minimum. Handle duplicates carefully.'],
+  },
+
+  'split-an-array-into-two-equal-sum-subarrays': {
+    intuition: 'Check if array can be split into two parts with equal sum. Prefix sum check.',
+    algorithm: [
+      'Total sum must be even. Find index where prefix sum = total/2.',
+    ],
+    pitfalls: ['O(n). Total odd: impossible. Find split point where prefix sum equals half.'],
+  },
+
+  'split-array-in-three-equal-sum-subarrays': {
+    intuition: 'Check if array can be split into 3 parts with equal sum. Prefix sum to find two split points.',
+    algorithm: [
+      'Total sum must be divisible by 3. Find first index with prefix sum = total/3, then find second index with prefix sum = 2*total/3.',
+    ],
+    pitfalls: ['O(n). Enumerate split points with prefix sum tracking. Return indices (not values).'],
+  },
+
+  'split-array-subsequences': {
+    intuition: 'Split array into minimum number of consecutive increasing sequences each of length >= 3.',
+    algorithm: [
+      'Greedy: use frequency map and end-count map. For each x: prefer appending to existing sequence ending at x-1.',
+    ],
+    pitfalls: ['Same as LC 659. Two maps: count remaining, ends. Greedy append then start new. O(n).'],
+  },
+
+  'split-linked-list-alternatingly': {
+    intuition: 'Split linked list into two halves alternately (first, third, fifth... and second, fourth, sixth...).',
+    algorithm: [
+      'Two pointers: odd and even. Advance both skipping one node each. Split: odd.next = null.',
+    ],
+    pitfalls: ['Same as LC 328 (odd-even list). O(n) O(1). Maintain two separate chains and separate them.'],
+  },
+
+  'split-the-array': {
+    intuition: 'Split array into two equal-length subarrays each with distinct elements. Frequency check.',
+    algorithm: [
+      'If n is odd: false. Count frequencies. Each frequency must be <= 2.',
+    ],
+    pitfalls: ['Same as LC 2965. Each element can appear at most twice (once in each half). O(n).'],
+  },
+
+  'stable-marriage-problem': {
+    intuition: 'Find stable matching between two groups using Gale-Shapley algorithm.',
+    algorithm: [
+      'Men propose in order of preference. Women tentatively accept best proposal, reject others. Continue until all matched.',
+    ],
+    pitfalls: ['Gale-Shapley: O(n^2). Result is man-optimal stable matching. No blocking pair exists.'],
+  },
+
+  'stock-buy-and-sell-multiple-transaction-allowed': {
+    intuition: 'Maximum profit with unlimited transactions. Sum all positive differences.',
+    algorithm: [
+      'For each day: if prices[i] > prices[i-1]: profit += prices[i] - prices[i-1].',
+    ],
+    pitfalls: ['Same as LC 122. Greedy: capture every upward move. O(n) O(1).'],
+  },
+
+  'stream-first-nonrepeating': {
+    intuition: 'For each character in a stream, find the first non-repeating character so far. Queue + frequency map.',
+    algorithm: [
+      'Frequency map. Queue of characters in order. On query: remove from front while freq[front] > 1. Front is answer.',
+    ],
+    pitfalls: ['Maintain order with queue. O(1) amortized per operation. Lazily remove repeated characters from front.'],
+  },
+
+  'string-stack': {
+    intuition: 'Implement a stack that supports push, pop, and getMin using strings as elements.',
+    algorithm: [
+      'Standard stack with array or linked list backing. String operations same as any stack.',
+    ],
+    pitfalls: ['Standard stack implementation. Push = prepend/append. Pop = remove top. O(1) operations.'],
+  },
+
+  'subarrays-with-equal-number-of-occurences': {
+    intuition: 'Count subarrays where occurrences of x and y are equal. Prefix sum with difference tracking.',
+    algorithm: [
+      'Encode: +1 for x, -1 for y. Count subarrays with sum 0 using hashmap of prefix sum frequencies.',
+    ],
+    pitfalls: ['Transform to "subarrays with sum 0". Prefix difference hashmap gives O(n) solution.'],
+  },
+
+  'subarray-range-with-given-sum': {
+    intuition: 'Find number of subarrays with sum in range [lower, upper]. Prefix sum + sorted structure.',
+    algorithm: [
+      'Prefix sums. For each j: count i < j where prefix[j]-upper <= prefix[i] <= prefix[j]-lower. Use sorted array or BIT.',
+    ],
+    pitfalls: ['Same as LC 327. Merge sort or BIT to count inversions in given range. O(n log n).'],
+  },
+
+  'subarrays-with-at-most-k-distinct-integers': {
+    intuition: 'Count subarrays with at most k distinct integers. Sliding window.',
+    algorithm: [
+      'Sliding window: expand right. When distinct > k: shrink left. Count = right - left + 1 for each right.',
+    ],
+    pitfalls: ['Same as LC 992 helper. O(n). For exactly k: atMost(k) - atMost(k-1).'],
+  },
+
+  'subarrays-with-first-element-minimum': {
+    intuition: 'Count subarrays where the first element is the minimum. Monotonic stack.',
+    algorithm: [
+      'For each index i: find how far right arr[i] remains the minimum (next smaller element). Count = span length.',
+    ],
+    pitfalls: ['Use monotonic stack to find next smaller element. For each position, count valid subarrays starting here.'],
+  },
+
+  'subset-xor': {
+    intuition: 'Find XOR of XOR values of all subsets of array. Result = 0 if n>1 (each element XORed even times), else arr[0].',
+    algorithm: [
+      'For n>1: XOR of all subset XORs = 0. For n==1: arr[0]. Alternatively: OR of all elements * 2^(n-1).',
+    ],
+    pitfalls: ['Mathematical insight: each element appears in 2^(n-1) subsets. If n>1: XOR cancels. Result = arr[0] if n==1.'],
+  },
+
+  'substrings-of-length-k-with-k1-distinct-elements': {
+    intuition: 'Count substrings of length k with exactly k-1 distinct characters. Sliding window.',
+    algorithm: [
+      'Fixed window of size k. Track distinct character count. When window has exactly k-1 distinct: count++.',
+    ],
+    pitfalls: ['Fixed-size sliding window. Update frequency map as window slides. O(n).'],
+  },
+
+  'substrings-with-k-distinct': {
+    intuition: 'Count substrings with exactly k distinct characters. atMost(k) - atMost(k-1).',
+    algorithm: [
+      'atMost(k): sliding window counting subarrays with at most k distinct chars. Exactly k = atMost(k) - atMost(k-1).',
+    ],
+    pitfalls: ['Same as LC 992. Two sliding window calls. O(n) total.'],
+  },
+
+  'substrings-with-same-first-and-last-characters': {
+    intuition: 'Count substrings where first and last character are equal. Frequency of each character.',
+    algorithm: [
+      'For each character c with frequency f: contributes f*(f+1)/2 substrings (choose 2 positions + all single-char substrings).',
+    ],
+    pitfalls: ['Count frequency of each character. Single character counts as valid (same first and last). Formula: f*(f+1)/2.'],
+  },
+
+  'sum-of-all-substrings-of-a-number': {
+    intuition: 'Sum of all substrings of a number string. Each digit d at position i (0-indexed from right) contributes d * i * (n-i) to total.',
+    algorithm: [
+      'For digit at position i (1-indexed): it appears in (n-i)*i substrings... compute contribution mathematically.',
+    ],
+    pitfalls: ['Each digit d[i] contributes d[i] * (i+1) * (n-i) * 10^0_weighted. Use contribution formula to avoid O(n^2).'],
+  },
+
+  'sum-of-mode': {
+    intuition: 'Sum of modes (most frequent elements) in all subarrays or given groups.',
+    algorithm: [
+      'For each subarray: compute mode and add to total. Or if specific grouping: use frequency maps.',
+    ],
+    pitfalls: ['For all subarrays: O(n^2) with sliding frequency map. Mode = element with maximum frequency.'],
+  },
+
+  'sum-of-nodes-in-bst-range': {
+    intuition: 'Sum of all BST node values in range [low, high]. Range sum query on BST.',
+    algorithm: [
+      'DFS: if node.val < low: go right. If node.val > high: go left. Else: sum += node.val + both subtrees.',
+    ],
+    pitfalls: ['Same as LC 938. Use BST property to prune. O(n) worst, O(log n + k) average where k = nodes in range.'],
+  },
+
+  'sum-of-nodes-on-the-longest-path': {
+    intuition: 'Find the sum of nodes on the longest root-to-leaf path. DFS tracking depth and sum.',
+    algorithm: [
+      'DFS with (depth, sum). At leaf: if depth > maxDepth: update maxDepth and maxSum. If depth == maxDepth: maxSum = max(maxSum, sum).',
+    ],
+    pitfalls: ['Maximize path length first; among equal-length paths, maximize sum. Single DFS pass.'],
+  },
+
+  'sum-of-subarray-minimums': {
+    intuition: 'Sum of minimums of all subarrays. Monotonic stack to find span for each element as minimum.',
+    algorithm: [
+      'For each element: find left boundary (previous smaller or equal) and right boundary (next smaller). Contribution = arr[i] * left_count * right_count.',
+    ],
+    pitfalls: ['Same as LC 907. Use monotonic stack for O(n). Handle equal elements carefully to avoid double counting.'],
+  },
+
+  'sum-of-subarray-ranges': {
+    intuition: 'Sum of (max - min) for all subarrays. Sum of all subarray maximums minus sum of all subarray minimums.',
+    algorithm: [
+      'Use monotonic stack for sum of subarray maximums and sum of subarray minimums separately. Subtract.',
+    ],
+    pitfalls: ['Same as LC 2104. Two monotonic stack passes (one for max contributions, one for min). O(n).'],
+  },
+
+  'sum-of-subarrays': {
+    intuition: 'Sum of sums of all subarrays. Each element arr[i] appears in (i+1)*(n-i) subarrays.',
+    algorithm: [
+      'For each arr[i]: contribution = arr[i] * (i+1) * (n-i). Sum all contributions.',
+    ],
+    pitfalls: ['O(n) formula. No need to enumerate all O(n^2) subarrays. Multiply by how many times element appears.'],
+  },
+
+  'sum-tree': {
+    intuition: 'Check if binary tree is a Sum Tree (each node = sum of all nodes in left and right subtrees).',
+    algorithm: [
+      'For each node: compute subtree sum. If node.val == leftSum + rightSum: continue. Else false.',
+    ],
+    pitfalls: ['Post-order DFS. Return subtree sum. At each node: check val == left_sum + right_sum.'],
+  },
+
+  'sumstring': {
+    intuition: 'Check if string can be split into sequence where each number is sum of previous two (like Fibonacci).',
+    algorithm: [
+      'Try all first two number splits. Verify the rest of string follows sum rule. Return true if any valid split found.',
+    ],
+    pitfalls: ['O(n^3) with big integer addition. Backtracking on first two choices, then validate remainder greedily.'],
+  },
+
+  'summed-matrix': {
+    intuition: 'Find value at (i,j) in infinite matrix where matrix[i][j] = i+j. Count frequency of target value.',
+    algorithm: [
+      'Value k appears at positions where i+j=k, for i,j in [1,n]. Count valid (i,j) pairs.',
+    ],
+    pitfalls: ['For value k in n*n matrix: i+j=k, 1<=i,j<=n. Count pairs: max(0, min(k-1,n) - max(1,k-n) + 1).'],
+  },
+
+  'swap-and-maximize': {
+    intuition: 'Maximize sum of arr[i]*arr[i+1] for adjacent pairs by rearranging array.',
+    algorithm: [
+      'Sort array. Place in alternating pattern: large values at even positions, small at odd (or similar interleaving).',
+    ],
+    pitfalls: ['Sort and place: to maximize sum of adjacent products, interleave largest and second-largest alternately.'],
+  },
+
+  'swap-diagonals': {
+    intuition: 'Swap the two main diagonals of a square matrix.',
+    algorithm: [
+      'For i in 0..n-1: swap mat[i][i] and mat[i][n-1-i].',
+    ],
+    pitfalls: ['Simple O(n) loop swapping primary and secondary diagonal elements.'],
+  },
+
+  'swap-kth-nodes-from-ends': {
+    intuition: 'Swap values of kth node from beginning and kth node from end in linked list.',
+    algorithm: [
+      'Find kth from start (advance k steps). Find kth from end (two pointers). Swap their values.',
+    ],
+    pitfalls: ['Same as LC 1721. Two-pointer for kth from end. Just swap values, not node pointers.'],
+  },
+
+  'the-knights-tour-problem': {
+    intuition: 'Find a knight tour visiting every cell exactly once on a chessboard. Backtracking with Warnsdorff heuristic.',
+    algorithm: [
+      'Backtrack: from each cell try all 8 knight moves. With Warnsdorff: prefer moves with fewer onward moves (accessibility).',
+    ],
+    pitfalls: ['Pure backtracking is O(8^(n^2)). Warnsdorff heuristic finds tour in O(n^2) in practice.'],
+  },
+
+  'the-palindrome-pattern': {
+    intuition: 'Find row or column in matrix where mirroring makes entire matrix palindromic. Check each row/column.',
+    algorithm: [
+      'For each row: check if all columns are palindromic with this row as mirror axis. Similarly for columns.',
+    ],
+    pitfalls: ['O(n^3) brute force. For each axis candidate: verify palindrome property across all rows and columns.'],
+  },
+
+  'total-count': {
+    intuition: 'Count elements <= p and elements that need to be replaced to keep array sorted with bounded differences.',
+    algorithm: [
+      'Sort and binary search for elements <= p. Count is upper_bound(p) index.',
+    ],
+    pitfalls: ['Depends on exact problem variant. Common: count of elements <= threshold using binary search on sorted array.'],
+  },
+
+  'trail-of-ones': {
+    intuition: 'Count binary strings of length n with no two consecutive zeros. DP.',
+    algorithm: [
+      'dp[i][last]: strings of length i ending with digit last. dp[i][1] = dp[i-1][0] + dp[i-1][1]. dp[i][0] = dp[i-1][1].',
+    ],
+    pitfalls: ['No two consecutive zeros means after a 0 must come a 1. DP with last-digit state. O(n).'],
+  },
+
+  'triplet-family': {
+    intuition: 'Find if three elements a, b, c exist such that a+b=c (or similar constraint). Sort + two sum.',
+    algorithm: [
+      'Sort. For each c (largest element): use two-pointer search for pair (a,b) with a+b=c in the prefix.',
+    ],
+    pitfalls: ['For each element as potential sum: two-pointer in remaining elements. O(n^2) total.'],
+  },
+
+  'two-smallests-in-every-subarray': {
+    intuition: 'For every contiguous subarray of length >= 2, find the sum of the two smallest elements; return minimum such sum.',
+    algorithm: [
+      'Minimum sum of two smallest = minimum sum of two adjacent elements in sorted adjacent pairs.',
+    ],
+    pitfalls: ['Key insight: minimum of (first_min + second_min) over all subarrays equals minimum over adjacent pairs.'],
+  },
+
+  'two-swaps': {
+    intuition: 'Check if array can be sorted with at most two swaps. Identify out-of-place elements and verify.',
+    algorithm: [
+      'Compare array with sorted version. Collect mismatched positions. If 0: done. If 2: verify swap fixes it. If 4: verify two swaps fix it. Else: impossible.',
+    ],
+    pitfalls: ['Count mismatches with sorted array. 0 mismatches: already sorted. 2: one swap. 4: try two swaps. Else: false.'],
+  },
+
+  'tywins-war-strategy': {
+    intuition: 'Strategically win war by pairing soldiers optimally. Greedy matching.',
+    algorithm: [
+      'Sort both armies. Greedy: use weakest soldier that can beat opponent. Track wins.',
+    ],
+    pitfalls: ['Similar to task assignment problem. Sort and match greedily to maximize wins.'],
+  },
+
+  'union-of-arrays-with-duplicates': {
+    intuition: 'Find union of two arrays (all unique elements from both). HashSet approach.',
+    algorithm: [
+      'Add all elements from both arrays to a set. Size of set is the union count.',
+    ],
+    pitfalls: ['O(m+n). Return count of distinct elements across both arrays. Output sorted union.'],
+  },
+
+  'union-of-two-sorted-arrays-with-distinct-elements': {
+    intuition: 'Merge two sorted arrays keeping only distinct elements. Two-pointer merge.',
+    algorithm: [
+      'Two pointers. Pick smaller element. Skip duplicates. O(m+n).',
+    ],
+    pitfalls: ['Merge step of merge sort, but skip duplicates. Check both arrays and result for duplicates.'],
+  },
+
+  'unique-knumber-sum': {
+    intuition: 'Find sum of unique k-length subarrays or sum of elements appearing exactly once.',
+    algorithm: [
+      'Count frequency of each element. Sum elements with frequency == 1.',
+    ],
+    pitfalls: ['Frequency map. O(n). Sum only elements that appear exactly once in the array/substring.'],
+  },
+
+  'unique-number-i': {
+    intuition: 'Find element appearing odd number of times in array where all others appear even times. XOR.',
+    algorithm: [
+      'XOR all elements. Elements appearing even times cancel. Result is the unique element.',
+    ],
+    pitfalls: ['Same as LC 136. XOR of n^n = 0. Single XOR pass O(n) O(1).'],
+  },
+
+  'unique-number-ii': {
+    intuition: 'Find two elements appearing odd times, all others appear even times. XOR + bit grouping.',
+    algorithm: [
+      'XOR all to get xor of two targets. Find a set bit. Divide into two groups by this bit. XOR each group.',
+    ],
+    pitfalls: ['Same as LC 260. Set bit in XOR distinguishes the two unique numbers. O(n) O(1).'],
+  },
+
+  'unique-number-iii': {
+    intuition: 'Find element appearing once when all others appear three times. Bit counting modulo 3.',
+    algorithm: [
+      'For each bit position: count how many numbers have this bit set. If count % 3 != 0: unique number has this bit.',
+    ],
+    pitfalls: ['Same as LC 137. 32-bit scan, each bit modulo 3. O(32n) = O(n).'],
+  },
+
+  'urlify-a-given-string': {
+    intuition: 'Replace spaces in string with "%20". Process from end to avoid extra shifting.',
+    algorithm: [
+      'Count spaces. Expand array. Two pointers from end: copy non-space chars, insert "%20" for spaces.',
+    ],
+    pitfalls: ['Classic CTCI problem. Expand in-place from end to avoid O(n^2) shifting. O(n).'],
+  },
+
+  'vertical-tree-traversal': {
+    intuition: 'Print binary tree nodes column by column, top to bottom within each column.',
+    algorithm: [
+      'BFS/DFS with (node, col, row) tracking. Group by column. Within column sort by row, then value.',
+    ],
+    pitfalls: ['Same as LC 987. Use TreeMap of column -> sorted list. Sort by (row, value) within each column.'],
+  },
+
+  'vertical-width-of-a-binary-tree': {
+    intuition: 'Find number of distinct column indices in vertical traversal of binary tree.',
+    algorithm: [
+      'DFS tracking column: left child = col-1, right child = col+1. Track min and max col. Width = max-min+1.',
+    ],
+    pitfalls: ['O(n) DFS. Track min and max horizontal distance from root. Width = max_col - min_col + 1.'],
+  },
+
+  'walls-coloring-ii': {
+    intuition: 'Color n walls with k colors minimizing cost where adjacent walls must differ. DP.',
+    algorithm: [
+      'dp[i][c] = min cost to color walls 1..i with wall i colored c. Transition: min over all c != prev_c.',
+    ],
+    pitfalls: ['O(nk^2) naive. Optimize to O(nk) by tracking min and second-min of previous row.'],
+  },
+
+  'xor-linked-list': {
+    intuition: 'Implement doubly linked list using XOR of prev and next pointers to save space.',
+    algorithm: [
+      'Each node stores XOR(prev, next). To traverse: next = XOR(prev, node.xorVal). Track previous pointer while traversing.',
+    ],
+    pitfalls: ['XOR trick: address(prev) XOR address(next) stored. Given prev, compute next = stored XOR prev. O(n) traversal.'],
+  },
+
+  'xor-pairs-less-than-k': {
+    intuition: 'Count pairs (i,j) where i<j and arr[i] XOR arr[j] < k. Trie-based counting.',
+    algorithm: [
+      'Build trie of binary representations. For each element: count previous elements with XOR < k using trie traversal.',
+    ],
+    pitfalls: ['Bit by bit trie traversal. At each bit: if k-bit is 1, count subtree with same bit (guaranteed < k), then go to opposite side.'],
+  },
+
 }
 
 export default gfgExplanations
