@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { Suspense } from 'react'
 import { getAllGfgProblemsMeta } from '@/lib/gfg-problems'
 import GfgProblemList from '@/components/GfgProblemList'
+import gfgExplanations from '@/lib/gfg-explanations'
 
 export const dynamic = 'force-static'
 
@@ -32,33 +32,12 @@ function LoadingFallback() {
 
 export default function GfgPage() {
   const problems = getAllGfgProblemsMeta()
+  const explanationSlugs = new Set(Object.keys(gfgExplanations))
 
   return (
     <>
-      {/* Hero intro */}
-      <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-3">
-          GeeksforGeeks Java Solutions
-        </h1>
-        <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base leading-relaxed max-w-2xl mb-4">
-          Clean Java solutions to {problems.length}+ GeeksforGeeks problems — covering GFG Problem of the Day
-          (POTD) and frequently asked interview questions. Each solution includes a step-by-step explanation
-          and complexity analysis to help you understand the approach, not just the answer.
-        </p>
-        <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-2xl mb-4">
-          GeeksforGeeks is the most widely used coding practice platform in India. Solving GFG POTD daily
-          is an effective way to build consistency and cover a broad range of data structures and algorithms
-          before a placement drive or off-campus interview.
-        </p>
-        <div className="flex flex-wrap gap-3 text-xs text-indigo-600 dark:text-indigo-400">
-          <Link href="/" className="hover:underline">LeetCode C# Solutions →</Link>
-          <Link href="/topics" className="hover:underline">Browse by Topic →</Link>
-          <Link href="/study-guide" className="hover:underline">Study Guide →</Link>
-        </div>
-      </div>
-
       <Suspense fallback={<LoadingFallback />}>
-        <GfgProblemList problems={problems} />
+        <GfgProblemList problems={problems} explanationSlugs={explanationSlugs} />
       </Suspense>
     </>
   )

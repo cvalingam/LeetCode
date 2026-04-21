@@ -6,6 +6,7 @@ import { toLeetCodeSlug, SITE_URL } from '@/lib/constants'
 import CodeBlockWithHeader from '@/components/CodeBlockWithHeader'
 import AdUnit from '@/components/AdUnit'
 import HelpfulWidget from '@/components/HelpfulWidget'
+import BackToTop from '@/components/BackToTop'
 import gfgExplanations from '@/lib/gfg-explanations'
 
 interface Props {
@@ -92,13 +93,11 @@ export default async function GfgProblemPage({ params }: Props) {
         <span className="text-gray-600 font-medium truncate">{problem.title}</span>
       </nav>
 
-      <AdUnit slot="4545599910" style="leaderboard" className="mb-8" />
-
       <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-3">
         {problem.title}
       </h1>
 
-      <div className="flex items-center gap-3 mb-8 flex-wrap">
+      <div className="flex items-center gap-3 mb-5 flex-wrap">
         <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium text-orange-700 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/60">
           <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
           Java
@@ -117,6 +116,28 @@ export default async function GfgProblemPage({ params }: Props) {
         </a>
       </div>
 
+      {/* Complexity */}
+      {problem.complexity && (
+        <div className="flex flex-wrap gap-3 mb-5">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-50 border border-emerald-100 dark:bg-emerald-950/50 dark:border-emerald-900">
+            <svg className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
+              <circle cx="12" cy="12" r="10" />
+            </svg>
+            <span className="text-xs font-medium text-emerald-700 dark:text-emerald-300">Time: <span className="font-mono">{problem.complexity.time}</span></span>
+          </div>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-violet-50 border border-violet-100 dark:bg-violet-950/50 dark:border-violet-900">
+            <svg className="w-3.5 h-3.5 text-violet-600 dark:text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 12h10M4 17h6" />
+            </svg>
+            <span className="text-xs font-medium text-violet-700 dark:text-violet-300">Space: <span className="font-mono">{problem.complexity.space}</span></span>
+          </div>
+        </div>
+      )}
+
+      {/* Ad — after metadata, before explanation */}
+      <AdUnit slot="4545599910" style="leaderboard" className="mb-8" />
+
       {/* Explanation — rich cards or plain fallback */}
       {(() => {
         const rich = gfgExplanations[problem.slug]
@@ -124,8 +145,11 @@ export default async function GfgProblemPage({ params }: Props) {
           return (
             <div className="mb-8 space-y-4">
               <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-100 dark:border-amber-900/50">
-                <h2 className="text-[11px] font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-2">&#x1F4A1; Intuition</h2>
-                <p className="text-sm text-amber-900 dark:text-amber-200 leading-relaxed">{rich.intuition}</p>
+                <h2 className="flex items-center gap-1.5 text-[11px] font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-2">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                  Intuition
+                </h2>
+                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{rich.intuition}</p>
               </div>
               <div className="p-4 rounded-xl bg-slate-50 dark:bg-gray-800/50 border border-slate-100 dark:border-gray-800">
                 <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Algorithm</h2>
@@ -140,26 +164,33 @@ export default async function GfgProblemPage({ params }: Props) {
               </div>
               {rich.example && (
                 <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/50">
-                  <h2 className="text-[11px] font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-3">Example Walkthrough</h2>
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    <span className="text-xs font-mono bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 px-2 py-0.5 rounded">Input: {rich.example.input}</span>
-                  </div>
-                  <ul className="space-y-1 mb-3">
+                  <h2 className="flex items-center gap-1.5 text-[11px] font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-2">
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
+                    Example Walkthrough
+                  </h2>
+                  <p className="text-xs font-mono text-blue-800 dark:text-blue-300 bg-blue-100/60 dark:bg-blue-900/40 rounded px-3 py-1.5 mb-3 break-all">Input: {rich.example.input}</p>
+                  <ol className="space-y-1.5 list-none mb-3">
                     {rich.example.steps.map((step, i) => (
-                      <li key={i} className="text-sm text-blue-900 dark:text-blue-200 leading-relaxed pl-3 border-l-2 border-blue-200 dark:border-blue-700">{step}</li>
+                      <li key={i} className="flex gap-2.5 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        <span className="flex-shrink-0 text-blue-400 dark:text-blue-500 font-mono text-xs mt-0.5">{i + 1}.</span>
+                        <span>{step}</span>
+                      </li>
                     ))}
-                  </ul>
-                  <span className="text-xs font-mono bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 px-2 py-0.5 rounded">Output: {rich.example.output}</span>
+                  </ol>
+                  <p className="text-xs font-mono text-blue-800 dark:text-blue-300 bg-blue-100/60 dark:bg-blue-900/40 rounded px-3 py-1.5 break-all">Output: {rich.example.output}</p>
                 </div>
               )}
               {rich.pitfalls && rich.pitfalls.length > 0 && (
                 <div className="p-4 rounded-xl bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/50">
-                  <h2 className="text-[11px] font-semibold text-red-600 dark:text-red-400 uppercase tracking-wider mb-3">&#x26A0;&#xFE0F; Common Pitfalls</h2>
+                  <h2 className="flex items-center gap-1.5 text-[11px] font-semibold text-red-600 dark:text-red-400 uppercase tracking-wider mb-3">
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                    Common Pitfalls
+                  </h2>
                   <ul className="space-y-2">
                     {rich.pitfalls.map((p, i) => (
-                      <li key={i} className="flex gap-2 text-sm text-red-900 dark:text-red-200">
-                        <span className="text-red-400 mt-0.5">&bull;</span>
-                        <span className="leading-relaxed">{p}</span>
+                      <li key={i} className="flex gap-2.5 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        <span className="flex-shrink-0 text-red-400 dark:text-red-500 mt-0.5">&bull;</span>
+                        <span>{p}</span>
                       </li>
                     ))}
                   </ul>
@@ -181,23 +212,7 @@ export default async function GfgProblemPage({ params }: Props) {
         return null
       })()}
 
-      {/* Complexity */}
-      {problem.complexity && (
-        <div className="flex flex-wrap gap-3 mb-8">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-50 border border-emerald-100 dark:bg-emerald-950/50 dark:border-emerald-900">
-            <svg className="w-3.5 h-3.5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
-            </svg>
-            <span className="text-xs font-medium text-emerald-700 dark:text-emerald-300">Time: <span className="font-mono">{problem.complexity.time}</span></span>
-          </div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-violet-50 border border-violet-100 dark:bg-violet-950/50 dark:border-violet-900">
-            <svg className="w-3.5 h-3.5 text-violet-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" /><line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" />
-            </svg>
-            <span className="text-xs font-medium text-violet-700 dark:text-violet-300">Space: <span className="font-mono">{problem.complexity.space}</span></span>
-          </div>
-        </div>
-      )}
+      {/* complexity already rendered above */}
 
       <section className="mb-8">
         <CodeBlockWithHeader
@@ -248,6 +263,8 @@ export default async function GfgProblemPage({ params }: Props) {
           <span />
         )}
       </nav>
+
+      <BackToTop />
     </article>
   )
 }
