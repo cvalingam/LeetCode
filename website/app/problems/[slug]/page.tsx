@@ -9,6 +9,7 @@ import LanguageTabs from '@/components/LanguageTabs'
 import DifficultyBadge from '@/components/DifficultyBadge'
 import AdUnit from '@/components/AdUnit'
 import HelpfulWidget from '@/components/HelpfulWidget'
+import BackToTop from '@/components/BackToTop'
 import explanations from '@/lib/explanations'
 
 const EXT_TO_SHIKI: Record<string, SupportedLang> = {
@@ -122,9 +123,6 @@ export default async function ProblemPage({ params }: Props) {
         <span className="text-gray-600 font-medium truncate">{problem.number}. {problem.title}</span>
       </nav>
 
-      {/* Ad: leaderboard */}
-      <AdUnit slot="4545599910" style="leaderboard" className="mb-8" />
-
       {/* Title */}
       <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-3">
         {problem.number}. {problem.title}
@@ -149,7 +147,7 @@ export default async function ProblemPage({ params }: Props) {
 
       {/* Tags */}
       {problem.tags.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 mb-8">
+        <div className="flex flex-wrap gap-1.5 mb-5">
           {problem.tags.map(tag => (
             <a
               key={tag}
@@ -164,7 +162,7 @@ export default async function ProblemPage({ params }: Props) {
 
       {/* Complexity */}
       {problem.complexity && (
-        <div className="flex flex-wrap gap-3 mb-8">
+        <div className="flex flex-wrap gap-3 mb-5">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-50 border border-emerald-100 dark:bg-emerald-950/50 dark:border-emerald-900">
             <svg className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
@@ -180,6 +178,9 @@ export default async function ProblemPage({ params }: Props) {
           </div>
         </div>
       )}
+
+      {/* Ad: leaderboard — placed after metadata, before explanation */}
+      <AdUnit slot="4545599910" style="leaderboard" className="mb-8" />
 
       {/* Rich explanation (structured) or plain approach fallback */}
       {(() => {
@@ -334,6 +335,8 @@ export default async function ProblemPage({ params }: Props) {
           <span />
         )}
       </nav>
+
+      <BackToTop />
     </article>
   )
 }

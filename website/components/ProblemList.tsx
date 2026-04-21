@@ -7,10 +7,10 @@ import type { ProblemMeta, Difficulty } from '@/lib/problems'
 import DifficultyBadge from './DifficultyBadge'
 import AdUnit from './AdUnit'
 
-const ROW_H = 45   // px — must match the rendered row height
+const ROW_H = 48   // px — must match the rendered row height
 const OVERSCAN = 5 // extra rows rendered above/below the visible window
 
-function VirtualTable({ items }: { items: ProblemMeta[] }) {
+function VirtualTable({ items, explanationNums }: { items: ProblemMeta[]; explanationNums: Set<number> }) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [scrollTop, setScrollTop] = useState(0)
   const [containerH, setContainerH] = useState(600)
@@ -33,17 +33,18 @@ function VirtualTable({ items }: { items: ProblemMeta[] }) {
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm bg-white dark:bg-gray-900">
       {/* Sticky header */}
-      <div className="grid grid-cols-[3.5rem_1fr_7rem] border-b border-gray-100 dark:border-gray-800 bg-gray-50/80 dark:bg-gray-800/80 sticky top-0 z-10">
+      <div className="grid grid-cols-[3.5rem_1fr_7rem_2rem] border-b border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/80 sticky top-0 z-10">
         <span className="px-4 py-3 text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">#</span>
         <span className="px-4 py-3 text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Title</span>
         <span className="px-4 py-3 text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Difficulty</span>
+        <span className="pr-4 py-3 text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider" title="Has full explanation" />
       </div>
 
       {/* Scrollable body */}
       <div
         ref={containerRef}
         className="overflow-y-auto"
-        style={{ height: Math.min(totalH, 630) }}
+        style={{ height: Math.min(totalH, 640) }}
         onScroll={e => setScrollTop(e.currentTarget.scrollTop)}
       >
         <div style={{ height: totalH, position: 'relative' }}>
@@ -51,20 +52,25 @@ function VirtualTable({ items }: { items: ProblemMeta[] }) {
             {visible.map(p => (
               <div
                 key={p.slug}
-                className="grid grid-cols-[3.5rem_1fr_7rem] border-b border-gray-50 dark:border-gray-800 hover:bg-indigo-50/30 dark:hover:bg-indigo-950/20 transition-colors group"
+                className="grid grid-cols-[3.5rem_1fr_7rem_2rem] border-b border-gray-50 dark:border-gray-800/60 hover:bg-indigo-50/40 dark:hover:bg-indigo-950/20 transition-colors group"
                 style={{ height: ROW_H }}
               >
                 <span className="px-4 flex items-center text-gray-400 dark:text-gray-500 tabular-nums font-mono text-xs">{p.number}</span>
                 <span className="px-4 flex items-center">
                   <Link
                     href={`/problems/${p.slug}`}
-                    className="font-medium text-gray-800 dark:text-gray-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate"
+                    className="font-medium text-gray-800 dark:text-gray-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate text-sm"
                   >
                     {p.title}
                   </Link>
                 </span>
                 <span className="px-4 flex items-center">
                   <DifficultyBadge difficulty={p.difficulty} />
+                </span>
+                <span className="pr-4 flex items-center justify-center">
+                  {explanationNums.has(p.number) && (
+                    <span title="Full explanation available" className="w-1.5 h-1.5 rounded-full bg-indigo-400 dark:bg-indigo-500 flex-shrink-0" />
+                  )}
                 </span>
               </div>
             ))}
@@ -90,8 +96,10 @@ const filterActive: Record<Filter, string> = {
 
 export default function ProblemList({
   problems,
+  explanationNums = new Set<number>(),
 }: {
   problems: ProblemMeta[]
+  explanationNums?: Set<number>
 }) {
   const searchParams = useSearchParams()
   const initialQuery = searchParams.get('q') ?? ''
@@ -126,7 +134,7 @@ export default function ProblemList({
     <>
       {/* Hero */}
       <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-600 via-indigo-700 to-violet-700 px-6 py-10 mb-8 text-white shadow-lg">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.1)_0%,_transparent_55%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.08)_0%,_transparent_55%)] pointer-events-none" />
         <div className="relative">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-medium mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -137,12 +145,21 @@ export default function ProblemList({
           </h1>
           <p className="text-indigo-200 text-sm sm:text-base mb-8 max-w-xl">
             Clean, readable C# solutions — built for .NET developers cracking the coding interview.
+            Every problem includes plain-English explanations and complexity analysis.
           </p>
-          <div className="flex gap-8 flex-wrap">
-            <Stat value={problems.length} label="Solved"  />
-            <Stat value={easy}            label="Easy"    dim />
-            <Stat value={medium}          label="Medium"  dim />
-            <Stat value={hard}            label="Hard"    dim />
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="flex gap-8 flex-wrap">
+              <Stat value={problems.length} label="Solved"  />
+              <Stat value={easy}            label="Easy"    dim />
+              <Stat value={medium}          label="Medium"  dim />
+              <Stat value={hard}            label="Hard"    dim />
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <QuickLink href="/study-guide" label="Study Guide" />
+              <QuickLink href="/cheat-sheet" label="C# Cheat Sheet" />
+              <QuickLink href="/topics"      label="Topics" />
+              <QuickLink href="/gfg"         label="GFG Java" emerald />
+            </div>
           </div>
         </div>
       </section>
@@ -184,8 +201,12 @@ export default function ProblemList({
         </div>
       </div>
 
-      <p className="text-xs text-gray-400 dark:text-gray-500 mb-3 tabular-nums">
-        {filtered.length} problem{filtered.length !== 1 ? 's' : ''}
+      <p className="text-xs text-gray-400 dark:text-gray-500 mb-3 tabular-nums flex items-center gap-3">
+        <span>{filtered.length} problem{filtered.length !== 1 ? 's' : ''}</span>
+        <span className="flex items-center gap-1 text-indigo-400 dark:text-indigo-500">
+          <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 dark:bg-indigo-500 inline-block" />
+          Full explanation available
+        </span>
       </p>
 
       {/* Problem table */}
@@ -195,22 +216,28 @@ export default function ProblemList({
           <p>No problems match your search.</p>
         </div>
       ) : mounted ? (
-        <VirtualTable items={filtered} />
+        <VirtualTable items={filtered} explanationNums={explanationNums} />
       ) : (
         /* SSR fallback: full list so all links are in the initial HTML for crawlers */
         <div className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm bg-white dark:bg-gray-900">
-          <div className="grid grid-cols-[3.5rem_1fr_7rem] border-b border-gray-100 dark:border-gray-800 bg-gray-50/80 dark:bg-gray-800/80">
+          <div className="grid grid-cols-[3.5rem_1fr_7rem_2rem] border-b border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/80">
             <span className="px-4 py-3 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">#</span>
             <span className="px-4 py-3 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Title</span>
             <span className="px-4 py-3 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Difficulty</span>
+            <span className="pr-4 py-3" />
           </div>
           {filtered.map(p => (
-            <div key={p.slug} className="grid grid-cols-[3.5rem_1fr_7rem] border-b border-gray-50 dark:border-gray-800" style={{ height: ROW_H }}>
+            <div key={p.slug} className="grid grid-cols-[3.5rem_1fr_7rem_2rem] border-b border-gray-50 dark:border-gray-800" style={{ height: ROW_H }}>
               <span className="px-4 flex items-center text-gray-400 tabular-nums font-mono text-xs">{p.number}</span>
               <span className="px-4 flex items-center">
-                <Link href={`/problems/${p.slug}`} className="font-medium text-gray-800 dark:text-gray-200 truncate">{p.title}</Link>
+                <Link href={`/problems/${p.slug}`} className="font-medium text-sm text-gray-800 dark:text-gray-200 truncate">{p.title}</Link>
               </span>
               <span className="px-4 flex items-center"><DifficultyBadge difficulty={p.difficulty} /></span>
+              <span className="pr-4 flex items-center justify-center">
+                {explanationNums.has(p.number) && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 dark:bg-indigo-500" />
+                )}
+              </span>
             </div>
           ))}
         </div>
@@ -225,5 +252,23 @@ function Stat({ value, label, dim }: { value: number; label: string; dim?: boole
       <div className={`text-2xl font-bold tabular-nums ${dim ? 'text-white/70' : 'text-white'}`}>{value}</div>
       <div className={`text-[11px] uppercase tracking-widest mt-0.5 ${dim ? 'text-white/40' : 'text-white/60'}`}>{label}</div>
     </div>
+  )
+}
+
+function QuickLink({ href, label, emerald }: { href: string; label: string; emerald?: boolean }) {
+  return (
+    <a
+      href={href}
+      className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+        emerald
+          ? 'bg-emerald-500/20 text-emerald-200 hover:bg-emerald-500/30 border border-emerald-400/20'
+          : 'bg-white/10 text-white/80 hover:bg-white/20 border border-white/10'
+      }`}
+    >
+      {label}
+      <svg className="w-3 h-3 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
   )
 }
