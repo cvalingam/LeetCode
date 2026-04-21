@@ -34,8 +34,20 @@ export default function GfgPage() {
   const problems = getAllGfgProblemsMeta()
   const explanationSlugs = new Set(Object.keys(gfgExplanations))
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'GeeksforGeeks Java Solutions',
+    description: 'Clean Java solutions to GeeksforGeeks Problem of the Day.',
+    url: 'https://dsasolved.com/gfg',
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Suspense fallback={<LoadingFallback />}>
         <GfgProblemList problems={problems} explanationSlugs={explanationSlugs} />
       </Suspense>
