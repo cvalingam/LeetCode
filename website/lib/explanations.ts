@@ -4686,6 +4686,15 @@ const explanations: Record<number, RichExplanation> = {
     pitfalls: ['Try smallest values first for lex-smallest. Backtrack when stuck.'],
   },
 
+  1722: {
+    intuition: 'Elements that can be swapped freely (via allowed swaps) form connected components. Within each component, any arrangement is possible. For each target[i], check if source has a matching value in the same component.',
+    algorithm: [
+      'Build Union-Find from allowedSwaps. Group all source[i] values by their component root.',
+      'For each target[i]: look up its component root and check if that value exists in the component\'s frequency map. If yes: consume one count. If no: increment Hamming distance.',
+    ],
+    pitfalls: ['Union-Find with path compression + union by rank. O((n + k) α(n)) time. Consuming from frequency map prevents double-matching.'],
+  },
+
   1726: {
     intuition: 'Count tuples (i,j,k,l) where nums[i]*nums[j]==nums[k]*nums[l]. For each product value, count pairs with that product. Tuples = C(count,2)*8 for distinct indices.',
     algorithm: [

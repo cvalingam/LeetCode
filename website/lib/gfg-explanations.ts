@@ -5771,6 +5771,16 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['Bit by bit trie traversal. At each bit: if k-bit is 1, count subtree with same bit (guaranteed < k), then go to opposite side.'],
   },
 
+  'two-water-jug-problem': {
+    intuition: 'Measure exactly d liters using two jugs of capacity m and n. Solvable iff d <= max(m,n) and d is divisible by gcd(m,n). Simulate both strategies (fill larger first or smaller first) and return minimum steps.',
+    algorithm: [
+      'Check: if d > max(m,n) or d % gcd(m,n) != 0: return -1.',
+      'Simulate helper(full, half, d): start with full jug full, empty jug 0. Pour from full to half, empty half when full, refill full when empty. Count steps until either jug equals d.',
+      'Return min(helper(m,n,d), helper(n,m,d)) to try both starting configurations.',
+    ],
+    pitfalls: ['GCD divisibility is necessary and sufficient for solvability. Always try both orientations (which jug to fill first) and take minimum.'],
+  },
+
 }
 
 export default gfgExplanations
