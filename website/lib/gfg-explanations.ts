@@ -5781,6 +5781,34 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['GCD divisibility is necessary and sufficient for solvability. Always try both orientations (which jug to fill first) and take minimum.'],
   },
 
+  // --- Mean of range in array ------------------------------------------------
+  'mean-of-range-in-array': {
+    intuition:
+      'Answering thousands of range-sum queries naively by re-summing the subarray each time would cost O(N) per query. Instead, precompute a prefix sum array in a single O(N) pass so that any range sum [l, r] is retrieved in O(1) as `prefixSum[r] - prefixSum[l-1]`. The mean is then the floor integer division of that sum by the number of elements `(r - l + 1)`.',
+    algorithm: [
+      'Build prefix sum: `sum[0] = arr[0]`. For i from 1 to N-1: `sum[i] = sum[i-1] + arr[i]`.',
+      'For each query [l, r]: compute `total = sum[r] - (l > 0 ? sum[l-1] : 0)`.',
+      'Compute `count = r - l + 1`.',
+      'Append `total / count` (integer division) to the result list.',
+      'Return the result list after processing all queries.',
+    ],
+    example: {
+      input: 'arr = [1, 2, 3, 4, 5], queries = [[0, 2], [1, 3], [0, 4]]',
+      steps: [
+        'Build prefix sum: [1, 3, 6, 10, 15].',
+        'Query [0,2]: total = sum[2] = 6, count = 3 → mean = 6/3 = 2.',
+        'Query [1,3]: total = sum[3] - sum[0] = 10 - 1 = 9, count = 3 → mean = 9/3 = 3.',
+        'Query [0,4]: total = sum[4] = 15, count = 5 → mean = 15/5 = 3.',
+      ],
+      output: '[2, 3, 3]',
+    },
+    pitfalls: [
+      'When l = 0, there is no `sum[l-1]` to subtract — guard this with a conditional (use 0 instead).',
+      'Java integer division already floors the result, so no explicit floor call is needed.',
+      'Do not use long arithmetic unless the array values and length guarantee overflow — for typical GFG constraints int is sufficient.',
+    ],
+  },
+
 }
 
 export default gfgExplanations

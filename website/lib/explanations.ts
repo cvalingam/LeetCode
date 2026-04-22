@@ -6747,6 +6747,33 @@ const explanations: Record<number, RichExplanation> = {
     pitfalls: ['Complement counting with sliding window on condition-satisfying elements.'],
   },
 
+  // --- 2452. Words Within Two Edits of Dictionary ----------------------------
+  2452: {
+    intuition:
+      'Because all words have the same fixed length, two words are "within two edits" of each other if and only if the count of positions where their characters differ is at most 2. There is no insertion or deletion — only substitution. We can therefore check every (query, dictionary) pair in a single character-by-character scan and short-circuit as soon as the mismatch count exceeds 2.',
+    algorithm: [
+      'For each word `q` in `queries`, iterate over every word `w` in `dictionary`.',
+      'Count the number of positions i where `q[i] != w[i]`. Stop early if the count reaches 3.',
+      'If the final count is less than 3 (i.e., 0, 1, or 2 mismatches), add `q` to the result list and break — no need to check further dictionary words for this query.',
+      'Return the result list.',
+    ],
+    example: {
+      input: 'queries = ["word","note","ants"], dictionary = ["wood","joke","moat"]',
+      steps: [
+        '"word" vs "wood": diff at index 2 (r≠o) and index 3 (d≠d — same). 1 mismatch → "word" qualifies.',
+        '"note" vs "wood": diff at 0 (n≠w), 1 (o≠o — same), 2 (t≠o), 3 (e≠d). 3 mismatches — skip.',
+        '"note" vs "joke": diff at 0 (n≠j), 2 (t≠k). 2 mismatches → "note" qualifies.',
+        '"ants" vs "wood": 4 mismatches. vs "joke": 4. vs "moat": diff at 0 (a≠m), 2 (t≠a), 3 (s≠t). 3 mismatches — no match.',
+      ],
+      output: '["word", "note"]',
+    },
+    pitfalls: [
+      'This problem only involves substitution edits (same-length words) — do NOT use a full Levenshtein edit-distance algorithm, which is far slower.',
+      'Break out of the inner loop as soon as any dictionary word matches; avoid redundant comparisons.',
+      'Early exit inside GetDiff when diff reaches 3 is a small but effective constant-factor optimisation.',
+    ],
+  },
+
 }
 
 export default explanations
