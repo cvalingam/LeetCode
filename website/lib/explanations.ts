@@ -6747,6 +6747,38 @@ const explanations: Record<number, RichExplanation> = {
     pitfalls: ['Complement counting with sliding window on condition-satisfying elements.'],
   },
 
+  // --- 2615. Sum of Distances -------------------------------------------------
+  2615: {
+    intuition:
+      'For every element, you need the sum of absolute distances to all other positions that hold the same value. The brute-force recomputes this sum from scratch for each element — O(N²) overall. The key insight is that once you sort (or group) the indices sharing a value, you can sweep left-to-right and update a single running total in O(1) per step. When you advance from one index to the next, each of the already-processed left indices moves one step farther, while each of the not-yet-processed right indices moves one step closer — so you just add/subtract multiples of the gap.',
+    algorithm: [
+      'Build a Dictionary mapping each unique value to the sorted list of indices where it appears.',
+      'For each group of indices [idx0, idx1, ..., idx_{n-1}]: initialise `sumSoFar` = sum of all indices in the group and `prevIndex` = 0.',
+      'Iterate i from 0 to n-1. Compute `gap = indices[i] - prevIndex`.',
+      '  Update: `sumSoFar += (i - 1) * gap` (left-side indices each grew gap farther from new position).',
+      '  Update: `sumSoFar -= (n - 1 - i) * gap` (right-side indices each grew gap closer to new position).',
+      '  Set `ans[indices[i]] = sumSoFar`. Set `prevIndex = indices[i]`.',
+      'Return `ans`.',
+    ],
+    example: {
+      input: 'nums = [1, 3, 1, 1, 2]',
+      steps: [
+        'Group indices: {1: [0,2,3], 3: [1], 2: [4]}.',
+        'Group for value 1, n=3. sumSoFar = 0+2+3 = 5, prevIndex = 0.',
+        'i=0, idx=0: gap=0. sumSoFar += (-1)*0 - 2*0 = 5. ans[0]=5. prevIndex=0.',
+        'i=1, idx=2: gap=2. sumSoFar += 0*2 - 1*2 = 5-2 = 3. ans[2]=3. prevIndex=2.',
+        'i=2, idx=3: gap=1. sumSoFar += 1*1 - 0*1 = 3+1 = 4. ans[3]=4. prevIndex=3.',
+        'Groups for 3 and 2 have only one element each, skip. ans[1]=0, ans[4]=0.',
+      ],
+      output: '[5, 0, 3, 4, 0]',
+    },
+    pitfalls: [
+      'Use `long` (not `int`) for `sumSoFar` and the final answer — index products can overflow 32-bit integers.',
+      'Groups of size 1 contribute 0 — skip them to avoid unnecessary work.',
+      'The initial `prevIndex = 0` is intentional: the formula self-corrects for the first iteration because i=0 makes the (i-1) term negative, which subtracts the inflated contribution of index 0 from the starting sum.',
+    ],
+  },
+
   // --- 2452. Words Within Two Edits of Dictionary ----------------------------
   2452: {
     intuition:

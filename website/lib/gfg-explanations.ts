@@ -5781,6 +5781,36 @@ const gfgExplanations: Record<string, RichExplanation> = {
     pitfalls: ['GCD divisibility is necessary and sufficient for solvability. Always try both orientations (which jug to fill first) and take minimum.'],
   },
 
+  // --- Two Equal Sum Subarrays -----------------------------------------------
+  'two-equal-sum-subarrays': {
+    intuition:
+      'We are looking for a cut index after which the sum on the left equals the sum on the right. Instead of computing both halves independently for each candidate cut, maintain two running accumulators: a prefix sum (growing left-to-right) and a suffix sum (shrinking left-to-right). Start with prefix=0 and suffix=total. After including each element in the prefix and excluding it from the suffix, check for equality. If the total sum is odd, no equal-half split can exist, but the loop handles this gracefully — prefix and suffix will never both be whole-number halves.',
+    algorithm: [
+      'Compute `suff` = sum of all elements in `arr`.',
+      'Initialise `pre = 0`.',
+      'For each element `x` in `arr`: `pre += x`, `suff -= x`.',
+      'If `pre == suff`, return `true`.',
+      'After the loop, return `false`.',
+    ],
+    example: {
+      input: 'arr = [1, 2, 3, 3]',
+      steps: [
+        'Total sum = 9. suff = 9, pre = 0.',
+        'x=1: pre=1, suff=8. 1 ≠ 8.',
+        'x=2: pre=3, suff=6. 3 ≠ 6.',
+        'x=3: pre=6, suff=3. 6 ≠ 3.',
+        'x=3: pre=9, suff=0. 9 ≠ 0.',
+        'No equal split found → return false.',
+      ],
+      output: 'false',
+    },
+    pitfalls: [
+      'The split point is exclusive of the dividing element — prefix includes up to and including index i, suffix covers i+1 onward.',
+      'An odd total sum makes an equal split mathematically impossible; the check `pre == suff` will simply never be true.',
+      'This problem does not require the two parts to be contiguous halves of exactly N/2 elements — just that the sums match at some cut point.',
+    ],
+  },
+
   // --- Mean of range in array ------------------------------------------------
   'mean-of-range-in-array': {
     intuition:
