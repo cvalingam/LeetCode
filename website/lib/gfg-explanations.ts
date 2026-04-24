@@ -5839,6 +5839,33 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  // --- Buildings with Sunlight -----------------------------------------------
+  'buildings-with-sunlight': {
+    intuition:
+      'A building is visible from the east (left side) if and only if it is at least as tall as every building to its left. Tracking a running maximum \'ptr\' lets us decide visibility in O(1) per building: if arr[i] >= ptr the building is visible and becomes the new tallest seen so far.',
+    algorithm: [
+      'Initialise ptr = arr[0] and count = 0.',
+      'Walk left-to-right from index 0 to n-1.',
+      'If arr[i] >= ptr: the building receives sunlight — increment count and update ptr = arr[i].',
+      'Return count.',
+    ],
+    example: {
+      input: 'arr = [7, 4, 8, 2, 9]',
+      steps: [
+        'i=0: arr[0]=7 >= ptr=7 → visible, count=1, ptr=7.',
+        'i=1: arr[1]=4 < ptr=7 → blocked.',
+        'i=2: arr[2]=8 >= ptr=7 → visible, count=2, ptr=8.',
+        'i=3: arr[3]=2 < ptr=8 → blocked.',
+        'i=4: arr[4]=9 >= ptr=8 → visible, count=3, ptr=9.',
+      ],
+      output: '3',
+    },
+    pitfalls: [
+      'Use >= (not >) because the code treats an equal-height building as visible; confirm against the specific problem statement.',
+      'Start the loop from index 0 (not 1) since the first building always sees the sun and initialises ptr.',
+    ],
+  },
+
 }
 
 export default gfgExplanations

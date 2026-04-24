@@ -6806,6 +6806,30 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  // --- 2833. Furthest Point From Origin --------------------------------------
+  2833: {
+    intuition:
+      'Every \'_\' wildcard can be assigned to either \'L\' or \'R\' freely, so they always contribute +1 to the furthest possible distance regardless of the other moves. The non-wildcard moves produce a net displacement of |countL - countR|. Adding all wildcards to that net displacement gives the maximum reachable point.',
+    algorithm: [
+      'Make a single pass over the moves string, counting \'L\', \'R\', and \'_\' characters.',
+      'Compute net = Math.Abs(countL - countR).',
+      'Return net + countUnderline (each wildcard extends the furthest point by 1).',
+    ],
+    example: {
+      input: 'moves = "_L__LL__"',
+      steps: [
+        'Count: L = 3, R = 0, _ = 5.',
+        'Net displacement without wildcards = |3 - 0| = 3.',
+        'All 5 wildcards go left (dominant direction): 3 + 5 = 8.',
+      ],
+      output: '8',
+    },
+    pitfalls: [
+      'Do not try to split wildcards between L and R — they always add fully to the dominant side.',
+      'The answer is |L - R| + wildcards, not max(L, R) + wildcards.',
+    ],
+  },
+
 }
 
 export default explanations
