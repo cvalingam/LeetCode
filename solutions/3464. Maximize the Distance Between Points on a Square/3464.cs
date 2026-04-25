@@ -1,23 +1,35 @@
 public class Solution
 {
-    // Approach:
-    // 1) Sort all boundary points in clockwise perimeter order.
-    // 2) Binary-search the answer d (minimum pairwise Manhattan distance between
-    //    consecutive selected points on this perimeter order).
-    // 3) For a fixed d, run a linear feasibility check with a deque-based DP.
-    //    Each state keeps a chain start/end and chain length. While scanning points,
-    //    we pop states that are far enough from current point and try to extend the
-    //    best valid chain. If we can build length >= k, distance d is feasible.
+    // Rich Explanation:
+    // We need the maximum value d such that we can pick k boundary points and keep
+    // pairwise Manhattan distance constraints while walking around the square boundary.
     //
-    // Why it works:
-    // - Perimeter ordering turns the cyclic geometric constraint into an ordered scan.
-    // - Feasibility for larger d is monotonic (if d works, any smaller distance works),
-    //   so binary search is valid.
-    // - The deque removes states once and processes each point O(1) amortized.
+    // Step 1: Linearize geometry
+    // - Split points by boundary (left, top, right, bottom) and sort each boundary
+    //   in traversal order.
+    // - Concatenate them to get one clockwise perimeter order.
     //
-    // Let m = points.Length.
-    // Time Complexity: O(m log side)
-    // Space Complexity: O(m)
+    // Step 2: Binary search answer d
+    // - If a distance d is feasible, then every d' <= d is also feasible.
+    // - This monotonicity allows binary search on [0, side].
+    //
+    // Step 3: Feasibility check for fixed d (IsValidDistance)
+    // - Scan ordered points once.
+    // - Maintain deque states: (start point, end point, chain length).
+    // - While a state's end is far enough from current point, we can try extending
+    //   that chain by the current point.
+    // - Keep the best extension candidate and push new state.
+    //
+    // Why deque gives linear time for one check:
+    // - Every state is inserted once and removed once.
+    // - So IsValidDistance is O(m), where m = number of points.
+    //
+    // Overall complexity:
+    // - Sorting boundary points: O(m log m)
+    // - Binary search iterations: O(log side)
+    // - Each iteration uses O(m) feasibility check
+    // Total: O(m log m + m log side)
+    // Space: O(m)
     public int MaxDistance(int side, int[][] points, int k)
     {
         var ordered = GetOrderedPoints(side, points);
