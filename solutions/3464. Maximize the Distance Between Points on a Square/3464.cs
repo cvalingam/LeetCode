@@ -1,0 +1,113 @@
+public class Solution
+{
+    // Approach:
+    // 1) Sort all boundary points in clockwise perimeter order.
+    // 2) Binary-search the answer d (minimum pairwise Manhattan distance between
+    //    consecutive selected points on this perimeter order).
+    // 3) For a fixed d, run a linear feasibility check with a deque-based DP.
+    //    Each state keeps a chain start/end and chain length. While scanning points,
+    //    we pop states that are far enough from current point and try to extend the
+    //    best valid chain. If we can build length >= k, distance d is feasible.
+    //
+    // Why it works:
+    // - Perimeter ordering turns the cyclic geometric constraint into an ordered scan.
+    // - Feasibility for larger d is monotonic (if d works, any smaller distance works),
+    //   so binary search is valid.
+    // - The deque removes states once and processes each point O(1) amortized.
+    //
+    // Let m = points.Length.
+    // Time Complexity: O(m log side)
+    // Space Complexity: O(m)
+    public int MaxDistance(int side, int[][] points, int k)
+    {
+        var ordered = GetOrderedPoints(side, points);
+        int l = 0;
+        int r = side;
+
+        while (l < r)
+        {
+            int m = (l + r + 1) / 2;
+            if (IsValidDistance(ordered, k, m))
+                l = m;
+            else
+                r = m - 1;
+        }
+
+        return l;
+    }
+
+    private record Sequence(int StartX, int StartY, int EndX, int EndY, int Length);
+
+    // Returns true if we can select `k` points such that the minimum Manhattan
+    // distance between any two consecutive chosen points is at least `d`.
+    private bool IsValidDistance(List<int[]> ordered, int k, int d)
+    {
+        var dq = new LinkedList<Sequence>();
+        dq.AddFirst(new Sequence(
+            ordered[0][0], ordered[0][1], ordered[0][0], ordered[0][1], 1));
+        int maxLength = 1;
+
+        for (int i = 1; i < ordered.Count; ++i)
+        {
+            int x = ordered[i][0];
+            int y = ordered[i][1];
+            int startX = x;
+            int startY = y;
+            int length = 1;
+
+            while (dq.Count > 0 &&
+                   (Math.Abs(x - dq.First.Value.EndX) + Math.Abs(y - dq.First.Value.EndY) >= d))
+            {
+                var first = dq.First.Value;
+                if (Math.Abs(x - first.StartX) + Math.Abs(y - first.StartY) >= d &&
+                    first.Length + 1 >= length)
+                {
+                    startX = first.StartX;
+                    startY = first.StartY;
+                    length = first.Length + 1;
+                    maxLength = Math.Max(maxLength, length);
+                }
+                dq.RemoveFirst();
+            }
+            dq.AddLast(new Sequence(startX, startY, x, y, length));
+        }
+
+        return maxLength >= k;
+    }
+
+    // Returns the ordered points on the perimeter of a square of side length
+    // `side`, starting from left, top, right, and bottom boundaries.
+    private List<int[]> GetOrderedPoints(int side, int[][] points)
+    {
+        var left = new List<int[]>();
+        var top = new List<int[]>();
+        var right = new List<int[]>();
+        var bottom = new List<int[]>();
+
+        foreach (var point in points)
+        {
+            int x = point[0];
+            int y = point[1];
+            if (x == 0 && y > 0)
+                left.Add(point);
+            else if (x > 0 && y == side)
+                top.Add(point);
+            else if (x == side && y < side)
+                right.Add(point);
+            else
+                bottom.Add(point);
+        }
+
+        left.Sort((a, b) => a[1].CompareTo(b[1]));
+        top.Sort((a, b) => a[0].CompareTo(b[0]));
+        right.Sort((a, b) => b[1].CompareTo(a[1]));
+        bottom.Sort((a, b) => b[0].CompareTo(a[0]));
+
+        var ordered = new List<int[]>();
+        ordered.AddRange(left);
+        ordered.AddRange(top);
+        ordered.AddRange(right);
+        ordered.AddRange(bottom);
+        return ordered;
+    }
+}
