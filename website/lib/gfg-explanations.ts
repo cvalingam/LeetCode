@@ -5866,6 +5866,37 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  // --- Opposite Sign Pair Reduction ------------------------------------------
+  'opposite-sign-pair-reduction': {
+    intuition:
+      'Use a stack to represent the already-reduced prefix. When a new value arrives, only the stack top can interact with it first if signs are opposite. Resolve that conflict by absolute values, and keep going until either the incoming value is destroyed or no more opposite-sign top exists.',
+    algorithm: [
+      'Initialize an empty stack.',
+      'For each value x in the array, repeatedly compare with stack top while signs are opposite.',
+      'If |x| > |top|, pop top and continue (x may collide again).',
+      'If |x| < |top|, x is destroyed (stop processing current x).',
+      'If |x| == |top|, pop top and destroy x (both removed).',
+      'If x survives all collisions, push x into stack.',
+      'At the end, stack content (bottom to top) is the reduced array.',
+    ],
+    example: {
+      input: 'arr = [5, 10, -5, -20, 7]',
+      steps: [
+        'Push 5, push 10. Stack: [5, 10].',
+        'x = -5 collides with 10. |10| > |5|, so -5 is removed. Stack unchanged.',
+        'x = -20 collides with 10, then 5. Since |-20| is larger, both get popped. Push -20. Stack: [-20].',
+        'x = 7 collides with -20. |-20| > |7|, so 7 is removed.',
+        'Final stack is [-20].',
+      ],
+      output: '[-20]',
+    },
+    pitfalls: [
+      'Do not compare non-adjacent elements directly; collision order is strictly with current stack top.',
+      'Continue the while-loop after popping weaker top values; one element can trigger multiple removals.',
+      'Handle equal magnitudes correctly: both elements must be removed.',
+    ],
+  },
+
 }
 
 export default gfgExplanations

@@ -1,35 +1,7 @@
 public class Solution
 {
-    // Rich Explanation:
-    // We need the maximum value d such that we can pick k boundary points and keep
-    // pairwise Manhattan distance constraints while walking around the square boundary.
-    //
-    // Step 1: Linearize geometry
-    // - Split points by boundary (left, top, right, bottom) and sort each boundary
-    //   in traversal order.
-    // - Concatenate them to get one clockwise perimeter order.
-    //
-    // Step 2: Binary search answer d
-    // - If a distance d is feasible, then every d' <= d is also feasible.
-    // - This monotonicity allows binary search on [0, side].
-    //
-    // Step 3: Feasibility check for fixed d (IsValidDistance)
-    // - Scan ordered points once.
-    // - Maintain deque states: (start point, end point, chain length).
-    // - While a state's end is far enough from current point, we can try extending
-    //   that chain by the current point.
-    // - Keep the best extension candidate and push new state.
-    //
-    // Why deque gives linear time for one check:
-    // - Every state is inserted once and removed once.
-    // - So IsValidDistance is O(m), where m = number of points.
-    //
-    // Overall complexity:
-    // - Sorting boundary points: O(m log m)
-    // - Binary search iterations: O(log side)
-    // - Each iteration uses O(m) feasibility check
-    // Total: O(m log m + m log side)
-    // Space: O(m)
+    // Approach: Perimeter ordering + binary search on answer + deque-based feasibility DP.
+    // Time: O(m log m + m log side) Space: O(m), where m = points.Length.
     public int MaxDistance(int side, int[][] points, int k)
     {
         var ordered = GetOrderedPoints(side, points);

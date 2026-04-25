@@ -6830,6 +6830,36 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  // --- 3464. Maximize the Distance Between Points on a Square ---------------
+  3464: {
+    intuition:
+      'All points lie on the square perimeter, so we can linearize them in clockwise order and turn geometry into an ordered sequence problem. Then we binary-search the answer d: if we can pick k points with minimum required Manhattan separation d, any smaller d is also feasible. The core is a linear feasibility check that grows the longest valid chain ending at each point.',
+    algorithm: [
+      'Partition boundary points into left/top/right/bottom edges and sort each edge in traversal order, then concatenate to build clockwise order.',
+      'Binary-search d in [0, side]. For each mid, run IsValidDistance to test feasibility.',
+      'In IsValidDistance, maintain deque states of the form (start point, end point, chain length).',
+      'For each new point p, pop deque front states whose end point is far enough from p (distance >= d). Those states are candidates to extend by p.',
+      'Among extendable states, keep the one producing maximum chain length for p and push the resulting state to the deque.',
+      'If any chain reaches length >= k, d is feasible; otherwise infeasible. Use this result to move binary-search boundaries.',
+    ],
+    example: {
+      input: 'side = 5, points = [[0,1],[0,4],[2,5],[5,3],[4,0]], k = 3',
+      steps: [
+        'Clockwise order becomes: [0,1] -> [0,4] -> [2,5] -> [5,3] -> [4,0].',
+        'Try d = 4. Start with chain length 1 at first point.',
+        'As we scan, whenever current point is at least 4 away from candidate chain end, we can extend that chain.',
+        'Suppose chain reaches length 3 at some point; then d=4 is feasible.',
+        'Binary search continues to test larger distances until the maximum feasible d is found.',
+      ],
+      output: 'Maximum feasible minimum distance (problem output).',
+    },
+    pitfalls: [
+      'Do not skip perimeter ordering; random point order breaks the DP transition logic.',
+      'Feasibility check must be monotonic-safe for binary search: return true only when a full chain of size k exists.',
+      'Use Manhattan distance exactly (|x1-x2| + |y1-y2|), not Euclidean distance.',
+    ],
+  },
+
 }
 
 export default explanations
