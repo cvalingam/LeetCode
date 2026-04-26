@@ -5897,6 +5897,35 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  // --- Common in 3 Sorted Arrays ---------------------------------------------
+  'common-in-3-sorted-arrays': {
+    intuition:
+      'Because all three arrays are sorted, we can move three pointers in one pass instead of checking every pair/triple. At each step, if values are not equal, only pointers at smaller values need to move (they can never catch up unless advanced). This gives linear-time intersection across all three arrays.',
+    algorithm: [
+      'Initialize i, j, k = 0 for arrays a, b, c.',
+      'While all pointers are in range, compare a[i], b[j], c[k].',
+      'If all equal, append value to answer only if it is different from the last added value (dedupe), then increment all three pointers.',
+      'Otherwise compute mx = max(a[i], b[j], c[k]).',
+      'Advance i while a[i] < mx, advance j while b[j] < mx, advance k while c[k] < mx.',
+      'Continue until one pointer reaches the end.',
+    ],
+    example: {
+      input: 'a=[1,5,5], b=[3,4,5,5,10], c=[5,5,10,20]',
+      steps: [
+        'Start: (1,3,5), mx=5. Move i to first 5 and j to first 5.',
+        'Now (5,5,5) equal -> add 5, move all pointers.',
+        'Again (5,5,5) equal but duplicate output; skip adding due to dedupe check.',
+        'Pointers progress until one array ends. Final answer contains only unique commons.',
+      ],
+      output: '[5]',
+    },
+    pitfalls: [
+      'Do not add duplicates repeatedly; check last inserted value before appending.',
+      'Move only pointers with values below current maximum when values differ.',
+      'This method requires sorted input arrays; it is invalid for unsorted arrays.',
+    ],
+  },
+
 }
 
 export default gfgExplanations

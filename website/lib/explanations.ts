@@ -6860,6 +6860,37 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  // --- 1559. Detect Cycles in 2D Grid ---------------------------------------
+  1559: {
+    intuition:
+      'Treat cells with the same character as an undirected graph where each cell connects to up/down/left/right neighbors of equal value. A cycle exists if during DFS/BFS we reach an already-visited node that is not the parent we came from. Parent tracking is essential because the immediate back-edge to parent should not be counted as a cycle.',
+    algorithm: [
+      'Create a visited matrix of size m x n initialized to false.',
+      'Iterate through every cell (i, j). If unvisited, start DFS from it with parent = (-1, -1).',
+      'In DFS, mark current cell visited and scan 4-direction neighbors.',
+      'Skip neighbors that are out of bounds or have different character.',
+      'Skip the parent neighbor (the cell we came from).',
+      'If a valid same-character neighbor is already visited and is not parent, return true (cycle found).',
+      'Otherwise recurse into unvisited same-character neighbors. If any recursive call returns true, propagate true.',
+      'If all components finish with no such back-edge, return false.',
+    ],
+    example: {
+      input: 'grid = [[a,a,a,a],[a,b,b,a],[a,b,b,a],[a,a,a,a]]',
+      steps: [
+        'Start DFS from (0,0) = a and walk through connected a-cells on the border.',
+        'While exploring, eventually reach a neighbor that is already visited and not the direct parent.',
+        'This confirms a closed loop in the a-component.',
+        'Return true immediately.',
+      ],
+      output: 'true',
+    },
+    pitfalls: [
+      'Without parent coordinates, every undirected edge looks like a false cycle when you step back one cell.',
+      'Only same-character neighbors belong to the same graph component; different letters must be ignored.',
+      'Use iterative DFS/BFS if recursion depth is a concern on very large grids.',
+    ],
+  },
+
 }
 
 export default explanations
