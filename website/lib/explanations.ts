@@ -6891,6 +6891,35 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  // --- 1391. Check if There is a Valid Path in a Grid -----------------------
+  1391: {
+    intuition:
+      'Instead of manually validating every street-type pair at cell boundaries, expand each original cell into a 3x3 pixel block where valid street segments are drawn as connected true cells. Then the problem becomes a plain connectivity query: is there any continuous path from the expanded start center to expanded end center?',
+    algorithm: [
+      'Create a boolean grid of size (m*3) x (n*3).',
+      'For each street type (1..6), mark the corresponding three pixels in that 3x3 block to represent its road shape.',
+      'Start DFS from expanded coordinate (1,1), which is the center of top-left cell.',
+      'During DFS, stop when out of bounds or on a false cell; otherwise mark current pixel visited and move in 4 directions.',
+      'If DFS reaches (m*3-2, n*3-2), which is center of bottom-right cell, return true.',
+      'If traversal ends without reaching destination, return false.',
+    ],
+    example: {
+      input: 'grid = [[2,4,3],[6,5,2]]',
+      steps: [
+        'Build expanded map where each street draws its passable pixels.',
+        'From start center, DFS follows only connected road pixels.',
+        'Because neighboring street segments match, traversal can continue through the route.',
+        'Destination center is reached, so a valid path exists.',
+      ],
+      output: 'true',
+    },
+    pitfalls: [
+      'Street encoding must be exact for each type; a wrong pixel pattern causes false positives/negatives.',
+      'Always mark visited during DFS to prevent infinite recursion loops.',
+      'This recursion can be deep on large grids; iterative DFS/BFS is an alternative if stack depth is a concern.',
+    ],
+  },
+
 }
 
 export default explanations

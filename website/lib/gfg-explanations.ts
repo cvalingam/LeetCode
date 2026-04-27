@@ -5926,6 +5926,34 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  // --- Smallest window containing 0, 1 and 2 --------------------------------
+  'smallest-window-containing-0-1-and-2': {
+    intuition:
+      'We need the shortest substring that contains all three required characters. This is a classic minimum-window pattern: expand right pointer to satisfy the condition, then shrink left pointer as much as possible while still valid. Because each pointer only moves forward, total work is linear.',
+    algorithm: [
+      'Initialize two pointers i=0 and j=0, plus counters for 0/1/2.',
+      'Move j forward; update the counter for s[j].',
+      'Whenever all three counters are at least 1, update answer with current window length.',
+      'Then move i forward to shrink window, decrementing counter for s[i], until condition breaks.',
+      'Continue until j reaches end. If answer was never updated, return -1; otherwise return minimum length.',
+    ],
+    example: {
+      input: 's = "10212"',
+      steps: [
+        'j=0..2 gives window "102" with counts (1,1,1), answer=3.',
+        'Try shrinking from left: removing 1 breaks condition, so stop shrinking.',
+        'Continue expanding; windows "021" and "212" also checked.',
+        'Minimum valid window length remains 3.',
+      ],
+      output: '3',
+    },
+    pitfalls: [
+      'Do not stop after first valid window; keep shrinking to get the minimum.',
+      'Remember to decrement counts while moving left pointer.',
+      'Return -1 when any required character never appears in the string.',
+    ],
+  },
+
 }
 
 export default gfgExplanations
