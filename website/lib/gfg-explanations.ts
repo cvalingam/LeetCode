@@ -5954,6 +5954,35 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  // --- Longest Repeating Character Replacement --------------------------------
+  'longest-repeating-character-replacement': {
+    intuition:
+      'At any point in the sliding window, if the window size minus the count of the most-frequent character exceeds k, we cannot make that window valid with at most k replacements. So we track the highest frequency seen so far and use it to decide when the window is too large to shrink. The key insight is that we never shrink maxCount downward — we only need the window to grow.',
+    algorithm: [
+      'Initialize left = 0, maxCount = 0, maxLength = 0, and a freq[26] array.',
+      'Expand right pointer one step at a time; increment freq[s[right] - A] and update maxCount.',
+      'While (right - left + 1) - maxCount > k, the window needs more than k replacements: shrink by decrementing freq[s[left] - A] and incrementing left.',
+      'Update maxLength = max(maxLength, right - left + 1).',
+      'Return maxLength after the full traversal.',
+    ],
+    example: {
+      input: 's = "AABABBA", k = 1',
+      steps: [
+        'Expand to "AABAB" (size=5, maxCount=3 As): replacements needed = 5-3 = 2 > k. Shrink.',
+        'After shrink: "ABAB" (size=4, maxCount=2): 4-2=2 > 1. Shrink again.',
+        '"BAB" (size=3, maxCount=2 Bs): 3-2=1 <= k. Valid. maxLength=3.',
+        'Continue... "ABBA" (size=4, maxCount=2 Bs): valid. maxLength=4.',
+        'Final answer is 4.',
+      ],
+      output: '4',
+    },
+    pitfalls: [
+      'maxCount is never decremented even as the window shrinks — this is intentional and correct. We only care about windows at least as large as past valid ones.',
+      'The condition checks (windowSize - maxCount) > k, not >= k.',
+      'Input characters are uppercase A-Z; use s.charAt(i) - \u0027A\u0027 as the index.',
+    ],
+  },
+
 }
 
 export default gfgExplanations
