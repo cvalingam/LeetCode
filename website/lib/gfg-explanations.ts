@@ -5983,6 +5983,36 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  // --- Min Swaps to Group 1s -------------------------------------------------
+  'min-swaps-to-group-1s': {
+    intuition:
+      'If total number of ones is `ones`, then after grouping all ones together they must occupy some contiguous window of length `ones`. Inside that window, every zero must be swapped with a one from outside. So we just need the window of length `ones` that already contains the maximum number of ones.',
+    algorithm: [
+      'Count total ones in array.',
+      'If ones == 0 return -1 (cannot group absent ones). If ones == n return 0.',
+      'Compute ones count in first window of size `ones`.',
+      'Slide the window by one position each step, updating count in O(1).',
+      'Track maximum ones seen in any such window as `maxOnes`.',
+      'Return `ones - maxOnes`.',
+    ],
+    example: {
+      input: 'arr = [1,0,1,0,1]',
+      steps: [
+        'ones = 3, so check windows of length 3.',
+        'Window [1,0,1] has 2 ones.',
+        'Window [0,1,0] has 1 one.',
+        'Window [1,0,1] has 2 ones; maxOnes = 2.',
+        'Minimum swaps = 3 - 2 = 1.',
+      ],
+      output: '1',
+    },
+    pitfalls: [
+      'Do not attempt adjacent-swap counting; this problem asks minimum swaps in general, not necessarily adjacent swaps.',
+      'Window size is exactly total ones, not a variable length.',
+      'Handle edge cases `ones = 0` and `ones = n` explicitly.',
+    ],
+  },
+
 }
 
 export default gfgExplanations

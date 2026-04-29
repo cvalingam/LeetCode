@@ -6920,6 +6920,37 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  // --- 3225. Maximum Score From Grid Operations ------------------------------
+  3225: {
+    intuition:
+      'Process columns left to right and track, for each column, how deep the chosen boundary row goes. Prefix sums let us quickly evaluate how much score is gained when the boundary moves up or down between adjacent columns. Two DP arrays are enough: one where current column contributes (`pick`) and one where it does not (`skip`).',
+    algorithm: [
+      'Build column prefix sums so any segment sum in a column is O(1).',
+      'Maintain `prevPick[prev]` and `prevSkip[prev]`, where `prev` is boundary depth in the previous column.',
+      'For each new column j and each pair (`curr`, `prev`):',
+      'If `curr > prev`, boundary goes deeper; add segment from column j-1 using `prevSkip` transitions.',
+      'Else, boundary goes shallower/equal; add segment from column j using `prevPick` transitions and optionally keep skip state.',
+      'Store best results in `currPick[curr]` and `currSkip[curr]`, then roll arrays for next column.',
+      'Answer is max value in final `pick` array.',
+    ],
+    example: {
+      input: 'grid = [[1,2],[3,4]]',
+      steps: [
+        'Compute per-column prefix sums to query vertical segment sums quickly.',
+        'Initialize DP states for first transition column.',
+        'Enumerate possible boundary depths for previous/current columns.',
+        'Apply two transition cases (`curr > prev` vs otherwise) and keep maximum.',
+        'After processing all columns, take max over ending boundary depths.',
+      ],
+      output: 'Maximum achievable score for the grid.',
+    },
+    pitfalls: [
+      'Without prefix sums, segment score extraction inside transitions becomes too slow.',
+      'Keep `long` DP values to avoid overflow on large sums.',
+      'Be careful with state meaning: mixing `pick` and `skip` transitions gives incorrect totals.',
+    ],
+  },
+
 }
 
 export default explanations
