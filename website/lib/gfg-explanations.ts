@@ -6040,6 +6040,35 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  // --- Kth Largest in a Stream -----------------------------------------------
+  'kth-largest-in-a-stream': {
+    intuition:
+      'After processing each element we need the k-th largest seen so far. A min-heap of exactly k elements does this in O(log k) per step: the heap always holds the k largest elements, and its minimum (the top) is exactly the k-th largest. Before k elements have been seen, no k-th largest exists, so output -1.',
+    algorithm: [
+      'Create a min-heap (PriorityQueue with natural order).',
+      'For each element in arr: add it to the heap.',
+      'If heap size exceeds k, evict the minimum (poll).',
+      'If heap size equals k, append heap.peek() to result; otherwise append -1.',
+      'Return the result list.',
+    ],
+    example: {
+      input: 'arr = [1, 2, 3, 4, 5], k = 2',
+      steps: [
+        'i=0: heap=[1], size<2 → output -1.',
+        'i=1: heap=[1,2], size=2 → output peek=1.',
+        'i=2: add 3 → heap=[1,2,3], evict min → heap=[2,3] → output 2.',
+        'i=3: add 4 → heap=[2,3,4], evict min → heap=[3,4] → output 3.',
+        'i=4: add 5 → heap=[3,4,5], evict min → heap=[4,5] → output 4.',
+      ],
+      output: '[-1, 1, 2, 3, 4]',
+    },
+    pitfalls: [
+      'Java\'s PriorityQueue is a min-heap by default — no comparator needed here.',
+      'Check heap size == k (not >= k) before peeking, since after eviction size is always ≤ k.',
+      'Output -1 for early indices — do not peek when the heap has fewer than k elements.',
+    ],
+  },
+
 }
 
 export default gfgExplanations
