@@ -6013,6 +6013,33 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  // --- Check if an Array is Max Heap -----------------------------------------
+  'check-if-an-array-is-max-heap': {
+    intuition:
+      'In a max heap stored as a 0-indexed array, every node at index i has its parent at (i-1)/2. The heap property requires every child to be ≤ its parent. Scanning children (not parents) is cleaner because every non-root node has exactly one parent — no edge case for nodes with only one child.',
+    algorithm: [
+      'Loop i from n-1 down to 1 (all non-root indices).',
+      'For each i, compute parent = (i-1)/2.',
+      'If arr[i] > arr[parent], return false immediately.',
+      'If the loop completes without violation, return true.',
+    ],
+    example: {
+      input: 'arr = [90, 15, 10, 7, 12, 2]',
+      steps: [
+        'i=5: arr[5]=2 <= arr[2]=10 ✓',
+        'i=4: arr[4]=12 <= arr[1]=15 ✓',
+        'i=3: arr[3]=7 <= arr[1]=15 ✓',
+        'i=2: arr[2]=10 <= arr[0]=90 ✓',
+        'i=1: arr[1]=15 <= arr[0]=90 ✓',
+      ],
+      output: 'true',
+    },
+    pitfalls: [
+      'Do not start loop at i=0 — the root has no parent and (0-1)/2 gives an incorrect index.',
+      'Use (i-1)/2 for 0-based indexing; do not use i/2.',
+    ],
+  },
+
 }
 
 export default gfgExplanations

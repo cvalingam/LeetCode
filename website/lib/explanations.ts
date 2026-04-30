@@ -6951,6 +6951,35 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  // --- 3742. Maximum Path Score in a Grid ------------------------------------
+  3742: {
+    intuition:
+      'You can only move right or down, so every path has a fixed length. The twist is a budget k: passing through a positive cell costs 1. Recurse backwards from (m-1,n-1) — state (i,j,k) = max score from here to the destination with k budget left. Each cell adds its value and delegates to the best predecessor.',
+    algorithm: [
+      'Recurse from (m-1, n-1) back to (0, 0), moving only up or left.',
+      'Base case: (0, 0) returns 0.',
+      'Out-of-bounds or k < 0: return -∞ (impossible path sentinel).',
+      'If grid[i][j] > 0, decrement budget: nk = k - 1.',
+      'Result = grid[i][j] + max(Dfs(i-1, j, nk), Dfs(i, j-1, nk)).',
+      'Memoize in f[i][j][k]. If final answer < 0, return -1.',
+    ],
+    example: {
+      input: 'grid = [[-1, 2], [3, -4]], k = 1',
+      steps: [
+        'At (1,1): grid=-4, not positive, budget unchanged.',
+        'Dfs(0,1,k): grid=2 positive → nk=k-1. Only predecessor (0,0)=0. Score=2.',
+        'Dfs(1,0,k): grid=3 positive → nk=k-1. Only predecessor (0,0)=0. Score=3.',
+        'At (1,1): -4 + max(2, 3) = -1.',
+      ],
+      output: '-1',
+    },
+    pitfalls: [
+      'Sentinel must be -(1<<30), not -1 — it must survive Math.Max without polluting valid negative scores.',
+      'Budget decrements only for strictly positive cells (> 0), not zero or negative.',
+      'Return -1 only after full DFS; do not short-circuit on intermediate negative values.',
+    ],
+  },
+
 }
 
 export default explanations
