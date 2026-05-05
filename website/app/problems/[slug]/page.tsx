@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getAllProblems, getProblemBySlug, getAdjacentProblems } from '@/lib/problems'
 import { toLeetCodeSlug, SITE_URL } from '@/lib/constants'
-import { TAG_LABELS } from '@/lib/tags'
+import { TAG_LABELS, TOPIC_DESCRIPTIONS } from '@/lib/tags'
 import CodeBlockWithHeader, { type SupportedLang } from '@/components/CodeBlockWithHeader'
 import LanguageTabs from '@/components/LanguageTabs'
 import DifficultyBadge from '@/components/DifficultyBadge'
@@ -253,11 +253,35 @@ export default async function ProblemPage({ params }: Props) {
 
         if (problem.approach) {
           return (
-            <div className="mb-8 p-4 rounded-xl bg-slate-50 dark:bg-gray-800/50 border border-slate-100 dark:border-gray-800">
-              <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Explanation</h2>
-              {problem.approach.split('\n').map((para, i) => (
-                <p key={i} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-2 last:mb-0">{para}</p>
-              ))}
+            <div className="mb-8 space-y-4">
+              <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-100 dark:border-amber-900">
+                <h2 className="flex items-center gap-1.5 text-[11px] font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-2">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                  Approach
+                </h2>
+                <div className="space-y-1.5">
+                  {problem.approach.split('\n').map((para, i) => (
+                    <p key={i} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{para}</p>
+                  ))}
+                </div>
+              </div>
+              {problem.tags.length > 0 && (
+                <div className="p-4 rounded-xl bg-slate-50 dark:bg-gray-800/50 border border-slate-100 dark:border-gray-800">
+                  <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-4">Key Techniques</h2>
+                  <div className="space-y-4">
+                    {problem.tags.slice(0, 3).map(tag => {
+                      const desc = TOPIC_DESCRIPTIONS[tag]
+                      if (!desc) return null
+                      return (
+                        <div key={tag}>
+                          <a href={`/topics/${tag}`} className="inline-block text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline mb-1">{TAG_LABELS[tag] ?? tag}</a>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{desc}</p>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           )
         }
@@ -273,13 +297,32 @@ export default async function ProblemPage({ params }: Props) {
             : ''
           const langLabel = EXT_TO_LABEL[problem.primaryExt] ?? problem.primaryExt.toUpperCase()
           return (
-            <div className="mb-8 p-4 rounded-xl bg-slate-50 dark:bg-gray-800/50 border border-slate-100 dark:border-gray-800">
-              <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">About this solution</h2>
-              <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                {problem.title} is a {problem.difficulty.toLowerCase()}-difficulty LeetCode problem{tagPhrase}.
-                The {langLabel} solution below uses an idiomatic approach that is clean, readable, and directly submittable on LeetCode.{complexityPhrase}{' '}
-                Study the logic carefully — recognising the underlying pattern is the key skill that transfers to similar problems in interviews.
-              </p>
+            <div className="mb-8 space-y-4">
+              <div className="p-4 rounded-xl bg-slate-50 dark:bg-gray-800/50 border border-slate-100 dark:border-gray-800">
+                <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">About this solution</h2>
+                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  {problem.title} is a {problem.difficulty.toLowerCase()}-difficulty LeetCode problem{tagPhrase}.
+                  The {langLabel} solution below uses an idiomatic approach that is clean, readable, and directly submittable on LeetCode.{complexityPhrase}{' '}
+                  Study the logic carefully — recognising the underlying pattern is the key skill that transfers to similar problems in interviews.
+                </p>
+              </div>
+              {problem.tags.length > 0 && (
+                <div className="p-4 rounded-xl bg-slate-50 dark:bg-gray-800/50 border border-slate-100 dark:border-gray-800">
+                  <h2 className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-4">Key Techniques</h2>
+                  <div className="space-y-4">
+                    {problem.tags.slice(0, 3).map(tag => {
+                      const desc = TOPIC_DESCRIPTIONS[tag]
+                      if (!desc) return null
+                      return (
+                        <div key={tag}>
+                          <a href={`/topics/${tag}`} className="inline-block text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline mb-1">{TAG_LABELS[tag] ?? tag}</a>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{desc}</p>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           )
         }
