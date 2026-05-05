@@ -6069,6 +6069,36 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  // --- Sum of XOR of all pairs -----------------------------------------------
+  'sum-of-xor-of-all-pairs': {
+    intuition:
+      'XOR of two numbers at bit position i equals 1 only when the two numbers differ at that bit. So instead of checking every pair, count for each bit how many numbers have it set (count1) and how many do not (count0). Every one of the count1 × count0 pairs contributes 2^i to the total XOR sum.',
+    algorithm: [
+      'Initialise total = 0.',
+      'For each bit position i from 0 to 31:',
+      '  Count count1 = number of elements in arr with bit i set.',
+      '  count0 = n − count1.',
+      '  total += count1 * count0 * (1L << i).',
+      'Return total.',
+    ],
+    example: {
+      input: 'arr = [1, 2, 3]',
+      steps: [
+        'Bit 0 (value 1): set in 1,3 → count1=2, count0=1 → contribution = 2×1×1 = 2.',
+        'Bit 1 (value 2): set in 2,3 → count1=2, count0=1 → contribution = 2×1×2 = 4.',
+        'All higher bits: count1=0 → contribution = 0.',
+        'Total = 2 + 4 = 6.',
+        'Verify: XOR(1,2)=3, XOR(1,3)=2, XOR(2,3)=1 → sum = 6. ✓',
+      ],
+      output: '6',
+    },
+    pitfalls: [
+      'Use 1L << i (long shift) to avoid int overflow for bit positions ≥ 31.',
+      'Multiply count1 * count0 as long before multiplying by the bit value to prevent overflow.',
+      'Each unordered pair is counted exactly once because count1 × count0 counts one element from each group per pair.',
+    ],
+  },
+
 }
 
 export default gfgExplanations

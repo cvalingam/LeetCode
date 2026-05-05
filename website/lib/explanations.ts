@@ -6980,6 +6980,35 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  // --- 61. Rotate List --------------------------------------------------------
+  61: {
+    intuition:
+      'Rotating right by k is equivalent to moving the last k nodes to the front. Rather than shifting nodes one at a time, find the new tail (node at position len - k%len), make the list circular, then break the circle at the right point. The modulo handles k >= len gracefully.',
+    algorithm: [
+      'Walk the list to find its length and keep a reference to the tail node.',
+      'Reduce k: k = len - k % len. If k == len after reduction, no rotation is needed.',
+      'Make the list circular: tail.next = head.',
+      'Walk k steps from the original head; this node becomes the new tail.',
+      'Set head = newTail.next, then newTail.next = null to break the circle.',
+      'Return the new head.',
+    ],
+    example: {
+      input: 'head = [1,2,3,4,5], k = 2',
+      steps: [
+        'Length = 5. k = 5 - 2%5 = 3.',
+        'Make circular: 5.next = 1.',
+        'Walk 3 steps from 1: 1 → 2 → 3. New tail = node 3.',
+        'New head = 3.next = node 4. Break: 3.next = null.',
+        'Result: [4, 5, 1, 2, 3].',
+      ],
+      output: '[4, 5, 1, 2, 3]',
+    },
+    pitfalls: [
+      'Reduce k modulo len first — k can exceed the list length.',
+      'If k % len == 0, the list is unchanged; the circular-then-break approach handles this automatically since walking len steps returns to the original tail.',
+    ],
+  },
+
 }
 
 export default explanations
