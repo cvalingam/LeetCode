@@ -6099,6 +6099,34 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  // --- Size of Binary Tree ---------------------------------------------------
+  'size-of-binary-tree': {
+    intuition:
+      'Tree size means counting how many nodes exist. For every non-null node, count 1 for itself, then recursively count nodes in its left and right subtrees. The recursive decomposition naturally mirrors the tree structure and visits each node exactly once.',
+    algorithm: [
+      'If root is null, return 0.',
+      'Recursively compute leftSize = getSize(root.left).',
+      'Recursively compute rightSize = getSize(root.right).',
+      'Return leftSize + rightSize + 1 for the current node.',
+    ],
+    example: {
+      input: 'root = [1, 2, 3, 4, 5]',
+      steps: [
+        'Node 4: left and right are null, so size = 0 + 0 + 1 = 1.',
+        'Node 5: similarly, size = 1.',
+        'Node 2: size = size(4) + size(5) + 1 = 1 + 1 + 1 = 3.',
+        'Node 3: leaf, size = 1.',
+        'Node 1: size = size(2) + size(3) + 1 = 3 + 1 + 1 = 5.',
+      ],
+      output: '5',
+    },
+    pitfalls: [
+      'Do not forget the +1 for the current node; otherwise you only count descendants.',
+      'Base case must return 0 for null, not 1.',
+      'Deep skewed trees can cause recursion depth issues in constrained environments.',
+    ],
+  },
+
 }
 
 export default gfgExplanations
