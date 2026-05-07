@@ -7009,6 +7009,37 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  3660: {
+    intuition:
+      'For each position i, the maximum collectible value depends on whether the best value seen so far (the prefix maximum) is still "reachable" given what lies ahead. If a smaller element in the suffix would block advancement, the prefix max is the ceiling; otherwise the answer from the next position carries forward. A single right-to-left pass with a running suffix minimum resolves this in O(n).',
+    algorithm: [
+      'Build prefixMax: prefixMax[i] = max(nums[0..i]).',
+      'Initialise suffixMin = +∞ and result array of length n.',
+      'Traverse i from n-1 down to 0.',
+      'If prefixMax[i] > suffixMin: result[i] = result[i+1] (or 0 if i is the last index).',
+      'Otherwise: result[i] = prefixMax[i].',
+      'Update suffixMin = min(suffixMin, nums[i]) before moving left.',
+    ],
+    example: {
+      input: 'nums = [3, 1, 5, 2, 4]',
+      steps: [
+        'prefixMax = [3, 3, 5, 5, 5].',
+        'i=4: suffixMin=∞, 5>∞? No → result[4]=5. suffixMin=4.',
+        'i=3: 5>4? Yes → result[3]=result[4]=5. suffixMin=min(4,2)=2.',
+        'i=2: 5>2? Yes → result[2]=result[3]=5. suffixMin=min(2,5)=2.',
+        'i=1: 3>2? Yes → result[1]=result[2]=5. suffixMin=min(2,1)=1.',
+        'i=0: 3>1? Yes → result[0]=result[1]=5. suffixMin=min(1,3)=1.',
+        'Result: [5, 5, 5, 5, 5].',
+      ],
+      output: '[5, 5, 5, 5, 5]',
+    },
+    pitfalls: [
+      'Don\'t skip the modulo when there is no modulo needed here — but do handle the last index (i+1 < n) before reading result[i+1].',
+      'The prefix max must be computed as a full array first; you cannot compute it on the fly in the right-to-left pass.',
+      'suffixMin must be updated after reading result[i], not before, to avoid including nums[i] in its own suffix.',
+    ],
+  },
+
 }
 
 export default explanations

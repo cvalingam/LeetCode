@@ -6127,6 +6127,34 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  'check-if-subtree': {
+    intuition:
+      'Two binary trees are identical if and only if their inorder traversals — with explicit null markers — match. So checking whether T2 is a subtree of T1 reduces to checking whether T2\'s inorder serialization appears as a contiguous subsequence inside T1\'s. That subsequence search is solved in linear time with KMP, turning an O(m×n) brute-force comparison into O(m+n).',
+    algorithm: [
+      'Run inorder(root1, list1): for each null child insert 0 as a sentinel.',
+      'Run inorder(root2, list2): same null-marker convention.',
+      'Build the KMP LPS (Longest Proper Prefix-Suffix) array for list2.',
+      'KMP-scan list1 with list2 as the pattern; if index j reaches list2.size(), a full match was found.',
+      'Return true on match, false if the scan exhausts list1.',
+    ],
+    example: {
+      input: 'root1 = [1, 2, 3], root2 = [2]',
+      steps: [
+        'Inorder(root1): [0, 2, 0, 1, 0, 3, 0] (0 = null marker).',
+        'Inorder(root2): [0, 2, 0].',
+        'LPS for [0, 2, 0] = [0, 0, 1].',
+        'KMP scan: list1[0..2] = [0,2,0] matches list2 fully at j=3.',
+        'Match found — root2 is a subtree of root1.',
+      ],
+      output: 'true',
+    },
+    pitfalls: [
+      'Omitting null markers makes structurally different trees look identical — e.g., a left-only child and a right-only child with the same value produce the same inorder list without markers.',
+      'Using 0 as a null sentinel collides with node values that are actually 0; a safer sentinel is a value outside the problem\'s allowed node-value range.',
+      'An empty T2 (root2 == null) is always a subtree; the inorder list for null is just [0], and [0] appears in every non-empty tree\'s serialization.',
+    ],
+  },
+
 }
 
 export default gfgExplanations
