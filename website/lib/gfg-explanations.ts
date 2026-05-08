@@ -6155,6 +6155,35 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  'remove-invalid-parentheses': {
+    intuition:
+      'We want the minimum number of removals, so we explore strings in order of increasing removals — exactly what BFS does. Level 0 is the original string (zero removals); level 1 removes one character; and so on. The first level that produces any valid string is the answer, because going deeper would require more removals.',
+    algorithm: [
+      'Initialise a queue with the original string s and a visited HashSet containing s.',
+      'Poll a string cur from the queue.',
+      'If cur passes the validity check (balanced parentheses), add it to the result and set found=true.',
+      'If found is true, skip generating children — we only want results at this minimum level.',
+      'Otherwise, try removing each character that is \"(\" or \")\" and enqueue unseen results.',
+      'Repeat until the queue is empty; return all collected valid strings.',
+    ],
+    example: {
+      input: 's = "()())()"',
+      steps: [
+        'Level 0: "()())()" — not valid (unmatched closing paren).',
+        'Level 1: try removing each \"(\" or \")\" → generates candidates like "(())()" and "()()()".',
+        '"(())()" — valid. "()()()" — valid. Set found=true.',
+        'Continue draining this BFS level but generate no new children.',
+        'Return ["(())()", "()()()"].',
+      ],
+      output: '["(())()", "()()()"]',
+    },
+    pitfalls: [
+      'Without the visited HashSet, the same string can be generated exponentially many times from different removal sequences.',
+      'Non-parenthesis characters must be skipped during removal — removing letters changes meaning, not balance.',
+      'Setting found=true stops new children being enqueued but does not stop the current level from being fully drained, ensuring all minimum-removal results are collected.',
+    ],
+  },
+
 }
 
 export default gfgExplanations

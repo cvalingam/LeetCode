@@ -7040,6 +7040,36 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  3629: {
+    intuition:
+      'Indices whose values share a prime factor can teleport to each other in one jump, so the problem is shortest-path on an implicit graph. BFS guarantees the minimum number of jumps. The key insight is to group indices by prime factor and expand the whole group at once — then clear the group to prevent re-processing, keeping BFS linear in the number of edges rather than quadratic.',
+    algorithm: [
+      'Precompute a sieve: for every integer 2 to 1e6, record all its prime factors.',
+      'Walk nums[] and build a map: prime → list of indices that have that prime.',
+      'BFS from index 0 with a visited array.',
+      'For each dequeued index i: if i == n-1 return current depth (ans).',
+      'Collect neighbors: all indices sharing a prime with nums[i], plus i-1 and i+1.',
+      'After expanding a prime group, clear it from the map so it is never traversed again.',
+      'Enqueue unvisited neighbors; increment ans after each full BFS layer.',
+    ],
+    example: {
+      input: 'nums = [6, 10, 15, 35, 21]',
+      steps: [
+        'Primes of each: 6→{2,3}, 10→{2,5}, 15→{3,5}, 35→{5,7}, 21→{3,7}.',
+        'BFS layer 0: visit index 0 (value 6).',
+        'Layer 1: expand prime 2 → indices {0,1}; prime 3 → indices {0,2,4}; also i+1=1. New: 1,2,4.',
+        'Layer 2: from index 1, prime 5 → indices {1,2,3}; new: 3. From index 2 or 4, i+1=3,5 would reach end.',
+        'index 4 → i+1=5 (n-1=4 in a 5-element array) … return ans = 2.',
+      ],
+      output: '2',
+    },
+    pitfalls: [
+      'Not clearing the prime-group after use causes O(N²) re-expansion and TLE.',
+      'Static initialization of the sieve (in the static constructor) means it is built only once per program run — essential for passing multiple test cases efficiently.',
+      'Remember to also add i+1 and i-1 to the neighbor list, not just the prime-teleport neighbors.',
+    ],
+  },
+
 }
 
 export default explanations
