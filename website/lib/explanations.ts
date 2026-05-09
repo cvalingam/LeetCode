@@ -7070,6 +7070,33 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  1914: {
+    intuition:
+      'A grid has concentric rectangular layers like an onion. Rotating layer by layer independently is easier than rotating the whole grid at once. Each layer is a linear sequence (top → right → bottom → left), so rotating k is just a cyclic shift of that sequence. Modulo by layer size eliminates redundant full rotations.',
+    algorithm: [
+      'Initialise pointers: t (top), l (left), b (bottom), r (right) bounding the current layer.',
+      'While t < b and l < r (more than one layer remains):',
+      '  1) Compute the ring size: 2*(b-t) + 2*(r-l).',
+      '  2) Compute net rotations: k % ringSize.',
+      '  3) For each rotation, shift elements one position clockwise around the ring.',
+      '  4) Move inward: t++, l++, b--, r--.',
+    ],
+    example: {
+      input: 'grid = [[1,2,3],[4,5,6],[7,8,9]], k = 1',
+      steps: [
+        'Layer 1 (ring): [1,2,3,6,9,8,7,4].',
+        'Rotate 1 step: [4,1,2,3,6,9,8,7].',
+        'Place back: grid[0]=[4,1,2], grid[1]=[7,5,3], grid[2]=[8,9,6].',
+      ],
+      output: '[[4,1,2],[7,5,3],[8,9,6]]',
+    },
+    pitfalls: [
+      'Modulo ring size avoids simulating every single rotation; k=5 on a 4-element ring is just k=1.',
+      'After each rotation iteration, all four directions (top, right, bottom, left) must shift elements; forgetting one causes the ring to corrupt.',
+      'When t == b or l == r, the layer is a single row or column and requires special handling or the loop condition prevents it.',
+    ],
+  },
+
 }
 
 export default explanations

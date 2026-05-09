@@ -6184,6 +6184,37 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  'count-spanning-trees-in-a-graph': {
+    intuition:
+      'Kirchhoff\'s Matrix-Tree theorem states that the number of spanning trees of a graph equals the absolute value of any cofactor (e.g., the determinant of the (n−1)×(n−1) submatrix) of its Laplacian matrix. The Laplacian captures both the vertex degrees and edge weights, so computing its determinant via Gaussian elimination yields the count in O(n³).',
+    algorithm: [
+      'Build the Laplacian matrix L: L[u][u] = degree of u; L[u][v] = −count of edges between u and v.',
+      'Extract the (n−1)×(n−1) submatrix by removing the last row and column.',
+      'Compute the determinant via Gaussian elimination:',
+      '  a) For each pivot column i, find the row with the largest absolute value in column i (partial pivoting).',
+      '  b) Swap rows if necessary, tracking sign changes (multiply det by −1).',
+      '  c) Eliminate all entries below the pivot via row operations.',
+      'Multiply the diagonal entries to get the determinant.',
+      'Round to the nearest integer and return.',
+    ],
+    example: {
+      input: 'n = 3, edges = [[0,1],[0,2],[1,2]]',
+      steps: [
+        'Degrees: 0→2, 1→2, 2→2.',
+        'Laplacian: [[2,-1,-1],[-1,2,-1],[-1,-1,2]].',
+        'Submatrix (remove last row/col): [[2,-1],[-1,2]].',
+        'Determinant: 2*2 - (-1)*(-1) = 4 - 1 = 3.',
+        'A triangle has exactly 3 spanning trees: each subset of 2 edges.',
+      ],
+      output: '3',
+    },
+    pitfalls: [
+      'The Laplacian matrix must be constructed correctly: degree on diagonal, negative adjacency off-diagonal.',
+      'Determinant computation uses floating-point arithmetic; comparison against zero must use an epsilon (1e-9) to handle rounding errors.',
+      'Removing the last row and column is arbitrary (any (n−1)×(n−1) cofactor works), but the code must be consistent.',
+    ],
+  },
+
 }
 
 export default gfgExplanations
