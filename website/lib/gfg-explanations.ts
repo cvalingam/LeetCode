@@ -6215,6 +6215,38 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  'max-profit-from-two-machines': {
+    intuition:
+      'Tasks should be allocated to whichever machine yields more profit for that task. The greedy insight is to process tasks in order of their profit difference |a[i] - b[i]| (largest first), so the most impactful assignments are made while both machines still have capacity. Once a machine is full, all remaining tasks go to the other.',
+    algorithm: [
+      'Create Task objects storing a[i], b[i], and diff = |a[i] - b[i]|.',
+      'Sort tasks by diff descending (highest spread first).',
+      'For each task in order:',
+      '  Assign to machine A if (a[i] >= b[i] and A has capacity) or machine B is full.',
+      '  Otherwise assign to machine B.',
+      'Accumulate profit and increment the respective machine counter.',
+      'Return total profit.',
+    ],
+    example: {
+      input: 'x = 2, y = 2, a = [3, 1, 4, 2], b = [2, 5, 3, 6]',
+      steps: [
+        'Diffs: |3-2|=1, |1-5|=4, |4-3|=1, |2-6|=4.',
+        'Sorted by diff desc: task(1,5,4), task(2,6,4), task(3,2,1), task(4,3,1).',
+        'Task(1,5): b>a, B has cap → assign B, profit+=5. countB=1.',
+        'Task(2,6): b>a, B has cap → assign B, profit+=6. countB=2.',
+        'Task(3,2): B full → assign A, profit+=3. countA=1.',
+        'Task(4,3): B full → assign A, profit+=4. countA=2.',
+        'Total profit = 5+6+3+4 = 18.',
+      ],
+      output: '18',
+    },
+    pitfalls: [
+      'Sorting by diff ensures the greedy choice is globally optimal — without sorting, a locally suboptimal assignment could waste capacity on a high-diff task.',
+      'Machine B fills up before A in this formulation; check countB >= y as the overflow condition.',
+      'Both machines must be checked for capacity before deciding assignment; do not assume one always fills first.',
+    ],
+  },
+
 }
 
 export default gfgExplanations

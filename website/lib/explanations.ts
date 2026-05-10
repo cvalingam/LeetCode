@@ -7097,6 +7097,37 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  2770: {
+    intuition:
+      'This is a longest-path problem in a DAG. Define dp[j] as the maximum number of jumps needed to reach index j. Because we can only jump from i to j when |nums[j] - nums[i]| ≤ target and i < j, the graph is acyclic and we can fill dp left to right.',
+    algorithm: [
+      'Initialise dp[] with -1 (unreachable); set dp[0] = 0.',
+      'For each j from 1 to n-1:',
+      '  For each i from 0 to j-1:',
+      '    If dp[i] != -1 and |nums[j] - nums[i]| <= target:',
+      '      dp[j] = max(dp[j], dp[i] + 1).',
+      'Return dp[n-1] (-1 means last index is unreachable).',
+    ],
+    example: {
+      input: 'nums = [1, 3, 6, 4, 1, 2], target = 2',
+      steps: [
+        'dp = [-1,-1,-1,-1,-1,-1], dp[0]=0.',
+        'j=1: |3-1|=2 ≤ 2 from i=0 → dp[1]=1.',
+        'j=2: |6-3|=3 > 2 (i=1 skip); |6-1|=5 > 2 (i=0 skip) → dp[2]=-1.',
+        'j=3: |4-3|=1 ≤ 2 from i=1 → dp[3]=2.',
+        'j=4: |1-3|=2 ≤ 2 from i=1 → dp[4]=2; |1-4|=3 > 2 skip.',
+        'j=5: |2-1|=1 ≤ 2 from i=4 → dp[5]=3; |2-4|=2 ≤ 2 from i=3 → dp[5]=max(3,3)=3.',
+        'Answer: dp[5] = 3.',
+      ],
+      output: '3',
+    },
+    pitfalls: [
+      'Initialise dp with -1, not 0 — a 0 at an unreachable index would incorrectly allow jumps from it.',
+      'The condition is |nums[j] - nums[i]| <= target (absolute value); jumping is allowed in both increasing and decreasing value directions.',
+      'Return -1 if dp[n-1] remains -1 — the last index may be unreachable.',
+    ],
+  },
+
 }
 
 export default explanations
