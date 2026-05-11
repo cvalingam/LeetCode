@@ -6247,6 +6247,34 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  'palindrome-pairs': {
+    intuition:
+      'A concatenation s + t is a palindrome when one side can be mirrored by the other, plus a center piece that is itself palindrome. So for each word, try every split into prefix and suffix. If prefix is palindrome, we need a word equal to reverse(suffix); if suffix is palindrome, we need reverse(prefix). Hash-map lookups make these checks fast.',
+    algorithm: [
+      'Build a hash map from reversed word to its index.',
+      'For each word s at index i, iterate split position j from 0 to s.length().',
+      'Let s1 = s[0..j-1], s2 = s[j..end].',
+      'If prefix s1 is palindrome and map contains s2 at index != i, return true.',
+      'If suffix s2 is palindrome and map contains s1 at index != i, return true.',
+      'If no split works for any word, return false.',
+    ],
+    example: {
+      input: 'arr = ["abcd", "dcba", "lls", "s", "sssll"]',
+      steps: [
+        'Store reversed words: "dcba"→0, "abcd"→1, "sll"→2, "s"→3, "llsss"→4.',
+        'For word "abcd" (i=0), split j=0 gives s1="" (palindrome), s2="abcd".',
+        'Map contains "abcd" at index 1, and 1 != 0, so pair exists.',
+        'Hence "abcd" + "dcba" is a palindrome.',
+      ],
+      output: 'true',
+    },
+    pitfalls: [
+      'Always enforce i != matchedIndex; otherwise a word may incorrectly pair with itself.',
+      'Handle empty prefix/suffix splits (j = 0 or j = len); they are valid and often necessary.',
+      'When duplicate words are possible, storing only one index can miss combinations; a list of indices is safer in that variant.',
+    ],
+  },
+
 }
 
 export default gfgExplanations
