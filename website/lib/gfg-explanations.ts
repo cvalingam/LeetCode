@@ -6275,6 +6275,31 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  'range-lcm-queries': {
+    intuition:
+      'A segment tree is perfect for range queries and point updates when the operation is associative. LCM is associative, so merging LCM(left) and LCM(right) at parent nodes builds the tree correctly. Neutral element for LCM is 1; returning 1 for out-of-range queries ensures correctness.',
+    algorithm: [
+      'Build phase: recursively fill tree bottom-up. Leaf nodes = array elements. Internal nodes = LCM of two children.',
+      'Query phase: if range is outside [l,r], return 1. If inside [ql,qr], return tree[idx]. Otherwise, split and merge child LCMs.',
+      'Update phase: find the leaf position, set its value, then propagate LCM changes up to root.',
+    ],
+    example: {
+      input: 'arr = [4, 6, 8], queries = [[2, 1, 2], [1, 0, 2], [2, 0, 2]]',
+      steps: [
+        'Build tree: leaves = 4, 6, 8. parent(4,6)=LCM(4,6)=12. parent(12,8)=LCM(12,8)=24.',
+        'Query [2, 1, 2]: ask LCM of range [1,2] = LCM(6,8) = 24.',
+        'Update [1, 0, 2]: set arr[0]=2. Update tree: leaf=2, parent(2,6)=6, parent(6,8)=24.',
+        'Query [2, 0, 2]: ask LCM of range [0,2] with arr=[2,6,8] → LCM=24.',
+      ],
+      output: '[24, 24]',
+    },
+    pitfalls: [
+      'Returning 1 for out-of-range queries (neutral element for LCM) is essential; 0 would wrongly zero out all results.',
+      'After update, make sure to propagate the change up the tree, not just update the leaf.',
+      'Index mapping: segment tree uses 1-based indexing for simplicity; be consistent with 0-based array and 1-based tree indices.',
+    ],
+  },
+
 }
 
 export default gfgExplanations

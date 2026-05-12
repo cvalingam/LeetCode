@@ -7128,6 +7128,36 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  1665: {
+    intuition:
+      'The key insight is that the optimal strategy involves sorting tasks by their net cost (actual - minimum). By processing tasks in this order, you minimize wasted energy. At each task, if your accumulated "savings" don\'t meet the task\'s minimum requirement, you must top up the initial energy; otherwise you deduct the actual cost.',
+    algorithm: [
+      'Sort tasks by (actual_effort - minimum_effort) in ascending order.',
+      'Initialise prevSaved = 0 (cumulative energy benefit/cost) and ans = 0 (extra initial energy needed).',
+      'For each sorted task with actual and minimum:',
+      '  If prevSaved < minimum: ans += (minimum - prevSaved), then prevSaved = (minimum - actual).',
+      '  Else: prevSaved -= actual.',
+      'Return ans.',
+    ],
+    example: {
+      input: 'tasks = [[1,3],[2,4],[10,11],[10,12],[8,9]]',
+      steps: [
+        'Sort by (actual - minimum): [1-3=-2, 2-4=-2, 10-11=-1, 8-9=-1, 10-12=-2] → sorted = [[1,3], [2,4], [10,11], [8,9], [10,12]].',
+        'Process [1,3]: prevSaved=0 < 3 → ans+=3, prevSaved=0. ans=3.',
+        'Process [2,4]: prevSaved=0 < 4 → ans+=4, prevSaved=2. ans=7.',
+        'Process [10,11]: prevSaved=2 < 11 → ans+=9, prevSaved=1. ans=16.',
+        'Process [8,9]: prevSaved=1 < 9 → ans+=8, prevSaved=0. ans=24.',
+        'Process [10,12]: prevSaved=0 < 12 → ans+=12, prevSaved=2. ans=36.',
+      ],
+      output: '36',
+    },
+    pitfalls: [
+      'The sort key is (actual - minimum), not just maximum. This ordering is critical to optimality.',
+      'prevSaved tracks the net energy state after each task; it can go negative (debt) and be restored by topups.',
+      'When topup is needed, the increase is (minimum - prevSaved), and the new prevSaved becomes (minimum - actual), not just -actual.',
+    ],
+  },
+
 }
 
 export default explanations
