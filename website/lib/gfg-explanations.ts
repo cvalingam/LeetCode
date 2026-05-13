@@ -6300,6 +6300,34 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  'mother-vertex': {
+    intuition:
+      'A mother vertex in a directed graph is one from which all other vertices are reachable. A key insight: if a mother vertex exists, it will always be the last vertex to finish in a DFS traversal (due to the structure of the graph). So we find the last-finished vertex, then verify it by checking if all vertices are reachable from it.',
+    algorithm: [
+      'Build the adjacency list from the edge list.',
+      'Run DFS from each unvisited vertex, tracking the last vertex to finish—this is the candidate.',
+      'Reset the visited array.',
+      'Run DFS from the candidate vertex.',
+      'If all vertices are visited, the candidate is the mother vertex; otherwise, return -1.',
+    ],
+    example: {
+      input: 'V = 4, edges = [[0,1],[0,2],[1,3],[2,3]]',
+      steps: [
+        'Adjacency: 0→[1,2], 1→[3], 2→[3], 3→[].',
+        'DFS traversal: visit 0, then 1, then 3 (finished 3), backtrack, visit 2 (finished 2), backtrack (finished 1), backtrack (finished 0).',
+        'Last finished vertex: 0.',
+        'Verify: DFS from 0 reaches 1, 2, 3. All 4 vertices reachable.',
+        'Return 0 (the mother vertex).',
+      ],
+      output: '0',
+    },
+    pitfalls: [
+      'Do not assume the first vertex with the highest out-degree is the mother; topology matters.',
+      'The last-finished vertex in DFS is the candidate only because of the directed acyclic structure; in cyclic graphs, revisit the approach.',
+      'After finding the candidate, always verify it; not all graphs have a mother vertex.',
+    ],
+  },
+
 }
 
 export default gfgExplanations

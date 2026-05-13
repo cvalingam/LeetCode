@@ -7158,6 +7158,36 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  1674: {
+    intuition:
+      'Instead of checking all 2*limit possible targets and recounting moves for each, use a difference array to track incremental changes. For each complementary pair, determine when the move cost changes as the target increases. This reduces redundant recounting.',
+    algorithm: [
+      'Initialise delta array of size 2*limit+2.',
+      'For each complementary pair (nums[i], nums[n-1-i]):',
+      '  Determine ranges: if target ∈ [min(a,b)+1, a+b), exactly one element changes.',
+      '  If target ∈ [a+b, max(a,b)+limit+1), both could need change or neither.',
+      '  Use delta to mark range transitions: decrement at start, increment at end.',
+      'Compute prefix sum of delta from target=2 to 2*limit, tracking minimum moves.',
+    ],
+    example: {
+      input: 'nums = [1,2,1,2], limit = 5',
+      steps: [
+        'Pairs: (1,2) and (1,2).',
+        'For pair (1,2): min=1, max=2, sum=3.',
+        '  delta[min+1]=delta[2]--; delta[sum]=delta[3]--; delta[sum+1]=delta[4]++; delta[max+limit+1]=delta[8]++.',
+        'Initial moves at target=2: both pairs need 1 move each, total=2.',
+        'Target=3: delta adds moves (or reduces); compute incrementally.',
+        'Continue through target=2*5=10, track minimum seen.',
+      ],
+      output: 'varies based on exact deltas',
+    },
+    pitfalls: [
+      'The delta array tracks transitions in the move-cost function as target increases; understand that multiple pairs contribute simultaneously.',
+      'Ranges depend on min, max, sum, and limit; off-by-one errors in boundaries are common.',
+      'Start with moves at target=2 computed explicitly; subsequent targets use cumulative delta.',
+    ],
+  },
+
 }
 
 export default explanations
