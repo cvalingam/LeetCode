@@ -6328,6 +6328,37 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  'search-for-subarray': {
+    intuition:
+      'Naive search would compare the pattern at every position in the text, leading to O(n×m) complexity. The KMP algorithm avoids this by precomputing an LPS array that encodes how to skip positions after a mismatch, leveraging self-overlaps in the pattern.',
+    algorithm: [
+      'Build LPS array for pattern b: LPS[i] = length of longest proper prefix of b[0..i] that is also a suffix.',
+      'Use two pointers: i for text a, j for pattern b.',
+      'If a[i] == b[j], increment both pointers.',
+      'If j == pattern.length, a match is found; record position (i - j) and set j = LPS[j-1] to find overlapping matches.',
+      'If mismatch and j > 0, use j = LPS[j-1] to skip; if j == 0, increment i.',
+      'Return all match positions.',
+    ],
+    example: {
+      input: 'a = [1, 2, 3, 1, 2], b = [1, 2]',
+      steps: [
+        'LPS for b: [0, 0] (no proper prefix-suffix overlap).',
+        'i=0, j=0: a[0]=1, b[0]=1 → match, i++, j++.',
+        'i=1, j=1: a[1]=2, b[1]=2 → match, j=2 (pattern complete). Position 0, reset j=LPS[1]=0.',
+        'i=2, j=0: a[2]=3, b[0]=1 → mismatch, i++.',
+        'i=3, j=0: a[3]=1, b[0]=1 → match, i++, j++.',
+        'i=4, j=1: a[4]=2, b[1]=2 → match, j=2. Position 3.',
+        'Result: [0, 3].',
+      ],
+      output: '[0, 3]',
+    },
+    pitfalls: [
+      'The LPS array is built on the pattern, not the text; it captures internal structure only.',
+      'After a match, set j = LPS[j-1] to find overlapping occurrences, not j = 0.',
+      'Off-by-one errors in position recording: when j == pattern.length, the match ends at i-1, so starting position is i - j.',
+    ],
+  },
+
 }
 
 export default gfgExplanations

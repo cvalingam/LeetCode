@@ -7188,6 +7188,33 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  2784: {
+    intuition:
+      'A "good" array must have a specific structure: indices [1, n-1] each paired with exactly one value, and index n paired with two values (forming a square pattern). Counting frequencies and validating against this structure is straightforward.',
+    algorithm: [
+      'Count the frequency of each element using a hash map.',
+      'Check that all integers from 1 to n-1 appear exactly once.',
+      'Check that n (the maximum expected value) appears exactly twice.',
+      'If all checks pass, the array is good; otherwise, it\'s not.',
+    ],
+    example: {
+      input: 'nums = [1, 3, 4, 2, 2]',
+      steps: [
+        'n = 5 - 1 = 4.',
+        'Count: {1:1, 3:1, 4:1, 2:2}.',
+        'Check [1, 3]: all present with freq=1.',
+        'Check 4: present with freq=2.',
+        'All conditions met → good array.',
+      ],
+      output: 'true',
+    },
+    pitfalls: [
+      'Do not confuse "good" with "sorted". A good array has a specific frequency pattern, not order.',
+      'Ensure that n appears exactly twice, not just at least twice.',
+      'Edge case: if the array has fewer than 2 elements, it cannot be good (since n appears twice).',
+    ],
+  },
+
 }
 
 export default explanations
