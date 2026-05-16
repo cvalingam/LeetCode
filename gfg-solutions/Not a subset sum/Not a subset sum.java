@@ -1,4 +1,6 @@
-﻿// Approach: Sort array. Track the smallest sum not expressible. If arr[i] > reach+1, return reach+1.
+﻿import java.util.Arrays;
+
+// Approach: Sort array. Track the smallest sum not expressible. If arr[i] > reach+1, return reach+1.
 // Time: O(n log n) Space: O(1)
 class Solution {
     public long findSmallest(int[] arr) {
@@ -15,5 +17,23 @@ class Solution {
         }
 
         return res;
+    }
+}
+
+//Version 2:
+class Solution1 {
+    public int findSmallest(int[] arr) {
+        Arrays.sort(arr);
+
+        long res = 1;
+
+        for (int num : arr) {
+            if (num > res) {
+                break;
+            }
+            res += num;
+        }
+
+        return (int) res;
     }
 }
