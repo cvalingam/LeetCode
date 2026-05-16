@@ -7215,6 +7215,33 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  154: {
+    intuition:
+      'In a rotated sorted array, the minimum lies in the unsorted side. With duplicates, comparisons can become ambiguous, so when nums[mid] == nums[r], we cannot decide a side and safely shrink r by one. Otherwise, comparing nums[mid] with nums[r] still tells which half contains the minimum.',
+    algorithm: [
+      'Set l = 0, r = n - 1.',
+      'While l < r, compute mid = l + (r - l) / 2.',
+      'If nums[mid] < nums[r], minimum is in [l..mid], so set r = mid.',
+      'If nums[mid] > nums[r], minimum is in [mid+1..r], so set l = mid + 1.',
+      'If nums[mid] == nums[r], decrement r by 1 to remove ambiguity.',
+      'When loop ends, l points to the minimum value; return nums[l].',
+    ],
+    example: {
+      input: 'nums = [2, 2, 2, 0, 1]',
+      steps: [
+        'l=0, r=4, mid=2 → nums[mid]=2, nums[r]=1, so nums[mid] > nums[r] → l=3.',
+        'l=3, r=4, mid=3 → nums[mid]=0, nums[r]=1, so nums[mid] < nums[r] → r=3.',
+        'l==r==3, stop. nums[3]=0 is minimum.',
+      ],
+      output: '0',
+    },
+    pitfalls: [
+      'With duplicates, worst-case becomes O(n) because repeated nums[mid] == nums[r] may shrink one step at a time.',
+      'Using while (l <= r) can be tricky for this pattern; while (l < r) avoids out-of-range returns and simplifies termination.',
+      'Always compare against nums[r] in this variant; mixing comparison targets inconsistently can break correctness.',
+    ],
+  },
+
 }
 
 export default explanations
