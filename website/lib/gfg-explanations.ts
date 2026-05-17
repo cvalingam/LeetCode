@@ -6359,6 +6359,37 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  'make-the-array-beautiful': {
+    intuition:
+      'Two adjacent numbers with opposite signs can "cancel" each other out, leaving fewer elements. A stack naturally tracks which elements remain after each cancellation, and we process left-to-right to handle cascading cancellations.',
+    algorithm: [
+      'Create an empty stack.',
+      'For each number in the array:',
+      '  If stack is empty, push the number.',
+      '  If number and stack top have opposite signs (one ≥0, one <0), pop the stack (cancel).',
+      '  Otherwise, push the number onto the stack.',
+      'Pop all elements from the stack into a result list (this reverses order).',
+      'Reverse the result list to restore original order.',
+      'Return the result list.',
+    ],
+    example: {
+      input: 'arr = [6, -3, 9, 7]',
+      steps: [
+        'Push 6. Stack: [6].',
+        'Next -3: opposite sign to 6, pop 6. Stack: [].',
+        'Push 9. Stack: [9].',
+        'Push 7. Stack: [9, 7].',
+        'Pop to result: [7, 9]. Reverse: [9, 7].',
+      ],
+      output: '[9, 7]',
+    },
+    pitfalls: [
+      'Sign check must use ≥0 and <0, not > and <, to handle 0 correctly (0 cancels with both positive and negative).',
+      'Remember to reverse the result at the end; popping from a stack inverts order.',
+      'Check for empty stack before peeking; an empty stack means no cancellation applies.',
+    ],
+  },
+
 }
 
 export default gfgExplanations

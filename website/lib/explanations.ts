@@ -7242,6 +7242,38 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  1306: {
+    intuition:
+      'From any position i, we can jump to i - arr[i] or i + arr[i]. This forms a graph where we want to know if position 0 is reachable. BFS naturally explores all reachable positions without redundant work.',
+    algorithm: [
+      'Initialise a queue with the start index.',
+      'Mark start as visited.',
+      'While queue is not empty:',
+      '  Dequeue index node.',
+      '  If arr[node] == 0, return true (reached a zero index).',
+      '  If already visited, skip.',
+      '  Enqueue node - arr[node] if valid.',
+      '  Enqueue node + arr[node] if valid.',
+      '  Mark node as visited.',
+      'Return false if queue exhausts without finding zero.',
+    ],
+    example: {
+      input: 'arr = [4,2,3,0,3,1,2], start = 5',
+      steps: [
+        'From 5: can jump to 5-1=4 or 5+1=6 (out of bounds, skip).',
+        'From 4: can jump to 4-3=1 or 4+3=7 (out of bounds).',
+        'From 1: can jump to 1-2=-1 (invalid) or 1+2=3.',
+        'From 3: arr[3]=0 → found!',
+      ],
+      output: 'true',
+    },
+    pitfalls: [
+      'Do not forget the visited check; without it, infinite loops on cycles are possible.',
+      'Bound-check both directions before enqueueing: node ± arr[node] must stay in [0, n-1].',
+      'Early termination on finding 0 is critical; avoid processing the entire queue unnecessarily.',
+    ],
+  },
+
 }
 
 export default explanations
