@@ -6390,6 +6390,34 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  'maximum-sum-problem': {
+    intuition:
+      'The idea is: given a number n, you can either use it directly or "reduce" it by dividing into n/2, n/3, and n/4 (integer division). The goal is to maximize the sum. Recursively, you compute the best outcome for each sub-problem and memoize to avoid redundant calculations.',
+    algorithm: [
+      'Base case: if n == 0, return 0.',
+      'Recursive case: return max(n, maxSum(n/2) + maxSum(n/3) + maxSum(n/4)).',
+      'If memoization is available, check memo[n] before computing.',
+      'Store result in memo[n] after computing.',
+    ],
+    example: {
+      input: 'n = 10',
+      steps: [
+        'maxSum(10) = max(10, maxSum(5) + maxSum(3) + maxSum(2)).',
+        'maxSum(5) = max(5, maxSum(2) + maxSum(1) + maxSum(1)) = max(5, 4) = 5.',
+        'maxSum(3) = max(3, maxSum(1) + maxSum(1) + maxSum(0)) = max(3, 2) = 3.',
+        'maxSum(2) = max(2, maxSum(1) + maxSum(0) + maxSum(0)) = max(2, 1) = 2.',
+        'maxSum(1) = max(1, 0+0+0) = 1.',
+        'maxSum(10) = max(10, 5 + 3 + 2) = max(10, 10) = 10.',
+      ],
+      output: '10',
+    },
+    pitfalls: [
+      'Integer division in recursion: n/2, n/3, n/4 are floor divisions; for n=5, n/4=1 and n/3=1.',
+      'Without memoization, the same sub-problems are recomputed exponentially (e.g., maxSum(5) called multiple times).',
+      'Base case matters: ensure n=0 returns 0, not negative or undefined.',
+    ],
+  },
+
 }
 
 export default gfgExplanations

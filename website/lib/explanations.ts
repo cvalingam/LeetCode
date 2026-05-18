@@ -7274,6 +7274,34 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  1345: {
+    intuition:
+      'In a standard BFS, we explore layer by layer. The key optimization here is the value-to-indices graph: all indices with the same value are just one "jump" away. By clearing each value\'s adjacency list after processing, we avoid re-exploring the same connections in future layers.',
+    algorithm: [
+      'Build a graph: map each value to a list of indices where it appears.',
+      'Initialise BFS queue with index 0 and track visited indices.',
+      'For each BFS layer (step):',
+      '  Dequeue an index i. If i == n-1, return step.',
+      '  Enqueue neighbors: i-1, i+1 (if valid) and all indices in graph[arr[i]].',
+      '  Clear graph[arr[i]] after processing to prevent re-visiting the same edges.',
+      'Return step when reaching index n-1.',
+    ],
+    example: {
+      input: 'arr = [100,-23,-23,404,100,23,23,23]',
+      steps: [
+        'From 0: can jump to 1 (100-1) or any index with value 100 (indices 0, 4).',
+        'From 1: can jump to 0,2 (adjacency) or any with value -23 (indices 1,2).',
+        'From 4: can jump to 3,5 (adjacency) and others with value 100; index 7 eventually reachable.',
+      ],
+      output: '3',
+    },
+    pitfalls: [
+      'Without clearing the value\'s edge list, you re-process the same indices multiple times, turning O(n) into O(n²).',
+      'Do not confuse this with adjacency in a standard graph; edges depend on both position (i±1) and value (equal arr values).',
+      'Visited check must happen before enqueueing to avoid processing the same index multiple times.',
+    ],
+  },
+
 }
 
 export default explanations
