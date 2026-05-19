@@ -7302,6 +7302,32 @@ const explanations: Record<number, RichExplanation> = {
     ],
   },
 
+  2540: {
+    intuition:
+      'Because both arrays are sorted in non-decreasing order, the smallest common value can be found without extra storage. Two pointers let us discard smaller values immediately: if nums1[i] is smaller, it can never match any earlier value in nums2, and vice versa.',
+    algorithm: [
+      'Initialise two pointers i = 0 and j = 0.',
+      'While both pointers are inside their arrays:',
+      '  If nums1[i] == nums2[j], return that value immediately.',
+      '  If nums1[i] < nums2[j], increment i because nums1[i] is too small to match nums2[j] or anything before it.',
+      '  Otherwise increment j for the symmetric reason.',
+      'If one pointer reaches the end, no common value exists, so return -1.',
+    ],
+    example: {
+      input: 'nums1 = [1, 2, 3, 6], nums2 = [2, 3, 4, 5]',
+      steps: [
+        'Compare 1 and 2: 1 is smaller, so move i to the next element.',
+        'Compare 2 and 2: they match, so 2 is the smallest common value.',
+      ],
+      output: '2',
+    },
+    pitfalls: [
+      'This works only because both arrays are sorted; on unsorted arrays, pointer moves would skip valid matches.',
+      'Return on the first match, not the last one, because the pointers advance in ascending order.',
+      'Do not use nested loops here; they increase time complexity unnecessarily to O(m*n).',
+    ],
+  },
+
 }
 
 export default explanations

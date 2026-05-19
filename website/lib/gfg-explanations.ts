@@ -6418,6 +6418,37 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  'minimum-multiplications-to-reach-end': {
+    intuition:
+      'Each number from 0 to 999 can be treated as a graph node because every multiplication is taken modulo 1000. From a current node x, multiplying by any arr[i] leads to exactly one next node, so the problem becomes finding the shortest path in an unweighted graph. BFS is the right tool because every edge costs one multiplication.',
+    algorithm: [
+      'Handle the easy case first: if start == end, return 0.',
+      'Create a distance array of size 1000 (or 1001 in this implementation) and initialise all values to infinity.',
+      'Set distance[start] = 0 and push start into a queue.',
+      'While the queue is not empty:',
+      '  Pop the front value curr.',
+      '  For every multiplier val in arr, compute next = (curr * val) % 1000.',
+      '  If distance[curr] + 1 improves distance[next], update it and enqueue next.',
+      '  If next == end, return distance[next] immediately because BFS found the shortest path.',
+      'If BFS finishes without reaching end, return -1.',
+    ],
+    example: {
+      input: 'arr = [2, 5, 7], start = 3, end = 30',
+      steps: [
+        'Start at 3 with distance 0.',
+        'From 3, one move gives 6, 15, and 21.',
+        'From 6, multiplying by 5 gives 30.',
+        'We reached 30 in 2 multiplications: 3 -> 6 -> 30.',
+      ],
+      output: '2',
+    },
+    pitfalls: [
+      'The graph is over modulo values, not over indices of the array.',
+      'Without the distance/visited check, the queue can revisit the same remainder many times and blow up work.',
+      'Returning as soon as end is first discovered is valid only because BFS processes states in increasing distance order.',
+    ],
+  },
+
 }
 
 export default gfgExplanations
