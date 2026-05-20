@@ -6449,6 +6449,35 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  'product-pair': {
+    intuition:
+      'We need to find two numbers in the array whose product equals the target. A single-pass hash-set approach works: as we iterate, we ask "have I seen the complement of target/current?" If yes, we have a pair. The hash-set prevents revisiting the same number.',
+    algorithm: [
+      'Create an empty hash-set to track viewed numbers.',
+      'For each number in the array:',
+      '  If the number is 0: check if target is also 0 (0 * anything = 0). If yes, return true.',
+      '  Otherwise: if target is divisible by this number, compute complement = target / number.',
+      '  If the complement is in the set, we found a pair, return true.',
+      '  Add the current number to the set for future lookups.',
+      'If loop completes without finding a pair, return false.',
+    ],
+    example: {
+      input: 'arr = [2, 4, 6, 3], target = 12',
+      steps: [
+        'num=2: target%2==0, complement=6. Viewed={}, add 2.',
+        'num=4: target%4==0, complement=3. Viewed={2}, add 4.',
+        'num=6: target%6==0, complement=2. Viewed={2,4}, 2 is in set → found pair (6,2).',
+        'Return true.',
+      ],
+      output: 'true',
+    },
+    pitfalls: [
+      'Zero is a special case: 0 * x = 0 for any x, so the check target==0 must happen separately.',
+      'Integer division: target/num is exact only if target%num==0; always check divisibility first.',
+      'One-pass order matters: we check before adding to set, so a number does not pair with itself unless it appears twice and target is a perfect square.',
+    ],
+  },
+
 }
 
 export default gfgExplanations
