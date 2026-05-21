@@ -6478,6 +6478,32 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  'check-if-all-bits-set': {
+    intuition:
+      'A number has all its bits set in binary if it is of the form 2^k - 1 (e.g., 7 = 0b111, 15 = 0b1111, 31 = 0b11111). The key insight is that n = 2^k - 1 if and only if n + 1 = 2^k. Since a power of 2 has exactly one bit set, we can check (n+1) & n: if n is all-bits-set, then n+1 and n have no overlapping bits, so their AND is 0.',
+    algorithm: [
+      'Given n, compute m = n + 1.',
+      'Check each bit of m by repeatedly dividing by 2 and taking modulo 2.',
+      'If m is a power of 2, all bits are 0 except the highest bit (e.g., 8 = 0b1000).',
+      'Return true if all intermediate bits are 0; return false if any intermediate bit is 1.',
+      'Alternatively, use the bitwise trick: (n+1) & n == 0 iff n is all-bits-set.',
+    ],
+    example: {
+      input: 'n = 7',
+      steps: [
+        'n = 7 = 0b0111 (three bits set).',
+        'n + 1 = 8 = 0b1000 (one bit set, a power of 2).',
+        '(n+1) & n = 0b1000 & 0b0111 = 0b0000 = 0 ✓ → true.',
+      ],
+      output: 'true',
+    },
+    pitfalls: [
+      'Zero is not all-bits-set; the edge case n=0 should return false.',
+      'The modulo-based loop checks if n+1 is a power of 2 by verifying all intermediate bits are 0; off-by-one errors can break this.',
+      'Do not confuse "all bits set" with "maximum value"; all-bits-set numbers are sparse (1, 3, 7, 15, 31, ...).',
+    ],
+  },
+
 }
 
 export default gfgExplanations
