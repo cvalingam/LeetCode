@@ -6504,6 +6504,33 @@ const gfgExplanations: Record<string, RichExplanation> = {
     ],
   },
 
+  '1s-surrounded-by-0s': {
+    intuition:
+      'A cell with value 1 is not surrounded if it can reach the border through adjacent 1s. So instead of trying to prove each 1 is enclosed, mark all border-connected 1s first. Whatever 1s remain unmarked are exactly the ones surrounded by 0s.',
+    algorithm: [
+      'Create a visited matrix of the same size as the grid.',
+      'Traverse the first and last column; whenever a border cell contains 1 and is not visited, run DFS from it.',
+      'Traverse the first and last row and do the same DFS marking for border 1s.',
+      'After all border-connected regions are marked, scan the full grid.',
+      'Count every cell where grid[i][j] == 1 and visited[i][j] == false.',
+      'Return that count.',
+    ],
+    example: {
+      input: 'grid = [[0,0,0,0],[0,1,1,0],[0,1,0,0],[1,0,0,1]]',
+      steps: [
+        'Border 1s are at (3,0) and (3,3). DFS from them marks only those cells because they are isolated.',
+        'The 1s at (1,1), (1,2), and (2,1) are never reached from the border.',
+        'These three cells are enclosed by 0s on every side through their connected component.',
+      ],
+      output: '3',
+    },
+    pitfalls: [
+      'Do not count border-connected 1s just because the border cell itself is 0; the whole connected component matters.',
+      'A visited matrix is necessary unless you mutate the grid in place during DFS.',
+      'Remember to scan both rows and columns on the border; missing one side will overcount surrounded cells.',
+    ],
+  },
+
 }
 
 export default gfgExplanations
